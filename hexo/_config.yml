@@ -6,7 +6,7 @@
 title: PytLab
 subtitle:
 description: Personal Blog of ShaoZhengjiang
-author: ShaoZhengjiang
+author: PytLab
 language: zh-Hans
 timezone:
 
@@ -42,6 +42,7 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
+mathjax: true
 
 # Category & Tag
 default_category: uncategorized

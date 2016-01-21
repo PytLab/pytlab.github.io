@@ -12,6 +12,8 @@
     "hexo-generator-category": "^0.1.2",
     "hexo-generator-index": "^0.1.2",
     "hexo-generator-tag": "^0.1.1",
+    "hexo-math": "^2.0.1",
+    "hexo-migrator-wordpress": "^0.1.2",
     "hexo-renderer-ejs": "^0.1.0",
     "hexo-renderer-marked": "^0.2.4",
     "hexo-renderer-stylus": "^0.3.0",
