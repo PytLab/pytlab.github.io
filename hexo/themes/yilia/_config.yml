@@ -50,7 +50,7 @@ tagcloud: true
 #friends: false
 #开启——
 friends:
-  旧博客地址: http://ipytlab.com
+  iPytLab: http://ipytlab.com
 #是否开启“关于我”。
 #不开启——
 #aboutme: false
