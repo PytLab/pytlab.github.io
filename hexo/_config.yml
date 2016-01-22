@@ -7,7 +7,7 @@ title: PytLab
 subtitle:
 description: Personal Blog of ShaoZhengjiang
 author: PytLab
-language: zh-Hans
+language: default
 timezone:
 
 # URL
@@ -64,7 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: yilia
+theme: freemind
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
