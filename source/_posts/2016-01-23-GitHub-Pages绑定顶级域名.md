@@ -22,18 +22,19 @@ categories:
     {% alert warning %}
     如果是直接在GitHub网页上添加文件的话，会遇到一个问题就是在通过`hexo g -d`之后hexo会把根目录下的CNAME文件删除。
     {% endalert %}
-    所以要把CNAME文件添加到`/source`目录下，这样`hexo g -d`之后hexo会自动把CNAME复制到`/puclic`目录下然后push到远程`master`分支的根目录下。
+    所以要把CNAME文件添加到`/source`目录下，这样`hexo g -d`之后hexo会自动把CNAME复制到`/puclic`目录下然后将`/public`路径下的内容进行复制并push到远程`master`分支的根目录下。
 
 2. 添加DNS Service记录
-    在DNSPod注册帐号然后添加域名设置两个A记录，分别是@和www，ip地址填
+    在[DNSPod](https://www.dnspod.cn)注册帐号然后添加域名设置两个A记录，分别是@和www，ip地址填
     ```
     192.30.252.153
     ```
+    如下图：
     ![](DNSPod.png)
 
 3. 设置域名的DNS
-    在相应域名的DNS Service中添加上图中间的两条记录
+    在相应域名的DNS Service中添加上图中间的两条记录：
     `f1g1ns1.dnspod.net`和`f1g1ns1.dnspod.net`
 
-4. 稍等解析生效后就可以通过在浏览器中输入自己的域名来访问GitHub Pages博客啦
+4. 稍等解析生效后就可以通过在浏览器中输入自己的域名来访问GitHub Pages博客啦! 如下图，
     ![](homepage.png)
