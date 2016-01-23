@@ -3,6 +3,7 @@ title: C-Primer-Plus 5th Answers
 tags:
   - C
   - GitHub
+  - 随笔
 date: 2015-05-17 22:15:31
 ---
 

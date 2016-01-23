@@ -6,6 +6,9 @@ tags:
   - kinetic model
   - kinetics
   - python
+
+categories:
+  - 学术
 mathjax: true
 date: 2015-05-17 22:12:34
 ---

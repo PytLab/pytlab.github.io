@@ -3,6 +3,8 @@ title: git push的时候用ssh放弃https
 tags:
   - Git
   - GitHub
+categories:
+  - 教程
 date: 2015-08-29 09:23:35
 ---
 

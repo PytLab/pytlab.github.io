@@ -4,6 +4,8 @@ tags:
   - kinetic model
   - kinetics
   - python
+categories:
+  - 学术
 date: 2015-02-17 22:01:42
 ---
 

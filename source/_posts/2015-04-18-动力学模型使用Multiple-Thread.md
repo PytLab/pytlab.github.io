@@ -5,6 +5,9 @@ tags:
   - chemistry
   - kinetic model
   - python
+
+categories:
+  - 学术
 date: 2015-04-18 12:43:39
 ---
 
