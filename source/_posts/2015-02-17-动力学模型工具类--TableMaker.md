@@ -21,6 +21,8 @@ input file 主要形式是表格，其中header包含:
 *   `frequencie`: 振动频率，用于热力学校正，以list的形式写在表格中，数目根据分子的构型3N-5 或者 3N-6个
 *   `information`: 数据的参考信息
 
+<!-- more -->
+
 自动生成表格的前提是model必须要有具有正确格式和信息的setup file，因为此table_maker生成表格的原理是，根据setup file生成临时的动力学模型对象，利用工具中的table_maker生成此对象对应的表格。
 在CatMap中input file使用Tab分割的，不容易查看能量数据。在此模型中，我用了csv格式文件作为输入文件，引文都好分隔符文件是可以用excel打开的，虽然用excel修改数据会造成数据精度丢失，但是有表格的话数据会有很好的可视性。修改数据的话还是建议用NotePad或者其他编辑器打开修改。
 生成的csv表格大致如下：<p>

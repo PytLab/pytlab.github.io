@@ -15,6 +15,9 @@ date: 2015-04-18 12:43:39
 把python多线程的一点点皮毛看了看就现学现卖了下。
 把迭代的部分看了看，每步迭代里面都不是各自独立不相关的运算，真心不能给每个部分的运算分配子线程。在整个动力学模型里面最适合用多线程的地方就是作图了，因为作图中的阴影以及循环添加注释是可以分别分配子线程来进行的。于是我就把plotter里面画图的部分改了下:
 分别添加了两个`threading.Thread`的子类`ShadowThread`，`NoteThread`用来实例化阴影和添加注释的子进程。
+
+<!-- more -->
+
 ``` python
 class ShadowThread(threading.Thread):
     "Sub-class of Thread class to create threads to plot shadows."

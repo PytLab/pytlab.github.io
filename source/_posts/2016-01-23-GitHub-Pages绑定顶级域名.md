@@ -8,6 +8,10 @@ tags:
   - GitHub
 categories:
   - 教程
+image: 
+  feature: 
+excerpt: test
+comments: true
 ---
 
 刚刚把自己买的域名[ipytlab.com](http://ipytlab.com)与GitHub Pages进行绑定，现在访问[ipytlab.com](http://ipytlab.com)以及[pytlab.github.io](http://pytlab.github.io)均能访问我的博客啦。
@@ -23,6 +27,8 @@ categories:
     如果是直接在GitHub网页上添加文件的话，会遇到一个问题就是在通过`hexo g -d`之后hexo会把根目录下的CNAME文件删除。
     {% endalert %}
     所以要把CNAME文件添加到`/source`目录下，这样`hexo g -d`之后hexo会自动把CNAME复制到`/puclic`目录下然后将`/public`路径下的内容进行复制并push到远程`master`分支的根目录下。
+
+<!-- more -->
 
 2. 添加DNS Service记录
     在[DNSPod](https://www.dnspod.cn)注册帐号然后添加域名设置两个A记录，分别是@和www，ip地址填
