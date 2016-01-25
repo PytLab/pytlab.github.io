@@ -28,7 +28,7 @@ comments: true
     {% endalert %}
     所以要把CNAME文件添加到`/source`目录下，这样`hexo g -d`之后hexo会自动把CNAME复制到`/puclic`目录下然后将`/public`路径下的内容进行复制并push到远程`master`分支的根目录下。
 
-<!-- more -->
+    <!-- more -->
 
 2. 添加DNS Service记录
     在[DNSPod](https://www.dnspod.cn)注册帐号然后添加域名设置两个A记录，分别是@和www，ip地址填

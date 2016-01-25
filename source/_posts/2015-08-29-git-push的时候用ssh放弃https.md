@@ -12,13 +12,14 @@ date: 2015-08-29 09:23:35
 于是找到了原因，之前我的代码是通过https clone到本地的，如果一开始是通过git ssh克隆就不会出现这种问题。如果已经通过https克隆，不用着急可以修改。
 
 在你的版本库.git中打开config文件会有如下一段代码:
-```
+``` shell
 [remote "origin"]  
 fetch = + refs/heads/*:refs/remotes/origin/*  
 url = https://username@github.com/username/projectname.git 
 ```
+
 url改成相应的
-```
+``` shell
 [remote "origin"]  
 fetch = + refs/heads/*:refs/remotes/origin/*  
 url = git@github.com:username/projectname.git 
