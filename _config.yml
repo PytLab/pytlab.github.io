@@ -4,6 +4,7 @@
 
 # Site
 title: PytLab
+subtitle: "Home"
 description: Personal Blog of ShaoZhengjiang
 author: PytLab
 language: default
@@ -73,3 +74,6 @@ deploy:
   repository: git@github.com:PytLab/pytlab.github.io.git
   branch: master
 
+search:
+  path: search.xml
+  field: post
