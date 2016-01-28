@@ -4,8 +4,10 @@ tags:
   - kinetic model
   - kinetics
   - python
+  - Kynetix
 categories:
   - 学术
+  - 代码作品
 date: 2015-02-17 22:01:42
 ---
 

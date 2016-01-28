@@ -9,8 +9,9 @@ categories:
   - 学习小结
 description: " 对于指针的两级间接关系同`const`关键字赋值这部分，无论在看《C Primer Plus》还是《C++ Primer Plus》都是比较绕的地方，在这里我尝试简单梳理下关系。"
 ---
-
+{% textcolor danger %}
 为什么进入两级间接关系与一级间接关系不同, `const`与非`const`混合指针赋值方式将不再安全?
+{% endtextcolor %}
 <br>
 
 #### 首先要明确一件事:
