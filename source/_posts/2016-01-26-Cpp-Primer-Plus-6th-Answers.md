@@ -2,7 +2,7 @@
 title: Cpp Primer Plus 6th Answers
 date: 2016-01-26 14:13:50
 tags:
-  - C++
+  - Cpp
   - GitHub
 feature: Cpp.jpg
 description: "C Primer Plus第五版课后习题答案"

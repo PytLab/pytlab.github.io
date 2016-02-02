@@ -3,7 +3,7 @@ title: 指针的两级间接关系与`const`/非`const`混合赋值的理解
 date: 2016-01-26 21:03:00
 tags:
   - C
-  - C++
+  - Cpp
   - 指针
 categories:
   - 学习小结
