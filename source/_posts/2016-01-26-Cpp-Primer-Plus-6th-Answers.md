@@ -22,3 +22,4 @@ PS.由于对C比较熟悉前面几张和C重叠的部分习题就没有写，只
  - [第六章 分支语句和逻辑运算符](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch06)
  <!-- more -->
  - [第七章 函数--C++的编程模块](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch07)
+ - [第八章 函数探幽](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch08)
