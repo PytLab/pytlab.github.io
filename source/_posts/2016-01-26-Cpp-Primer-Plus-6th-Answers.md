@@ -4,7 +4,6 @@ date: 2016-01-26 14:13:50
 tags:
   - Cpp
   - GitHub
-feature: Cpp.jpg
 description: "C Primer Plus第五版课后习题答案"
 ---
 
