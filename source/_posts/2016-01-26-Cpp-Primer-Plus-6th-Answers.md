@@ -22,3 +22,4 @@ PS.由于对C比较熟悉前面几张和C重叠的部分习题就没有写，只
  <!-- more -->
  - [第七章 函数--C++的编程模块](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch07)
  - [第八章 函数探幽](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch08)
+ - [第九章 内存模型和名称空间](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch09)
