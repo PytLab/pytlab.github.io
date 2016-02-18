@@ -5,6 +5,8 @@ tags:
   - C
   - GitHub
   - 随笔
+categories:
+  - 代码作品
 ---
 {% alert info %}
 C Primer Plus第五版课后习题答案
