@@ -2,7 +2,7 @@
 title: 解决hexo中tag和category中文章由于分页显示不全的方法
 date: 2016-02-21 14:12:58
 tags:
-  - hexo
+  - Hexo
 categories:
   - 教程
 ---
