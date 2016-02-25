@@ -6,7 +6,7 @@ tags:
   - GitHub
 categories:
   - 代码作品
-description: "C Primer Plus第五版课后习题答案"
+description: "C++ Primer Plus第6版课后习题答案"
 ---
 
 因为接触了KMCLib，觉得有必要入C++的坑了，决定尽快把《C++ Primer Plus》这本书的课后练习敲一边以达到入门目的，当然我也不指望像这学期开始的时候一样花6天就把Fortran那本书看完了, 毕竟是个大坑我得轻轻的跳免得自己摔得很惨，代码会同步更新到GitHub

@@ -9,7 +9,7 @@ tags:
   - 学术
 categories:
   - 学术
-description: 由于KMC的计算经常会需要在已经算完的作业的基础上继续跑作业以达到TOF或者覆盖度稳定。
+description: 由于KMC的计算经常会需要在已经算完的作业的基础上继续跑作业以达到TOF或者覆盖度稳定,因此使程序能够进行连续的作业计算。
 ---
 关于连续计算这里其实是很早以前就加进来的功能，但是由于这里也算是一个比较重要而且比较复杂的更新，在这里记一下以免自己忘记。
 
@@ -39,7 +39,7 @@ class KynetixPlugin(KMCAnalysisPlugin):
 <!-- more -->
 
 关于如何获取起始的time和step，我是在`model.py`的`load()`函数来从文件中读取的，也就是说连续计算需要三个文件（均为程序自动生成，有`auto_`前缀）:
-- `auto_coverages.py`, 存储上次作业的体系时间列表和KMC步数列表
+- `auto_coverages.py`, 存储上次作业的体系时间列表和KMC步数列表，若只是进行TOFAnalysis，则不需要此文件
 - `auto_TOFs.py`, 存储上次作业的KMC步数和相应的TOF
 - `auto_last_types.py`, 上次作业的最后一次表面的configuration
 
