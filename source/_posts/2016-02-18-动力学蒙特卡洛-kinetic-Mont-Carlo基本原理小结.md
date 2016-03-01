@@ -26,6 +26,7 @@ kMC从某种程度上就是对MD的一种粗化，将关注点从**原子**粗�
 {% alert info %}
 这里的跃迁速率可以理解为跃迁频率，或者说单位时间内发生组态跃迁的次数，能够衡量过程发生的难以程度。放在化学反应上就是反应速率常数 $k$ (跃迁次数/s)，有些文献上是用反应速率 $R$ 表示的。
 {% endalert %}
+> for each possible escape pathway to an adjacent basin, there is a *rate constant* $k\_{ij}$ that characterizes the probability, per unit time, that it escapes to that state $j$
 
 如果精确地知道 $k\_{ij}$，我们便可以构造一个随机过程，使得体系按照正确的轨迹演化。这里**正确**的意思是某条给定演化轨迹出现的几率与MD模拟结果完全一致(假设我们进行了大量的MD模拟，每次模拟中每个原子的初始动量随机给定)。这种通过构造随机过程研究体系演化的方法即为**动力学蒙特卡洛方法(kinetic Monte Carlo, KMC)**
 
@@ -56,5 +57,15 @@ $$\\tau = \\int\_{0}^{\\infty} tp(t)=\\frac{1}{k\_{tot}}$$
 
 以上就是kMC中关于时间步长的推导了，也是kMC模拟程序中按照指数分布抽取随机数的原理。
 {% alert warning%}
-$$t_{draw} = -\frac{ln(\rho)}{k}$$
+$$t\_{draw} = -\frac{ln(\rho)}{k}$$
 {% endalert %}
+
+---
+#### 步长的另一种推导方法
+今天在kmos的那篇文章中有看到了使用Poission分布来推导体系时间推进公式的方法。
+一般在不相关的两次事件的时间间隔是服从Possion分布的，也就意味着针对一个时间的发生速率$k$，则在时间间隔$\\Delta t$内事件发生$n$次的概率为$p\_{n}(k, \Delta t)$
+$$p\_{n}(k, \\Delta t) = (k\\Delta t)^{n}e^{-k\\Delta t}/n!$$
+则两次事件的间隔时间就为没有事件发生的间隔（也就是上文的$p\_{survive}$）, 就是$n=0$时的$\\Delta t$
+$$p\_{0}(k, \\Delta t) = e^{-k\\Delta t}$$
+按照上文的方法可以得到kMC模拟中的时间步长
+$$\\Delta t = \\frac{-ln(r)}{k}$$
