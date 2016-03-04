@@ -27,3 +27,4 @@ PS.由于对C比较熟悉前面几张和C重叠的部分习题就没有写，只
  - [第九章 内存模型和名称空间](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch09)
  - [第十章 对象和类](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch10)
  - [第十一章 使用类](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch11)
+ - [第十二章 类和动态内存分配](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch12)
