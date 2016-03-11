@@ -28,3 +28,6 @@ PS.由于对C比较熟悉前面几张和C重叠的部分习题就没有写，只
  - [第十章 对象和类](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch10)
  - [第十一章 使用类](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch11)
  - [第十二章 类和动态内存分配](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch12)
+ - [第十三章 类继承](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch13)
+ - [第十四章 C++中的代码重用](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch14)
+ - [第十五章 友元、异常和其他](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch15)
