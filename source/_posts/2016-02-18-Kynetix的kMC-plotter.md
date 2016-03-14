@@ -29,4 +29,4 @@ description: 简单介绍下用来绘制kMC模拟表面演化过程的绘图程�
 关于`images2gif.py`这个模块，是直接使用的现成的别人写好的模块([https://pypi.python.org/pypi/images2gif](https://pypi.python.org/pypi/images2gif)),但是一开始用的时候不知道为什么总是在合并的时候报错，去stackoverflow上面求助才知道新版本本来就会有这个问题，某个人提供的某个版本是可以的，于是我也就将这个版本直接复制过来放到了Kynetix中，以便能够稳定的绘图。
 
 贴上绘制的效果(240x240):
-![](traj_movie.gif)
+![](assets/images/blog_img/2016-02-18-Kynetix的kMC-plotter/traj_movie.gif)

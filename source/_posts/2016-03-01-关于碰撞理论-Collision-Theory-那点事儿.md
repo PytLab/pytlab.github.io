@@ -12,7 +12,7 @@ description: "针对碰撞理论总结一下，免得自己过时间久了又去
 ---
 这里只总结关于使用碰撞理论进行表面碰撞（吸附）速率的推导。
 先上个图吧，理解这里全靠这张图。
-![](surface_collision.png)
+![](assets/images/blog_img/2016-03-01-关于碰撞理论-Collision-Theory-那点事儿/surface_collision.png)
 <!-- more -->
 碰撞速率就是单位时间内单位面积分子碰撞到表面的次数。如图给定一个表面其面积为$A$, 若分子能够碰撞到表面则一定有垂直于表面的速率$v\_{x}$。
 所有分子的速率分布服从Boltzmann分布$f(v\_{x})$。

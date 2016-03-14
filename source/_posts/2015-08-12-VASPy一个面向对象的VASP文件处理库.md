@@ -5,6 +5,7 @@ tags:
   - VASP
 categories:
   - 代码作品
+feature: 2015/08/12/VASPy一个面向对象的VASP文件处理库/
 ---
 
 放假在家可以写写以前的想法，把vasp中的文件写成python对象，这样既系统有方便写脚本。就在github上开了个repo，目前写了几个文件的class,其中包含处理MaterialStudio的xsd类xml文件的类。不断更新,欢迎使用vasp的小伙伴们star,fork贡献出自己的一份力。
@@ -45,7 +46,7 @@ Make it **easier** to process VASP files.
     
 #### 绘制结果:
 
-![](pDOS.png)
+![](2015/08/12/VASPy一个面向对象的VASP文件处理库/pDOS.png)
 
 处理ELFCAR举例:
 
@@ -58,21 +59,21 @@ Make it **easier** to process VASP files.
 
 #### 绘制结果:
 
-![](contour2d.png)
+![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contour2d.png)
 
-![](contours.png)
+![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contours.png)
 
 3D 等值线图
 
-![](contour3d.png)
+![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contour3d.png)
 
 scalar field
 
-![](field.png)
+![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/field.png)
 
 charge difference(use ChgCar class)
 
-![](contourf.png)
+![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contourf.png)
 
 操作XDATCAR举例
 
@@ -87,7 +88,7 @@ charge difference(use ChgCar class)
 
 动画实例
 
-![](sn2_my.gif)
+![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/sn2_my.gif)
 
 **使用者可以编写自己的脚本来批处理VASP文件**
 

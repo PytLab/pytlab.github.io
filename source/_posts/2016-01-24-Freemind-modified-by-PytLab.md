@@ -15,10 +15,10 @@ categories:
 
 另外自己做了一个博客的logo，能力有限就直接用PS做的，不过挺简洁的，我也很喜欢
 
-![](logo_565x250.png)
+![](assets/images/blog_img/2016-01-24-Freemind-modified-by-PytLab/logo_565x250.png)
 <!-- more -->
 
 首页截图：
 
-![](homepage.png)
+![](assets/images/blog_img/2016-01-24-Freemind-modified-by-PytLab/homepage.png)
 
