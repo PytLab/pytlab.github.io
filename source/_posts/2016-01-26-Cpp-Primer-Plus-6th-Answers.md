@@ -31,3 +31,7 @@ PS.由于对C比较熟悉前面几张和C重叠的部分习题就没有写，只
  - [第十三章 类继承](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch13)
  - [第十四章 C++中的代码重用](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch14)
  - [第十五章 友元、异常和其他](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch15)
+ - [第十六章 string类和标准模板库](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch16)
+ - [第十七章 输入、输出和文件](https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch17)
+
+#### ----- 2016.03.16 complete! -----

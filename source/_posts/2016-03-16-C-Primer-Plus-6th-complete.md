@@ -1,5 +1,5 @@
 ---
-title: 'C++ Primer Plus 6th, complete'
+title: 'C++ Primer Plus 6th, complete!'
 date: 2016-03-16 10:23:40
 tags:
   - Cpp
