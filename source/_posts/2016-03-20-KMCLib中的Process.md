@@ -10,55 +10,74 @@ tags:
 catogories:
   - 学术
 description: "KMCLib C++部分的Process类, <br>此类主要用于描述KMC过程中局部反应发生的过程，同时也包含了该过程在全局网格中的统计结果，也就是匹配结果。"
-feature: assets/images/features/kmclib.png
 ---
 ### 成员数据
 此类的成员数据均为`protected`
-- `int process_number_`：
-    该过程ID号；
+``` Cpp
+//该过程ID号；
+int process_number_;  
 
-- `int range_`：
-    还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。
+// 还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。
+int range_ ;          
 
-- `double rate_`：
-    这没什么好说的，反应速率；
+// 这没什么好说的，反应速率；
+double rate_;         
 
-- `double cutoff`：
-    和坐标距离相关，尚未弄清求作用；
+// 和坐标距离相关，数值上应该等于process涉及到的点到中心
+//（也就是process中第一个点）的最大距离，
+// 尚未弄清求作用；
+double cutoff;        
 
-- `std::vector<int> sites_`：
-    在整个网格中能和此反应匹配上的位点的向量；
+// 在整个网格中能和此反应匹配上的位点的向量；
+std::vector<int> sites_;  
 
-- `std::vector<MinimalMatchListEntry> minimal_match_list_`：
-    用于存储每个位点信息的数据结构；
+// 用于存储每个位点信息的数据结构；
+std::vector<MinimalMatchListEntry> minimal_match_list_;  
+
+// 尚未明确用途，
+// 查看process前后每个位点类型是否相同
+// 如果不同则将0追加到其末尾
+std::vector<int> affected_indices_;  
+
+// 怎么操作尚未明确
+std::vector<int> basis_sites_;  
+
+// 用途尚未明确，与移动前后的坐标对比有关，看样子像是记录对调的两个元素在match_list中的indices
+std::vector< std::pair<int,int> > id_moves_;  
+```
 <!-- more -->
-
-- `std::vector<int> affected_indices_`：
-    尚未明确用途，和每个位点上的类型是否相同相关，若不同则为0；
-
-- `std::vector<int> basis_sites_`：
-    怎么操作尚未明确
-
-- `std::vector< std::pair<int,int> > id_moves_`：
-    用途尚未明确，与移动前后的坐标对比有关，看样子像是记录对调的两个元素在match_list中的indices
 
 <br>
 ### 成员方法
 这里只罗列几个重要的
-- 构造函数：
-    大致过程是先创建两个局部的Configuration对象，针对每个Configuration对象进行遍历，将元素信息都生成一个`MinimalMatchListEntry`对象然后在添加到`minimal_match_list_`变量中，最后再处理和移动向量相关的操作，具体的用途还不清楚，感觉可能与扩散的模拟相关；
+``` Cpp
+/*
+大致过程是
+- 先创建两个局部的Configuration对象，
+- 针对每个Configuration对象进行遍历，
+  将元素信息都生成一个`MinimalMatchListEntry`对象然后在添加到`minimal_match_list_`变量中，
+- 最后再处理和移动向量相关的操作，具体的用途还不清楚，感觉可能与扩散的模拟相关；
+*/
+Process(const Configuration & first,
+        const Configuration & second,
+        const double rate,
+        const std::vector<int> & basis_sites,
+        const std::vector<int> & move_origins=std::vector<int>(0),
+        const std::vector<Coordinate> & move_vectors=std::vector<Coordinate>(0),
+        const int process_number=-1);
 
-- `virtual double totalRate() const`：
-    返回在整个网格中该过程的所有速率总和；
+// 返回在整个网格中该过程的所有速率总和；
+virtual double totalRate() const
 
-- `virtual void addSite(const int index, const double rate=0.0)`：
-    将编号为index的site加入到process的`sites_`中，说明在该点上能够与该过程匹配成功。
+// 将编号为index的site加入到process的`sites_`中，说明在该点上能够与该过程匹配成功。
+virtual void addSite(const int index, const double rate=0.0)
 
-- `virtual void removeSite(const int index)`：
-    前面的逆过程；
+// 前面的逆过程；
+virtual void removeSite(const int index)
 
-- `virtual int pickSite() const`：
-    在`site_`中随机抽取一个site；
+// 在`site_`中随机抽取一个site；
+virtual int pickSite() const
+```
 
 <br>
 #### 亮点
@@ -77,5 +96,5 @@ void Process::removeSite(const int index)
     sites_.pop_back();
 }
 ```
-STL的`vector`内部是使用数组来存储数据的而不是链表，因此插入和删除的平均时间复杂度是$O(N)$，因此`erase()`方法的时间复杂度为$O(N)$，但是作者的做法通过先将要删除的元素与最后一个元素对调然后再用`pop_back()`方法删除末尾元素，通过两个复杂度为常数的操作将整体复杂度也降到了常数级。
+STL的`vector`内部是使用数组来存储数据的而不是链表，因此插入和删除的平均时间复杂度是$O(N)$，因此`erase()`方法的时间复杂度为$O(N)$，但是作者的做法通过先将要删除的元素与最后一个元素对调然后再用`pop_back()`方法删除末尾元素，通过两个复杂度为常数$O(1)$的操作将整体复杂度也降到了常数级。
 
