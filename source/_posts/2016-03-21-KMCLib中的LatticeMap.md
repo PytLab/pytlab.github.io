@@ -11,6 +11,7 @@ categories:
   - 学术
 description: "KMCLib中的LatticeMap类<br>主要用于描述整个3维网格，其中包括网格格点的各种操作，如移动，寻找NN等等"
 feature: assets/images/features/kmclib.png
+toc: true
 ---
 这里的成员数据全部`protected`
 ### 成员数据

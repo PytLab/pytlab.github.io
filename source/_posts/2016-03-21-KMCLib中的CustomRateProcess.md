@@ -7,8 +7,11 @@ tags:
   - catalysis
   - chemistry
   - Monte Carlo
+categories:
+  - 学术
 description: "CustomRateProcess是Process的派生类，<br>主要表示不同位置上速率不同的反应"
 feature: assets/images/features/rate_table.png
+toc: true
 ---
 此类是`Process`的派生类，所以在`Process`类中的成员变量为`protected`，而且很多成员函数都为虚函数。
 
