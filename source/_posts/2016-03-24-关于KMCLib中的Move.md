@@ -215,4 +215,4 @@ void Configuration::performProcess(Process & process,
 
 - `void Configuration::updateMatchList(const int index)`
     process执行过后需要对configuration的match\_lists\_进行更新，但是这里只需要对里面的match_type进行更新就可以了。
-    我觉得这里有空间降低复杂度，后面开始写新代码的时候会考虑修改这里。
+    但是这个成员是对minmal_match_list的更新时针对一个index的minimal_match_list的，所以我猜测后面他会用他对发生反应的周围nearst neighbor和the next nearst neighbor的每个index。
