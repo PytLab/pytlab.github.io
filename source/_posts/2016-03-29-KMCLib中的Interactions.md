@@ -87,3 +87,31 @@ $$
                                                const LatticeMap & lattice_map)
     ```
     此函数算是interaction类中最复杂的一个成员函数了。其作用是更新所有process的matchlist。通过将process的match list与configuration的minimal match list进行匹配，也就是使用两个迭代器分别遍历向量，判断entry是否相等，（根据MinimalMatchListEntry的运算符重载函数，相等也就意味着元素类型和相应的坐标都相等）。如果不相等就在process的matchlist中插入通配符`*`，若相等就要记录位置索引（因为插入通配符的原因，索引会发生偏移）。最后更新process中相关的信息即可。
+
+    **我结合着其中的unittest来把这个东东的图像总结出来：**
+    首先建个3x3x3的lattice map，初始化一个configuration，其中每个各点有2个basis_points，分别初始化为：
+    ```
+    (V, B), (V, B), (V, B), (V, B), ...
+    ```
+    其中的坐标分别为:
+    ```
+    ( (0.0, 0.0, 0.0), (0.3, 0.3, 0.3) ), (1.0, 1.0, 1.0), (1.3, 1.3, 1.3) ), ( (...), (...) ), ...
+    ```
+    可能的所有元素类型映射:
+    ```
+    "*": 0, "A": 1, "B":2, "C": 3
+    ```
+
+    在创建一个process,其中包含三个元素, 
+    元素类型为：
+    ```
+    A, B, V --> B, A, A
+    ```
+    在执行此函数之后,程序会向process的match_list中插入相应的通配符,这样能够与configuration中minimal_match_list的顺序匹配上,当然直到process或者configuration的minimal_match_list的迭代器到达超尾位置,这种插入操作就终止了,然后更新process中的move_id相关信息.
+    操作之后按照下图的顺序:
+    ![](assets/images/blog_img/2016-03-29-KMCLib中的Interactions/lattice.png)
+    则process的minimal_match_list元素顺序就更新为:
+    ```
+    A, V, *, *, *, B
+    1, 3, 0, 0, 0, 2
+    ```
