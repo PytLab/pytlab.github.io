@@ -14,39 +14,43 @@ toc: true
 ---
 ### 成员数据
 此类的成员数据均为`protected`
-``` Cpp
-//该过程ID号；
-int process_number_;  
+- `int process_number_;`  
+    该过程ID号；
 
-// 还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。
-int range_ ;          
+- `int range_;`          
+    还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。
 
-// 这没什么好说的，反应速率；
-double rate_;         
+- `double rate_;`         
+    这没什么好说的，反应速率；
 
-// 和坐标距离相关，数值上应该等于process涉及到的点到中心
-//（也就是process中第一个点）的最大距离，
-// 尚未弄清求作用；
-double cutoff;        
+- `double cutoff`
+    和坐标距离相关，数值上应该等于process涉及到的点到中心
+    也就是process中第一个点）的最大距离，
+    尚未弄清求作用；
 
-// 在整个网格中能和此反应匹配上的位点的向量；
-std::vector<int> sites_;  
+- `std::vector<int> sites_;`
+    在整个网格中能和此反应匹配上的位点的向量；
 
-// 用于存储每个位点信息的数据结构；
-std::vector<MinimalMatchListEntry> minimal_match_list_;  
+- `std::vector<MinimalMatchListEntry> minimal_match_list_; `
+    用于存储每个位点信息的数据结构；
 
-// 尚未明确用途，
-// 查看process前后每个位点类型是否相同
-// 如果不同则将0追加到其末尾
-std::vector<int> affected_indices_;  
+- `std::vector<int> affected_indices_;`
+    查看process前后每个位点类型是否相同
+    如果不同则将0追加到其末尾
+    (2016-03-31更新)
+    这个变量主要用于更新process发生后确定发生process的index周围有哪些位置**受影响**,
+    所谓受影响，也就是指由于该点由于参与了反应，元素的类型会发生变化，他的match_list也就相应的发生变化，也导致原本能够匹配的process不再能够在该点匹配或者原本不能匹配的process可以在该点匹配了。这个信息主要是用于Matcher类中。
 
-// 怎么操作尚未明确
-std::vector<int> basis_sites_;  
-
-// 用途尚未明确，与移动前后的坐标对比有关，看样子像是记录对调的两个元素在match_list中的indices
-std::vector< std::pair<int,int> > id_moves_;  
-```
 <!-- more -->
+
+- `std::vector<int> basis_sites_`
+    这个用于描述这个process可以用在basis_sites中的哪一个点上。
+    例如若此变量的值为(0, 1)，则这个process可以用在每个latticesite上的第一个和第二个点，若有第三个点则不能作用在第三个点上
+
+- `std::vector< std::pair<int,int> > id_moves_;`
+    记录这个process中涉及到元素移动的信息。
+    其中每个pair的第一个值放置元素的初始位置（process中的位置），第二个元素放置移动到的目标位置。
+    例如，有个元素从1号位置移动到了4号位置，则pair中的数据就为(1, 4)
 
 <br>
 ### 成员方法
