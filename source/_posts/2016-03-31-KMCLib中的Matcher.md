@@ -10,7 +10,7 @@ tags:
   - 学术
 categories:
   - 学术
-feature: assets/images/features/kmclib.png
+feature: /assets/images/features/kmclib.png
 description: "KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，<br>并更新process中相关的信息，例如能发生反应的sites、总速率等"
 ---
 

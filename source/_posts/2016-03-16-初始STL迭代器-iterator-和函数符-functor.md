@@ -6,7 +6,7 @@ tags:
   - STL
 cateogries:
   - 学习小结
-feature: assets/images/features/stl.jpg
+feature: /assets/images/features/stl.jpg
 ---
 
 对于STL我真的是久仰大名了，这次从《Cpp Primer Plus》中初次学习STL中的一些知识，学习到迭代器将算法从具体的容器类型中抽离出来，真的是很nb的想法。

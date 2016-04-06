@@ -10,7 +10,7 @@ tags:
 categories:
   - 学术
 description: "KMCLib中的Configuration用于描述附着在晶格之上的元素相关的信息<br>包括他们的坐标，索引，ID号等"
-feature: assets/images/features/kmclib.png
+feature: /assets/images/features/kmclib.png
 toc: true
 ---
 

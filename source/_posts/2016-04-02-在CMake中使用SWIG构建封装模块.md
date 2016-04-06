@@ -8,7 +8,7 @@ tags:
   - python
 categories:
   - 学习小结
-feature: assets/images/features/cmake_logo.jpg
+feature: /assets/images/features/cmake_logo.jpg
 description: "cmake支持SWIG的使用，因此在这里总结下在CMAKE中使用swig的方法，以KMCLib为例子。"
 toc: true
 ---

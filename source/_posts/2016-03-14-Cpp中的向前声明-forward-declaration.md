@@ -5,7 +5,7 @@ tags:
   - Cpp
 categories:
   - 学习小结
-feature: assets/images/features/c_cpp_logo.jpg
+feature: /assets/images/features/c_cpp_logo.jpg
 ---
 
 在涉及到友元类方法的时候会用到向前声明，至于为什么要使用向前声明我还是直接上例子理解的快：

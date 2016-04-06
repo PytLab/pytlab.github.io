@@ -10,7 +10,7 @@ tags:
 categories:
   - 学术
 description: "Interactions类用于描述KMC过程中所有能够发生的process并对其进行操作，<br>其中包括process的抽取，更新process的match list等。"
-feature: assets/images/features/kmclib.png
+feature: /assets/images/features/kmclib.png
 ---
 
 这两天由于一直在学习CMake相关的东西，没有把看的代码及时总结。特地现在补上。
