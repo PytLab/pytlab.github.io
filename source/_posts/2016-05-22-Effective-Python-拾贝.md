@@ -6,7 +6,7 @@ tags:
   - python
 categories:
   - 学习小结
-feature: assets/images/features/effectivepython.jpeg
+feature: /assets/images/features/effectivepython.jpeg
 ---
 自从看了《Effective C++》，我就喜欢上了这种以经验条目的书，简直是随身带的极品书，于是我也买了一本python版的《Effective Python》随时放在书包里，在地铁上，在任何闲下来的时候看，因为每个条目的长度都恰到好处，正好能将零碎的时间进行填充。
 <p>
