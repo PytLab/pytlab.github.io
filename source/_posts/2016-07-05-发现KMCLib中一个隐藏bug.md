@@ -13,6 +13,7 @@ feature: /assets/images/features/kmclib.png
 ---
 由于为了看自己的KMCLibX是不是能跑出正确的结果，我将每一个蒙特卡洛步的configuration进行了散点图，来观察每一步事件的选取和configuration发生的变化，把事件全部定义好以后，跑了500步做了下图就发现，吸附在top位的O有落单的现象，明明我没有在事件中定义过有破坏平躺吸附在表面的氧原子的事件啊，这就奇怪了。于是我就将做图的范围缩窄，逐渐定位到了是哪一步开始出现单个top位上的氧原子。
 如下图，是发生在第27步的时候，直接会有一个氧分子直接变成吸附在bridge site上的CO：
+<!-- more -->
 ![](/assets/images/blog_img/2016-07-05-发现KMCLib中一个隐藏bug/configuration26.png)
 ![](/assets/images/blog_img/2016-07-05-发现KMCLib中一个隐藏bug/configuration27.png)
 
@@ -60,4 +61,7 @@ const std::vector<int> & indices = \
     lattice_map_.supersetNeighbourIndices(process.affectedIndices(),
                                           interactions_.maxRange());
 ```
+
+这的确是个隐藏bug，因为KMC跑起来是很难知道到底对不对的，只有通过作图一步一步观察才知道。
+
 
