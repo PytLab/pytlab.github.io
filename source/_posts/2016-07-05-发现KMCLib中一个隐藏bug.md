@@ -64,4 +64,6 @@ const std::vector<int> & indices = \
 
 这的确是个隐藏bug，因为KMC跑起来是很难知道到底对不对的，只有通过作图一步一步观察才知道。
 
+针对这个bug我想KMCLib提交了一个PR，如今已经被合并，链接：[<span class="fa fa-github"></span> Fix bug in re-matching of affected indices. by PytLab · Pull Request #8 · leetmaa/KMCLib](https://github.com/leetmaa/KMCLib/pull/8)
+
 
