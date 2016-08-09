@@ -4,6 +4,8 @@ date: 2016-07-16 10:39:32
 tags:
  - python
  - VASPy
+categories:
+ - 代码作品
 feature: /assets/images/features/python_logo.png
 ---
 趁着代码量还不多，把VASPy进行了修改使其同时兼容Python 2.7.x 和 Python 3.x
