@@ -17,7 +17,7 @@ Connetion: Network is unreachable
 
 网络重启也会失败：
 ``` bash
-# service network restart
+$ service network restart
 Restarting network (via systemctl): Job for network.service failed. See *systemctl status network.service* and *journalctl -xn* for details.
 [FAILED]
 ```
@@ -34,17 +34,17 @@ $ ip addr
 
 然后修改配置文件:
 ``` bash
-# vi /etc/sysconfig/network-scripts/ifcfg-eno16777736
+$ vi /etc/sysconfig/network-scripts/ifcfg-eno16777736
 ```
 将`HWADRR`的值修改或者添加成当前网卡地址.
 
 最后通过
 ``` bash
-# service network restart
+$ service network restart
 ```
 重启网卡，或者通过
 ``` bash
-# ifup eth0
+$ ifup eth0
 ```
 启动网卡（该命令会检查配置文件）.
 
