@@ -1,5 +1,5 @@
 ---
-title: 'CentOS:Network is unreachable'
+title: 'CentOS: Network is unreachable的解决方法'
 date: 2016-09-01 18:42:34
 tags:
  - linux
@@ -24,6 +24,10 @@ Restarting network (via systemctl): Job for network.service failed. See *systemc
 <!-- more -->
 
 于是我就看了下日志到底是哪里出错
+``` bash
+$ cat /var/log/messages | grep network
+```
+
 ![](/assets/images/blog_img/2016-09-01-CentOS-Network-is-unreachable/error.png)
 可见是网卡的物理地址冲突，于是就需要去相应网卡的配置文件去修改物理地址。
 首先先看目前网卡的真正物理地址是什么:
