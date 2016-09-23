@@ -7,4 +7,6 @@ public/
 .deploy*/
 *.swp
 themes/
+scaffolds/
+package.json
 
