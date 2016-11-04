@@ -18,7 +18,7 @@ mathjax: true
 由于许多动态的过程(dynamic evolution)，例如表面的生长或者材料的老化，时间的跨度都在s以上，超出了分子动力学模拟的范围，动力学蒙特卡洛模拟便是针对这种长时间尺度的动态模拟的。
 > Kinetic Monte Carlo attempts to overcome this limitation by exploiting the fact that the long-time dynamics of this kind of system typically consists of diffusive jumps from state to state. Rather than following the trajectory through every vibrational period, these state-to-state transitions are treated directly
 
-![](assets/images/blog_img/2016-02-18-动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/PES.png)
+![](/assets/images/blog_img/2016-02-18-动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/PES.png)
 <!-- more -->
 kMC从某种程度上就是对MD的一种粗化，将关注点从**原子**粗化到**体系**，将**原子轨迹**粗化到**体系组态的跃迁**，那么模拟的时间跨度就将从原子振动的尺度提高到组态跃迁的尺度，这是因为这种处理方法摈弃了与体系穿越势垒无关的微小振动，而只着眼于体系的组态变化。因此，虽然不能描绘原子的运动轨迹，但是作为**体系演化**，其“组态轨迹”仍然是**正确**的。
 此外，因为组态变化的时间间隔很长，体系完成的连续两次演化是独立的，无记忆的，所以这个过程是一种典型的**马尔可夫过程(Markov process)**，及从组态 $i$ 跃迁到组态 $j$ ，这一过程只与跃迁速率 $k\_{ij}$ 有关。
