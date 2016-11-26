@@ -46,7 +46,7 @@ Make it **easier** to process VASP files.
     
 #### 绘制结果:
 
-![](2015/08/12/VASPy一个面向对象的VASP文件处理库/pDOS.png)
+![](/2015/08/12/VASPy一个面向对象的VASP文件处理库/pDOS.png)
 
 处理ELFCAR举例:
 
@@ -59,21 +59,21 @@ Make it **easier** to process VASP files.
 
 #### 绘制结果:
 
-![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contour2d.png)
+![](/assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contour2d.png)
 
-![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contours.png)
+![](/assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contours.png)
 
 3D 等值线图
 
-![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contour3d.png)
+![](/assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contour3d.png)
 
 scalar field
 
-![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/field.png)
+![](/assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/field.png)
 
 charge difference(use ChgCar class)
 
-![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contourf.png)
+![](/assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/contourf.png)
 
 操作XDATCAR举例
 
@@ -88,7 +88,7 @@ charge difference(use ChgCar class)
 
 动画实例
 
-![](assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/sn2_my.gif)
+![](/assets/images/blog_img/2015-08-12-VASPy一个面向对象的VASP文件处理库/sn2_my.gif)
 
 **使用者可以编写自己的脚本来批处理VASP文件**
 
