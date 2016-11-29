@@ -92,11 +92,11 @@ int main(int argc, char ** argv)
 > This is a specialized version of vector, which is used for elements of type bool and optimizes for space.
 
 > It behaves like the unspecialized version of vector, with the following changes:
-> The storage is not necessarily an array of bool values, but the library implementation may optimize storage so that each value is stored in a single bit.
-> Elements are not constructed using the allocator object, but their value is directly set on the proper bit in the internal storage.
-> Member function flip and a new signature for member swap.
-> A special member type, reference, a class that accesses individual bits in the container's internal storage with an interface that emulates a bool reference. Conversely, member type const_reference is a plain bool.
-> The pointer and iterator types used by the container are not necessarily neither pointers nor conforming iterators, although they shall simulate most of their expected behavior.
+> - The storage is not necessarily an array of bool values, but the library implementation may optimize storage so that each value is stored in a single bit.
+> - Elements are not constructed using the allocator object, but their value is directly set on the proper bit in the internal storage.
+> - Member function flip and a new signature for member swap.
+> - A special member type, reference, a class that accesses individual bits in the container's internal storage with an interface that emulates a bool reference. Conversely, member type const_reference is a plain bool.
+> - The pointer and iterator types used by the container are not necessarily neither pointers nor conforming iterators, although they shall simulate most of their expected behavior.
 
 也就是说为了空间节省，C++标准显式的将`vector<bool>`处理成每个bool值只用一位来存储而不是使用一个字节来存储真正的`bool`值，但是当我们使用`[]`运算符取值的时候，容器会返回一个代理类，这个代理类能够看起来像`bool`值一样被操作，但是对他直接进行取值或者取地址的时候却会出问题，因为他只是个代理对象的临时变量，于是看来我还是尽量不要用`vector`来存储`bool`, 上最原始的数组吧。。。so
 
