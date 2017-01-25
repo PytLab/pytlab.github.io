@@ -291,6 +291,9 @@ python worker.py
 
 当任务队列为空且任务完成时，任务进程终止; 当结果列表中的结果收集完毕时，服务进程也会终止。
 
+执行过程如图:
+![](/assets/images/blog_img/2017-01-19-Python多进程并行编程实践-multiprocessing模块/dist_run.png)
+
 执行结果如下图:
 ![](/assets/images/blog_img/2017-01-19-Python多进程并行编程实践-multiprocessing模块/dist_run_result.png)
 上面的panel为服务端监听，左下为自己的笔记本运行结果，右下panel为集群中的其中一个节点。

@@ -36,11 +36,11 @@ comments: true
     192.30.252.153
     ```
     如下图：
-    ![](assets/images/blog_img/2016-01-23-GitHub-Pages绑定顶级域名/DNSPod.png)
+    ![](/assets/images/blog_img/2016-01-23-GitHub-Pages绑定顶级域名/DNSPod.png)
 
 3. 设置域名的DNS
     在相应域名的DNS Service中添加上图中间的两条记录：
     `f1g1ns1.dnspod.net`和`f1g1ns1.dnspod.net`
 
 4. 稍等解析生效后就可以通过在浏览器中输入自己的域名来访问GitHub Pages博客啦! 如下图，
-    ![](assets/images/blog_img/2016-01-23-GitHub-Pages绑定顶级域名/homepage.png)
+    ![](/assets/images/blog_img/2016-01-23-GitHub-Pages绑定顶级域名/homepage.png)
