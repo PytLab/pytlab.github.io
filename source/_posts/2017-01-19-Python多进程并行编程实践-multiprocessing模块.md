@@ -3,7 +3,7 @@ title: Python多进程并行编程实践-multiprocessing模块
 date: 2017-01-19 14:51:35
 tags:
  - python
- - parallel computing
+ - Parallel Computing
 categories:
  - 学习小结
 feature: /assets/images/features/python_logo.jpg
