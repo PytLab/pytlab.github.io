@@ -116,7 +116,7 @@ if rank == 0:
     print("process {} send {}...".format(rank, data))
 else:
     data = comm.recv(source=0, tag=11)
-print("process {} recv {}...".format(rank, data))
+    print("process {} recv {}...".format(rank, data))
 ```
 执行效果：
 ``` 
@@ -152,7 +152,7 @@ if rank == 0:
     print("process {} immediate send {}...".format(rank, data))
 else:                                                          
     data = comm.recv(source=0, tag=11)                         
-print("process {} recv {}...".format(rank, data))          
+    print("process {} recv {}...".format(rank, data))          
 ```
 执行结果,注意非阻塞发送也可以用阻塞接收来接收消息：
 ```
@@ -187,7 +187,7 @@ if rank == 0:
 else:                                                                  
     data = np.empty(10, dtype='i')                                     
     comm.Recv([data, MPI.INT], source=0, tag=11)                       
-print("process {} recv buffer-like array {}...".format(rank, data))
+    print("process {} recv buffer-like array {}...".format(rank, data))
 ```
 执行效果：
 ```
