@@ -1,0 +1,456 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>在CMake中使用SWIG构建封装模块 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="cmake支持SWIG的使用，因此在这里总结下在CMAKE中使用swig的方法，以KMCLib为例子。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="在CMake中使用SWIG构建封装模块"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 在CMake中使用SWIG构建封装模块</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>cmake支持SWIG的使用，因此在这里总结下在CMAKE中使用swig的方法，以KMCLib为例子。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>由于CMake与SWIG的相互支持，使得在cmake脚本中直接定义封装模块的构建成为可能，KMCLib中也是使用这种方式直接使用swig进行自动封装。也就是在生成的Makefile中包含了使用swig命令封装库文件。</p>
+<p>在这里我主要参考了<a href="http://www.swig.org/Doc1.3/Introduction.html#Introduction_build_system" target="_blank" rel="external">swig文档中关于cmake的部分</a>和<a href="https://cmake.org/cmake/help/v3.5/module/UseSWIG.html" target="_blank" rel="external">cmake文档中使用swig的部分</a>。</p>
+<a id="more"></a>
+<p>还是上例子吧</p>
+<h3 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This is a CMake example for Python</span></div><div class="line"></div><div class="line"><span class="keyword">FIND_PACKAGE</span>(SWIG REQUIRED)  </div><div class="line"><span class="keyword">INCLUDE</span>(<span class="variable">$&#123;SWIG_USE_FILE&#125;</span>)  </div><div class="line"></div><div class="line"><span class="keyword">FIND_PACKAGE</span>(PythonLibs)  </div><div class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;PYTHON_INCLUDE_PATH&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">SET</span>(CMAKE_SWIG_FLAGS <span class="string">""</span>)</div><div class="line"></div><div class="line"><span class="keyword">SET_SOURCE_FILES_PROPERTIES</span>(example.i PROPERTIES CPLUSPLUS <span class="keyword">ON</span>)</div><div class="line"><span class="keyword">SET_SOURCE_FILES_PROPERTIES</span>(example.i PROPERTIES SWIG_FLAGS <span class="string">"-includeall"</span>)</div><div class="line">SWIG_ADD_MODULE(example python example.i example.cxx)</div><div class="line">SWIG_LINK_LIBRARIES(example <span class="variable">$&#123;PYTHON_LIBRARIES&#125;</span>)</div></pre></td></tr></table></figure>
+<h3 id="每条语句分析："><a href="#每条语句分析：" class="headerlink" title="每条语句分析："></a>每条语句分析：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">FIND_PACKAGE</span><span class="params">(SWIG REQUIRED)</span></span></div></pre></td></tr></table></figure>
+<p>寻找swig有没有安装在本机上，如果没有，由于指定了<code>REQUIRED</code>参数，cmake会产生一个fatal error然后停止构建。</p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">INCLUDE</span><span class="params">($&#123;SWIG_USE_FILE&#125;)</span></span></div></pre></td></tr></table></figure>
+<p>载入预定义的cmake模块</p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">FIND_PACKAGE</span><span class="params">(PythonLibs)</span></span></div></pre></td></tr></table></figure>
+<p>查看python是否安装并生成几个变量确定python的头文件以及库文件在哪里。变量列表：<br><div class="alert alert-info"><i class="fa fa-info"></i>  <br>
+<code>PYTHONLIBS_FOUND</code>           - have the Python libs been found<br>
+<code>PYTHON_LIBRARIES</code>           - path to the python library<br>
+<code>PYTHON_INCLUDE_PATH</code>     - path to where Python.h is found (deprecated)<br>
+<code>PYTHON_INCLUDE_DIRS</code>        - path to where Python.h is found<br>
+<code>PYTHON_DEBUG_LIBRARIES</code>     - path to the debug library (deprecated)<br>
+<code>PYTHONLIBS_VERSION_STRING</code>  - version of the Python libs found (since CMake 2.8.8)<br></div></p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">INCLUDE_DIRECTORIES</span><span class="params">($&#123;PYTHON_INCLUDE_PATH&#125;)</span></span></div></pre></td></tr></table></figure>
+<p>将python的include路径加入编译的include路径中。</p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">INCLUDE_DIRECTORIES</span><span class="params">($&#123;CMAKE_CURRENT_SOURCE_DIR&#125;)</span></span></div></pre></td></tr></table></figure>
+<p>将当前路径加入到编译的include路径中。</p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">SET</span><span class="params">(CMAKE_SWIG_FLAGS <span class="string">""</span>)</span></span></div></pre></td></tr></table></figure>
+<p><code>CMAKE_SWIG_FLAGS</code>可以用来设置给所有要调用swig的地方的参数，例如<code>-python</code>, <code>-c++</code>等</p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">SET_SOURCE_FILES_PROPERTIES</span><span class="params">(example.i PROPERTIES CPLUSPLUS ON)</span></span></div><div class="line"><span class="function"><span class="title">SET_SOURCE_FILES_PROPERTIES</span><span class="params">(example.i PROPERTIES SWIG_FLAGS <span class="string">"-includeall"</span>)</span></span></div></pre></td></tr></table></figure>
+<p>如果某个swig生成的原代码需要某种参数就要通过这个macro进行设置，上面的第一个应该就相当于在swig的参数中添加<code>-c++</code>以生成<code>cxx</code>文件。</p>
+<hr>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SWIG_ADD_MODULE(<span class="built_in">example</span> python <span class="built_in">example</span>.i <span class="built_in">example</span>.cxx)</div></pre></td></tr></table></figure>
+<p>这个cmake函数是定义swig生成的最终模块的名称和封装的语言</p>
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">SWIG_LINK_LIBRARIES</span><span class="params">(example $&#123;PYTHON_LIBRARIES&#125;)</span></span></div></pre></td></tr></table></figure>
+<p>将库与swig模块一起链接。上文已说明<code>PYTHON_LIBRARY</code>变量存放的是python库的路径。</p>
+<h3 id="KMCLib中CMakeLists-txt中的swig"><a href="#KMCLib中CMakeLists-txt中的swig" class="headerlink" title="KMCLib中CMakeLists.txt中的swig"></a>KMCLib中CMakeLists.txt中的swig</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Make sure the swig package is loaded.</span></div><div class="line"><span class="keyword">find_package</span>(SWIG REQUIRED)</div><div class="line"><span class="keyword">include</span>(<span class="variable">$&#123;SWIG_USE_FILE&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>)</div><div class="line"><span class="keyword">include_directories</span>( <span class="variable">$&#123;KMCLib_SOURCE_DIR&#125;</span>/src )</div><div class="line"></div><div class="line"><span class="comment"># Set the flags.</span></div><div class="line"><span class="keyword">set</span>(CMAKE_SWIG_FLAGS <span class="string">""</span>)</div><div class="line"></div><div class="line"><span class="comment"># Set the properties for the interface file.</span></div><div class="line"><span class="keyword">set_source_files_properties</span>(backend.i PROPERTIES CPLUSPLUS <span class="keyword">ON</span>)</div><div class="line"><span class="keyword">set_source_files_properties</span>(backend.i PROPERTIES SWIG_FLAGS <span class="string">""</span>)</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># Add the target.</span></div><div class="line">swig_add_module( Backend python backend.i )</div><div class="line"></div><div class="line"><span class="comment"># -----------------------------------------------------------------------------</span></div><div class="line"><span class="comment"># LINK</span></div><div class="line"><span class="comment"># -----------------------------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="keyword">message</span>( STATUS <span class="string">"Creating makefiles for system: $&#123;CMAKE_SYSTEM&#125;"</span>)</div><div class="line"><span class="comment"># For Mac OS X</span></div><div class="line"><span class="keyword">if</span>(<span class="variable">$&#123;CMAKE_SYSTEM_NAME&#125;</span> <span class="keyword">MATCHES</span> <span class="string">"Darwin"</span>)</div><div class="line"></div><div class="line">  <span class="comment"># To force a Mac OSX with macports Python, use with -DMACPORT=TRUE</span></div><div class="line">  <span class="keyword">if</span> (MACPORT)</div><div class="line">    <span class="keyword">set</span>(CMAKE_LIBRARY_PATH <span class="string">"/opt/local/Library/Frameworks"</span>)</div><div class="line">    <span class="keyword">message</span>( STATUS <span class="string">"Looking for libraries in $&#123;CMAKE_LIBRARY_PATH&#125;"</span> )</div><div class="line">  <span class="keyword">endif</span>()</div><div class="line"></div><div class="line">  <span class="keyword">find_library</span>( PYTHON_LIB python )</div><div class="line">  <span class="keyword">message</span>( STATUS <span class="string">"Using python library $&#123;PYTHON_LIB&#125;"</span>)</div><div class="line">  swig_link_libraries( Backend <span class="variable">$&#123;PYTHON_LIB&#125;</span> src )</div><div class="line"></div><div class="line"><span class="comment"># For Linux (Ubuntu 12.04 LTS)</span></div><div class="line"><span class="keyword">else</span>()<span class="comment">#$&#123;CMAKE_SYSTEM_NAME&#125; MATCHES "Linux")</span></div><div class="line">  swig_link_libraries( Backend src )</div><div class="line"><span class="keyword">endif</span>()</div></pre></td></tr></table></figure>
+<p>按照上面的介绍，这里的cmake也不难理解了。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/04/03/SWIG给C结构增加成员函数/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/04/02/初识代码封装工具SWIG/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/04/02/在CMake中使用SWIG构建封装模块/" data-title="在CMake中使用SWIG构建封装模块" data-url="http://pytlab.github.io/2016/04/02/在CMake中使用SWIG构建封装模块/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-04-02 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">42</span></a></li> <li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li> <li><a href="/tags/swig/">swig<span class="badge">7</span></a></li> <li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#简单的例子"><span class="toc-article-text">简单的例子</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#每条语句分析："><span class="toc-article-text">每条语句分析：</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#KMCLib中CMakeLists-txt中的swig"><span class="toc-article-text">KMCLib中CMakeLists.txt中的swig</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

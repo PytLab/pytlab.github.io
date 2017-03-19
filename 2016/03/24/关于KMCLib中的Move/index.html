@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>关于KMCLib中的Move | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="关于KMCLib中的MOVE相关的东西涉及到坐标和各种索引，这里比较混乱我觉得还是有必要梳理下。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="关于KMCLib中的Move"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 关于KMCLib中的Move</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>关于KMCLib中的MOVE相关的东西涉及到坐标和各种索引，这里比较混乱我觉得还是有必要梳理下。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>move来源于process并作用于configuration。</p>
+<h3 id="Process中的move相关"><a href="#Process中的move相关" class="headerlink" title="Process中的move相关"></a>Process中的move相关</h3><h4 id="Process中与move相关的变量："><a href="#Process中与move相关的变量：" class="headerlink" title="Process中与move相关的变量："></a>Process中与move相关的变量：</h4><ul>
+<li><p><code>std::vector&lt;int&gt; move_origins</code><br>  说明在process中那些元素是在process发生时有移动的，(0, 1)的话就是指第一个（中心）和第二个元素发生了移动。</p>
+</li>
+<li><p><code>std::vector&lt;Coordinate&gt; move_vectors</code><br>  对应move_origin的元素移动的向量。</p>
+</li>
+<li><p><code>std::vector&lt; std::pair&lt;int,int&gt; &gt; id_moves_</code><br>  用于描述元素移动前后位置的变化，通过元素在process中的minimal_match_list中的索引号来表示，例如<br>  id_moves_[0]中存放着两个值 (1, 4)，则就说明在minimal_match_list中的第1号元素（也就是第二个）通过process的作用之后会移动到第4号位置上。</p>
+<a id="more"></a>
+<p>  变化如下图所示：<br>  <img src="assets/images/blog_img/2016-03-24-关于KMCLib中的Move/move.png" alt=""><br>  因此对应上图的id_moves_的内容为：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;1, 4&gt;, &lt;4, 2&gt;, &lt;2, 0&gt;, &lt;0, 1&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Process中相关的成员方法"><a href="#Process中相关的成员方法" class="headerlink" title="Process中相关的成员方法"></a>Process中相关的成员方法</h4><p>有process只是描述变化的信息，因此只要把移动相关的索引值和移动向量添加到process的minimal_match_list中即可，麻烦的操作在configuration那里。</p>
+<h3 id="Configuration中的move相关"><a href="#Configuration中的move相关" class="headerlink" title="Configuration中的move相关"></a>Configuration中的move相关</h3><h4 id="Configuration与move相关的成员变量"><a href="#Configuration与move相关的成员变量" class="headerlink" title="Configuration与move相关的成员变量"></a>Configuration与move相关的成员变量</h4><ul>
+<li><p><code>int n_moved_</code><br>  记录在一次process执行时有多少元素发生了改变（只要是前后元素类型不一致且不是通配符的时候，这个值就自加1，每次执行process时这个值会先重置。</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; moved_atom_ids_</code><br>  记录在process中有移动过的元素的全局id号，例如若其中的值为：</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">| <span class="number">1434</span> | <span class="number">150</span> | ...</div></pre></td></tr></table></figure>
+<p>  则代表id为1434和150的元素发生了移动</p>
+</li>
+<li><p><code>std::vector&lt;Coordinate&gt; recent_move_vectors_</code><br>  存储对应moved_atom_ids元素的移动向量值</p>
+</li>
+<li><p><code>std::vector&lt;std::string&gt; elements_</code><br>  与move间接相关，以为位置的移动会改变elements的排列。</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; types_</code><br>  与上一条的原因相同</p>
+</li>
+<li><p><code>std::vector&lt;std::string&gt; atom_id_elements_</code><br>  这个值其实与移动无关，毕竟移动并不会改变id对应的元素类型，但是process仍然会造成这个值的改变，不是移动，而是通过直接的替换。</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; atom_id_</code><br>  因为移动，所以必定会造成id之间的互换。</p>
+</li>
+<li><p><code>std::vector&lt; std::vector&lt;MinimalMatchListEntry&gt; &gt; match_lists_</code><br>  全局晶格的元素发生了移动或者替换，必定需要更新configuration的match_lists_中的数据，但是其实只需要更新match_type就好了，位置不会变（晶格没有变动），configuration的minimal_match_list不存储移动相关的数据。</p>
+</li>
+</ul>
+<h4 id="Configuration与move相关的成员函数"><a href="#Configuration与move相关的成员函数" class="headerlink" title="Configuration与move相关的成员函数"></a>Configuration与move相关的成员函数</h4><ul>
+<li><p>performProcess()</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Configuration::performProcess(Process &amp; process,</div><div class="line">                                   <span class="keyword">const</span> <span class="keyword">int</span> site_index,</div><div class="line">                                   <span class="keyword">const</span> LatticeMap &amp; lattice_map)</div></pre></td></tr></table></figure>
+<p>  不得不吐槽这个函数让我看了很久，不过也要感谢这个函数，他让我把KMCLib的最难理解的部分搞清楚了。<br>  这个函数中同时移动着<strong>5个</strong>迭代器</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 遍历process中的minimal_match_list</span></div><div class="line"><span class="keyword">auto</span> it1 = process_match_list.begin();</div><div class="line"></div><div class="line"><span class="comment">// 遍历全局晶格中某点的minimal_match_list</span></div><div class="line"><span class="keyword">auto</span> it2 = site_match_list.begin();</div><div class="line"></div><div class="line"><span class="comment">// 下面三个都用于用记录信息的</span></div><div class="line"><span class="keyword">auto</span> it3 = process.affectedIndices().begin();</div><div class="line"><span class="keyword">auto</span> it4 = moved_atom_ids_.begin();</div><div class="line"><span class="keyword">auto</span> it5 = recent_move_vectors_.begin();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><br></p>
+<h4 id="我在这里决定把这个函数贴上来通过注释的方式解读这段代码："><a href="#我在这里决定把这个函数贴上来通过注释的方式解读这段代码：" class="headerlink" title="我在这里决定把这个函数贴上来通过注释的方式解读这段代码："></a>我在这里决定把这个函数贴上来通过注释的方式解读这段代码：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Configuration::performProcess(Process &amp; process,</div><div class="line">                                   <span class="keyword">const</span> <span class="keyword">int</span> site_index,</div><div class="line">                                   <span class="keyword">const</span> LatticeMap &amp; lattice_map)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// PERFORMME</span></div><div class="line">    <span class="comment">// Need to time and optimize the new parts of the routine.</span></div><div class="line"></div><div class="line">    <span class="comment">// Get the proper match lists.</span></div><div class="line">    <span class="comment">// 同时获取相对应的两个minimal_match_list的迭代器用于遍历容器</span></div><div class="line">    <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;MinimalMatchListEntry&gt; &amp; process_match_list = process.minimalMatchList();</div><div class="line">    <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;MinimalMatchListEntry&gt; &amp; site_match_list    = minimalMatchList(site_index);</div><div class="line"></div><div class="line">    <span class="comment">// Iterators to the match list entries.</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;MinimalMatchListEntry&gt;::const_iterator it1 = process_match_list.begin();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;MinimalMatchListEntry&gt;::const_iterator it2 = site_match_list.begin();</div><div class="line"></div><div class="line">    <span class="comment">// Iterators to the info storages.</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it3 = process.affectedIndices().begin();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it4 = moved_atom_ids_.begin();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;Coordinate&gt;::iterator it5 = recent_move_vectors_.begin();</div><div class="line"></div><div class="line">    <span class="comment">// Reset the moved counter.</span></div><div class="line">    n_moved_ = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Loop over the match lists and get the types and indices out.</span></div><div class="line">    <span class="keyword">for</span>( ; it1 != process_match_list.end(); ++it1, ++it2)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// Get the type out of the process match list.</span></div><div class="line">        <span class="comment">// 这里应该被更新的元素类型，</span></div><div class="line">        <span class="comment">// 如果process没有改变类型则与(*it2).match_type的值是相同的</span></div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> update_type = (*it1).update_type;</div><div class="line"></div><div class="line">        <span class="comment">// Get the index out of the configuration match list.</span></div><div class="line">        <span class="comment">// 这个元素在全局晶格中的索引值，因为之后的所有操作都离不开这个索引值来定位，</span></div><div class="line">        <span class="comment">// 都是在这个位置上进行一系列操作的</span></div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> index = (*it2).index;</div><div class="line"></div><div class="line">        <span class="comment">// <span class="doctag">NOTE:</span> The &gt; 0 is needed for handling the wildcard match.</span></div><div class="line">        <span class="comment">// 如果类型的确是发生了改变，就需要更新一系列的数据</span></div><div class="line">        <span class="keyword">if</span> (types_[index] != update_type &amp;&amp; update_type &gt; <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="comment">// Get the atom id to apply the move vector to.</span></div><div class="line">            <span class="comment">// 获取原本位置上的元素的id号</span></div><div class="line">            <span class="keyword">const</span> <span class="keyword">int</span> atom_id = atom_id_[index];</div><div class="line"></div><div class="line">            <span class="comment">// Apply the move vector to the atom coordinate.</span></div><div class="line">            <span class="comment">// 由于发生了移动，这个id的元素的位置要进行更新</span></div><div class="line">            atom_id_coordinates_[atom_id] += (*it1).move_coordinate;</div><div class="line"></div><div class="line">            <span class="comment">// Set the type at this index.</span></div><div class="line">            <span class="comment">// 修改全局晶格的信息</span></div><div class="line">            <span class="comment">// 以前晶格位置上的类型进行更新</span></div><div class="line">            types_[index]    = update_type;  </div><div class="line">            elements_[index] = type_names_[update_type];</div><div class="line"></div><div class="line">            <span class="comment">// Update the atom id element.</span></div><div class="line">            <span class="comment">// 这里主要是针对直接替换掉的元素而不是移动造成的元素变更</span></div><div class="line">            <span class="comment">// 正常通过移动是无法改变id对应元素类型的</span></div><div class="line">            <span class="keyword">if</span> (!(*it1).has_move_coordinate)</div><div class="line">            &#123;</div><div class="line">                atom_id_elements_[atom_id] = elements_[index];</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// Mark this index as affected.</span></div><div class="line">            <span class="comment">// 下面这些都是记录一些信息</span></div><div class="line"></div><div class="line">            <span class="comment">// 这个process改动了的全局晶格索引</span></div><div class="line">            (*it3) = index;</div><div class="line">            ++it3;</div><div class="line"></div><div class="line">            <span class="comment">// Mark this atom_id as moved.</span></div><div class="line">            <span class="comment">// 哪些元素被移动了</span></div><div class="line">            (*it4) = atom_id;</div><div class="line">            ++it4;</div><div class="line">            ++n_moved_;</div><div class="line"></div><div class="line">            <span class="comment">// Save this move vector.</span></div><div class="line">            <span class="comment">// 保存相应元素的移动坐标，如果是直接替换这里应该是(0.0, 0.0, 0.0)</span></div><div class="line">            (*it5) = (*it1).move_coordinate;</div><div class="line">            ++it5;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 下面的操作时用来更新atom_ids_</span></div><div class="line">    <span class="comment">// 由于元素通过process进行了位置的移动，相应的atom_ids中的顺序也要进行及时的更新</span></div><div class="line">    <span class="comment">// Perform the moves on all involved atom-ids.</span></div><div class="line">    <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt; <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; &amp; process_id_moves = process.idMoves();</div><div class="line"></div><div class="line">    <span class="comment">// Local vector to store the atom id updates in.</span></div><div class="line">    <span class="comment">// 这个pair里面放了关于什么元素移动到了哪里的信息，例如</span></div><div class="line">    <span class="comment">// &lt;元素id, 移动到的晶格索引号（也就是位置）&gt;</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; id_updates(process_id_moves.size());</div><div class="line"></div><div class="line">    <span class="comment">// Setup the id updates list.</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; process_id_moves.size(); ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> match_list_index_from = process_id_moves[i].first;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> match_list_index_to   = process_id_moves[i].second;</div><div class="line"></div><div class="line">        <span class="comment">// 获取在全局晶格中跳动的起始位置和终点位置（这里都是用索引号确定的）</span></div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> lattice_index_from = site_match_list[match_list_index_from].index;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> lattice_index_to   = site_match_list[match_list_index_to].index;</div><div class="line"></div><div class="line">        id_updates[i].first  = atom_id_[lattice_index_from];  <span class="comment">// 什么元素（id号）</span></div><div class="line">        id_updates[i].second = lattice_index_to;              <span class="comment">// 移动到了全局的哪里（全局索引号）</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Apply the id updates on the configuration.</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; id_updates.size(); ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> id    = id_updates[i].first;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> index = id_updates[i].second;</div><div class="line"></div><div class="line">        <span class="comment">// Set the atom id at this lattice site index.</span></div><div class="line">        atom_id_[index] = id;                      <span class="comment">// 跳到的地方把元素id更新</span></div><div class="line">        atom_id_elements_[id] = elements_[index];  <span class="comment">// 更新元素相应的元素类型，感觉没必要？</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>void Configuration::updateMatchList(const int index)</code><br>  process执行过后需要对configuration的match_lists_进行更新，但是这里只需要对里面的match_type进行更新就可以了。<br>  但是这个成员是对minmal_match_list的更新时针对一个index的minimal_match_list的，所以我猜测后面他会用他对发生反应的周围nearst neighbor和the next nearst neighbor的每个index。</li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/03/24/KMCLib中的Configuration/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/03/24/KMCLib中的match-list/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/03/24/关于KMCLib中的Move/" data-title="关于KMCLib中的Move" data-url="http://pytlab.github.io/2016/03/24/关于KMCLib中的Move/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-03-24 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li> <li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li> <li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li> <li><a href="/tags/学术/">学术<span class="badge">16</span></a></li> <li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Process中的move相关"><span class="toc-article-text">Process中的move相关</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Process中与move相关的变量："><span class="toc-article-text">Process中与move相关的变量：</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Process中相关的成员方法"><span class="toc-article-text">Process中相关的成员方法</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Configuration中的move相关"><span class="toc-article-text">Configuration中的move相关</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Configuration与move相关的成员变量"><span class="toc-article-text">Configuration与move相关的成员变量</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Configuration与move相关的成员函数"><span class="toc-article-text">Configuration与move相关的成员函数</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#我在这里决定把这个函数贴上来通过注释的方式解读这段代码："><span class="toc-article-text">我在这里决定把这个函数贴上来通过注释的方式解读这段代码：</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

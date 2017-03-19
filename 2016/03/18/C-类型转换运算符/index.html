@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>C++类型转换运算符 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="最近在看KMCLib源码，里面的类型转换都是使用的C++的类型转换运算符，而不是C语言的类型转换，那我就在这把C++四种类型转换运算符总结下。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="C++类型转换运算符"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> C++类型转换运算符</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>最近在看KMCLib源码，里面的类型转换都是使用的C++的类型转换运算符，而不是C语言的类型转换，那我就在这把C++四种类型转换运算符总结下。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <h3 id="C风格（C-Style）强制转型"><a href="#C风格（C-Style）强制转型" class="headerlink" title="C风格（C-Style）强制转型"></a>C风格（C-Style）强制转型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(T) expression  <span class="comment">// 将expression类型强制转换成T</span></div><div class="line"></div><div class="line"><span class="comment">// 函数风格</span></div><div class="line">T(expression)  <span class="comment">// cast expression to be of type T</span></div></pre></td></tr></table></figure>
+<p>这两种形式之间没有本质上的不同，纯粹就是形式的区别。</p>
+<h3 id="C-的四种强制类型转换"><a href="#C-的四种强制类型转换" class="headerlink" title="C++的四种强制类型转换"></a>C++的四种强制类型转换</h3><p>在C++创始人Bjarne Stroustrup看来，C与阿燕的类型转换太过松散，因此采取了措施，就是更严格地限制允许的类型转换，并添加4个类型转换运算符，是转换过程更规范。</p>
+<ul>
+<li><code>dynamic_cast</code></li>
+<li><code>const_cast</code></li>
+<li><code>static_cast</code></li>
+<li><code>reinterpret_cast</code></li>
+</ul>
+<p>这样可以根据转换的目的选择类型转换运算符，而不是通用的类型转换，让编译器能够检查程序的行为是否与设计者的想法吻合。<br><a id="more"></a></p>
+<ol>
+<li><p><code>dynamic_cast</code><br> 主要用于执行“安全的向下转型（safe downcasting）”，也就是说，要确定一个对象是否是一个继承体系中的一个特定类型。他是唯一不能用就风格语法执行的强制类型转换，也是唯一可能有重大运行时代价的强制类型转换。</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> A &#123; ... &#125;;</div><div class="line"><span class="keyword">class</span> B : <span class="keyword">public</span> A &#123; ... &#125;;</div><div class="line"><span class="keyword">class</span> C : <span class="keyword">public</span> B &#123; ... &#125;;</div><div class="line"></div><div class="line"><span class="comment">// 定义每种类型的指针</span></div><div class="line">A * pa;</div><div class="line">B * pb;</div><div class="line">C * pc;</div></pre></td></tr></table></figure>
+<p> <code>dynamic_cast</code>的语法：</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">B * pb = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pa);</div></pre></td></tr></table></figure>
+<p> pa的类型是否可被安全的转换为<code>B *</code>? 如果可以则返回转换后的指针，如果不可以则返回一个空指针；<br> 所谓安全是为了让写程序的人知道自己调用的是哪个类的相应的方法。<br> 例如A,B,C三个类都有<code>Speak</code>方法，但是B类中定义了一个A类中没有的<code>Say()</code>方法。若我不清楚指针指向的是哪个对象的话我就不知道我能不能通过指针调用<code>Say()</code>方法了。因此我需要验证一下，于是可以用<code>dynamic_cast&lt;B *&gt;</code>看看是不是能转换成功，如果可以，那说明是B类，可以调用其<code>Say()</code>方法。</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">B * ps;</div><div class="line"><span class="keyword">if</span> (ps = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pa))</div><div class="line">&#123;</div><div class="line">    ps-&gt;Say();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>const_cast</code><br>一般用于强制消除对象的常量性。它是唯一能做到这一点的C++风格的强制类型转换。<br>但是<code>const_cast</code>不是万能的，如果一个值在声明的时候就声明为<code>const</code>则可能编译器会禁止修改它。</p>
+</li>
+<li><p><code>static_cast</code><br>可以被用于强制隐型转换（例如，<code>non-const</code> 对象转型为<code>const</code>对象, <code>int</code>转型为<code>double</code>, 等等），它还可以用于很多这样的转换的反向转换（例如，<code>void\*</code> 指针转型为有类型指针，基类指针转型为派生类指针），但是它不能将一个<code>const</code>对象转型为<code>non-const</code>对象（只有<code>const_cast</code>能做到），它最接近于C-style的转换。</p>
+</li>
+<li><p><code>reinterpret_cast</code><br>特意用于底层的强制转型，导致实现依赖（implementation-dependent）（就是说，不可移植）的结果，例如，将一个指针转型为一个整数。这样的强制转型在底层代码以外应该极为罕见。</p>
+</li>
+</ol>
+<div class="alert alert-info"><i class="fa fa-info"></i>  旧风格的强制转型依然合法，但是新的形式更可取。首先，在代码中它们更容易识别（无论是人还是像 grep 这样的工具都是如此），这样就简化了在代码中寻找类型系统被破坏的地方的过程。第二，更精确地指定每一个强制转型的目的，使得编译器诊断使用错误成为可能。例如，如果你试图使用一个 const_cast 以外的新风格强制转型来消除常量性。</div>
+<p><br></p>
+<h4 id="dynamic-cast-vs-static-cast"><a href="#dynamic-cast-vs-static-cast" class="headerlink" title="dynamic_cast .vs. static_cast"></a><code>dynamic_cast</code> .vs. <code>static_cast</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A * pa = <span class="keyword">new</span> A;</div><div class="line"></div><div class="line">B * p1 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pa);</div><div class="line">B * p2 = <span class="keyword">static_cast</span>&lt;B *&gt;(pa);</div></pre></td></tr></table></figure>
+<p>在这里<code>dynamic_cast</code>运算符知道转换时不合法的，于是他将返回空指针。但是<code>static_cast</code>则要依赖写程序的人的判断了，他将会简单的返回一个指向一个B类型的指针，实际指向的对象并不是B类型的。<br>即<code>dynamic_cast</code>可用于继承体系中的向下转型，即将基类指针转换为派生类指针，比<code>static_cast</code>更严格更安全。<code>dynamic_cast</code>在执行效率上比<code>static_cast</code>要差一些,但<code>static_cast</code>在更宽上范围内可以完成映射,这种不加限制的映射伴随着不安全性.<code>static_cast</code>覆盖的变换类型除类层次的静态导航以外,还包括无映射变换,窄化变换(这种变换会导致对象切片,丢失信息),用<code>VOID*</code>的强制变换,隐式类型变换等…</p>
+<p><br></p>
+<h4 id="static-cast-vs-reinterpret-cast"><a href="#static-cast-vs-reinterpret-cast" class="headerlink" title="static_cast .vs. reinterpret_cast"></a><code>static_cast</code> .vs. <code>reinterpret_cast</code></h4><p><code>reinterpret_cast</code>是为了映射到一个完全不同类型的意思,这个关键词在我们需要把类型映射回原有类型时用到它.我们映射到的类型仅仅是为了故弄玄虚和其他目的,这是所有映射中最危险的.(这句话是C++编程思想中的原话)</p>
+<p><code>static_cast</code>和<code>reinterpret_cast</code> 操作符修改了操作数类型. 它们不是互逆的; <code>static_cast</code>在编译时使用类型信息执行转换, 在转换执行必要的检测(诸如指针越界计算, 类型检查). 其操作数相对是安全的. 另一方面, <code>reinterpret_cast</code>仅仅是重新解释了给出的对象的比特模型而没有进行二进制转换, 例子如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> n = <span class="number">9</span>;</div><div class="line"><span class="keyword">double</span> d = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(n);</div></pre></td></tr></table></figure>
+<p>上面的例子中, 我们将一个变量从<code>int</code>转换到 <code>double</code>. 这些类型的二进制表达式是不同的. 要将整数 9 转换到 双精度整数 9, <code>static_cast</code> 需要正确地为双精度整数 d 补足比特位. 其结果为 9.0. 而<code>reinterpret_cast</code> 的行为却不同:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> n=<span class="number">9</span>;</div><div class="line"><span class="keyword">double</span> d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> &amp; &gt; (n);</div></pre></td></tr></table></figure></p>
+<p>这次, 结果有所不同. 在进行计算以后, d 包含无用值. 这是因为 <code>reinterpret_cast</code> 仅仅是复制 n 的比特位到 d, 没有进行必要的分析.</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一共四种<code>cast</code>。</p>
+<ol>
+<li><code>static_cast</code>，支持子类指针到父类指针的转换，并根据实际情况调整指针的值，反过来也支持，但会给出编译警告，它作用最类似C风格的“强制转换”，一般来说可认为它是安全的；</li>
+<li><code>dynamic_cast</code>，支持父类指针到子类指针的转换，并根据实际情况调整指针的值，和<code>static_cast</code>不同，反过来它就不支持了，会导致编译错误，这种转换是最安全的转换；</li>
+<li><code>reinterpret_cast</code>，支持任何转换，但仅仅是如它的名字所描述的那样“重解释”而已，不会对指针的值进行任何调整，用它完全可以做到“指鹿为马”，但很明显，它是最不安全的转换，使用它的时候，你得头脑清醒，知道自己在干什么；</li>
+<li><code>const_cast</code>，这个转换能剥离一个对象的<code>const</code>属性，也就是说允许你对常量进行修改。</li>
+</ol>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/03/20/Python开发者沙龙/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/03/17/开始看KMCLib源码/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/03/18/C-类型转换运算符/" data-title="C++类型转换运算符" data-url="http://pytlab.github.io/2016/03/18/C-类型转换运算符/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-03-18 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

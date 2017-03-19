@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>MPI学习--阻塞通信之就绪通信模式和同步通信模式 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="本篇对阻塞通信中的就绪通信模式和同步通信模式进行小结。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MPI学习--阻塞通信之就绪通信模式和同步通信模式"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> MPI学习--阻塞通信之就绪通信模式和同步通信模式</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>本篇对阻塞通信中的就绪通信模式和同步通信模式进行小结。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <h2 id="就绪通信模式"><a href="#就绪通信模式" class="headerlink" title="就绪通信模式"></a>就绪通信模式</h2><p>就绪模式的发送方式与同步和标准发送完全一致，不一样的是就绪通信模式是：</p>
+<p>仅当对方的接收操作启动并且准备就绪时，才可发生数据，并不是MPI会自动判断是否就绪（他没那么智能？）而是<strong>告诉MPI对方以准备就绪接收你发的消息，如果你骗了MPI，MPI会不爽，然后报错</strong>。</p>
+<p>基于你告诉MPI的这个信息，就可以避免一些列的缓冲操作以及收发双方的握手操作，是的MPI环境可对通信做更细致的优化以提高通信效率。</p>
+<p>需要注意的是：<br><div class="alert alert-warning"><i class="fa fa-bell"></i>  就绪通信并不意味着发送方的发送动作是否结束取决于接收端的状态，对发送方而言，这仅仅意味着发送缓冲区在发送函数返回之后即可被安全的用于其它操作，因为你告诉MPI，接收方早已就绪了，所以MPI也就信任了你。</div></p>
+<a id="more"></a>
+<p>还是通过代码来说明的清楚。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mpi.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> rank, size, i;</div><div class="line">    <span class="keyword">int</span> buffer[<span class="number">10</span>];</div><div class="line">    MPI_Status status;</div><div class="line">    MPI_Init(&amp;argc, &amp;argv);</div><div class="line">    MPI_Comm comm = MPI_COMM_WORLD;</div><div class="line">    MPI_Comm_rank(comm, &amp;rank);</div><div class="line">    MPI_Comm_size(comm, &amp;size);</div><div class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"size = %d\n"</span>, size);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (size &lt; <span class="number">2</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Please run with two processes.\n"</span>);</div><div class="line">        fflush(<span class="built_in">stderr</span>);</div><div class="line">        MPI_Finalize();</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(rank == <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">        &#123;</div><div class="line">            buffer[i] = <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">        MPI_Recv(buffer, <span class="number">10</span>, MPI_INT, <span class="number">1</span>, <span class="number">123</span>, comm, &amp;status);</div><div class="line"></div><div class="line">        <span class="comment">// Check.</span></div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (buffer[i] != i)</div><div class="line">            &#123;</div><div class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,</div><div class="line">                        <span class="string">"Error: buffer[%d]=%d but is expected to be %d\n"</span>,</div><div class="line">                        i, buffer[i], i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"buffer[%d]=%d but is expected to be %d\n"</span>, i, buffer[i], i);</div><div class="line">        &#125;</div><div class="line">        fflush(<span class="built_in">stderr</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (rank == <span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">        &#123;</div><div class="line">            buffer[i] = i;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        MPI_Rsend(buffer, <span class="number">10</span>, MPI_INT, <span class="number">0</span>, <span class="number">123</span>, comm);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MPI_Finalize();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>编译后能够在两个进程中正确运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[zjshao@master ch02]$ mpicc rsendrecv.c -o rsendrecv.x</div><div class="line">[zjshao@master ch02]$ mpiexec -n 2 -host node01 rsendrecv.x</div><div class="line">size = 2</div><div class="line">size = 2</div><div class="line">buffer[0]=0 but is expected to be 0</div><div class="line">buffer[1]=1 but is expected to be 1</div><div class="line">buffer[2]=2 but is expected to be 2</div><div class="line">buffer[3]=3 but is expected to be 3</div><div class="line">buffer[4]=4 but is expected to be 4</div><div class="line">buffer[5]=5 but is expected to be 5</div><div class="line">buffer[6]=6 but is expected to be 6</div><div class="line">buffer[7]=7 but is expected to be 7</div><div class="line">buffer[8]=8 but is expected to be 8</div><div class="line">buffer[9]=9 but is expected to be 9</div><div class="line">[zjshao@master ch02]$</div></pre></td></tr></table></figure></p>
+<h3 id="假如我们欺骗了MPI"><a href="#假如我们欺骗了MPI" class="headerlink" title="假如我们欺骗了MPI"></a>假如我们欺骗了MPI</h3><p>我们现在通过阻塞函数在接收端为做好准备时候进行就绪消息传递：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        buffer[i] = <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MPI_Barrier(comm);</div><div class="line">    MPI_Recv(buffer, <span class="number">10</span>, MPI_INT, <span class="number">1</span>, <span class="number">123</span>, comm, &amp;status);</div><div class="line"></div><div class="line">    <span class="comment">// Check.</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (buffer[i] != i)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,</div><div class="line">                    <span class="string">"Error: buffer[%d]=%d but is expected to be %d\n"</span>,</div><div class="line">                    i, buffer[i], i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"buffer[%d]=%d but is expected to be %d\n"</span>, i, buffer[i], i);</div><div class="line">    &#125;</div><div class="line">    fflush(<span class="built_in">stderr</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (rank == <span class="number">1</span>)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        buffer[i] = i;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    MPI_Rsend(buffer, <span class="number">10</span>, MPI_INT, <span class="number">0</span>, <span class="number">123</span>, comm);</div><div class="line">    MPI_Barrier(comm);</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>输出是啥样的呢：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[zjshao@master ch02]$ mpicc rsendrecv.c -o rsendrecv.x</div><div class="line">[zjshao@master ch02]$ mpiexec -n 2 -host node01 rsendrecv.x</div><div class="line">size = 2</div><div class="line">size = 2</div><div class="line"></div><div class="line">===================================================================================</div><div class="line">=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES</div><div class="line">=   PID 10073 RUNNING AT node01</div><div class="line">=   EXIT CODE: 11</div><div class="line">=   CLEANING UP REMAINING PROCESSES</div><div class="line">=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES</div><div class="line">===================================================================================</div><div class="line">YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Segmentation fault (signal 11)</div><div class="line">This typically refers to a problem with your application.</div><div class="line">Please see the FAQ page <span class="keyword">for</span> debugging suggestions</div><div class="line">[zjshao@master ch02]$</div></pre></td></tr></table></figure></p>
+<hr>
+<p>MPI输出这些是啥意思呢？我大概翻译下：<br>MPI:”你骗我！老子不干了。”</p>
+<h2 id="同步通信模式"><a href="#同步通信模式" class="headerlink" title="同步通信模式"></a>同步通信模式</h2><p>与就绪通信模式不同，同步的发送动作什么时候做都行，即使接收方没有准备好也没有关系。如果接收方没有准备好咋办呢？等。即发送端需等待接收端的接受动作发起并开始接受数据之后才能够返回。</p>
+<p>发送动作的结束意味着：</p>
+<ul>
+<li>发送缓冲区已经可以用于其它用途</li>
+<li>接收端已经接受了（部分）数据了</li>
+</ul>
+<h3 id="同步通信协议"><a href="#同步通信协议" class="headerlink" title="同步通信协议"></a>同步通信协议</h3><p>发送端首先向接收端发起一个请求发送消息的申请，接收端的MPI环境会将这个请求保存下来，然后带相应的接受动作启动之后为其返回一个信息发送许可，发送端据此信息再执行实际的消息发送。</p>
+<p>这里由于阻塞同步通信比较简单，而且代码基本上跟标准模式相同，就不写例子了。</p>
+<div class="alert alert-info"><i class="fa fa-info"></i>  MPI程序安全的必要条件是：该程序不需要借助缓冲机制进行通信。</div>
+<p>对这样的程序把所有的发送操作替换为同步通信模式时仍可保持正确。这样的程序可移植性最好，但是性能不一定最优。好的解决办法就是<strong>反阻塞通信</strong>。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/07/09/MPI学习-初识非阻塞通信/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/" data-title="MPI学习--阻塞通信之就绪通信模式和同步通信模式" data-url="http://pytlab.github.io/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-07-08 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li> <li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#就绪通信模式"><span class="toc-article-text">就绪通信模式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#假如我们欺骗了MPI"><span class="toc-article-text">假如我们欺骗了MPI</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#同步通信模式"><span class="toc-article-text">同步通信模式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#同步通信协议"><span class="toc-article-text">同步通信协议</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

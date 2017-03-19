@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>记一次自己坑了自己的Python编译过程 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="记一次自己坑了自己的Python编译过程"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 记一次自己坑了自己的Python编译过程</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>这两天把VASPy代码兼容了Python3，于是打算在IBM上用python3跑，结果发现IBM上没有python3，于是我就打算编译一下，本以为就几分钟的事，结果发生了奇怪的错误。。。最终找到原因，竟是自己坑了自己。</p>
+<p>就第一步编译<code>python.c</code>就直接报错了，我也是崩溃的</p>
+<p>　　　パ..パ<br>　　（　°Д°）・・・<br>＿＿（＿っ /￣￣￣￣￣/＿<br>　　　　＼/＿＿＿＿＿/ </p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">[zjshao@master Python-3.5.2]$ make</div><div class="line">gcc -pthread -c -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes    -Werror=declaration-after-statement   -I. -IInclude -I./Include    -DPy_BUILD_CORE -o Programs/python.o ./Programs/python.c</div><div class="line">In file included from Include/Python.h:65:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:24:4: error: <span class="comment">#error "_PyTime_t need signed 64-bit integer type"</span></div><div class="line"> <span class="comment">#  error "_PyTime_t need signed 64-bit integer type"</span></div><div class="line">    ^~~~~</div><div class="line">In file included from Include/Python.h:50:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:70:12: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_FromSeconds(int seconds);</div><div class="line">            ^</div><div class="line">Include/pyport.h:768:34: note: <span class="keyword">in</span> definition of macro ‘PyAPI_FUNC’</div><div class="line"> <span class="comment">#       define PyAPI_FUNC(RTYPE) RTYPE</span></div><div class="line">                                  ^~~~~</div><div class="line">Include/pytime.h:78:12: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_FromNanoseconds(PY_LONG_LONG ns);</div><div class="line">            ^</div><div class="line">Include/pyport.h:768:34: note: <span class="keyword">in</span> definition of macro ‘PyAPI_FUNC’</div><div class="line"> <span class="comment">#       define PyAPI_FUNC(RTYPE) RTYPE</span></div><div class="line">                                  ^~~~~</div><div class="line">In file included from Include/Python.h:65:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:82:43: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(int) _PyTime_FromSecondsObject(_PyTime_t *t,</div><div class="line">                                           ^~~~~~~~~</div><div class="line">Include/pytime.h:88:48: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(int) _PyTime_FromMillisecondsObject(_PyTime_t *t,</div><div class="line">                                                ^~~~~~~~~</div><div class="line">Include/pytime.h:93:44: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(double) _PyTime_AsSecondsDouble(_PyTime_t t);</div><div class="line">                                            ^~~~~~~~~</div><div class="line">In file included from Include/Python.h:50:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:96:12: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_AsMilliseconds(_PyTime_t t,</div><div class="line">            ^</div><div class="line">Include/pyport.h:768:34: note: <span class="keyword">in</span> definition of macro ‘PyAPI_FUNC’</div><div class="line"> <span class="comment">#       define PyAPI_FUNC(RTYPE) RTYPE</span></div><div class="line">                                  ^~~~~</div><div class="line">In file included from Include/Python.h:65:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:96:46: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_AsMilliseconds(_PyTime_t t,</div><div class="line">                                              ^~~~~~~~~</div><div class="line">In file included from Include/Python.h:50:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:100:12: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_AsMicroseconds(_PyTime_t t,</div><div class="line">            ^</div><div class="line">Include/pyport.h:768:34: note: <span class="keyword">in</span> definition of macro ‘PyAPI_FUNC’</div><div class="line"> <span class="comment">#       define PyAPI_FUNC(RTYPE) RTYPE</span></div><div class="line">                                  ^~~~~</div><div class="line">In file included from Include/Python.h:65:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:100:46: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_AsMicroseconds(_PyTime_t t,</div><div class="line">                                              ^~~~~~~~~</div><div class="line">Include/pytime.h:105:52: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(PyObject *) _PyTime_AsNanosecondsObject(_PyTime_t t);</div><div class="line">                                                    ^~~~~~~~~</div><div class="line">Include/pytime.h:111:35: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(int) _PyTime_AsTimeval(_PyTime_t t,</div><div class="line">                                   ^~~~~~~~~</div><div class="line">Include/pytime.h:116:43: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(int) _PyTime_AsTimeval_noraise(_PyTime_t t,</div><div class="line">                                           ^~~~~~~~~</div><div class="line">In file included from Include/Python.h:50:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:131:12: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_GetSystemClock(void);</div><div class="line">            ^</div><div class="line">Include/pyport.h:768:34: note: <span class="keyword">in</span> definition of macro ‘PyAPI_FUNC’</div><div class="line"> <span class="comment">#       define PyAPI_FUNC(RTYPE) RTYPE</span></div><div class="line">                                  ^~~~~</div><div class="line">Include/pytime.h:140:12: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line"> PyAPI_FUNC(_PyTime_t) _PyTime_GetMonotonicClock(void);</div><div class="line">            ^</div><div class="line">Include/pyport.h:768:34: note: <span class="keyword">in</span> definition of macro ‘PyAPI_FUNC’</div><div class="line"> <span class="comment">#       define PyAPI_FUNC(RTYPE) RTYPE</span></div><div class="line">                                  ^~~~~</div><div class="line">In file included from Include/Python.h:65:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/pytime.h:156:5: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line">     _PyTime_t *t,</div><div class="line">     ^~~~~~~~~</div><div class="line">Include/pytime.h:168:5: error: unknown <span class="built_in">type</span> name ‘_PyTime_t’</div><div class="line">     _PyTime_t *t,</div><div class="line">     ^~~~~~~~~</div><div class="line">In file included from Include/Python.h:77:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/unicodeobject.h:65:0: warning: <span class="string">"Py_USING_UNICODE"</span> redefined</div><div class="line"> <span class="comment">#define Py_USING_UNICODE</span></div><div class="line"> </div><div class="line">In file included from Include/Python.h:8:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">/usr/<span class="built_in">local</span>/include/python2.7/pyconfig.h:962:0: note: this is the location of the previous definition</div><div class="line"> <span class="comment">#define Py_USING_UNICODE 1</span></div><div class="line"> </div><div class="line">In file included from Include/Python.h:77:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/unicodeobject.h:71:0: warning: <span class="string">"Py_UNICODE_SIZE"</span> redefined</div><div class="line"> <span class="comment">#define Py_UNICODE_SIZE SIZEOF_WCHAR_T</span></div><div class="line"> </div><div class="line">In file included from Include/Python.h:8:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">/usr/<span class="built_in">local</span>/include/python2.7/pyconfig.h:959:0: note: this is the location of the previous definition</div><div class="line"> <span class="comment">#define Py_UNICODE_SIZE 2</span></div><div class="line"> </div><div class="line">In file included from Include/Python.h:77:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">Include/unicodeobject.h:92:0: warning: <span class="string">"PY_UNICODE_TYPE"</span> redefined</div><div class="line"> <span class="comment">#define PY_UNICODE_TYPE wchar_t</span></div><div class="line"> </div><div class="line">In file included from Include/Python.h:8:0,</div><div class="line">                 from ./Programs/python.c:3:</div><div class="line">/usr/<span class="built_in">local</span>/include/python2.7/pyconfig.h:950:0: note: this is the location of the previous definition</div><div class="line"> <span class="comment">#define PY_UNICODE_TYPE unsigned short</span></div><div class="line"> </div><div class="line">make: *** [Programs/python.o] Error 1</div><div class="line">[zjshao@master Python-3.5.2]$</div></pre></td></tr></table></figure>
+<p>这个问题在google上没搜到，我当时竟然愚蠢的认为难道最新的Python3.5.2用了什么C的新特性IBM上的gcc不支持。。。</p>
+<p>于是我就蛋疼的去下载了最新版本的gcc6.1.0，<br>经过漫长的编译过程之后用了最新的编译器编译python</p>
+<p>还是同样的错误。。（醉了。。。</p>
+<p>于是，</p>
+<p>我决定看一下到底是哪里的错误，干脆自己解决丰衣足食。</p>
+<p>最初的问题就在于<code>_PyTime_t</code>这个宏定义没有完成，于是我就找到了相应宏定义的地方(pytime.h)：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> PY_INT64_T</span></div><div class="line"><span class="comment">/* _PyTime_t: Python timestamp with subsecond precision. It can be used to</span></div><div class="line">   store a duration, and so indirectly a date (related to another date, like</div><div class="line">   UNIX epoch). */</div><div class="line"><span class="keyword">typedef</span> PY_INT64_T _PyTime_t;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _PyTime_MIN PY_LLONG_MIN</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _PyTime_MAX PY_LLONG_MAX</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#  <span class="meta-keyword">error</span> <span class="meta-string">"_PyTime_t need signed 64-bit integer type"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+<p>可见，预处理器报错的原因在于没有定义宏<code>PY_INT64_T</code>。</p>
+<p>那再去找<code>PY_INT64_T</code>定义的地方(pyport.h):<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Macros for a 64-bit unsigned integer type; used for type 'twodigits' in the</span></div><div class="line"> * integer implementation, when 30-bit digits are enabled.</div><div class="line"> */</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> int64_t</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> HAVE_INT64_T 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> HAVE_INT64_T</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PY_INT64_T</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PY_INT64_T int64_t</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+<p>也就是说预处理器没有找到<code>int64_t</code>的定义，我就纳闷了，<code>int64_t</code>的定义不是在C的标准库<code>stdint.h</code>里面就定义好了的么，那么也就是说</p>
+<p><strong>根本没有将标准库里的<code>stdint.h</code>include进来！</strong></p>
+<p>再继续找。。。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Some versions of HP-UX &amp; Solaris need inttypes.h for int32_t,</span></div><div class="line">   INT32_MAX, etc. */</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> HAVE_INTTYPES_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> HAVE_STDINT_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>没包含只有一种可能了就是上面的<code>HAVE_STDINT_H</code>没有定义，再继续。。。</p>
+<p>然后我就找到了<code>pyconfig.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Define to 1 if you have the &lt;stdint.h&gt; header file. */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> HAVE_STDINT_H 1</span></div></pre></td></tr></table></figure>
+<p>看来没有设置这个宏，难道我压根就没有包含这个<code>pyconfig.h</code>?</p>
+<p>不能够啊，编译参数里面都写得很清楚了<code>-I.</code>。。。</p>
+<p>这个时候我想到了一个东西： <code>C_INCLUDE_PATH</code>!</p>
+<p>我之前为了编译自己写得C++扩展模块，将这个路径改成了Python2.7的头文件路径了。。。输出一下，果然：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[zjshao@master Python-3.5.0]$ <span class="built_in">echo</span> <span class="variable">$C_INCLUDE_PATH</span> </div><div class="line">/usr/<span class="built_in">local</span>/include/python2.7/:</div><div class="line">[zjshao@master Python-3.5.0]$</div></pre></td></tr></table></figure>
+<p>那我就试试把当前python源代码的路径添加进去再编译试试。。。</p>
+<p>结果。。。</p>
+<p>就成了。。</p>
+<p>成了。。。了。。。</p>
+<p>果然还是太年轻，自己坑了自己。。。</p>
+<p>不过这是不是也说明了环境变量<code>C_INCLUDE_PATH</code>的搜索顺序在编译参数<code>-I</code>的前面？<br>应该是吧。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/07/16/VASPy已兼容python3-x/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/07/16/记一次自己坑了自己的Python编译过程/" data-title="记一次自己坑了自己的Python编译过程" data-url="http://pytlab.github.io/2016/07/16/记一次自己坑了自己的Python编译过程/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-07-16 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">42</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

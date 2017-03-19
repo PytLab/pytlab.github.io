@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>python 生成器小结 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="对python中的生成器进行下总结。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="python 生成器小结"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> python 生成器小结</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>对python中的生成器进行下总结。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>在python中生成器可以很方便的实现迭代协议。生成器通过生成器函数产生，生成器函数可以通过常规的def语句来定义，但是不用return返回，而是用yield一次返回一个结果，在每个结果之间挂起和继续它们的状态，来自动实现迭代协议。也就是说，yield是一个语法糖，内部实现支持了迭代器协议。</p>
+<p>生成器的强大之一就在于他提供了<strong>协同程序的概念</strong>，协同程序是可以运行的独立函数调用，可以暂停或者挂起，并从程序离开的地方继续或者重新开始。同时调用者也可以向程序传入额外的数据或者异常等，传入完毕后仍能在上次暂停的地方继续执行。</p>
+<a id="more"></a>
+<h3 id="简单的生成器特性"><a href="#简单的生成器特性" class="headerlink" title="简单的生成器特性"></a>简单的生成器特性</h3><p>我先以上一篇的列表的例子实现一个生成器：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ListGenerator</span><span class="params">(data)</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</div><div class="line">        <span class="keyword">yield</span> i</div></pre></td></tr></table></figure></p>
+<p>之所以我把函数写的像类一样，是因为含有<code>yield</code>的函数并不是一般的函数，它更像一个类，因为它返回一个对象，这个对象就叫生成器。<br>现在我生成一个生成器对象：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">In</span> [<span class="number">1</span>]: from list_iter import *</div><div class="line"></div><div class="line"><span class="keyword">In</span> [<span class="number">2</span>]: a = ListGenerator([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</div><div class="line"></div><div class="line"><span class="keyword">In</span> [<span class="number">3</span>]: a</div><div class="line"><span class="keyword">Out</span>[<span class="number">3</span>]: &lt;generator object ListGenerator <span class="meta">at</span> <span class="number">0x035DA6C0</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>这样我们可以像使用迭代器一样去使用生成器对象：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">5</span>]: [<span class="selector-tag">i</span> <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> a]</div><div class="line">Out[<span class="number">5</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="生成器的加强特性"><a href="#生成器的加强特性" class="headerlink" title="生成器的加强特性"></a>生成器的加强特性</h3><p>在python2.5中一些加强特性加入到生成器中，让生成器更加的强大，所以除了<code>__next__()</code>可以获取下一个生成的值，用户可以将值回送个生成器(<code>send()</code>)，在生成器抛出异常，以及要求生成器退出（<code>close()</code>）</p>
+<h4 id="send-方法"><a href="#send-方法" class="headerlink" title="send()方法"></a><code>send()</code>方法</h4><p>由于双向的动作涉及到一个叫<code>send()</code>的代码来向生成器发送值，因此现在<code>yield</code>必须是一个表达式，因为函数会在执行<code>yield</code>之后暂停，等他回来的时候必须要有一个对象接手值，因此要写成<code>a = yield b</code>这样。<br>举个简单的例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ListGenerator</span><span class="params">(data)</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</div><div class="line">        receive = (<span class="keyword">yield</span> i)</div><div class="line">        <span class="keyword">if</span> receive:</div><div class="line">            print(<span class="string">"receive &#123;&#125;."</span>.format(receive))</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">"receive nothing."</span>)</div></pre></td></tr></table></figure></p>
+<p>执行的结果：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">In</span> [<span class="number">47</span>]: a = <span class="symbol">ListGenerator</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">48</span>]: a.<span class="symbol">__next__</span>()</div><div class="line"><span class="symbol">Out</span>[<span class="number">48</span>]: <span class="number">1</span></div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">49</span>]: a.<span class="symbol">__next__</span>()</div><div class="line">receive nothing.</div><div class="line"><span class="symbol">Out</span>[<span class="number">49</span>]: <span class="number">2</span></div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">50</span>]: a.send(<span class="number">1.3</span>)</div><div class="line">receive <span class="number">1.3</span>.</div><div class="line"><span class="symbol">Out</span>[<span class="number">50</span>]: <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>简单分析下上面这段程序就很清楚了：</p>
+<ol>
+<li><p>创建生成器对象<br> 首先使用函数<code>ListGenerator</code>，python看到函数里有<code>yield</code>关键字就知道这个函数不一般要返回一个生成器对象，并赋值给变量<code>a</code>。</p>
+</li>
+<li><p>第一次调用<code>__next__()</code><br> 然后a就是个迭代器对象，它实现了迭代协议（即实现了<code>__iter__()</code>和<code>__next__()</code>方法，其中<code>__iter__()</code>返回生成器自身），我们调用<code>__next__()</code>函数函数体就开始执行，当执行到</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">receive = (<span class="keyword">yield</span> i)</div></pre></td></tr></table></figure>
+<p> python看到了<code>yield</code>就把<code>i</code>返回并暂停函数执行。这也就是为什么第一次调用<code>__next__()</code>时先只输出了1。</p>
+</li>
+<li><p>第二次调用<code>__next__()</code><br> 当再次调用<code>__next__()</code>函数时候，函数便会在上次停止的地方继续执行，上次执行到了哪里？<code>yield</code>执行之后是一个赋值操作，要把一个值赋给<code>receive</code>，但是这时候我们没有给生成器发送值，因此python默认将这个值赋值为<code>None</code>。然后进行下面的判断操作，由于<code>receive</code>的值为<code>None</code>所以直接打印<code>receive nothing.</code>，然后继续执行，这时<code>i</code>变为2并在再次遇到<code>yield</code>生成器返回2并暂停。</p>
+</li>
+<li><p>调用<code>send()</code>方法<br> 这是在生成器恢复执行之前，我调用了生成器的<code>send()</code>函数，向生成器传入了一个值1.3，传入之后生成器恢复函数的执行，将我传入的值赋值给<code>receive</code>然后接着向下进行判断这是由于<code>receive</code>的值是1.3了因此输出<code>receive 1.3.</code>。然后接着第三轮迭代输出3.</p>
+</li>
+</ol>
+<h4 id="throw方法"><a href="#throw方法" class="headerlink" title="throw方法"></a><code>throw</code>方法</h4><p><code>throw</code>主要是向生成器发送异常，我将上面的代码进行了修改，是生成器能够捕获异常：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ListGenerator</span><span class="params">(data)</span>:</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            receive = (<span class="keyword">yield</span> i)</div><div class="line">            <span class="keyword">if</span> receive:</div><div class="line">                print(<span class="string">"receive &#123;&#125;."</span>.format(receive))</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                print(<span class="string">"receive nothing."</span>)</div><div class="line">        <span class="keyword">except</span> ValueError:</div><div class="line">            print(<span class="string">"receive a ValueError."</span>)</div></pre></td></tr></table></figure></p>
+<p>在shell中执行：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">In</span> [<span class="number">1</span>]: from list_iter import *</div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">2</span>]: a = <span class="symbol">ListGenerator</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">3</span>]: a.<span class="symbol">__next__</span>()</div><div class="line"><span class="symbol">Out</span>[<span class="number">3</span>]: <span class="number">1</span></div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">4</span>]: a.throw(<span class="symbol">ValueError</span>)</div><div class="line">receive a <span class="symbol">ValueError</span>.</div><div class="line"><span class="symbol">Out</span>[<span class="number">4</span>]: <span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p>当第一次调用<code>__next__()</code>的时候，执行到<code>yield</code>返回1并暂停，第二次我传入了一个<code>VauleError</code>异常，生成器继续执行函数，由于接收到一个异常，并被下面的<code>except ValueError</code>捕获，这时便输出了<code>recieve a ValueError.</code>然后接着执行到<code>yield</code>返回2。</p>
+<h4 id="close-方法"><a href="#close-方法" class="headerlink" title="close()方法"></a><code>close()</code>方法</h4><p>当一个生成器是一个永远执行的时候（<code>while True</code>的时候），我们就用到了<code>close()</code>来终止它。</p>
+<h3 id="通过生成器，可以快速创建一个可迭代对象。"><a href="#通过生成器，可以快速创建一个可迭代对象。" class="headerlink" title="通过生成器，可以快速创建一个可迭代对象。"></a>通过生成器，可以快速创建一个可迭代对象。</h3><p>上一篇中提到过，我们可以通过将可迭代对象中的<code>__iter__()</code>方法返回一个迭代器对象来实现多次重复迭代。有了生成器，我们可以让可迭代对象的<code>__iter__()</code>方法直接返回一个生成器，也就是在<code>__iter__()</code>中使用<code>yield</code>关键字，这样创建迭代对象就很方便。我之前处理VASP文件的库VASPy中就是这样使用来从大文件中获取数据的，代码不贴上来了，直接放个链接吧： <a href="https://github.com/PytLab/VASPy/blob/master/vaspy/atomco.py#L433" target="_blank" rel="external"><span class="fa fa-github"></span> VASPy/atomco.py at master · PytLab/VASPy</a></p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/05/22/Effective-Python-拾贝/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/04/30/python-迭代器和生成器小结/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/04/30/python-生成器小结/" data-title="python 生成器小结" data-url="http://pytlab.github.io/2016/04/30/python-生成器小结/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-04-30 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">42</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#简单的生成器特性"><span class="toc-article-text">简单的生成器特性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#生成器的加强特性"><span class="toc-article-text">生成器的加强特性</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#send-方法"><span class="toc-article-text">send()方法</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#throw方法"><span class="toc-article-text">throw方法</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#close-方法"><span class="toc-article-text">close()方法</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#通过生成器，可以快速创建一个可迭代对象。"><span class="toc-article-text">通过生成器，可以快速创建一个可迭代对象。</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

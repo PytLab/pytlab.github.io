@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>动力学模型代码的整体组织框架 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="动力学模型代码的整体组织框架"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 动力学模型代码的整体组织框架</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>这个动力学模型大概是在放假前一两个星期开始写的，由于我写代码的低效，今天才刚刚完成了model中的load()的部分，其中包括解析setup file中的基元反应的反应方程式以及检测方程式质量守恒以及吸附位守恒等主要功能。在这里大概记录下写这个模型的大致过程，以便以后回来方便浏览和回想思路。<br>首先是整个代码的组织框架，这个当时想了一段时间大概要怎么组织整个模型，这个还是很重要的。因为看过经典的《C Premier Plus》上面有写道：</p>
+<blockquote>
+<p>随着程序的变得更长更复杂，头脑中的想象就开始无能为力了，而且错误也将变得难以发现。最终，那些忽略计划步骤的人会浪费大量时间并带来混乱的挫折，因为他们编写出了难看、功能不正常而且艰深难懂的程序。工作越来越复杂，需要的计划工作量就越大。</p>
+<p>这里有一句忠告，那就是应该养成在编写代码前进行规划的习惯。使用古老而可敬的笔记技术来大略记录下程序的目标，并购了出设计的样貌。如果您这样做了，最终会节省时间并感到满意。</p>
+</blockquote>
+<p>这学期通过上课之余的其他时间，零零碎碎的把CatMap的90%的代码看过了，大概抓住了整个模型的BIG PICTURE.由于CatMap模型的目的是进行催化剂的筛选，主要是利用BEP关系分析原始的DFT计算出的能量进行简单粗暴的线性拟合，拟合出基于两个descriptors的map，从而对于map上的每一个点进行动力学稳态求解，输出的变量主要包括coverage, rate等。对于动力学模型的学习我还是主要以了解和学习为目的的。总览这个代码，catmap充分利用了Python OO的特性把动力学模型的几个组成部分有机的组合在了一起,这是很好的，非常有利于今后的代码维护和功能的增加。在看代码的过程中，catmap给我的印象就是它过度的修改了python的内置方法，例如<code>__getattr__(), __getattribute__(), __setattr__()</code>等，这样做的目的我觉得作者是想给model这个类至高无上的”权利”, 修改前面的内置方法主要是在<code>ModelWrapper</code>类中，而这个<code>ModekWrapper</code>类是其他”工具”类的父类，在<code>ModelWrapper</code>类中修改了<code>__getattr__(), __getattribute__(), __setattr__()</code>等方法，使得其他”工具”类的属性都附给model使其成为model的属性。<br><a id="more"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReactionModelWrapper</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattribute__</span><span class="params">(self,attr)</span>:</span></div><div class="line">        <span class="string">"Force use of custom getattr"</span></div><div class="line">        <span class="keyword">return</span> self.__getattr__(self,attr)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,attr)</span>:</span></div><div class="line">        <span class="string">"Return the value of the reaction model instance if its there. Otherwise return the instances own value (or none if the instance does not have the attribute defined and the attribute is not private)"</span></div><div class="line">        <span class="keyword">if</span> attr == <span class="string">'_rxm'</span>:</div><div class="line">            <span class="keyword">return</span> object.__getattribute__(self,attr)</div><div class="line"></div><div class="line">        <span class="keyword">elif</span> hasattr(self._rxm,attr):</div><div class="line">            <span class="keyword">return</span> getattr(self._rxm,attr)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> attr <span class="keyword">in</span> self.__dict__:</div><div class="line">                val =  object.__getattribute__(self,attr)</div><div class="line">                <span class="keyword">del</span> self.__dict__[attr] </div><div class="line">                <span class="comment">#this makes sure that the attr is read from _rxm</span></div><div class="line">                setattr(self._rxm,attr,val)</div><div class="line">                <span class="keyword">return</span> val</div><div class="line">            <span class="keyword">elif</span> attr.startswith(<span class="string">'_'</span>):</div><div class="line">                <span class="keyword">raise</span> AttributeError()</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,attr,val)</span>:</span></div><div class="line">        <span class="string">"Set attribute for the instance as well as the reaction_model instance"</span></div><div class="line">        accumulate = [<span class="string">'_required'</span>,<span class="string">'_log_strings'</span>,<span class="string">'_function_strings'</span>]</div><div class="line">        <span class="keyword">if</span> attr == <span class="string">'_rxm'</span>:</div><div class="line">            self.__dict__[attr] = val </div><div class="line">        <span class="keyword">elif</span> attr <span class="keyword">in</span> accumulate:</div><div class="line">            self._rxm.__dict__[attr].update(val)<span class="comment"># val = (k, v)</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            setattr(self._rxm,attr,val)</div></pre></td></tr></table></figure>
+<p>这种关系不知道为什么作者会这么做，在后面调用的时候就出现了不知道什么原因的报错(如下图)。虽然这样使得model的组织更有灵活性，但是一定要谨慎，灵活也是有代价的。</p>
+<p>由于学习动力学模型的初衷是学习python用来做科学计算，还是想自己把整个模型都自己写一遍来实现，以便达到最初的学习目的，改代码什么的这种无聊的事情自己真的做不下去。趴在地上想了会，我需要实现的功能其实是CatMap的子集，其中要设计多个表面的迁移过程，但是这种过程也不过是添加了site type的类型，在解稳态方程的时候添加了单独的表面归一条件。在解析表达式的时候将多个表面考虑进来写的更加general应该就可以了。<br>下图是我大概组织的<strong>整个代码的组织结构</strong>：<br><img src="assets/images/blog_img/2015-02-12-动力学模型代码的整体组织框架/model_uml.gif" alt="model_structure"><br>在这里我没有赋予model过于重要的地位，而是尽量将model与tools的功能分开来实现，各自完成各自的任务，通过实例化过程中初始化调用，使几个部分与主体model进行联系。同时我还单独写了个<code>logger</code>类用来生成<code>logger</code>对象记录model以及model的各个工具在运行过程中的日志文件，这样就把记录日志的任务交给了loggers来完成，这种分治的感觉还是很好的，起码是整个模型的代码清晰不让人感觉揉成一团，使用<code>set_logger()</code>方法在初始化过程中自动实例化logger，其中应用了CatMap中所谓的”BLACK MAGIC”, 说白了就是调用python内置的<code>__import__()</code>方法来import包含类的文件，并自动在执行代码的过程中实现其他文件中类的实例化(python官方文档对这个方法的介绍:<a href="https://docs.python.org/2/library/functions.html#__import__" target="_blank" rel="external">https://docs.python.org/2/library/functions.html#<strong>import</strong></a>).<br>相对于CatMap，我多加了一个table_maker用来根据model的物种信息生成setup file的表格，方便用户输入能量信息，并计算出generalized formation energy. 在这里我默认写了csv格式的table，当然还能写其他的table_maker实例。另外csv文件修改数据的话最好还是用NotePad打开修改，excel会造成数字精度损失，查看整个文件不做能容修改的话还是可以用excel打开的，有表格更容易查看整体内容信息。<br>贴上<code>set_logger()</code>的代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_logger</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    import logger and get an instance of Logger class</div><div class="line">    """</div><div class="line">    <span class="comment">#The 'BLACK MAGIC' is hacked from CatMap (catmap/model.py)</span></div><div class="line">    <span class="comment">#https://docs.python.org/2/library/functions.html#__import__</span></div><div class="line">    basepath = os.path.dirname(</div><div class="line">                inspect.getfile(inspect.currentframe()))</div><div class="line">    <span class="keyword">if</span> basepath <span class="keyword">not</span> <span class="keyword">in</span> sys.path:</div><div class="line">        sys.path.append(basepath)</div><div class="line">    <span class="comment">#from loggers import logger</span></div><div class="line">    _module = __import__(<span class="string">'loggers.logger'</span>, globals(), locals())</div><div class="line">    logger_instance = getattr(_module, <span class="string">'Logger'</span>)(owner=self)</div><div class="line">    setattr(self, <span class="string">'logger'</span>, logger_instance)</div></pre></td></tr></table></figure></p>
+<p>这个方法打算在后面补充<code>load()</code>中实例化各个工具类的时候模仿CatMap的方法写，这里就大概记录下目前来讲我组织代码的结构，充分利用python OO特性方便代码维护和扩充，以便在今后在此框架的基础上添加更多的方法和工具类以完成更加复杂的动力学计算任务。还有，毕竟代码是写给人看的，不是写给计算机看的。</p>
+<p><strong>2015.2.25补充：</strong><br>前几天在开始写solver之前意识到不仅仅table_maker需要依赖parser解析的数据，solver也依赖parser解析的数据，例如parse_elementary_rxns()获取基元反应的列表方便对solver物种进行分析。之前我是把load()中的set_table_maker()单独写在遍历环境变量实例化工具类的代码之前的。</p>
+<blockquote>
+<p>1. 还是要有一个<code>TableBase</code>类，用于生成不同的table_maker的子类。目前，这个基类主要包含一些获取于model对象中的一些变量。这些变量都是用parser解析setupfile获取的，因此若要用table_maker，必须要有parser并且对setupfile进行了正确的解析。因此在model的<code>load()</code>中一开始我是把table_maker作为和parser等工具一样通过执行setupfile后遍历局部变量的，结果在实例化parser之前先循环到了table_maker，就抛出异常了。。。因此后面我又单独写了个<code>set_table_maker()</code>方法，</p>
+<p>…</p>
+<p>在遍历局部变量的时候，进行了对table_maker的判断：</p>
+<p>…</p>
+<p>方法是获取table_maker的名称(<code>string</code>)，然后在<code>load()</code>之后通过<code>set_table_maker()</code>方法对table_maker进行实例化。<br>上面是在<a href="http://ipytlab.com/%e5%8a%a8%e5%8a%9b%e5%ad%a6%e6%a8%a1%e5%9e%8b%e5%b7%a5%e5%85%b7%e7%b1%bb-tablemaker/" title="动力学模型工具类–TableMaker" target="_blank" rel="external"><ins datetime="2015-02-25T15:49:52+00:00">动力学模型工具类–TableMaker</ins></a>中我当时写的。</p>
+</blockquote>
+<p>如今开始写solver的时候发现，parser应该是最优先实例化的，实例化parser以后，在用parser解析一些数据，以供后面的工具实例化的过程中使用。贴上代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#assign parser ahead to provide essential attrs for other tools</span></div><div class="line">self.set_parser(locs[<span class="string">'parser'</span>])</div><div class="line"></div><div class="line"><span class="comment">#assign other tools</span></div><div class="line"><span class="keyword">for</span> key <span class="keyword">in</span> locs.keys():</div><div class="line">    <span class="comment">#ignore tools which will be loaded later</span></div><div class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> self._tools: </div><div class="line">        <span class="comment">#setattr(self, 'table_maker_name', locs[key])</span></div><div class="line">        <span class="keyword">continue</span></div><div class="line">    <span class="comment">#check type of variables</span></div><div class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> self._attr_type_dict: </div><div class="line">        <span class="comment">#chech attr type</span></div><div class="line">        <span class="keyword">if</span> type(locs[key]) != self._attr_type_dict[key]:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                locs[key] = self._attr_type_dict[key](locs[key])</div><div class="line">                setattr(self, key, locs[key])</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                <span class="keyword">raise</span> ValueError(<span class="string">'\''</span>+key+<span class="string">'\' is in wrong type. '</span></div><div class="line">					+ str(self._attr_type_dict[key])</div><div class="line">					+ <span class="string">' object is expected.'</span>)</div><div class="line">        setattr(self, key, locs[key])</div><div class="line"></div><div class="line"><span class="comment">#use parser parse essential attrs for other tools</span></div><div class="line"><span class="comment">#parse elementary rxns</span></div><div class="line"><span class="keyword">if</span> self.rxn_expressions:</div><div class="line">    self.parser.parse_elementary_rxns(self.rxn_expressions)</div><div class="line">    <span class="comment">#get total rxn equation</span></div><div class="line"><span class="keyword">if</span> self.elementary_rxns_list:</div><div class="line">    self.parser.get_total_rxn_equation(self.elementary_rxns_list)</div></pre></td></tr></table></figure></p>
+<p>在这里为了能使_tools中的属性在最后添加到对象中，我把工具类属性的赋值放在了其他属性赋值的后面，就这样分隔了开来。<br>遍历局部变量实例化工具类的代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#load tools of model</span></div><div class="line"><span class="keyword">for</span> key <span class="keyword">in</span> self._tools:</div><div class="line">    <span class="comment">#black magic to auto-import classes</span></div><div class="line">    <span class="comment">#HACKED from CatMap</span></div><div class="line">    <span class="keyword">if</span> key == <span class="string">'parser'</span>: <span class="comment">#ignore parser loaded before</span></div><div class="line">        <span class="keyword">continue</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> locs[key]:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> key.endswith(<span class="string">'s'</span>):</div><div class="line">                    pyfile = key + <span class="string">'s'</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    pyfile = key</div><div class="line">                basepath=os.path.dirname(</div><div class="line">                         inspect.getfile(inspect.currentframe()))</div><div class="line">                <span class="keyword">if</span> basepath <span class="keyword">not</span> <span class="keyword">in</span> sys.path: </div><div class="line">                        sys.path.append(basepath)</div><div class="line">                sublocs = &#123;&#125;</div><div class="line">                _temp = \</div><div class="line">                    __import__(pyfile, globals(), sublocs, [locs[key]])  </div><div class="line">                tool_instance = getattr(_temp, locs[key])(owner=self) </div><div class="line">                setattr(self, key, tool_instance)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                setattr(self, key, <span class="keyword">None</span>)</div><div class="line">        <span class="keyword">except</span> ImportError:</div><div class="line">            <span class="keyword">raise</span> AttributeError(key.capitalize()+<span class="string">' '</span>+locs[key]+\</div><div class="line">                    <span class="string">' could not be imported. Ensure that the class '</span>+\</div><div class="line">                    <span class="string">'exists and is spelled properly.'</span>)</div><div class="line">        <span class="comment">#HACK END</span></div></pre></td></tr></table></figure></p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/02/13/自动登录小木虫并获取每日金币的Python脚本/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/10/what-does-if-name-main-do/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2015/02/12/动力学模型代码的整体组织框架/" data-title="动力学模型代码的整体组织框架" data-url="http://pytlab.github.io/2015/02/12/动力学模型代码的整体组织框架/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-02-12 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">42</span></a></li> <li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li> <li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li> <li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

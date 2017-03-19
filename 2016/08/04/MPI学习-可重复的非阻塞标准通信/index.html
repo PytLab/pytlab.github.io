@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>MPI学习--可重复的非阻塞标准通信 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MPI学习--可重复的非阻塞标准通信"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> MPI学习--可重复的非阻塞标准通信</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>今天开始学习可重复(persistent)的非阻塞通信。</p>
+<p>实际计算环境中，常在一个内部循环中重复使用相同的数据结构来传递不同的数据，这时候将数据结构与发送/接受动作绑定可以提高程序的效率。</p>
+<p>可重复通信大致是</p>
+<ol>
+<li>先使用<code>MPI_Send_init()</code>和<code>MPI_Recv_init()</code>接口注册发送和接受动作，实际并不执行</li>
+<li>在进程的其他位置通过重复通信控制函数，如<code>MPI_Start()</code>，来控制真正执行的时机</li>
+<li>使用<code>MPI_Request_free()</code>来释放与重复非阻塞通信相关的通信对象并注销注册的重复非阻塞通信。<code>MPI_Request_free()</code>可在注册之后的任何地点调用，但仅当没有处在消息传递状态时，才可实际释放通信对象。</li>
+</ol>
+<h3 id="可重复的非阻塞标准通信"><a href="#可重复的非阻塞标准通信" class="headerlink" title="可重复的非阻塞标准通信"></a>可重复的非阻塞标准通信</h3><p>本篇主要总结可重复的非阻塞标准通信。</p>
+<a id="more"></a>
+<hr>
+<p>第一个例子，主要是<strong>可重复非阻塞发送</strong>与<strong>不可重复的非阻塞接受</strong>匹配。代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mpi.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE 5</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></div><div class="line">&#123;</div><div class="line">    MPI_Request req;</div><div class="line">    MPI_Status stat;</div><div class="line">    <span class="keyword">int</span> buf[BUFSIZE];</div><div class="line">    <span class="keyword">char</span> pstr[BUFSIZE*(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) + <span class="number">8</span>) + <span class="number">50</span>];</div><div class="line">    <span class="keyword">int</span> tag = <span class="number">123</span>;</div><div class="line">    <span class="keyword">int</span> dest = <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> rank, nproc, i, j;</div><div class="line">    </div><div class="line">    MPI_Init(&amp;argc, &amp;argv);</div><div class="line">    MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);</div><div class="line">    MPI_Comm_size(MPI_COMM_WORLD, &amp;nproc);</div><div class="line">    </div><div class="line">    <span class="comment">// Fill data to be sent.</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BUFSIZE; ++i)</div><div class="line">    &#123;</div><div class="line">        buf[i] = BUFSIZE*rank + i;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// Create a persistent send request.</span></div><div class="line">    MPI_Send_init(buf, BUFSIZE, MPI_INT, dest, tag, MPI_COMM_WORLD, &amp;req);</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (rank == <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> rbuf[BUFSIZE*nproc];</div><div class="line">        MPI_Request * rr = (MPI_Request *)<span class="built_in">malloc</span>(nproc*<span class="keyword">sizeof</span>(MPI_Request));</div><div class="line">    </div><div class="line">        Receive data from other processes.</div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc; ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before Irecv...\n"</span>, rank);</div><div class="line">            MPI_Irecv(rbuf + i*BUFSIZE, BUFSIZE, MPI_INT, i, tag, MPI_COMM_WORLD, rr + i);</div><div class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after Irecv...\n"</span>, rank);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// Send data.</span></div><div class="line">        MPI_Start(&amp;req);</div><div class="line">        </div><div class="line">        <span class="comment">// Wait send done.</span></div><div class="line">        MPI_Wait(&amp;req, &amp;stat);</div><div class="line">        </div><div class="line">        <span class="comment">// Wait receive done.</span></div><div class="line">        MPI_Waitall(nproc, rr, MPI_STATUS_IGNORE);</div><div class="line">        </div><div class="line">        <span class="comment">// Info output.</span></div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc; ++i)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">sprintf</span>(pstr, <span class="string">"proc: %d received messages from %d\n"</span>, rank, i);</div><div class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; BUFSIZE<span class="number">-1</span>; ++j)</div><div class="line">            &#123;</div><div class="line">                <span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d]=%d,"</span>, pstr, i*BUFSIZE+j, rbuf[i*BUFSIZE+j]);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d]=%d\n"</span>, pstr, i*BUFSIZE+j, rbuf[i*BUFSIZE+j]);</div><div class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s"</span>, pstr);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="built_in">free</span>(rr);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// If not master process.</span></div><div class="line">        MPI_Start(&amp;req);</div><div class="line">        MPI_Wait(&amp;req, &amp;stat);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    MPI_Request_free(&amp;req);</div><div class="line">    </div><div class="line">    MPI_Finalize();</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码的大致过程是每个进程（包括主进程）都会向主进程（进程号为0）的进程发送数据，主进程通过不可重复的非阻塞接受<code>MPI_Irecv()</code>进行接受信息。<br>其中发送数据的进程只负责发送<code>BUFSIZE</code>的数组中的数据，主进程使用循环来将接收到的数据放到同一个大数组<code>rbuf</code>中，在等待非阻塞接受完成时，使用了<code>MPI_Waitall()</code>来代替通过循环方式的通信完成。<br>执行的结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[zjshao@master 2-2-3-1]$ mpiexec -n 4 -host node01 send_init_irecv.x</div><div class="line">proc: 0 before Irecv...</div><div class="line">proc: 0 after Irecv...</div><div class="line">proc: 0 before Irecv...</div><div class="line">proc: 0 after Irecv...</div><div class="line">proc: 0 before Irecv...</div><div class="line">proc: 0 after Irecv...</div><div class="line">proc: 0 before Irecv...</div><div class="line">proc: 0 after Irecv...</div><div class="line">proc: 0 received messages from 0</div><div class="line"> rbuf[0]=0, rbuf[1]=1, rbuf[2]=2, rbuf[3]=3, rbuf[4]=4</div><div class="line">proc: 0 received messages from 1</div><div class="line"> rbuf[5]=5, rbuf[6]=6, rbuf[7]=7, rbuf[8]=8, rbuf[9]=9</div><div class="line">proc: 0 received messages from 2</div><div class="line"> rbuf[10]=10, rbuf[11]=11, rbuf[12]=12, rbuf[13]=13, rbuf[14]=14</div><div class="line">proc: 0 received messages from 3</div><div class="line"> rbuf[15]=15, rbuf[16]=16, rbuf[17]=17, rbuf[18]=18, rbuf[19]=19</div><div class="line">[zjshao@master 2-2-3-1]$</div></pre></td></tr></table></figure></p>
+<hr>
+<p>可重复的阻塞接收<code>MPI_Recv_init()</code>与不可重复的非阻塞发送<code>MPI_Isend()</code>相匹配<br>所谓重复和不重复与是否阻塞没有关系，而是看<strong>是否重复利用同一个数据结构</strong>来发送和接收不同的数据。</p>
+<p>代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></div><div class="line">&#123;</div><div class="line">    ...</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (rank == <span class="number">0</span>)</div><div class="line">	&#123;</div><div class="line">		MPI_Request rreq;</div><div class="line">	    <span class="keyword">int</span> rbuf[BUFSIZE];</div><div class="line"></div><div class="line">		<span class="comment">// Create a persistent receive request.</span></div><div class="line">		MPI_Recv_init(rbuf, BUFSIZE, MPI_INT,</div><div class="line">				      MPI_ANY_SOURCE, tag,</div><div class="line">					  MPI_COMM_WORLD, &amp;rreq);</div><div class="line"></div><div class="line">		<span class="comment">// Send data to master process.</span></div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before Isend...\n"</span>, rank);</div><div class="line">		MPI_Isend(buf, BUFSIZE, MPI_INT, <span class="number">0</span>, tag, MPI_COMM_WORLD, &amp;sreq);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after Isend...\n"</span>, rank);</div><div class="line"></div><div class="line">		<span class="comment">// Start data receiving.</span></div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc; ++i)</div><div class="line">		&#123;</div><div class="line">		    MPI_Start(&amp;rreq);</div><div class="line">			MPI_Wait(&amp;rreq, &amp;stat);</div><div class="line"></div><div class="line">			<span class="built_in">sprintf</span>(pstr, <span class="string">"proc: %d received messages from: %d\n"</span>,</div><div class="line">					rank, stat.MPI_SOURCE);</div><div class="line">			<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; BUFSIZE<span class="number">-1</span>; ++j)</div><div class="line">			&#123;</div><div class="line">			    <span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d]=%d,"</span>, pstr, j, rbuf[j]);</div><div class="line">			&#125;</div><div class="line">			<span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d]=%d\n"</span>, pstr, j, rbuf[j]);</div><div class="line">			<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s"</span>, pstr);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		MPI_Request_free(&amp;rreq);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="comment">// Send data to master process.</span></div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before Isend...\n"</span>, rank);</div><div class="line">		MPI_Isend(buf, BUFSIZE, MPI_INT, <span class="number">0</span>, tag, MPI_COMM_WORLD, &amp;sreq);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after Isend...\n"</span>, rank);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	MPI_Wait(&amp;sreq, &amp;stat);</div><div class="line"></div><div class="line">	MPI_Finalize();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[zjshao@master 2-2-3-1]$ mpiexec -n 4 -host node01 recv_init_isend.x</div><div class="line">proc: 1 before Isend...</div><div class="line">proc: 2 before Isend...</div><div class="line">proc: 2 after Isend...</div><div class="line">proc: 3 before Isend...</div><div class="line">proc: 3 after Isend...</div><div class="line">proc: 0 before Isend...</div><div class="line">proc: 1 after Isend...</div><div class="line">proc: 0 after Isend...</div><div class="line">proc: 0 received messages from: 0</div><div class="line"> rbuf[0]=0, rbuf[1]=1, rbuf[2]=2, rbuf[3]=3, rbuf[4]=4</div><div class="line">proc: 0 received messages from: 2</div><div class="line"> rbuf[0]=10, rbuf[1]=11, rbuf[2]=12, rbuf[3]=13, rbuf[4]=14</div><div class="line">proc: 0 received messages from: 3</div><div class="line"> rbuf[0]=15, rbuf[1]=16, rbuf[2]=17, rbuf[3]=18, rbuf[4]=19</div><div class="line">proc: 0 received messages from: 1</div><div class="line"> rbuf[0]=5, rbuf[1]=6, rbuf[2]=7, rbuf[3]=8, rbuf[4]=9</div><div class="line">[zjshao@master 2-2-3-1]$</div></pre></td></tr></table></figure></p>
+<p>可见，使用可重复的非阻塞接收，接收的顺序并不确定，哪个进程的信息先到达先接收哪个进程的信息。<strong>后接收的信息会覆盖先接收的数据</strong>。<br>实际上可重复的非阻塞发送可以与任何接收动作相匹配，可重复的非阻塞可与任何发送动作相匹配。</p>
+<hr>
+<p>下面的代码是将<strong>可重复的阻塞接收</strong>动作<code>MPI_Recv()</code>与<strong>可重复的非阻塞发送</strong>动作<code>MPI_Send_init()</code>相匹配。<br>主进程不再向自己发送数据，而是其他的进程负责向主进程发送数据。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mpi.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE 5</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> RECEIVER 0</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></div><div class="line">&#123;</div><div class="line">	MPI_Request sreq;</div><div class="line">	MPI_Status stat;</div><div class="line">	<span class="keyword">int</span> buf[BUFSIZE];</div><div class="line">	<span class="keyword">char</span> pstr[BUFSIZE*(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) + <span class="number">8</span>) + <span class="number">50</span>];</div><div class="line">	<span class="keyword">int</span> tag = <span class="number">123</span>;</div><div class="line">	<span class="keyword">int</span> dest = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> rank, nproc, i, j;</div><div class="line"></div><div class="line">	MPI_Init(&amp;argc, &amp;argv);</div><div class="line">	MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);</div><div class="line">	MPI_Comm_size(MPI_COMM_WORLD, &amp;nproc);</div><div class="line"></div><div class="line">	<span class="comment">// Fill data to be sent.</span></div><div class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BUFSIZE; ++i)</div><div class="line">	&#123;</div><div class="line">	    buf[i] = BUFSIZE*rank + i;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (rank != RECEIVER)</div><div class="line">	&#123;</div><div class="line">	    MPI_Send_init(buf, BUFSIZE, MPI_INT, RECEIVER, tag, MPI_COMM_WORLD, &amp;sreq);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (rank == RECEIVER)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> rbuf[BUFSIZE];</div><div class="line"></div><div class="line">	    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc<span class="number">-1</span>; ++i)</div><div class="line">		&#123;</div><div class="line">		    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before MPI_Recv()...\n"</span>, rank);   </div><div class="line">			MPI_Recv(rbuf, BUFSIZE, MPI_INT, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &amp;stat);</div><div class="line">		    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after MPI_Recv()...\n"</span>, rank);   </div><div class="line"></div><div class="line">			<span class="built_in">sprintf</span>(pstr, <span class="string">"proc: %d received message from proc %d...\n"</span>, rank, stat.MPI_SOURCE);</div><div class="line">			<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; BUFSIZE<span class="number">-1</span>; ++j)</div><div class="line">			&#123;</div><div class="line">			    <span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d]=%d,"</span>, pstr, j, rbuf[j]);</div><div class="line">			&#125;</div><div class="line">			<span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d]=%d\n"</span>, pstr, j, rbuf[j]);</div><div class="line"></div><div class="line">			<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s"</span>, pstr);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">	    MPI_Start(&amp;sreq);</div><div class="line"></div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d send started...\n"</span>, rank);</div><div class="line">		MPI_Wait(&amp;sreq, &amp;stat);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d send finished...\n"</span>, rank);</div><div class="line"></div><div class="line">		MPI_Request_free(&amp;sreq);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	MPI_Finalize();</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[zjshao@master 2-2-3-1]$ mpiexec -n 4 -host node01 send_init_recv.x</div><div class="line">proc: 0 before MPI_Recv()...</div><div class="line">proc: 1 send started...</div><div class="line">proc: 1 send finished...</div><div class="line">proc: 3 send started...</div><div class="line">proc: 3 send finished...</div><div class="line">proc: 0 after MPI_Recv()...</div><div class="line">proc: 0 received message from proc 2...</div><div class="line"> rbuf[0]=10, rbuf[1]=11, rbuf[2]=12, rbuf[3]=13, rbuf[4]=14</div><div class="line">proc: 0 before MPI_Recv()...</div><div class="line">proc: 0 after MPI_Recv()...</div><div class="line">proc: 0 received message from proc 3...</div><div class="line"> rbuf[0]=15, rbuf[1]=16, rbuf[2]=17, rbuf[3]=18, rbuf[4]=19</div><div class="line">proc: 0 before MPI_Recv()...</div><div class="line">proc: 0 after MPI_Recv()...</div><div class="line">proc: 2 send started...</div><div class="line">proc: 2 send finished...</div><div class="line">proc: 0 received message from proc 1...</div><div class="line"> rbuf[0]=5, rbuf[1]=6, rbuf[2]=7, rbuf[3]=8, rbuf[4]=9</div><div class="line">[zjshao@master 2-2-3-1]$</div></pre></td></tr></table></figure></p>
+<p>可见可以正常运行，但是如果我把<code>BUFSIZE</code>增大会有死锁的危险，例如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE 5000000</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>再次编译运行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[zjshao@master 2-2-3-1]$ mpiexec -n 4 -host node01 test.x</div><div class="line">proc: 1 send started...</div><div class="line">proc: 2 send started...</div><div class="line">proc: 0 before MPI_Recv()...</div><div class="line">proc: 3 send started...</div><div class="line">proc: 1 send finished...</div><div class="line">proc: 0 after MPI_Recv()...</div><div class="line">[mpiexec@master.cluster] Sending Ctrl-C to processes as requested</div><div class="line">[mpiexec@master.cluster] Press Ctrl-C again to force abort</div><div class="line">[zjshao@master 2-2-3-1]$</div></pre></td></tr></table></figure></p>
+<p>为什么会出现上面死锁的情况?<br>原因是我们使用了阻塞的接收操作,而且进程0以此药从其他进程接收,因此需借助MPI环境提供的缓冲机制进行数据接收，而MPI提供的默认缓冲区大小是有限制的，当超过这个之后，发送端就要与接收动作同步，也就是说顺序执行，接收动作需按顺序从进程1，2…接收数据，但是如果当进程2的数据先于进程1的数据到达缓冲区，接收数据就无法完成接收，造成死锁。</p>
+<hr>
+<p>可重复的非阻塞发送<code>MPI_Send_init()</code>和不可重复的非阻塞发送<code>MPI_Recv_init()</code>相匹配。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mpi.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE 5</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> RECEIVER 0</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></div><div class="line">&#123;</div><div class="line">	MPI_Request sreq;</div><div class="line">	MPI_Status sstat;</div><div class="line">	<span class="keyword">int</span> buf[BUFSIZE];</div><div class="line">	<span class="keyword">char</span> pstr[BUFSIZE*(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) + <span class="number">8</span>) + <span class="number">50</span>];</div><div class="line">	<span class="keyword">int</span> tag = <span class="number">123</span>;</div><div class="line">	<span class="keyword">int</span> dest = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> rank, nproc, i, j;</div><div class="line"></div><div class="line">	MPI_Init(&amp;argc, &amp;argv);</div><div class="line">	MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);</div><div class="line">	MPI_Comm_size(MPI_COMM_WORLD, &amp;nproc);</div><div class="line"></div><div class="line">	<span class="comment">// Fill data to be sent.</span></div><div class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BUFSIZE; ++i)</div><div class="line">	&#123;</div><div class="line">	    buf[i] = BUFSIZE*rank + i;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (rank == RECEIVER)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> rbuf[nproc<span class="number">-1</span>][BUFSIZE];</div><div class="line">		MPI_Request * rreq = (MPI_Request *)<span class="built_in">malloc</span>((nproc<span class="number">-1</span>)*<span class="keyword">sizeof</span>(MPI_Request));</div><div class="line">		MPI_Status * rstat = (MPI_Status *)<span class="built_in">malloc</span>((nproc<span class="number">-1</span>)*<span class="keyword">sizeof</span>(MPI_Status));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// For receiver processor.</span></div><div class="line">	<span class="keyword">int</span> rbuf[nproc<span class="number">-1</span>][BUFSIZE];</div><div class="line">	MPI_Request * rreq = (MPI_Request *)<span class="built_in">malloc</span>((nproc<span class="number">-1</span>)*<span class="keyword">sizeof</span>(MPI_Request));</div><div class="line">	MPI_Status * rstat = (MPI_Status *)<span class="built_in">malloc</span>((nproc<span class="number">-1</span>)*<span class="keyword">sizeof</span>(MPI_Status));</div><div class="line"></div><div class="line">	<span class="comment">// Create persistent send and receive request.</span></div><div class="line">	<span class="keyword">if</span> (rank != RECEIVER)</div><div class="line">	&#123;</div><div class="line">	    MPI_Send_init(buf, BUFSIZE, MPI_INT, RECEIVER, tag, MPI_COMM_WORLD, &amp;sreq);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc<span class="number">-1</span>; ++i)</div><div class="line">		&#123;</div><div class="line">		    MPI_Recv_init(rbuf[i], BUFSIZE, MPI_INT, i+<span class="number">1</span>, tag, MPI_COMM_WORLD, rreq+i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (rank != RECEIVER)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before start...\n"</span>, rank);</div><div class="line">	    MPI_Start(&amp;sreq);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after start...\n"</span>, rank);</div><div class="line"></div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before wait...\n"</span>, rank);</div><div class="line">		MPI_Wait(&amp;sreq, &amp;sstat);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after wait...\n"</span>, rank);</div><div class="line"></div><div class="line">		MPI_Request_free(&amp;sreq);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="comment">// Start all receive request.</span></div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before start all receive...\n"</span>, rank);</div><div class="line">		MPI_Startall(nproc<span class="number">-1</span>, rreq);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after start all receive...\n"</span>, rank);</div><div class="line"></div><div class="line">		<span class="comment">// Wait all.</span></div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d before wait all...\n"</span>, rank);</div><div class="line">		MPI_Waitall(nproc<span class="number">-1</span>, rreq, rstat);</div><div class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"proc: %d after wait all...\n"</span>, rank);</div><div class="line"></div><div class="line">		<span class="comment">// Info output.</span></div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc<span class="number">-1</span>; ++i)</div><div class="line">		&#123;</div><div class="line">		    <span class="built_in">sprintf</span>(pstr, <span class="string">"proc: %d received %d'th message from process %d\n"</span>,</div><div class="line">					rank, i, rstat[i].MPI_SOURCE);</div><div class="line">			<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; BUFSIZE<span class="number">-1</span>; ++j)</div><div class="line">			&#123;</div><div class="line">			    <span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d][%d]=%d,"</span>, pstr, i, j, rbuf[i][j]);</div><div class="line">			&#125;</div><div class="line">			<span class="built_in">sprintf</span>(pstr, <span class="string">"%s rbuf[%d][%d]=%d\n"</span>, pstr, i, j, rbuf[i][j]);</div><div class="line">			<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s"</span>, pstr);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// Free request objects.</span></div><div class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nproc<span class="number">-1</span>; ++i)</div><div class="line">		&#123;</div><div class="line">		    MPI_Request_free(rreq + i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(rreq);</div><div class="line">	<span class="built_in">free</span>(rstat);</div><div class="line"></div><div class="line">	MPI_Finalize();</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[zjshao@master 2-2-3-1]$ mpiexec -n 4 -host node01 send_init_recv_init.x</div><div class="line">proc: 0 before start all receive...</div><div class="line">proc: 0 after start all receive...</div><div class="line">proc: 0 before <span class="built_in">wait</span> all...</div><div class="line">proc: 1 before start...</div><div class="line">proc: 1 after start...</div><div class="line">proc: 1 before wait...</div><div class="line">proc: 1 after wait...</div><div class="line">proc: 2 before start...</div><div class="line">proc: 2 after start...</div><div class="line">proc: 2 before wait...</div><div class="line">proc: 2 after wait...</div><div class="line">proc: 3 before start...</div><div class="line">proc: 3 after start...</div><div class="line">proc: 3 before wait...</div><div class="line">proc: 3 after wait...</div><div class="line">proc: 0 after <span class="built_in">wait</span> all...</div><div class="line">proc: 0 received 0<span class="string">'th message from process 1</span></div><div class="line"> rbuf[0][0]=5, rbuf[0][1]=6, rbuf[0][2]=7, rbuf[0][3]=8, rbuf[0][4]=9</div><div class="line">proc: 0 received 1'th message from process 2</div><div class="line"> rbuf[1][0]=10, rbuf[1][1]=11, rbuf[1][2]=12, rbuf[1][3]=13, rbuf[1][4]=14</div><div class="line">proc: 0 received 2<span class="string">'th message from process 3</span></div><div class="line"> rbuf[2][0]=15, rbuf[2][1]=16, rbuf[2][2]=17, rbuf[2][3]=18, rbuf[2][4]=19</div><div class="line">[zjshao@master 2-2-3-1]$</div></pre></td></tr></table></figure></p>
+<p>如果还是增加传输数据的大小，仍有死锁的危险，原因仍是阻塞传输使用MPI环境默认缓冲区导致。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/08/09/在VASPy中使用延迟初始化/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/08/04/MPI学习-可重复的非阻塞标准通信/" data-title="MPI学习--可重复的非阻塞标准通信" data-url="http://pytlab.github.io/2016/08/04/MPI学习-可重复的非阻塞标准通信/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-08-04 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li> <li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

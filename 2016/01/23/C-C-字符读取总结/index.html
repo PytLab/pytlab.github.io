@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>C &amp; C++字符读取总结 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="C &amp; C++字符读取总结"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> C &amp; C++字符读取总结</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>在这里总结一下C和C++的字符读取函数的使用，主要是我每次要用的时候都会出现概念混乱，在这里做小结以便今后在用的时候能迅速回忆并使用。</p>
+<a id="more"></a>
+<hr>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><h2 id="scanf-函数"><a href="#scanf-函数" class="headerlink" title="scanf()函数"></a><code>scanf()</code>函数</h2><p>还是要先从C语言说起，这部分在《C Primer Plus》讲解的很详细。</p>
+<h3 id="scanf-的工作"><a href="#scanf-的工作" class="headerlink" title="scanf()的工作"></a><code>scanf()</code>的工作</h3><p><code>scanf</code>可以读取各种格式的数据，<code>scanf</code>的工作是将输入<strong>逐个字符</strong>的转换成其他格式数据(<code>int, float, char, C字符串</code>)</p>
+<h3 id="scanf-的工作过程"><a href="#scanf-的工作过程" class="headerlink" title="scanf()的工作过程"></a><code>scanf()</code>的工作过程</h3><p>对于<code>scanf()</code>工作过程重要的一点是<strong><code>scanf()</code>会跳过空白字符</strong>,空白字符包括空格、制表符、换行符。直到遇到符合要求的字符，然后进行格式转换并存入到相应的变量中。</p>
+<p>如果格式不匹配，<code>scanf()</code>会认为已经到达相应格式数据的结尾，并把最后一次读取的不符合格式要求哦字符放回输入，然后停在那里，等程序再次调用<code>scanf()</code>时再重复上述过程继续读取。因此流程总结大致为:</p>
+<ol>
+<li>逐字符读取字符，直到遇到不符合格式说明符的字符;</li>
+<li>若遇到不符合的字符，将该字符放回输入，<code>scanf()</code>停止读取;</li>
+<li><code>scanf()</code>将读取的字符转换成相应格式数据并存储到对应变量中</li>
+<li>程序调用继续重复1、2、3过程读取数据</li>
+</ol>
+<h3 id="s和-c格式"><a href="#s和-c格式" class="headerlink" title="%s和%c格式"></a><code>%s</code>和<code>%c</code>格式</h3><ul>
+<li><code>%s</code>时，<code>scanf()</code>仍然会跳过空白字符，但其他字符都一视同仁了。</li>
+<li><code>%c</code>时所有字符全部平等，<strong>不会跳过空白字符！！</strong></li>
+</ul>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p><code>scanf()</code>返回成功读取项目的个数。</p>
+<ul>
+<li>当没有读取任何数据的时候，返回0</li>
+<li>检测到文件结尾的时候返回EOF(-1)</li>
+</ul>
+<h2 id="getchar-函数"><a href="#getchar-函数" class="headerlink" title="getchar()函数"></a><code>getchar()</code>函数</h2><p>和<code>scanf()</code>类似， 调用方式：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> ch;</div><div class="line">ch = getchar();</div></pre></td></tr></table></figure></p>
+<h2 id="getc-函数"><a href="#getc-函数" class="headerlink" title="getc()函数"></a><code>getc()</code>函数</h2><p>工作方式和<code>getchar()</code>类似，但是可以指定使用的文件<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">FILE * fp;</div><div class="line"><span class="comment">// get fp...</span></div><div class="line">ch = getc(fp);</div></pre></td></tr></table></figure></p>
+<p>其中，<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ch = getc(<span class="built_in">stdin</span>);  <span class="comment">// 与 ch = getchar()等价</span></div></pre></td></tr></table></figure></p>
+<hr>
+<p><br></p>
+<h2 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h2><h3 id="使用原始的cin对象进行输入"><a href="#使用原始的cin对象进行输入" class="headerlink" title="使用原始的cin对象进行输入"></a>使用原始的<code>cin</code>对象进行输入</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> ch;</div><div class="line"><span class="built_in">cin</span> &gt;&gt; ch;</div></pre></td></tr></table></figure>
+<p>不过直接使用<code>cin</code>的话，<code>cin</code>会在读取字符的时候<strong>跳过空字符</strong>，因此<code>see you later</code>回显以后会是<code>seeyoulater</code>。</p>
+<div class="alert alert-warning"><i class="fa fa-bell"></i>  这里和C中的`scanf("%c", &ch)`不同，cin >> ch依旧会跳过空格和换行符而不是像scanf读取字符时候一视同仁</div>
+<h3 id="cin-get-ch"><a href="#cin-get-ch" class="headerlink" title="cin.get(ch)"></a><code>cin.get(ch)</code></h3><p>此方法将参数<code>ch</code>声明为引用,然后给赋值，此方法<strong>不会跳过空字符</strong></p>
+<h4 id="cin-get-ch-方法的文件尾条件"><a href="#cin-get-ch-方法的文件尾条件" class="headerlink" title="cin.get(ch)方法的文件尾条件"></a><code>cin.get(ch)</code>方法的文件尾条件</h4><p>若读到文件尾，也就是检测到EOF后<code>cin</code>将<code>eofbit</code>和<code>failbit</code>都设为1，可以分别通过<code>cin.eof()</code>和<code>cin.fail()</code>调用获取<br>也就是<br><code>cin.eof()</code> -&gt; <code>true</code><br><code>cin.fail()</code> -&gt; <code>true</code></p>
+<blockquote>
+<p>输入错误和EOF都将导致<code>cin</code>返回<code>false</code></p>
+</blockquote>
+<p>另外，由于这个函数的返回值仍为<code>cin</code>对象，<code>cin</code>对象很神奇会在需要bool的时候自动从istream对象转换成bool型数值。因此可以直接将<code>cin</code>放入条件判断语句中。如:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> ch;</div><div class="line"><span class="built_in">cin</span>.get(ch);</div><div class="line"><span class="keyword">while</span>(<span class="built_in">cin</span>)&#123;...&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="ch-cin-get-方法"><a href="#ch-cin-get-方法" class="headerlink" title="ch = cin.get()方法"></a><code>ch = cin.get()</code>方法</h3><p>此方法与C语言的<code>getchar()</code>类似，会返回读取的字符值。但是这里的返回值是<code>int</code>类型数值。</p>
+<h3 id="cin-get-ch-VS-cin-get"><a href="#cin-get-ch-VS-cin-get" class="headerlink" title="cin.get(ch) VS cin.get()"></a><code>cin.get(ch)</code> VS <code>cin.get()</code></h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left"><code>cin.get(ch)</code></th>
+<th style="text-align:left"><code>ch=cin.get()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>传递输入字符的方式</strong></td>
+<td style="text-align:left">赋值给参数<code>ch</code></td>
+<td style="text-align:left">将参数返回值赋值给<code>ch</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>用于字符输入时函数的返回值</strong></td>
+<td style="text-align:left"><code>istream</code>对象(执行<code>bool</code>转换后为<code>true</code>)</td>
+<td style="text-align:left"><code>int</code>类型的字符编码</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>到达<code>EOF</code>时函数的返回值</strong></td>
+<td style="text-align:left"><code>istream</code>对象(执行<code>bool</code>转换后为<code>false</code>)</td>
+<td style="text-align:left"><code>EOF</code></td>
+</tr>
+</tbody>
+</table>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/01/23/GitHub-Pages绑定顶级域名/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/01/22/用Freemind装修新家/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/01/23/C-C-字符读取总结/" data-title="C & C++字符读取总结" data-url="http://pytlab.github.io/2016/01/23/C-C-字符读取总结/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-01-23 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/C/">C<span class="badge">26</span></a></li> <li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#C"><span class="toc-article-text">C</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#scanf-函数"><span class="toc-article-text">scanf()函数</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#scanf-的工作"><span class="toc-article-text">scanf()的工作</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#scanf-的工作过程"><span class="toc-article-text">scanf()的工作过程</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#s和-c格式"><span class="toc-article-text">%s和%c格式</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#返回值"><span class="toc-article-text">返回值</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#getchar-函数"><span class="toc-article-text">getchar()函数</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#getc-函数"><span class="toc-article-text">getc()函数</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#C-1"><span class="toc-article-text">C++</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#使用原始的cin对象进行输入"><span class="toc-article-text">使用原始的cin对象进行输入</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#cin-get-ch"><span class="toc-article-text">cin.get(ch)</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#cin-get-ch-方法的文件尾条件"><span class="toc-article-text">cin.get(ch)方法的文件尾条件</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#ch-cin-get-方法"><span class="toc-article-text">ch = cin.get()方法</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#cin-get-ch-VS-cin-get"><span class="toc-article-text">cin.get(ch) VS cin.get()</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

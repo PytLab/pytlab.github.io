@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>C++各大有名科学计算库 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="C++基本技能已解锁一半，感觉以后肯定会用得到。&lt;br&gt;文章转自他处，侵删。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="C++各大有名科学计算库"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> C++各大有名科学计算库</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>C++基本技能已解锁一半，感觉以后肯定会用得到。<br>文章转自他处，侵删。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>在 C++中，库的地位是非常高的。C++之父 Bjarne Stroustrup先生多次表示了设计库来扩充功能要好过设计更多的语法的言论。现实中，C++的库门类繁多，解决的问题也是极其广泛，库从轻量级到重量级的都有。不少都是让人眼界大开，亦或是望而生叹的思维杰作。由于库的数量非常庞大，而且限于笔者水平，其中很多并不了解。所以文中所提的一些库都是比较著名的大型库。 </p>
+<a id="more"></a>
+<h3 id="C-各大有名科学计算库的介绍"><a href="#C-各大有名科学计算库的介绍" class="headerlink" title="C++各大有名科学计算库的介绍"></a>C++各大有名科学计算库的介绍</h3><hr>
+<h4 id="Blitz-http-www-oonumerics-org-blitz"><a href="#Blitz-http-www-oonumerics-org-blitz" class="headerlink" title="Blitz++ (http://www.oonumerics.org/blitz)"></a>Blitz++ (<a href="http://www.oonumerics.org/blitz" target="_blank" rel="external">http://www.oonumerics.org/blitz</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Blitz++ 是一个高效率的数值计算函数库，它的设计目的是希望建立一套既具像C++ 一样方便，同时又比Fortran速度更快的数值计算环境。通常，用C++所写出的数值程序，比 Fortran慢20%左右，因此Blitz++正是要改掉这个缺点。方法是利用C++的template技术，程序执行甚至可以比Fortran更快。
+<br>
+Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线性代数方法并不提供，不过使用者可以很容易地利用Blitz++所提供的函数来构建。</div>
+<h4 id="POOMA-http-www-codesourcery-com-pooma-pooma"><a href="#POOMA-http-www-codesourcery-com-pooma-pooma" class="headerlink" title="POOMA (http://www.codesourcery.com/pooma/pooma)"></a>POOMA (<a href="http://www.codesourcery.com/pooma/pooma" target="_blank" rel="external">http://www.codesourcery.com/pooma/pooma</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  POOMA是一个免费的高性能的C++库，用于处理并行式科学计算。POOMA的面向对象设计方便了快速的程序开发，对并行机器进行了优化以达到最高的效率，方便在工业和研究环境中使用。</div>
+<h4 id="MTL-http-www-osl-iu-edu-research-mtl"><a href="#MTL-http-www-osl-iu-edu-research-mtl" class="headerlink" title="MTL (http://www.osl.iu.edu/research/mtl)"></a>MTL (<a href="http://www.osl.iu.edu/research/mtl" target="_blank" rel="external">http://www.osl.iu.edu/research/mtl</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Matrix Template Library(MTL)是一个高性能的泛型组件库，提供了各种格式矩阵的大量线性代数方面的功能。在某些应用使用高性能编译器的情况下，比如Intel的编译器，从产生的汇编代码可以看出其与手写几乎没有两样的效能。</div>
+<h4 id="CGAL-http-www-cgal-org"><a href="#CGAL-http-www-cgal-org" class="headerlink" title="CGAL (http://www.cgal.org/)"></a>CGAL (<a href="http://www.cgal.org/" target="_blank" rel="external">http://www.cgal.org/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Computational Geometry Algorithms Library的目的是把在计算几何方面的大部分重要的解决方案和方法以C++库的形式提供给工业和学术界的用户。</div>
+<h4 id="Intel-Math-Kernel-Library"><a href="#Intel-Math-Kernel-Library" class="headerlink" title="Intel Math Kernel Library"></a>Intel Math Kernel Library</h4><div class="alert alert-info"><i class="fa fa-info"></i>  <li>基本线形代数运算(BLAS) 向量与向量、向量与矩阵、矩阵与矩阵的运算</li>
+<li>稀疏线形代数运算</li>
+<li>快速傅立叶变换(单精度/双精度)(fftw)</li>
+<li>LAPACK(求解线形方程组、最小方差、特征值、Sylvester方程等)</li>
+<li>向量数学库(VML)</li>
+<li>向量统计学库(VSL)</li>
+<li>高级离散傅立叶变换</li></div>
+<h4 id="IMSL-http-www-vni-com"><a href="#IMSL-http-www-vni-com" class="headerlink" title="IMSL (http://www.vni.com/ )"></a>IMSL (<a href="http://www.vni.com/" target="_blank" rel="external">http://www.vni.com/</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 IMSL C Numerical Library(不兼容vc6编译器)
+<br>
+程序设计语言 C, Forton, C#, Java
+<br>
+功能概述 分为统计库和数学库两部分. 数学库包含应用数学和特殊函数.IMSL 程序库 - 已成为数值分析解决方案的工业标准。 IMSL 程序库提供最完整与最值得信赖的函数库。 IMSL 数值程序库提供目前世界上最广泛被使用的 IMSL 算法，有超过 370 验证过、最正确与 thread-safe 的数学与统计程序。 IMSL FORTRAN 程序库提供新一代以 FORTRAN 90 为程序库基础的程序，能展现出最佳化的演算法能力应用于多处理器与其它高效能运算系统。</div>
+<h4 id="lapack-http-www-netlib-org-lapack"><a href="#lapack-http-www-netlib-org-lapack" class="headerlink" title="lapack (http://www.netlib.org/lapack )"></a>lapack (<a href="http://www.netlib.org/lapack" target="_blank" rel="external">http://www.netlib.org/lapack</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Linear Algebra Package 
+<br>
+程序设计语言 Fortran 77 
+<br>
+功能概述 线性代数计算子程序包</div>
+<h4 id="lapack-http-math-nist-gov-lapack"><a href="#lapack-http-math-nist-gov-lapack" class="headerlink" title="lapack++ (http://math.nist.gov/lapack++/ )"></a>lapack++ (<a href="http://math.nist.gov/lapack++/" target="_blank" rel="external">http://math.nist.gov/lapack++/</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Linear Algebra Package in c++ 
+<br>
+程序设计语言 c++ 
+<br>
+功能概述 c++版的线性代数计算子程序包</div>
+<h4 id="BLAS-http-www-netlib-org-blas"><a href="#BLAS-http-www-netlib-org-blas" class="headerlink" title="BLAS (http://www.netlib.org/blas )"></a>BLAS (<a href="http://www.netlib.org/blas" target="_blank" rel="external">http://www.netlib.org/blas</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Basic Linear Algebra Subroutines 
+<br>
+程序设计语言 Fortran 77 
+<br>
+主要开发者 Kagstrom B. ，Ling P. ，Van Loan C. 
+<br>
+功能概述 Blas是执行向量和矩阵运算的子程序集合。</div>
+<h4 id="uBLAS"><a href="#uBLAS" class="headerlink" title="uBLAS"></a>uBLAS</h4><div class="alert alert-info"><i class="fa fa-info"></i>  BLAS in C++ with expression templates. 表达式模版形式的 C++中的BLAS ，</div>
+<h4 id="gsl-http-www-gnu-org-software-gsl"><a href="#gsl-http-www-gnu-org-software-gsl" class="headerlink" title="gsl (http://www.gnu.org/software/gsl/)"></a>gsl (<a href="http://www.gnu.org/software/gsl/" target="_blank" rel="external">http://www.gnu.org/software/gsl/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 GNU Scientific Library (linux)
+<br>
+程序设计语言 C , C++ compable 
+<br>
+功能概述 范围广泛, 包括数值分析的常见内</div>
+<h4 id="Blitz-http-sourceforge-net-project-showfiles-php-group-id-63961"><a href="#Blitz-http-sourceforge-net-project-showfiles-php-group-id-63961" class="headerlink" title="Blitz++ (http://sourceforge.net/project/showfiles.php?group_id=63961)"></a>Blitz++ (<a href="http://sourceforge.net/project/showfiles.php?group_id=63961" target="_blank" rel="external">http://sourceforge.net/project/showfiles.php?group_id=63961</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称　Blitz++ (不兼容vc6编译器)
+<br>
+功能概述　The current versions provide dense arrays and vectors, random number generators, and small vectors and matrices.是一个高效率的数值计算函数库，它的设计目的是希望建立一套既具像 C++ 一样方便，同时又比 Fortran 速度更快的数值计算环境。通常，用 C++ 所写出的数值程序，比 Fortran 慢 20% 左右，因此Blitz++ 正是要改掉这个缺点。方法是利用 C++ 的 template 技术，程序执行甚至可以比 Fortran 更快。</div>
+<h4 id="MTL-http-www-osl-iu-edu-research-mtl-1"><a href="#MTL-http-www-osl-iu-edu-research-mtl-1" class="headerlink" title="MTL (http://www.osl.iu.edu/research/mtl/)"></a>MTL (<a href="http://www.osl.iu.edu/research/mtl/" target="_blank" rel="external">http://www.osl.iu.edu/research/mtl/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称　Matrix Template Library(兼容vc6编译器)
+<br>
+功能概述　The Matrix Template Library (MTL) is a high-performance generic component library that provides comprehensive linear algebra functionality for a wide variety of matrix formats. MTL专注于线性代数相关的计算任务，如各种形式矩阵的生成(对角，共轭，稀疏，对称等)，相关的计算，变换，以及与一维向量的运算。</div>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/02/18/动力学模拟程序更名为Kynetix/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/02/17/关于翻译单元（编译单元）/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2016/02/17/Cpp各大有名科学计算库-转/" data-title="C++各大有名科学计算库" data-url="http://pytlab.github.io/2016/02/17/Cpp各大有名科学计算库-转/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-02-17 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/C/">C<span class="badge">26</span></a></li> <li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li> <li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>
