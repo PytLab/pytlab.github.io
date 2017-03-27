@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
-              
-              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -131,6 +131,8 @@
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -209,6 +211,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-14 </div>
+			<div class="article-title"><a href="/2016/03/14/Cpp中的向前声明-forward-declaration/" >C++中的向前声明(forward declaration)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/14/Cpp中的向前声明-forward-declaration/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C++中的向前声明(forward declaration)"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>在涉及到友元类方法的时候会用到向前声明，至于为什么要使用向前声明我还是直接上例子理解的快：<br>在Tv类中<code>Remote</code>类中的<code>set_chan()</code>方法设为友元类方法，也就是<code>Remote</code>的这个方法是可以访问<code>Tv</code>的私有成员数据的（包括修改）。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Tv</div><div class="line">&#123;</div><div class="line">    <span class="keyword">friend</span> <span class="keyword">void</span> Remote::set_chan(Tv &amp; t, <span class="keyword">int</span> c);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到，既然是Tv类的友元，<code>set_chan</code>中自然要有<code>Tv</code>类的变量，但是编译器在编译<code>Remote</code>类的时候至少要知道Tv这个东西是个自定义的类，不然会报错，所以应该把Tv类声明在Remote类的前面。但是Tv类中由于将Remote中的方法设为自己的友元，所以编译器也要知道<code>Remote::set_chan(Tv &amp; t, int c)</code>中的Remote以及它的方法是在哪里，不然也会报错。这样就前后矛盾了。<br>
+	
+	</div>
+  <a type="button" href="/2016/03/14/Cpp中的向前声明-forward-declaration/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -326,30 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-07 </div>
-			<div class="article-title"><a href="/2016/03/07/static和const成员变量的初始化/" >static和const成员变量的初始化</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h4 id="static成员变量"><a href="#static成员变量" class="headerlink" title="static成员变量"></a>static成员变量</h4><p>不能在类声明中初始化，要在方法文件中初始化，参考：<a href="../../../../2016/02/28/关于Cpp类的静态成员变量和函数/">关于C++类的静态成员变量</a></p>
-<h4 id="const成员变量"><a href="#const成员变量" class="headerlink" title="const成员变量"></a>const成员变量</h4><p>由于是const类型一定要在创建的时候初始化，因此在成员初始化列表中进行初始化，参考：<a href="../../../../2016/03/04/Cpp类构造函数的特殊初始化成员函数的语法/">C++类构造函数的特殊初始化成员函数的语法</a></p>
-<h4 id="const-static-成员变量"><a href="#const-static-成员变量" class="headerlink" title="const static 成员变量"></a>const static 成员变量</h4><p>负负得正，“干脆就在类声明中初始化了吧”C++编译器如是说。</p>
-
-	
-	</div>
-  <a type="button" href="/2016/03/07/static和const成员变量的初始化/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -399,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
+      </li>
+    
+      <li>
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
@@ -412,10 +421,6 @@
     
       <li>
         <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
-      <li>
-        <a href="/2017/02/06/ECMAScript中的OOP-创建对象/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-对象创建</a>
       </li>
     
   </ul>
@@ -434,6 +439,8 @@
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
+			<li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
@@ -450,48 +457,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">62</span></a></li>
+		   <li><a href="/tags">...<span class="badge">64</span></a></li>
 		 
 		</ul>
 	</div>

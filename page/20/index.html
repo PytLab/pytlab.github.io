@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
-              
-              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -131,6 +131,8 @@
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -209,6 +211,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-01-23 </div>
+			<div class="article-title"><a href="/2016/01/23/C-C-字符读取总结/" >C &amp; C++字符读取总结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在这里总结一下C和C++的字符读取函数的使用，主要是我每次要用的时候都会出现概念混乱，在这里做小结以便今后在用的时候能迅速回忆并使用。</p>
+	
+	</div>
+  <a type="button" href="/2016/01/23/C-C-字符读取总结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,28 +357,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-09-01 </div>
-			<div class="article-title"><a href="/2015/09/01/关于Fortran和C数组的优先模式/" >关于Fortran和C数组的优先模式</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>熟悉了C语言和Python中的行优先模式，上手Fortran的列优先模式时候有点绕，大致在这整理下思路。<br>无论对于C或者Fortran数据对象在内存中都是连续排列的。比如我初始化一个3×3的二维数组.<br>C语言<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> c[<span class="number">3</span>][<span class="number">3</span>] = &#123;</div><div class="line">    &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;,</div><div class="line">    &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;,</div><div class="line">    &#123;<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>Fortran<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">integer</span> :: f(<span class="number">3</span>, <span class="number">3</span>)</div><div class="line"><span class="keyword">integer</span> :: r, c</div><div class="line"><span class="keyword">data</span> ((m(r, c), r=<span class="number">1</span>, <span class="number">3</span>), c=<span class="number">1</span>, <span class="number">3</span>) /(i, i=<span class="number">1</span>,<span class="number">9</span>)/ <span class="comment">! 注意我这里是按照列进行初始化的</span></div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2015/09/01/关于Fortran和C数组的优先模式/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -405,6 +406,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
+      </li>
+    
+      <li>
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
@@ -418,10 +423,6 @@
     
       <li>
         <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
-      <li>
-        <a href="/2017/02/06/ECMAScript中的OOP-创建对象/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-对象创建</a>
       </li>
     
   </ul>
@@ -440,6 +441,8 @@
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
+			<li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
@@ -456,48 +459,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">3</span></a></li>
-		
-		
-		   <li><a href="/tags">...<span class="badge">62</span></a></li>
+		   <li><a href="/tags">...<span class="badge">64</span></a></li>
 		 
 		</ul>
 	</div>

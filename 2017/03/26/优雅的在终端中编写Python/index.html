@@ -1,0 +1,506 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>优雅的在终端中编写Python | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="优雅的在终端中编写Python"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
+              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
+              
+              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
+              
+              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
+              
+              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
+              
+              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
+              
+              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 优雅的在终端中编写Python</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最早我也只是在服务器上编辑文件的时候用用vim来改改程序，并没有把vim当做自己的主力编辑器。但是偶然的一次机会需要改一个奇葩的输入文件的格式，用了下Vim的宏录制，尝到了甜头，于是后面就开始用Vim来写程序了，虽然使用初期有些阻力，但时间久了就会发现，双手再也不用离开键盘，即使使用sublime这样的编辑器我也要改成使用Vim模式，Vim真的能让自己一思维的速度编辑文本(对我来说就是写程序了)。</p>
+<p>正好最近换了新的电脑，需要在新电脑上配置一下，就干脆把一些配置相关的东东记录下来吧，相关的配置文件我都放在了github(<a href="https://github.com/PytLab/dotfiles" target="_blank" rel="external">https://github.com/PytLab/dotfiles</a>) 上并写了相应的安装和卸载脚本，给有需要的同学做个参考吧。</p>
+<p>本文是有关配置的文章，并不对Vim的核心技巧进行说明，有需要的童鞋可以参考文档和相关书籍。这里主要配合tmux和vim可以更有优雅的帮助我们在终端中进行Python编程。</p>
+<a id="more"></a>
+<p>先来个大致的效果图吧:</p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/vim-screeshot.png" alt=""></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="终端窗口管理工具Tmux"><a href="#终端窗口管理工具Tmux" class="headerlink" title="终端窗口管理工具Tmux"></a>终端窗口管理工具Tmux</h3><p>首先还是需要配置下tmux，它除了可以进行多window多panel以外最主要的是他提供了窗口组随时存储和恢复的功能。也可以帮助我们在一个窗口中使用多个panel一边使用vim一边在ipython中进行测试。</p>
+<p>tmux的配置文件是当前用户主目录下的<code>.tmux.conf</code>文件，启动tmux时会自动加载，也可以通过在tmux中进行加载例如<code>&lt;prefix&gt; : source ~/.tmux.conf</code>。</p>
+<p>完整的配置文件参见: <a href="https://github.com/PytLab/dotfiles/blob/master/.tmux.conf" target="_blank" rel="external">https://github.com/PytLab/dotfiles/blob/master/.tmux.conf</a></p>
+<h4 id="修改快捷键前缀"><a href="#修改快捷键前缀" class="headerlink" title="修改快捷键前缀"></a>修改快捷键前缀</h4><p>关于tmux的配置比较简单，我先把快捷键的前缀从<code>Ctrl-b</code>换成了<code>Ctrl-l</code>，主要是根据个人喜好，因为这样左手<code>Ctrl</code>右手<code>l</code>个人觉得比较方便。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># <span class="keyword">Set</span> tmux <span class="comment">prefix to &lt;C-a&gt;</span></div><div class="line"><span class="keyword">set</span> <span class="comment">-g prefix C-l</span></div><div class="line">unbind <span class="comment">C-b</span></div></pre></td></tr></table></figure>
+<h4 id="修改分屏快捷键"><a href="#修改分屏快捷键" class="headerlink" title="修改分屏快捷键"></a>修改分屏快捷键</h4><p>tmux的分屏快捷键默认值为:</p>
+<ul>
+<li><code>&lt;prefix&gt; + &quot;</code> 水平分屏</li>
+<li><code>&lt;prefix&gt; + %</code> 垂直分屏</li>
+</ul>
+<p>感觉好奇怪，我就改成了相对直观的方式:</p>
+<ul>
+<li><code>&lt;prefix&gt; + |</code>, 类似在屏幕上加一条处置线</li>
+<li><code>&lt;prefix&gt; + -</code>, 类似在屏幕上加一条水平线</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Split pane.</span></div><div class="line">unbind <span class="string">'"'</span></div><div class="line"><span class="built_in">bind</span> | splitw -h</div><div class="line">unbind <span class="string">'%'</span></div><div class="line"><span class="built_in">bind</span> - splitw -v</div></pre></td></tr></table></figure>
+<h4 id="将复制模式改为vim的复制模式"><a href="#将复制模式改为vim的复制模式" class="headerlink" title="将复制模式改为vim的复制模式"></a>将复制模式改为vim的复制模式</h4><p>由于使用vim习惯了而且不想在去碰鼠标，tmux也是可以将复制模式修改成同Vim相同的方式，只是操作的前缀不同罢了。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Copy <span class="keyword">mode</span></div><div class="line"># <span class="keyword">copy</span>-<span class="keyword">mode</span> <span class="keyword">to</span> <span class="keyword">vi</span> <span class="keyword">mode</span></div><div class="line">setw -g <span class="keyword">mode</span>-<span class="built_in">keys</span> <span class="keyword">vi</span></div><div class="line"># enter <span class="keyword">copy</span> <span class="keyword">mode</span></div><div class="line">bind Escape <span class="keyword">copy</span>-<span class="keyword">mode</span></div><div class="line"># paste <span class="keyword">buffer</span></div><div class="line">bind C-<span class="keyword">p</span> pasteb</div><div class="line"># select (v)</div><div class="line">bind -t <span class="keyword">vi</span>-<span class="keyword">copy</span> v begin-selection</div><div class="line"># <span class="keyword">copy</span> (<span class="keyword">y</span>)</div><div class="line">bind -t <span class="keyword">vi</span>-<span class="keyword">copy</span> <span class="keyword">y</span> <span class="keyword">copy</span>-selection</div></pre></td></tr></table></figure>
+<h4 id="绑定面板切换快捷键"><a href="#绑定面板切换快捷键" class="headerlink" title="绑定面板切换快捷键"></a>绑定面板切换快捷键</h4><p>这里面板切换上，我将面板的上下左右方向绑定到了kjhl四个同Vim中光标移动一样的四个键上同Vim保持一致，这样就不需要在记住新的方向键了。</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># Map panel switch.</span></div><div class="line"><span class="meta"># Up</span></div><div class="line">bind-<span class="built_in">key</span> k <span class="built_in">select</span>-pane -U</div><div class="line"><span class="meta"># Down</span></div><div class="line">bind-<span class="built_in">key</span> j <span class="built_in">select</span>-pane -D</div><div class="line"><span class="meta"># left</span></div><div class="line">bind-<span class="built_in">key</span> h <span class="built_in">select</span>-pane -L</div><div class="line"><span class="meta"># right</span></div><div class="line">bind-<span class="built_in">key</span> l <span class="built_in">select</span>-pane -R</div></pre></td></tr></table></figure>
+<h4 id="修改面板大小的快捷键"><a href="#修改面板大小的快捷键" class="headerlink" title="修改面板大小的快捷键"></a>修改面板大小的快捷键</h4><p>这里为了能够将大小更灵活的移动，我将鼠标控制打开，这样就能通过鼠标进行方便精准的面板大小调整了。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Resize panel size.</div><div class="line">bind &lt; <span class="keyword">resize</span>-pane -L <span class="number">10</span></div><div class="line">bind &gt; <span class="keyword">resize</span>-pane -R <span class="number">10</span></div><div class="line">bind _ <span class="keyword">resize</span>-pane -D <span class="number">10</span></div><div class="line">bind + <span class="keyword">resize</span>-pane -U <span class="number">10</span></div><div class="line"></div><div class="line"># Use mouse <span class="keyword">to</span> <span class="keyword">resize</span> panel.</div><div class="line"><span class="keyword">set</span> -g mouse-utf8 <span class="keyword">on</span></div></pre></td></tr></table></figure>
+<p>配置当然要根据自己的使用习惯来设置，这里仅仅给出参考。这样我们将多窗口终端的控制玩弄于手掌之中啦。</p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/tmux_panels.png" alt=""></p>
+<h3 id="Vim配置"><a href="#Vim配置" class="headerlink" title="Vim配置"></a>Vim配置</h3><p>解决了终端窗口问题，我们开始大刀阔斧的捣鼓编辑器啦，这里我对我使用的几个Vim插件进行整理，以及几个基本配置进行下说明。</p>
+<p>完整的vim配置文件参见: <a href="https://github.com/PytLab/dotfiles/blob/master/.vimrc" target="_blank" rel="external">https://github.com/PytLab/dotfiles/blob/master/.vimrc</a></p>
+<h4 id="关于Vim安装"><a href="#关于Vim安装" class="headerlink" title="关于Vim安装"></a>关于Vim安装</h4><p>这里主要说一下在Mac上的Vim安装，Vim的官网以及YouCompleteMe的README都有推荐使用MacVim, 但是如果我们并不想在使用Vim的时候还打开新的窗口而是直接在终端使用Vim的话需要在安装MacVim后做一点小处理。</p>
+<ol>
+<li><p>安装MacVim</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span>cask <span class="keyword">install </span>macvim</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用MacVim的mvim脚本覆盖掉系统自带的vim</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">alias</span> vim=<span class="string">'/usr/local/bin/mvim -v'</span></div><div class="line"><span class="built_in">alias</span> vi=<span class="string">'vim'</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="自动给打开的文件添加头部"><a href="#自动给打开的文件添加头部" class="headerlink" title="自动给打开的文件添加头部"></a>自动给打开的文件添加头部</h4><p>例如我们编写Python脚本的时候经常会在文件开头添加执行文件的Python路径以及文件的编码方式，我们可以通过在Vim的配置文件中添加一个函数，并让他在打开一个新的缓冲区的时候自动添加到头部。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" Auto add head info</span></div><div class="line"><span class="comment">" .py file into add header</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HeaderPython</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">call</span> <span class="built_in">setline</span>(<span class="number">1</span>, <span class="string">"#!/usr/bin/env python"</span>)</div><div class="line">    <span class="keyword">call</span> <span class="keyword">append</span>(<span class="number">1</span>, <span class="string">"# -*- coding: utf-8 -*-"</span>)</div><div class="line">    <span class="keyword">normal</span> G</div><div class="line">    <span class="keyword">normal</span> <span class="keyword">o</span></div><div class="line"><span class="keyword">endf</span></div><div class="line"><span class="keyword">autocmd</span> bufnewfile *.<span class="keyword">py</span> <span class="keyword">call</span> HeaderPython()</div></pre></td></tr></table></figure></p>
+<p>这样当我们使用<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">vi</span> <span class="keyword">new</span>.<span class="keyword">py</span></div></pre></td></tr></table></figure></p>
+<p>的时候便会匹配到文件后缀并执行头部添加函数进行内容添加, 其他语言的脚本例如bash、perl等都是类似的方式。</p>
+<h4 id="安装插件管理器Vundle"><a href="#安装插件管理器Vundle" class="headerlink" title="安装插件管理器Vundle"></a>安装插件管理器Vundle</h4><p>如果要安装插件，必须要有个方便的插件管理器，Vim的插件管理器有很多，这里我使用了Vundle，它的全称是Vim Bundle，可以让我们轻松的安装、更新、搜索和清理Vim插件。Vundle本身是一个Vim插件，所以使我们安装所有插件中最早需要安装的插件。</p>
+<p>Vundle的安装方式这里就不详细介绍了，可以参见：<a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">https://github.com/VundleVim/Vundle.vim</a></p>
+<p>安装好后我们需要修改下<code>.vimrc</code>文件：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> nocompatible</div><div class="line"><span class="keyword">filetype</span> off</div><div class="line"></div><div class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></div><div class="line"><span class="keyword">call</span> vundle#begin()</div><div class="line"></div><div class="line"><span class="comment">" 在这里添加你想安装的Vim插件</span></div><div class="line"></div><div class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></div><div class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></div></pre></td></tr></table></figure></p>
+<p>这样如果我们想安装插件的话我们只需要在<code>call vundle#begin()</code> 和 <code>call vundle#end()</code>之间直接写入就好了，非常方便，写好后我们直接运行<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">vim</span> +PluginInstall +<span class="keyword">qall</span></div></pre></td></tr></table></figure></p>
+<p>vundle便会自动下载并安装好插件，我们直接作为伸手党使用就好啦.</p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/vim_plugin_install.png" alt=""></p>
+<h4 id="自动补全神器YouCompleteMe"><a href="#自动补全神器YouCompleteMe" class="headerlink" title="自动补全神器YouCompleteMe"></a>自动补全神器YouCompleteMe</h4><p>YouCompleteMe是一个非常强大的Vim自动补全插件，他的特别之处就在于他并不是像vim自带的<code>Ctrl-x</code>和<code>Ctrl-n</code>那样基于文本进行补全，而是基于语义，通过分析源文件进行语法分析，这得益于强大的clang/llvm。同时YCM也整合了多种插件，其中也包含语法纠错，类似Syntastic的功能，但是只能进行C/C++/Objective-C的语法检测，对于Python的话我们后面需要安装Syntastic插件。</p>
+<p>YCM虽然强大，但是安装却稍微麻烦些，首先他文件比较大，另外需要自己进行编译(NeoVundle插件管理器貌似可以直接帮你自动编译), 不过无论我之前在ubuntu还是现在的mac上，至少我还是没有遇到什么很大的问题的。</p>
+<p>具体的安装请参考YCM的安装说明: <a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="external">https://github.com/Valloric/YouCompleteMe#installation</a></p>
+<p>YCM的相关设置：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" Plugin YCM settings.</span></div><div class="line"><span class="keyword">set</span> completeopt=longest,<span class="keyword">menu</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_min_num_of_chars_for_completion</span>=<span class="number">2</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_cache_omnifunc</span>=<span class="number">0</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_seed_identifiers_with_syntax</span>=<span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_complete_in_comments</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_complete_in_strings</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_collect_identifiers_from_comments_and_strings</span> = <span class="number">0</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:ycm_global_ycm_extra_conf</span> = <span class="string">'~/.ycm_extra_conf.py'</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_check_on_open</span>=<span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_enable_signs</span>=<span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_cpp_check_header</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_cpp_remove_include_errors</span> = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>YCM除了在<code>.vimrc</code>中进行配置外，还有一个Python的配置文件<code>.ycm_extra_conf.py</code>，在里面我们可以设置相应的编译选项，比如编译参数，头文件和库文件的地址等等，这样我们在编写C/C++等的时候ycm会找到相应的头文件和库文件进行编译并给出相应的提示。这个文件需要根据自己的项目根据自己的文件位置进行自定义。</p>
+<p>我的<code>.ycm_extra_conf.py</code>的完整版：<a href="https://github.com/PytLab/dotfiles/blob/master/.ycm_extra_conf.py" target="_blank" rel="external">https://github.com/PytLab/dotfiles/blob/master/.ycm_extra_conf.py</a></p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/ycm_complete.png" alt=""></p>
+<h4 id="为Python的缩进助力"><a href="#为Python的缩进助力" class="headerlink" title="为Python的缩进助力"></a>为Python的缩进助力</h4><p>写Python的时候你一定需要一款帮助你显示缩进的插件，indentLine就是一款提供缩指示线的插件，有纯文字实现，有了他在判断Python代码块的时候就方便了许多。</p>
+<p>插件地址：<a href="https://github.com/Yggdroot/indentLine" target="_blank" rel="external">https://github.com/Yggdroot/indentLine</a></p>
+<p>我相应的配置：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" Plugin indentLine settings.</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:indentLine_char</span> = <span class="string">"┆"</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:indentLine_enabled</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:autopep8_disable_show_diff</span>=<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>效果：</p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/indent_line.png" alt=""></p>
+<h4 id="对打开的多个文件进行操作"><a href="#对打开的多个文件进行操作" class="headerlink" title="对打开的多个文件进行操作"></a>对打开的多个文件进行操作</h4><p>当我们写代码的时候不可能每次只打开一个文件，而是打开很多个，而且要经常在这之间来回切换。vim提供了自己的buffer管理工具，但是并不直观，这时可以使用minibufexplorer插件，这样便可以像切换tab一样在Vim中进行buffer的切换来同时编辑多个文件。</p>
+<p>效果如下图：</p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/bufexplorer.png" alt=""></p>
+<p>我们可以通过根据前面的buffer序号来使用<code>Ctrl+w :b buffer-number</code>来快速切换。</p>
+<h4 id="使用Pylint来帮助我们进行Python语法检测"><a href="#使用Pylint来帮助我们进行Python语法检测" class="headerlink" title="使用Pylint来帮助我们进行Python语法检测"></a>使用Pylint来帮助我们进行Python语法检测</h4><p>首先Pylint是一个代码分析工具，它能够分析Python中的代码错误，查找不符合风格标准（默认PEP8）和有潜在问题的代码，如果单独使用的话，他还可以为我们的Python代码进行检测并生成一份报告，并为你的代码进行评分，像这样：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pylint incar<span class="selector-class">.py</span> --output-format=<span class="selector-tag">html</span> &gt; score.html</div></pre></td></tr></table></figure></p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/pylint_score.png" alt=""></p>
+<p>我们可以利用syntastic插件来使用pylint帮助我们进行语法检查。</p>
+<p>syntastic的安装可以直接通过Vundle来进行方便的安装，安装后我们需要进行下配置：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" Plugin syntastic settings.</span></div><div class="line"><span class="keyword">set</span> statusline+=%#warningmsg#</div><div class="line"><span class="keyword">set</span> statusline+=%&#123;SyntasticStatuslineFlag()&#125;</div><div class="line"><span class="keyword">set</span> statusline+=%*</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_always_populate_loc_list</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_auto_loc_list</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_check_on_open</span> = <span class="number">0</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_check_on_wq</span> = <span class="number">0</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_mode_map</span> = &#123;<span class="string">'mode'</span>: <span class="string">'passive'</span>, <span class="string">'active_filetypes'</span>: [], <span class="string">'passive_filetypes'</span>: []&#125;</div><div class="line"><span class="comment">" Use pylint to check python files.</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_python_checkers</span> = [<span class="string">'pylint'</span>]</div><div class="line"><span class="keyword">map</span> <span class="symbol">&lt;F5&gt;</span> :SyntasticToggleMode<span class="symbol">&lt;CR&gt;</span> :SyntasticCheck<span class="symbol">&lt;CR&gt;</span></div><div class="line"></div><div class="line"><span class="comment">" Ignore warnings about newlines trailing.</span></div><div class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_quiet_messages</span> = &#123; <span class="string">'regex'</span>: [<span class="string">'trailing-newlines'</span>, <span class="string">'invalid-name'</span>,</div><div class="line">    \<span class="string">'too-many-lines'</span>, <span class="string">'too-many-instance-attributes'</span>, <span class="string">'too-many-public-methods'</span>,</div><div class="line">    \<span class="string">'too-many-locals'</span>, <span class="string">'too-many-branches'</span>] &#125;</div></pre></td></tr></table></figure></p>
+<p>这里主要涉及两个部分的配置，</p>
+<ol>
+<li>一个是将检测模式改成被动，由于Syntastic检测并不是异步进行的，如果每次保存的时候都进行检测，都会卡在那里等一会，如果我的代码比较大的话会更久，所以我们在想要检测的时候在检测。</li>
+<li>忽略掉一些我们不想看到的warnign，pylint完全按照PEP8来的话，我的代码经常会各种提示的warning，比如我喜欢在代码最后一行留个空行也会有提示，因此我就通过正则表达式将次信息过滤掉，这时候就需要设置<code>syntastic_quiet_message</code>变量了。</li>
+</ol>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/syntastic_warning.png" alt=""></p>
+<h4 id="树形目录方便文件查看"><a href="#树形目录方便文件查看" class="headerlink" title="树形目录方便文件查看"></a>树形目录方便文件查看</h4><p>像其他IDE一样，左边有树形目录的话，所有文件夹和文件都一目了然那一定是极好的，所以NERDTree插件就是这么一款工具，他可以直接通过Vundle进行安装，然后在配置文件中设置启动的快捷键以及窗口大小和忽略显示的文件等等。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" Plugin nerdtree settings.</span></div><div class="line"><span class="keyword">map</span> <span class="symbol">&lt;F2&gt;</span> :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span></div><div class="line"><span class="keyword">let</span> NERDTreeChDirMode=<span class="number">1</span></div><div class="line"><span class="keyword">let</span> NERDTreeShowBookmarks=<span class="number">1</span></div><div class="line"><span class="keyword">let</span> NERDTreeWinSize=<span class="number">25</span></div><div class="line"><span class="keyword">let</span> NERDTreeShowHidden=<span class="number">1</span></div><div class="line"><span class="keyword">let</span> NERDTreeIgnore=[<span class="string">'\~$'</span>, <span class="string">'\.pyc$'</span>, <span class="string">'\.swp$'</span>, <span class="string">'\.git$'</span>]</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/nerdtree.png" alt=""></p>
+<h4 id="在项目中迅速定位文件"><a href="#在项目中迅速定位文件" class="headerlink" title="在项目中迅速定位文件"></a>在项目中迅速定位文件</h4><p>ctrlp.vim 顾名思义，就是提供了同Sublime的Ctrl+p的功能，可以直接通过Vundle安装，在配置文件中将其映射到功能键上便可以快速启动搜索，支持模糊匹配。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">map</span> <span class="symbol">&lt;F3&gt;</span> :CtrlP<span class="symbol">&lt;CR&gt;</span></div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/ctrlp.png" alt=""></p>
+<h4 id="显示文件中的类、函数、变量"><a href="#显示文件中的类、函数、变量" class="headerlink" title="显示文件中的类、函数、变量"></a>显示文件中的类、函数、变量</h4><p>tagbar插件可以帮助我们显示当前文件中的类、函数、变量等，方便我们阅读代码，它是基于ctags的，支持很多语言，具体详见：<a href="https://github.com/majutsushi/tagbar/wiki" target="_blank" rel="external">https://github.com/majutsushi/tagbar/wiki</a></p>
+<p>安装好ctags之后可以直接从Vundle中进行安装。</p>
+<p>在配置文件中可以将其绑定到快捷键上方便快速启动。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">map</span> <span class="symbol">&lt;F2&gt;</span> :TagbarToggle<span class="symbol">&lt;CR&gt;</span></div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/assets/images/blog_img/2017-03-26-优雅的在终端中编写Python/tagbar.png" alt=""></p>
+<h4 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h4><p>Vim 的插件很丰富，这里我就不再一一赘述了，希望这些强大的工具能让我们在终端中更优雅的编写Python(不限于Python啦),有关我使用的vim插件都在我的<code>.vimrc</code>中，有兴趣的童鞋可以搜索相应的插件名称进行查看。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" Plugins.</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></div><div class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></div><div class="line">Plugin <span class="string">'nathanaelkane/vim-indent-guides'</span></div><div class="line">Plugin <span class="string">'fholgado/minibufexpl.vim'</span></div><div class="line">Plugin <span class="string">'Yggdroot/indentLine'</span></div><div class="line">Plugin <span class="string">'scrooloose/nerdtree'</span></div><div class="line">Plugin <span class="string">'ctrlpvim/ctrlp.vim'</span></div><div class="line">Plugin <span class="string">'majutsushi/tagbar'</span></div><div class="line">Plugin <span class="string">'dyng/ctrlsf.vim'</span></div><div class="line">Plugin <span class="string">'vim-airline/vim-airline'</span></div><div class="line">Plugin <span class="string">'vim-airline/vim-airline-themes'</span></div><div class="line">Plugin <span class="string">'MattesGroeger/vim-bookmarks'</span></div><div class="line">Plugin <span class="string">'vim-syntastic/syntastic'</span></div></pre></td></tr></table></figure></p>
+<p>同时为了方便自己我也写了相应的安装和卸载脚本，方便大家参考，github地址：<a href="https://github.com/PytLab/dotfiles" target="_blank" rel="external">https://github.com/PytLab/dotfiles</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文主要简单介绍下本人平时编程中使用tmux,vim等工具的配置，希望能借此帮助大家能更好的在终端中进行程序编写提高工作效率。</p>
+<p>最后还是建议配置文件中不要盲目复制粘贴别人的配置，最好保证里面的配置自己都知道是做什么的，而且是对自己需要的。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div class="ds-thread" data-thread-key="2017/03/26/优雅的在终端中编写Python/" data-title="优雅的在终端中编写Python" data-url="http://pytlab.github.io/2017/03/26/优雅的在终端中编写Python/"></div>  
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-03-26 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">43</span></a></li> <li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li> <li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li> <li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#前言"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#正文"><span class="toc-article-text">正文</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#终端窗口管理工具Tmux"><span class="toc-article-text">终端窗口管理工具Tmux</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#修改快捷键前缀"><span class="toc-article-text">修改快捷键前缀</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#修改分屏快捷键"><span class="toc-article-text">修改分屏快捷键</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#将复制模式改为vim的复制模式"><span class="toc-article-text">将复制模式改为vim的复制模式</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#绑定面板切换快捷键"><span class="toc-article-text">绑定面板切换快捷键</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#修改面板大小的快捷键"><span class="toc-article-text">修改面板大小的快捷键</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Vim配置"><span class="toc-article-text">Vim配置</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#关于Vim安装"><span class="toc-article-text">关于Vim安装</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#自动给打开的文件添加头部"><span class="toc-article-text">自动给打开的文件添加头部</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#安装插件管理器Vundle"><span class="toc-article-text">安装插件管理器Vundle</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#自动补全神器YouCompleteMe"><span class="toc-article-text">自动补全神器YouCompleteMe</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#为Python的缩进助力"><span class="toc-article-text">为Python的缩进助力</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#对打开的多个文件进行操作"><span class="toc-article-text">对打开的多个文件进行操作</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#使用Pylint来帮助我们进行Python语法检测"><span class="toc-article-text">使用Pylint来帮助我们进行Python语法检测</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#树形目录方便文件查看"><span class="toc-article-text">树形目录方便文件查看</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#在项目中迅速定位文件"><span class="toc-article-text">在项目中迅速定位文件</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#显示文件中的类、函数、变量"><span class="toc-article-text">显示文件中的类、函数、变量</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#其他插件"><span class="toc-article-text">其他插件</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'pytlab' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
-              
-              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -131,6 +131,8 @@
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -209,6 +211,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-22 </div>
+			<div class="article-title"><a href="/2016/02/22/Kynetix可以直接使用相对能量进行微观动力学求解/" title="Kynetix现在终于可以直接拿相对能量做计算了，来者起码不会很快就拒啦~">Kynetix可以直接使用相对能量进行微观动力学求解</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>这算是Kynetix能量读取部分的第三次比较大的更新了，之前有提到过，模型已经兼容相对能量的输入文件（<a href="/2015/06/14/动力学模型已兼容相对能量的输入文件/"><span class="fa fa-file"></span> 详情</a>）。<br>虽然读取的是相对能量，但是程序内部我还是使用矩阵进行了线性方程组的求解来将求出每个物种相对于参考态的能量来作为generalized formation energy。<br>可是这就遇到了一个问题，<br><div class="alert alert-danger"><i class="fa fa-bug"></i>  有很多情况，程序根据用户自定义的参考态物种获取的参数矩阵很多情况是奇异矩阵，一旦矩阵奇异，就无法求出解，也就无法将模型的求解进行下去。</div><br>这个问题一直困扰我很久了，但是我一直没有花时间去解决。<br>现在想想其实我通过矩阵获取generalized formation energy的目的是什么？<br>其实作用也不过是在进行初始猜测的时候按照formation energy来进行Boltzmann分布而已。为了这个而无法将整个求解过程继续下去真的是得不偿失啊。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/22/Kynetix可以直接使用相对能量进行微观动力学求解/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -330,28 +353,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-18 </div>
-			<div class="article-title"><a href="/2016/02/18/动力学模拟程序更名为Kynetix/" >动力学模拟程序更名为Kynetix</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>决定把催化动力学模拟程序名称更改为<strong>Kynetix</strong><br>项目GitHub地址: <a href="https://github.com/PytLab/Kynetix" target="_blank" rel="external">https://github.com/PytLab/Kynetix</a><br><img src="/assets/images/blog_img/2016-02-18-动力学模拟程序更名为Kynetix/kynetix.png" alt=""><br><img src="/assets/images/blog_img/2016-02-18-动力学模拟程序更名为Kynetix/kynetix_lang.png" alt=""></p>
-
-	
-	</div>
-  <a type="button" href="/2016/02/18/动力学模拟程序更名为Kynetix/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -401,6 +402,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
+      </li>
+    
+      <li>
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
@@ -414,10 +419,6 @@
     
       <li>
         <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
-      <li>
-        <a href="/2017/02/06/ECMAScript中的OOP-创建对象/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-对象创建</a>
       </li>
     
   </ul>
@@ -436,6 +437,8 @@
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
+			<li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
@@ -452,48 +455,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
 			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">43</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">62</span></a></li>
+		   <li><a href="/tags">...<span class="badge">64</span></a></li>
 		 
 		</ul>
 	</div>

@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
-              
-              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -131,6 +131,8 @@
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -209,6 +211,32 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-07 </div>
+			<div class="article-title"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/" title="本篇通过一个小例子来总结下阻塞通信中的标准通信模式">MPI学习--阻塞通信之标准通信模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之标准通信模式"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="阻塞通信"><a href="#阻塞通信" class="headerlink" title="阻塞通信"></a>阻塞通信</h3><p>阻塞通信是指消息发送发的<code>send</code>调用需要接收方的<code>recv</code>调用的配合才可完成。即在发送的消息信封和数据被安全的“保存”起来之前，<code>send</code>函数的调用不会返回。<br>所谓的安全保存，就是指<code>send</code>调用可再次被执行而不会对上一次发送的数据带来任何破坏。<br>不同模式下所要求的“配合”程度也不同，尤其有的MPI环境下还要结合运行时环境本身提供的缓存机制综合考虑实际效果。<br>
+	
+	</div>
+  <a type="button" href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -353,38 +381,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-06-26 </div>
-			<div class="article-title"><a href="/2016/06/26/C-11-中的右值引用和移动语义小结/" title="在这里总结一下我对C++ 11 中引入的右值引用和移动语义的一些理解。">C++ 11 中的右值引用和移动语义小结</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/06/26/C-11-中的右值引用和移动语义小结/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C++ 11 中的右值引用和移动语义小结"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="左值-amp-右值"><a href="#左值-amp-右值" class="headerlink" title="左值 &amp; 右值"></a>左值 &amp; 右值</h2><p>首先还是这个老问题，什么是左值，什么是右值？<br>最原始的区分就是左值是可以出现在赋值符的左边和右边，然而右值只能出现在赋值符的右边。但是在C++中使用前面的方式来区别左值和右值就不合适了，那么在C++中要怎么区别呢？我的理解是：</p>
-<ol>
-<li>左值是一个表示数据的表达式（如变量名或者解除引用的指针），<strong>程序可以获取它的地址</strong>。</li>
-<li>右值是可以出现在表达式的右边的，<strong>但不能对其应用取址运算符的值</strong>。</li>
-</ol>
-<p>在 <a href="http://stackoverflow.com/questions/3106110/what-are-move-semantics">StackOverflow上面看到一个回答</a> 里面使用了个例子：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">std::string a(x);                                    // Line 1</div><div class="line">std::string b(x + y);                                // Line 2</div><div class="line">std::string c(some_function_returning_a_string());   // Line 3</div></pre></td></tr></table></figure>
-	
-	</div>
-  <a type="button" href="/2016/06/26/C-11-中的右值引用和移动语义小结/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -434,6 +430,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
+      </li>
+    
+      <li>
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
@@ -447,10 +447,6 @@
     
       <li>
         <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
-      <li>
-        <a href="/2017/02/06/ECMAScript中的OOP-创建对象/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-对象创建</a>
       </li>
     
   </ul>
@@ -469,6 +465,8 @@
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
+			<li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
@@ -485,48 +483,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
 			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
 			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-		
-		   <li><a href="/tags">...<span class="badge">62</span></a></li>
+		   <li><a href="/tags">...<span class="badge">64</span></a></li>
 		 
 		</ul>
 	</div>

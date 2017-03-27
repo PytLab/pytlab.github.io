@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
-              
-              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -131,6 +131,8 @@
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -209,6 +211,30 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-16 </div>
+			<div class="article-title"><a href="/2016/03/16/C-中输出的格式控制/" title="由于C++的格式控制对我来说完全是个新的东西，我在这里总结下">C++中输出的格式控制</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在上一篇总结里也提到过，<code>ostream</code>是从<code>ios</code>类派生出来的，而<code>ios</code>类是从<code>ios_base</code>类派生出来的。<br>对于输出的格式控制，<code>ios_base</code>类起到了至关重要的作用，因为他提供了控制格式的成员方法和成员数据。</p>
+<h3 id="字段宽度和精度"><a href="#字段宽度和精度" class="headerlink" title="字段宽度和精度"></a>字段宽度和精度</h3><p>先介绍这两个，因为控制这两个格式的成员数据是单独存储在ios_base类中的。</p>
+<h4 id="控制字段宽度"><a href="#控制字段宽度" class="headerlink" title="控制字段宽度"></a>控制字段宽度</h4><p>函数原型：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">width</span><span class="params">()</span></span>;  <span class="comment">// 返回字段宽度的当前设置</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">width</span><span class="params">(<span class="keyword">int</span> i)</span></span>;  <span class="comment">// 将字段宽度设置为i个空格，并返回以前的字符宽度值</span></div></pre></td></tr></table></figure></p>
+<p><strong>width()方法只影响接下来显示的一个项目</strong><br>
+	
+	</div>
+  <a type="button" href="/2016/03/16/C-中输出的格式控制/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -341,33 +367,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-14 </div>
-			<div class="article-title"><a href="/2016/03/14/Cpp中的向前声明-forward-declaration/" >C++中的向前声明(forward declaration)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/14/Cpp中的向前声明-forward-declaration/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C++中的向前声明(forward declaration)"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>在涉及到友元类方法的时候会用到向前声明，至于为什么要使用向前声明我还是直接上例子理解的快：<br>在Tv类中<code>Remote</code>类中的<code>set_chan()</code>方法设为友元类方法，也就是<code>Remote</code>的这个方法是可以访问<code>Tv</code>的私有成员数据的（包括修改）。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Tv</div><div class="line">&#123;</div><div class="line">    <span class="keyword">friend</span> <span class="keyword">void</span> Remote::set_chan(Tv &amp; t, <span class="keyword">int</span> c);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>可以看到，既然是Tv类的友元，<code>set_chan</code>中自然要有<code>Tv</code>类的变量，但是编译器在编译<code>Remote</code>类的时候至少要知道Tv这个东西是个自定义的类，不然会报错，所以应该把Tv类声明在Remote类的前面。但是Tv类中由于将Remote中的方法设为自己的友元，所以编译器也要知道<code>Remote::set_chan(Tv &amp; t, int c)</code>中的Remote以及它的方法是在哪里，不然也会报错。这样就前后矛盾了。<br>
-	
-	</div>
-  <a type="button" href="/2016/03/14/Cpp中的向前声明-forward-declaration/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -417,6 +416,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
+      </li>
+    
+      <li>
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
@@ -430,10 +433,6 @@
     
       <li>
         <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
-      <li>
-        <a href="/2017/02/06/ECMAScript中的OOP-创建对象/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-对象创建</a>
       </li>
     
   </ul>
@@ -452,6 +451,8 @@
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
+			<li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
@@ -468,48 +469,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">3</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">62</span></a></li>
+		   <li><a href="/tags">...<span class="badge">64</span></a></li>
 		 
 		</ul>
 	</div>

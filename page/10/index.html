@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
-              
-              <li><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-multiproces...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -131,6 +131,8 @@
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -209,6 +211,45 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-29 </div>
+			<div class="article-title"><a href="/2016/03/29/KMCLib中的Interactions/" title="Interactions类用于描述KMC过程中所有能够发生的process并对其进行操作，&lt;br&gt;其中包括process的抽取，更新process的match list等。">KMCLib中的Interactions</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/29/KMCLib中的Interactions/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Interactions"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这两天由于一直在学习CMake相关的东西，没有把看的代码及时总结。特地现在补上。<br>Interaction类可以看作是process相应的集合，他在全局角度操作process。</p>
+<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><ul>
+<li><p><code>std::vector&lt;Process&gt; processes_</code><br>  通过构造函数的参数传入，是所有能在lattice上面发生的process对象的集合。</p>
+</li>
+<li><p><code>std::vector&lt;Process*&gt; process_pointers_</code><br>  存放指向processes_中process对象的指针，后面的函数都是在操作这个指针vector。</p>
+</li>
+<li><p><code>std::vector&lt;std::pair&lt;double,int&gt; &gt; probability_table_</code><br>  这里叫做概率列表，其实里面并没有放于概率的数据，其中的pair的第一个entry放的是incremental rate，第二个entry放的是对应这个process能在当前lattice上面发生的位点的总数(也就是他的nSite数)。</p>
+</li>
+<li><p><code>bool implicit_wildcards_</code><br>  是否使用通配符</p>
+</li>
+<li><p><code>bool use_custom_rates_</code><br>  是否使用自定义速率</p>
+</li>
+</ul>
+<p>其他的几个成员数据目前还没有看到具体怎么用，先挖个坑，后面填。</p>
+	
+	</div>
+  <a type="button" href="/2016/03/29/KMCLib中的Interactions/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -353,34 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-21 </div>
-			<div class="article-title"><a href="/2016/03/21/KMCLib中的LatticeMap/" title="KMCLib中的LatticeMap类&lt;br&gt;主要用于描述整个3维网格，其中包括网格格点的各种操作，如移动，寻找NN等等">KMCLib中的LatticeMap</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/21/KMCLib中的LatticeMap/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的LatticeMap"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这里的成员数据全部<code>protected</code></p>
-<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> n_basis_;                   <span class="comment">// 基点个数</span></div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; repetitions_;  <span class="comment">// site各个方向上重复次数</span></div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; periodic_;    <span class="comment">// 周期性边界条件</span></div></pre></td></tr></table></figure>
-<p>这个类的成员数据相对比较少，就三个，就可以描述整个三维网格的所有性质了。<br>其中后两个好理解，但是第一个我看了许久代码都不知道是个啥东西，还好曹老师给的指点，终于弄明白了所谓基点数目和基点到底是什么东西。<br>
-	
-	</div>
-  <a type="button" href="/2016/03/21/KMCLib中的LatticeMap/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -430,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
+      </li>
+    
+      <li>
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
@@ -443,10 +460,6 @@
     
       <li>
         <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
-      <li>
-        <a href="/2017/02/06/ECMAScript中的OOP-创建对象/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-对象创建</a>
       </li>
     
   </ul>
@@ -464,6 +477,8 @@
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+		
+			<li><a href="/categories/工具应用/">工具应用<span class="badge">1</span></a></li>
 		
 			<li><a href="/categories/我的日常/">我的日常<span class="badge">6</span></a></li>
 		
@@ -483,46 +498,46 @@
 		
 			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
 			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">2</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">43</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">62</span></a></li>
+		   <li><a href="/tags">...<span class="badge">64</span></a></li>
 		 
 		</ul>
 	</div>
