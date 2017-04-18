@@ -27,7 +27,7 @@ std::vector<bool> periodic_;    // 周期性边界条件
 <!-- more -->
 #### 关于`basis_points`和`n_basis`
 其实也没啥好说的，本身没有什么难理解的，只要知道是怎么操作的了就一切都好说了。先上图吧：
-![](assets/images/blog_img/2016-03-21-KMCLib中的LatticeMap/lattice_indices.png)
+![](/assets/images/blog_img/2016-03-21-KMCLib中的LatticeMap/lattice_indices.png)
 上图描述了KMCLib中三维网格模型的基本信息（忽略我拙劣的画风 -\_-！），其中包括：
 - 三个基向量的方向和顺序
 - 每个位点的索引号和顺序
@@ -98,5 +98,5 @@ static std::vector<int> tmp_cell_indices__;
     }
     ```
     这两个函数相似，后者就是循环调用前者然后去重的产物。至于所谓的neighbor，还是先上图吧：
-    ![](assets/images/blog_img/2016-03-21-KMCLib中的LatticeMap/neighbors.png)
+    ![](/assets/images/blog_img/2016-03-21-KMCLib中的LatticeMap/neighbors.png)
     所谓找neighbor就是将shell包含的内部全部site的索引数按顺序返回出来。如果有周期性边界条件的限制，例如a和b轴都没有周期性边界条件，寻找0位置的neighbor，则按照图上的顺序返回neighbor的全局索引。
