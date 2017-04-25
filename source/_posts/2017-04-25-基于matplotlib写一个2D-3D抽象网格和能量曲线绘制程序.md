@@ -1,5 +1,5 @@
 layout: post
-title: 基于matplotlib写一个2D/3D抽象网格和能量曲线绘制程序
+title: 基于matplotlib的2D/3D抽象网格和能量曲线绘制程序
 date: 2017-04-25 16:54:55
 tags:
  - python
