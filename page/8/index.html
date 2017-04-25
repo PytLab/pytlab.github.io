@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib写一个2D/3D抽象网格和能量...<span></span></a></li>
+              
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
               
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
               
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
-              
-              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -130,9 +130,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
-              
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -211,6 +211,38 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-30 </div>
+			<div class="article-title"><a href="/2016/04/30/python-迭代器和生成器小结/" title="虽然一直会用到迭代器和生成器这些概念，之前也是从其他人博客和书上学习了python中的迭代器和生成器，但是自己一直没有对这两个家伙进行总结，特此在这里总结下(在这里只总结迭代器，生成器会在下一篇总结)。">python 迭代器小结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/30/python-迭代器和生成器小结/"><img src="/assets/images/features/python_logo.png" alt="python 迭代器小结"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>迭代器是在python2.2中被加入的，<strong>它为类序列对象提供了一个类序列的接口</strong>。有了迭代器可以迭代一个不是序列的对象，因为他表现出了序列的行为。当在python中使用for循环迭代一个对象时，调用者几乎分辨不出他迭代的是一个迭代器对象还是一个序列对象，因为python让他（迭代器）像一个序列那样操作。</p>
+<p><br></p>
+<h3 id="如何迭代"><a href="#如何迭代" class="headerlink" title="如何迭代"></a>如何迭代</h3><p>本质上说迭代器是个对象，但是这个对象有个特殊的方法<code>next()</code>(在python3中使用<code>__next__()</code>代替了next方法)。当使用for循环来遍历整个对象时候，就会自动调用此对象的<code>__next__()</code>方法并获取下一个item。当所有的item全部取出后就会抛出一个<code>StopIteration</code>异常，这并不是错误的发生，而是告诉外部调用者迭代完成了，外部的调用者尝试去捕获这个异常去做进一步的处理。<br>不过迭代器是有限制的，例如</p>
+<ul>
+<li>不能向后移动</li>
+<li>不能回到开始</li>
+<li>也无法复制一个迭代器。<br>因此要再次进行迭代只能重新生成一个新的迭代器对象。
+	
+	</div>
+  <a type="button" href="/2016/04/30/python-迭代器和生成器小结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -357,34 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-05 </div>
-			<div class="article-title"><a href="/2016/04/05/SWIG对结构和类的封装/" title="主要总结下swig封装类的方法。">SWIG对结构和类的封装</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/05/SWIG对结构和类的封装/"><img src="/assets/images/features/swig.png" alt="SWIG对结构和类的封装"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>为了能够将C++的类映射到目标语言，swig使用目标语言自动生成一个代理类（Proxy Class）来讲真正的C++类封装在里面，并通过使用一些accessor函数来使其看起来和用C++类一样的效果。</p>
-<p>举个例子：<br>我有如下C++的类：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Foo</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Foo();</div><div class="line">    ~Foo();</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">bar</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</div><div class="line">    <span class="keyword">int</span> x;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>代理类只是一种思想，可以用C++本身来实现一个代理类封装自己的类：<br>
-	
-	</div>
-  <a type="button" href="/2016/04/05/SWIG对结构和类的封装/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -434,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib写一个2D/3D抽象网格和能量...</a>
+      </li>
+    
+      <li>
         <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
       </li>
     
@@ -449,10 +457,6 @@
         <a href="/2017/02/14/ECMAScript中的作用域链和闭包/" ><i class="fa fa-file-o"></i>ECMAScript中的作用域链和闭包</a>
       </li>
     
-      <li>
-        <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -463,7 +467,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">9</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
 		
@@ -487,48 +491,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">64</span></a></li>
+		   <li><a href="/tags">...<span class="badge">67</span></a></li>
 		 
 		</ul>
 	</div>

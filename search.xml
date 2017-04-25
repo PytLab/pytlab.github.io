@@ -4,6 +4,77 @@
   
     
     <entry>
+      <title><![CDATA[基于matplotlib写一个2D/3D抽象网格和能量曲线绘制程序]]></title>
+      <url>http://pytlab.github.io/2017/04/25/%E5%9F%BA%E4%BA%8Ematplotlib%E5%86%99%E4%B8%80%E4%B8%AA2D-3D%E6%8A%BD%E8%B1%A1%E7%BD%91%E6%A0%BC%E5%92%8C%E8%83%BD%E9%87%8F%E6%9B%B2%E7%BA%BF%E7%BB%98%E5%88%B6%E7%A8%8B%E5%BA%8F/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写文章需要绘制一些一维的能量曲线(energy profile)和抽象的二维和三维的网格来表示晶体用来描述自己的算法，于是自己在之前的脚本的基础上进行了整改写成了只提供接口的Python库,基本思想就是封装了matplotlib中相关接口，方便快速搭建和定制自己的能量曲线和网格结构, 代码托管在GitHub上并上传至PyPI。对于研究晶体材料的同学如果想通过python来绘制简单的晶格图像可以参考一下。</p>
+<ul>
+<li>GitHub地址: <a href="https://github.com/PytLab/catplot/" target="_blank" rel="external">https://github.com/PytLab/catplot/</a></li>
+<li>PyPI地址: <a href="https://pypi.python.org/pypi/catplot/" target="_blank" rel="external">https://pypi.python.org/pypi/catplot/</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>首先还是介绍一下这个程序的用途，目前主要是提供三个主要的模块来绘制三方面的内容：</p>
+<h4 id="1-绘制抽象的二维网格结构"><a href="#1-绘制抽象的二维网格结构" class="headerlink" title="1. 绘制抽象的二维网格结构"></a>1. 绘制抽象的二维网格结构</h4><p>catplot提供了丰富的接口用来定制所需要的任何二维网格并进行周期性扩展，如下图是一个通过当个重复单元扩展出来的抽象(100)晶面的二维网格结构:<br><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/2d-grid-example.png" alt=""></p>
+<h4 id="2-绘制抽象的三维网格结构"><a href="#2-绘制抽象的三维网格结构" class="headerlink" title="2. 绘制抽象的三维网格结构"></a>2. 绘制抽象的三维网格结构</h4><p>同理只不过这次是在三维画布中进行绘制并进行重复单元的周期性扩展，扩展的效果如下图:<br><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/grid_3d.png" alt=""></p>
+<h4 id="3-通过插值算法实现绘制”顺滑”的energy-profile"><a href="#3-通过插值算法实现绘制”顺滑”的energy-profile" class="headerlink" title="3. 通过插值算法实现绘制”顺滑”的energy profile"></a>3. 通过插值算法实现绘制”顺滑”的energy profile</h4><p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/energy-profile-example.png" alt=""></p>
+<p>实现过程基本是通过对matplotlib提供的绘图组件和接口进一步封装成可以快速搭建上面三个类型图像的组件。</p>
+<h3 id="采用二次插值结合样条插值方法绘制-energy-profile"><a href="#采用二次插值结合样条插值方法绘制-energy-profile" class="headerlink" title="采用二次插值结合样条插值方法绘制 energy profile"></a>采用二次插值结合样条插值方法绘制 energy profile</h3><p>energy profile可以理解成在势能面(Potential Energy Surface)上沿着某个特定的方向(反应坐标方向)上能量的变化，</p>
+<p>下面我就上一个简单的例子来画一条顺滑的energy profile, 更多具体的例子我都已经jupyter notebook的形式放在的github上(<a href="https://github.com/PytLab/catplot/tree/master/examples" target="_blank" rel="external">https://github.com/PytLab/catplot/tree/master/examples</a>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 从catplot中导入绘制所需的组件: 画布 和 线</span></div><div class="line"><span class="keyword">from</span> catplot.ep_components.ep_canvas <span class="keyword">import</span> EPCanvas</div><div class="line"><span class="keyword">from</span> catplot.ep_components.ep_lines <span class="keyword">import</span> ElementaryLine</div><div class="line"></div><div class="line"><span class="comment"># 创建一个用于绘制energy profile的画布</span></div><div class="line">canvas = EPCanvas()</div><div class="line"></div><div class="line"><span class="comment"># 创建一条能量曲线，提供的三个值分别是三个状态下的能量数值</span></div><div class="line">line = ElementaryLine([<span class="number">0.0</span>, <span class="number">1.2</span>, <span class="number">0.8</span>])</div><div class="line"></div><div class="line"><span class="comment"># 将这条线添加到画布中</span></div><div class="line">canvas.add_line(line)</div><div class="line"></div><div class="line"><span class="comment"># 绘制</span></div><div class="line">canvas.draw()</div><div class="line">canvas.figure.show()</div></pre></td></tr></table></figure>
+<h4 id="插值方法"><a href="#插值方法" class="headerlink" title="插值方法"></a>插值方法</h4><p>为了能将能量最高点沿着横坐标任意位置移动，我先将顶点的两边用二次函数进行插值，获取两个不同的二次函数形式，然后根据二次函数的形式在左右两边插上5个点，为了能让分开插值的两部分看起来连续，在将上面的10个新插的点和之前的3个点进行一次spline插值即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 顶点两侧进行二次插值的算法</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quadratic_connect_interp</span><span class="params">(x1, y1, x2, y2)</span>:</span></div><div class="line">    A = np.matrix([[x1**<span class="number">2</span>, x1, <span class="number">1</span>],</div><div class="line">                   [x2**<span class="number">2</span>, x2, <span class="number">1</span>],</div><div class="line">                   [<span class="number">2</span>*x2, <span class="number">1</span>, <span class="number">0</span>]])</div><div class="line"></div><div class="line">    b = np.matrix([[y1], [y2], [<span class="number">0</span>]])</div><div class="line">    x = A.I * b</div><div class="line">    x.shape = (<span class="number">1</span>, <span class="number">-1</span>)</div><div class="line">    a, b, c = x.tolist()[<span class="number">0</span>]</div><div class="line"></div><div class="line">    poly_func = <span class="keyword">lambda</span> x: a*x**<span class="number">2</span> + b*x + c</div><div class="line"></div><div class="line">    <span class="keyword">return</span> poly_func</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/interpolation.png" alt=""></p>
+<p>与插值相关的方法参考:<a href="https://github.com/PytLab/catplot/blob/master/catplot/interpolate.py" target="_blank" rel="external">https://github.com/PytLab/catplot/blob/master/catplot/interpolate.py</a></p>
+<h4 id="丰富的接口"><a href="#丰富的接口" class="headerlink" title="丰富的接口"></a>丰富的接口</h4><p>除了上面最简单的例子，catplot还提供了丰富的接口来定制和操作energy profile，比如拼接，合并，平移，添加阴影、改变颜色, 辅助线， 修改画布大小，导出插值数据等等。具体的例子参考: <a href="https://github.com/PytLab/catplot/tree/master/examples" target="_blank" rel="external">https://github.com/PytLab/catplot/tree/master/examples</a></p>
+<p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/energy-profile-examples.png" alt=""></p>
+<h3 id="绘制二维和三维抽象网格"><a href="#绘制二维和三维抽象网格" class="headerlink" title="绘制二维和三维抽象网格"></a>绘制二维和三维抽象网格</h3><p>晶格中的原子和键在catplot中被抽象成图中的node和edge，这样我们就可以通过创建图中的node和edge的方式搭建我们网格的重复单元，之后可以通过重复单元的扩展方法来将其扩展成nxn或者nxnxn的网格。</p>
+<p>实现的基本方法就是通过matplotlib提供的Line2D, Arrow和scatter相关的接口来将相应node和edge的数据添加到maptlotlib的二维或者三维画布中然后进行绘制和显示。下面给分别给出两个绘制正交网格的绘制方法:</p>
+<h4 id="绘制5x5的二维网格"><a href="#绘制5x5的二维网格" class="headerlink" title="绘制5x5的二维网格"></a>绘制5x5的二维网格</h4><p>notebook版可以参见：<a href="https://github.com/PytLab/catplot/blob/master/examples/grid_2d_examples/expand_supercell.ipynb" target="_blank" rel="external">https://github.com/PytLab/catplot/blob/master/examples/grid_2d_examples/expand_supercell.ipynb</a></p>
+<p>创建nodes和edges</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> catplot.grid_components.nodes <span class="keyword">import</span> Node2D</div><div class="line"><span class="keyword">from</span> catplot.grid_components.edges <span class="keyword">import</span> Edge2D</div><div class="line"></div><div class="line">nodes, edges = [], []</div><div class="line"></div><div class="line"><span class="comment"># 创建重复单元中的nodes和edge</span></div><div class="line">top = Node2D([<span class="number">0.0</span>, <span class="number">0.0</span>], size=<span class="number">800</span>, color=<span class="string">"#2A6A9C"</span>)</div><div class="line">t1 = Node2D([<span class="number">0.0</span>, <span class="number">1.0</span>])</div><div class="line">t2 = Node2D([<span class="number">1.0</span>, <span class="number">0.0</span>])</div><div class="line">nodes.append(top)</div><div class="line"></div><div class="line"><span class="comment"># 链接这三个node的edges</span></div><div class="line">e1 = Edge2D(top, t1, width=<span class="number">4</span>)</div><div class="line">e2 = Edge2D(top, t2, width=<span class="number">4</span>)</div><div class="line">edges.extend([e1, e2])</div><div class="line"></div><div class="line"><span class="comment"># 中间的nodes</span></div><div class="line">bridge1 = Node2D([<span class="number">0.0</span>, <span class="number">0.5</span>], style=<span class="string">"s"</span>, size=<span class="number">600</span>, color=<span class="string">"#5A5A5A"</span>, alpha=<span class="number">0.6</span>)</div><div class="line">bridge2 = Node2D([<span class="number">0.5</span>, <span class="number">0.0</span>], style=<span class="string">"s"</span>, size=<span class="number">600</span>, color=<span class="string">"#5A5A5A"</span>, alpha=<span class="number">0.6</span>)</div><div class="line">b1 = bridge1.clone([<span class="number">0.5</span>, <span class="number">0.5</span>])</div><div class="line">b2 = bridge2.clone([<span class="number">0.5</span>, <span class="number">0.5</span>])</div><div class="line">nodes.extend([bridge1, bridge2])</div><div class="line"></div><div class="line"><span class="comment"># 连接他们的edges</span></div><div class="line">e1 = Edge2D(bridge1, b1)</div><div class="line">e2 = Edge2D(bridge1, bridge2)</div><div class="line">e3 = Edge2D(bridge2, b2)</div><div class="line">e4 = Edge2D(b1, b2)</div><div class="line">edges.extend([e1, e2, e3, e4])</div><div class="line"></div><div class="line"><span class="comment"># 正中间的node</span></div><div class="line">h = Node2D([<span class="number">0.5</span>, <span class="number">0.5</span>], style=<span class="string">"h"</span>, size=<span class="number">700</span>, color=<span class="string">"#5A5A5A"</span>, alpha=<span class="number">0.3</span>)</div><div class="line">nodes.append(h)</div></pre></td></tr></table></figure>
+<p>好了，现在我们就创建一个重复单元中的所需的所有元素，可以绘制一下看看效果了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> catplot.grid_components.grid_canvas <span class="keyword">import</span> Grid2DCanvas</div><div class="line"><span class="keyword">from</span> catplot.grid_components.supercell <span class="keyword">import</span> SuperCell2D</div><div class="line"></div><div class="line">canvas = Grid2DCanvas()</div><div class="line"><span class="comment"># 将上面的元素放到supercell中，后面我们将一supercell为单位进行展开</span></div><div class="line">supercell = SuperCell2D(nodes, edges)</div><div class="line"></div><div class="line"><span class="comment"># 绘制效果</span></div><div class="line">canvas.add_supercell(supercell)</div><div class="line">canvas.draw()</div><div class="line">canvas.figure</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/2d-unitcell.png" alt=""></p>
+<p>OK, 重复单元已经搭建成功，可以以他为单位进行扩展了, 下面我们将其沿着x和y轴方向各进行5次重复扩展。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 很简单，就一行代码</span></div><div class="line">expanded_supercell = supercell.expand(<span class="number">5</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<p>来看看效果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">canvas_big = Grid2DCanvas(figsize=(<span class="number">30</span>, <span class="number">20</span>), dpi=<span class="number">60</span>)  <span class="comment"># 定制画布大小</span></div><div class="line">canvas_big.add_supercell(expanded_supercell)</div><div class="line">canvas_big.draw()</div><div class="line">canvas_big.figure</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/5x5-grid.png" alt=""></p>
+<p>是不是很直观和简单呢？</p>
+<h3 id="绘制三维网格"><a href="#绘制三维网格" class="headerlink" title="绘制三维网格"></a>绘制三维网格</h3><p>绘制三维网格，catplot中我都写了与二维绘制中相对应的类和接口，这里就不赘述了，可以参考项目中的examples: <a href="https://github.com/PytLab/catplot/tree/master/examples/grid_3d_examples/expand_3d_supercell.ipynb" target="_blank" rel="external">https://github.com/PytLab/catplot/tree/master/examples/grid_3d_examples/expand_3d_supercell.ipynb</a></p>
+<h3 id="是不是只能画正交的网格？"><a href="#是不是只能画正交的网格？" class="headerlink" title="是不是只能画正交的网格？"></a>是不是只能画正交的网格？</h3><p>怎么可能，虽然所有的坐标都是在分数坐标系中定义的，但是在SuperCell类中我添加了分数坐标到笛卡尔坐标的转化，从而可以使得catplot绘制任意的网格。来个例子就知道了:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建nodes和edges的代码与上面的部分完全相同</span></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># 但是我们在定义supercell的时候可以修改cell_vectors参数来是重复单元发生形变</span></div><div class="line">supercell = SuperCell2D(nodes, edges, cell_vectors=[[<span class="number">1.0</span>, <span class="number">0.0</span>],</div><div class="line">                                                    [<span class="number">0.5</span>, <span class="number">1.0</span>]])</div><div class="line">canvas.add_supercell(supercell)</div><div class="line">canvas.draw()</div><div class="line">canvas.figure.show()</div></pre></td></tr></table></figure></p>
+<p>来我们看看这时候的重复单元是什么样子:</p>
+<p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/2d-unitcell-cv.png" alt=""></p>
+<p>然后我们再将其进行一次3x3的扩展看看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">expanded_supercell = supercell.expand(<span class="number">3</span>, <span class="number">3</span>)</div><div class="line">canvas_big = Grid2DCanvas(figsize=(<span class="number">30</span>, <span class="number">20</span>), dpi=<span class="number">60</span>)</div><div class="line">canvas_big.add_supercell(expanded_supercell)</div><div class="line">canvas_big.draw()</div><div class="line">canvas_big.figure.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/3x3-grid.png" alt=""></p>
+<p>所以基本上现在所有类型的晶格都可以通过CatPlot来绘制了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本来catplot这个库最初是自己用matplotlib来绘图的小脚本，由于现在写论文的情况下需要灵活的绘制网格图，所以进行了重写，现在写成了一个封装了matplotlib的python库方便使用者可以快速搭建自己想要的网格图和绘制漂亮的energy profile。代码和具体使用的notebook格式的例子均开源并放到了github上 (<a href="https://github.com/PytLab/catplot" target="_blank" rel="external">https://github.com/PytLab/catplot</a> )，欢迎有需要的童鞋参考和使用。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 代码作品 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> matplotlib </tag>
+            
+            <tag> catalyst </tag>
+            
+            <tag> energy profile </tag>
+            
+            <tag> graph </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[优雅的在终端中编写Python]]></title>
       <url>http://pytlab.github.io/2017/03/26/%E4%BC%98%E9%9B%85%E7%9A%84%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%AD%E7%BC%96%E5%86%99Python/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最早我也只是在服务器上编辑文件的时候用用vim来改改程序，并没有把vim当做自己的主力编辑器。但是偶然的一次机会需要改一个奇葩的输入文件的格式，用了下Vim的宏录制，尝到了甜头，于是后面就开始用Vim来写程序了，虽然使用初期有些阻力，但时间久了就会发现，双手再也不用离开键盘，即使使用sublime这样的编辑器我也要改成使用Vim模式，Vim真的能让自己一思维的速度编辑文本(对我来说就是写程序了)。</p>
@@ -2876,9 +2947,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
             <tag> KMCLib </tag>
             
@@ -4162,11 +4233,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4394,9 +4465,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4543,13 +4614,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4602,11 +4673,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4654,11 +4725,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6352,9 +6423,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> loggers </tag>
-            
             <tag> python </tag>
+            
+            <tag> loggers </tag>
             
             <tag> emuch </tag>
             
@@ -6502,11 +6573,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
+            <tag> python </tag>
+            
             <tag> ecust </tag>
             
             <tag> loggers </tag>
-            
-            <tag> python </tag>
             
             <tag> 校园网 </tag>
             

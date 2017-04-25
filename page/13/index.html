@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib写一个2D/3D抽象网格和能量...<span></span></a></li>
+              
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
               
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
               
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
-              
-              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -130,9 +130,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
-              
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -211,6 +211,28 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-16 </div>
+			<div class="article-title"><a href="/2016/03/16/ios-base-对象没有公共复制构造函数/" >ios_base()对象没有公共复制构造函数</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>今天写C++ Primer Plus17章的最后一题，要构造一个Store函数符来将vector中的string对象写入文件，但是写好后编译器一直报错<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::ios_base::ios_base(<span class="keyword">const</span> <span class="built_in">std</span>::ios_base&amp;) is <span class="keyword">private</span></div></pre></td></tr></table></figure></p>
+<p>看样子是标准库里面的报错，我写的Store类如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// functor Store</span></div><div class="line"><span class="keyword">class</span> Store</div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">std</span>::ostream os;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Store(<span class="built_in">std</span>::ostream &amp; o) : os(o) &#123;&#125;</div><div class="line">    <span class="comment">// overloaded funtions</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp; s)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/03/16/ios-base-对象没有公共复制构造函数/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -333,28 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-08 </div>
-			<div class="article-title"><a href="/2016/03/08/python开发者微信公众号/" title=" 欢迎喜爱python和想学习python的同学关注此微信公众号，目前上面每天推送的技术类文章都是我帮忙挑选和整理的.&lt;br&gt;内容涉及科学计算、数据处理、web、机器学习。。。python能涉及的都会有（想想好像没有python涉及不到的啊），而且都是干货。">python开发者微信公众号</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p><img src="/assets/images/blog_img/2016-03-08-python开发者微信公众号/pythondev.png" alt=""></p>
-
-	
-	</div>
-  <a type="button" href="/2016/03/08/python开发者微信公众号/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -404,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib写一个2D/3D抽象网格和能量...</a>
+      </li>
+    
+      <li>
         <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
       </li>
     
@@ -419,10 +423,6 @@
         <a href="/2017/02/14/ECMAScript中的作用域链和闭包/" ><i class="fa fa-file-o"></i>ECMAScript中的作用域链和闭包</a>
       </li>
     
-      <li>
-        <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -433,7 +433,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">9</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
 		
@@ -457,48 +457,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">64</span></a></li>
+		   <li><a href="/tags">...<span class="badge">67</span></a></li>
 		 
 		</ul>
 	</div>

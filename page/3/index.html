@@ -87,6 +87,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib写一个2D/3D抽象网格和能量...<span></span></a></li>
+              
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
               
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
@@ -98,8 +100,6 @@
               <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
               
               <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
-              
-              <li><a href="/2017/02/05/ECMAScript对象属性小结/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript对象属性小结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -130,9 +130,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
-              
               <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -211,6 +211,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-11-26 </div>
+			<div class="article-title"><a href="/2016/11/26/使用VASPy快速处理VASP文件以及数据可视化/" >使用VASPy快速处理VASP文件以及数据可视化</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/11/26/使用VASPy快速处理VASP文件以及数据可视化/"><img src="/assets/images/features/python_logo.png" alt="使用VASPy快速处理VASP文件以及数据可视化"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文为作者对其开源项目<a href="https://github.com/PytLab/VASPy">VASPy</a>的说明文章。<a href="https://github.com/PytLab/VASPy">VASPy</a>是一个纯Python编写的处理VASP文件数据以及进行数据快速可视化的库，基于OOP的思想提供了操作VASP文件的友好的接口，可以帮助使用者快速编写处理VASP相关文件的脚本，以提升效率。VASPy的项目仍处于起步阶段，希望大家可以都贡献出自己的力量使其壮大起来。</p>
+<h2 id="VASP简介"><a href="#VASP简介" class="headerlink" title="VASP简介"></a>VASP简介</h2><p>对于广大做计算化学或者材料模拟的同学肯定听说过VASP的大名或者其科学研究与其息息相关。<br>VASP的全称是Vienna Ab-initio Simulation Package，是维也纳大学Hafner课题组开发的进行电子结构计算和量子力学-分子动力学模拟的软件包，目前是材料模拟和计算物质科学研究中最流行的商业软件之一。关于VASP的详细介绍可以参见其官方主页(<a href="http://www.vasp.at/">http://www.vasp.at/</a>)</p>
+	
+	</div>
+  <a type="button" href="/2016/11/26/使用VASPy快速处理VASP文件以及数据可视化/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -353,33 +380,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-08-21 </div>
-			<div class="article-title"><a href="/2016/08/21/MPI集合通信：N-N/" >MPI集合通信：N → N</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/08/21/MPI集合通信：N-N/"><img src="/assets/images/blog_img/2016-08-21-MPI集合通信：N-N/allgather.png" alt="MPI集合通信：N → N"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这里总结MPI集合通信中的 N-&gt;N 通信，多个进程将数据经过某种处理以后在发散到同组内的其他进程中，这些进程可以看成是其他 N-&gt;1 和 1-&gt;N 通信的组合。</p>
-<h3 id="MPI-Allgather"><a href="#MPI-Allgather" class="headerlink" title="MPI_Allgather"></a><code>MPI_Allgather</code></h3><p>此操作将分散在各个进程中的数据进行收集操作，然后再将收集到的向量广播到同组内的所有进程中，也就是先使用<code>MPI_Gather</code>，然后再使用<code>MPI_Bcast</code>。与<code>MPI_Gather</code>相同，收集到的数据顺序与进程号的顺序相同。<br>
-	
-	</div>
-  <a type="button" href="/2016/08/21/MPI集合通信：N-N/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -429,6 +429,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib写一个2D/3D抽象网格和能量...</a>
+      </li>
+    
+      <li>
         <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
       </li>
     
@@ -444,10 +448,6 @@
         <a href="/2017/02/14/ECMAScript中的作用域链和闭包/" ><i class="fa fa-file-o"></i>ECMAScript中的作用域链和闭包</a>
       </li>
     
-      <li>
-        <a href="/2017/02/08/ECMAScript中的OOP-继承/" ><i class="fa fa-file-o"></i>ECMAScript中的OOP-继承</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -458,7 +458,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">9</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
 		
@@ -482,48 +482,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">2</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">44</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">64</span></a></li>
+		   <li><a href="/tags">...<span class="badge">67</span></a></li>
 		 
 		</ul>
 	</div>
