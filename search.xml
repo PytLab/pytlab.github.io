@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[基于matplotlib写一个2D/3D抽象网格和能量曲线绘制程序]]></title>
+      <title><![CDATA[基于matplotlib的2D/3D抽象网格和能量曲线绘制程序]]></title>
       <url>http://pytlab.github.io/2017/04/25/%E5%9F%BA%E4%BA%8Ematplotlib%E5%86%99%E4%B8%80%E4%B8%AA2D-3D%E6%8A%BD%E8%B1%A1%E7%BD%91%E6%A0%BC%E5%92%8C%E8%83%BD%E9%87%8F%E6%9B%B2%E7%BA%BF%E7%BB%98%E5%88%B6%E7%A8%8B%E5%BA%8F/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写文章需要绘制一些一维的能量曲线(energy profile)和抽象的二维和三维的网格来表示晶体用来描述自己的算法，于是自己在之前的脚本的基础上进行了整改写成了只提供接口的Python库,基本思想就是封装了matplotlib中相关接口，方便快速搭建和定制自己的能量曲线和网格结构, 代码托管在GitHub上并上传至PyPI。对于研究晶体材料的同学如果想通过python来绘制简单的晶格图像可以参考一下。</p>
 <ul>
