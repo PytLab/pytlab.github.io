@@ -49,6 +49,22 @@ $ cd vaspy
 $ python setup.py install
 ```
 
+VASPy同时内部也使用了Mayavi进行可视化，如果需要使用mayavi推荐直接安装canopy集成环境，我不觉得会有很多人喜欢手动在各种平台上安装mayavi的那种酸爽是无与伦比的。
+
+下载好[canopy](https://store.enthought.com/downloads/#default)后，可以在配置文件中设置别名方便调用canopy中的python，jupyter等等
+
+``` shell
+alias canopy='/Users/<yourname>/Library/Enthought/Canopy/edm/envs/User/bin/python'
+alias canopy-pip='/Users/<yourname>/Library/Enthought/Canopy/edm/envs/User/bin/pip'
+alias canopy-ipython='/Users/<yourname>/Library/Enthought/Canopy/edm/envs/User/bin/ipython'
+alias canopy-jupyter='/Users/<yourname>/Library/Enthought/Canopy/edm/envs/User/bin/jupyter'
+```
+然后便可以将VASPy安装到canopy中
+
+``` shell
+canopy-pip install vaspy
+```
+
 ### VASPy包的文件结构
 ```
 VASPy/
