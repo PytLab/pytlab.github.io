@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐进记号总结<span></span></a></li>
+              
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
               
               <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
-              
-              <li><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-对象创建<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-06 </div>
+			<div class="article-title"><a href="/2016/04/06/初探SWIG对函数的封装/" title="对swig对C/C++函数的封装原理进行了初步的学习（内容很少，主要是避免让我写代码的时候陷入强迫症的苦恼。">初探SWIG对函数的封装</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/06/初探SWIG对函数的封装/"><img src="/assets/images/blog_img/2016-04-06-初探SWIG对函数的封装/funcwrap.png" alt="初探SWIG对函数的封装"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>看到KMCLib中在python中直接使用c++的函数，不禁又让我开始联想这是为什么，于是我就自己写个小测试看看swig是怎么封装函数的。</p>
+<p>先定义两个C++函数:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file: temp.h</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">showg</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/04/06/初探SWIG对函数的封装/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -353,33 +380,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-31 </div>
-			<div class="article-title"><a href="/2016/03/31/KMCLib中的Matcher/" title="KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，&lt;br&gt;并更新process中相关的信息，例如能发生反应的sites、总速率等">KMCLib中的Matcher</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/31/KMCLib中的Matcher/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Matcher"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这个类算是KMCLib中最后一个大类了，也回答了我在看代码之初有的很多疑问，例如如何更新匹配相关的信息，如何更新事件列表等。<br>这个类是没有成员数据的，可以把<code>Matcher</code>类看作是与匹配相关的函数的封装。</p>
-<p>但是在头文件中却定义了两个相关的结构来存储操作信息：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// A minimal struct for representing a task with a rate.</span></div><div class="line"><span class="keyword">struct</span> RateTask</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">int</span> process;</div><div class="line">    <span class="keyword">double</span> rate;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/// A minimal struct for representing a remove task.</span></div><div class="line"><span class="keyword">struct</span> RemoveTask</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">int</span> process;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/03/31/KMCLib中的Matcher/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -429,6 +429,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐进记号总结</a>
+      </li>
+    
+      <li>
         <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib的2D/3D抽象网格和能量曲线...</a>
       </li>
     
@@ -444,10 +448,6 @@
         <a href="/2017/02/16/一本不错的MPI教程/" ><i class="fa fa-file-o"></i>推荐一本不错的MPI教程</a>
       </li>
     
-      <li>
-        <a href="/2017/02/14/ECMAScript中的作用域链和闭包/" ><i class="fa fa-file-o"></i>ECMAScript中的作用域链和闭包</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -460,7 +460,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">79</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">80</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -482,48 +482,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">44</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">44</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">67</span></a></li>
+		   <li><a href="/tags">...<span class="badge">69</span></a></li>
 		 
 		</ul>
 	</div>

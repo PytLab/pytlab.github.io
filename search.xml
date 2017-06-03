@@ -4,6 +4,91 @@
   
     
     <entry>
+      <title><![CDATA[算法分析中的渐进记号总结]]></title>
+      <url>http://pytlab.github.io/2017/06/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%AD%E7%9A%84%E6%B8%90%E8%BF%9B%E8%AE%B0%E5%8F%B7%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<p>最近在看算导决定抽空把算法基础在夯实一遍, 算法相关的实现代码时不时会丢到<a href="https://github.com/PytLab/ALGO" target="_blank" rel="external">GitHub</a>上，主要以C++实现，也会有相应的Python和Javascript的实现。</p>
+<p>在这里，作为算法的渐进分析的标准方法之一，我对几种渐进记号进行下总结.</p>
+<h2 id="渐进记号"><a href="#渐进记号" class="headerlink" title="渐进记号"></a>渐进记号</h2><p>所有的渐进记号都表示一个函数的集合.</p>
+<a id="more"></a>
+<h3 id="Theta-记号"><a href="#Theta-记号" class="headerlink" title="$\Theta$ 记号"></a>$\Theta$ 记号</h3><p>$\Theta$ 记号表示一个函数的渐进紧确界，同时包含了渐进上界和渐进下界。</p>
+<p>通常对于$\Theta$ 的一种非形式化的概念，我们经常通过去掉低阶项并忽略最高项的系数。</p>
+<p>来看下他的严格定义, 对于一个给定的函数$g(n)$, 我们用$\Theta(g(n))$ 表示这样的一个函数集合:</p>
+<blockquote>
+<p>$\Theta(g(n)) = \{f(n):$ 存在正常量 $c_{1}$、 $c_{2}$ 和 $n_{0}$, 使得对所有 $n &gt; n_{0}$, 有 $0 \leq c_{1}g(n) \leq f(n) \leq c_{2}g(n)\}$</p>
+</blockquote>
+<h3 id="O-记号"><a href="#O-记号" class="headerlink" title="$O$ 记号"></a>$O$ 记号</h3><p>$O$ 记号是一个比 $\Theta$ 记号更弱的概念，他只表示一个函数的渐进上界, 也就是最坏的运行时间。</p>
+<p>对于一个给定的函数$g(n)$, 我们用$O(g(n))$ 表示这样的一个函数集合:</p>
+<blockquote>
+<p>$O(g(n)) = \{f(n): $ 存在正常量 $c$和$n_{0}$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq f(n) \leq cg(n) \}$</p>
+</blockquote>
+<p>有时候$O$记号非形式化的表示一个函数的渐进紧确界，也就是$\Theta$记号表示的集合, 这也是为什么有时候看到$n = O(n^{2})$会感觉不对.</p>
+<h3 id="Omega-记号"><a href="#Omega-记号" class="headerlink" title="$\Omega$ 记号"></a>$\Omega$ 记号</h3><p>类似 $O$ 记号，$\Omega$ 记号表示的是一个函数的渐进下界，也就是最好的运行时间</p>
+<p>对于一个给定的函数$g(n)$, 我们用$\Omega(g(n))$ 表示这样的一个函数集合:</p>
+<blockquote>
+<p>$\Omega(g(n)) = \{f(n): $ 存在正常量 $c$和$n_{0}$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq cg(n) \leq f(n) \}$</p>
+</blockquote>
+<h3 id="o-记号"><a href="#o-记号" class="headerlink" title="$o$ 记号"></a>$o$ 记号</h3><p>$O$ 记号表示的是一个函数的渐进上界，但是可能是渐进紧确界也可能不是，例如$3n^{2} = O(n^{2})$ 中 $O$ 表示的就是紧确上界，而 $n = O(n^{2})$ 中的 $O(n^{2})$ 便不是紧确上界. $o$ 记号就表示非紧确界的情况, 即 $2n = o(n^{2})$ 但是 $2n^{2} \neq o(n^{2})$ </p>
+<p>写下定义吧, 对于一个给定的函数 $g(n)$, 我们用 $o(g(n))$ 表示这样一个函数集合:</p>
+<blockquote>
+<p>$o(g(n)) = \{f(n):$ 对<strong>任意常量</strong> $c &gt; 0$, 存在常量 $n_{0}$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq f(n) \leq cg(n)\}$</p>
+</blockquote>
+<p>直观上来看，在 $o$ 记号中, 当 $n$ 趋近于无穷大时， 函数 $f(n)$ 的值会远小于 $g(n)$ 的值, 即</p>
+<p>$${\lim_{x \to \infty}} \frac{f(n)}{g(n)} = 0$$</p>
+<h3 id="omega-记号"><a href="#omega-记号" class="headerlink" title="$\omega$ 记号"></a>$\omega$ 记号</h3><p>类似 $o$ 与 $O$ 的关系类似, $\omega$ 记号用来表示一个非渐进紧确下界。 它的定义:</p>
+<blockquote>
+<p>$\omega(g(n)) = \{f(n): $ 对<strong>任意正常量</strong> $c &gt; 0$, 存在常量 $n_{0} &gt; 0$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq cg(n) \leq f(n) \}$</p>
+</blockquote>
+<p>类似 $o$ 记号， $\omega$ 记号也有</p>
+<p>$${\lim_{x \to \infty}} \frac{g(n)}{f(n)} = 0$$</p>
+<h2 id="渐进记号的比较"><a href="#渐进记号的比较" class="headerlink" title="渐进记号的比较"></a>渐进记号的比较</h2><p>假定 $f(n)$ 和 $g(n)$ 都渐进为正.</p>
+<h3 id="传递性"><a href="#传递性" class="headerlink" title="传递性"></a>传递性</h3><ul>
+<li>$f(n) = \Theta(g(n))$ 且 $g(n) = \Theta(h(n))$ 则 $f(n) = \Theta(h(n))$</li>
+<li>$f(n) = O(g(n))$ 且 $g(n) = O(h(n))$ 则 $f(n) = O(h(n))$</li>
+<li>$f(n) = \Omega(g(n))$ 且 $g(n) = \Omega(h(n))$ 则 $f(n) = \Omega(h(n))$</li>
+<li>$f(n) = o(g(n))$ 且 $g(n) = o(h(n))$ 则 $f(n) = o(h(n))$</li>
+<li>$f(n) = \omega(g(n))$ 且 $g(n) = \omega(h(n))$ 则 $f(n) = \omega(h(n))$</li>
+</ul>
+<h3 id="自反性"><a href="#自反性" class="headerlink" title="自反性"></a>自反性</h3><ul>
+<li>$f(n) = \Theta(f(n))$</li>
+<li>$f(n) = O(f(n))$</li>
+<li>$f(n) = \Omega(f(n))$</li>
+</ul>
+<h3 id="对称性"><a href="#对称性" class="headerlink" title="对称性"></a>对称性</h3><ul>
+<li>$f(n) = \Theta(g(n))$ 当且仅当 $g(n) = \Theta(f(n))$</li>
+</ul>
+<h3 id="转置对称性"><a href="#转置对称性" class="headerlink" title="转置对称性"></a>转置对称性</h3><ul>
+<li>$f(n) = O(g(n))$ 当且仅当 $g(n) = \Omega(f(n))$</li>
+<li>$f(n) = o(g(n))$ 当且仅当 $g(n) = \omega(f(n))$</li>
+</ul>
+<h3 id="渐进比较和实数比较的类比"><a href="#渐进比较和实数比较的类比" class="headerlink" title="渐进比较和实数比较的类比"></a>渐进比较和实数比较的类比</h3><ul>
+<li>$f(n) = \Theta(g(n))$ 类似于 $a = b$, $f(n)$ 渐进等于 $g(n)$</li>
+<li>$f(n) = O(g(n))$ 类似于 $a \leq b$, $f(n)$ 渐进小于等于 $g(n)$</li>
+<li>$f(n) = \Omega(g(n))$ 类似于 $a \geq b$, $f(n)$ 渐进大于等于 $g(n)$</li>
+<li>$f(n) = o(g(n))$ 类似于 $a &lt; b$, $f(n)$ 渐进小于 $g(n)$</li>
+<li>$f(n) = \omega(g(n))$ 类似于 $a &gt; b$, $f(n)$ 渐进大于 $g(n)$</li>
+</ul>
+<h3 id="三分性-不一定成立"><a href="#三分性-不一定成立" class="headerlink" title="三分性 不一定成立"></a>三分性 <strong>不一定成立</strong></h3><p>对于值会来回摆动的函数三分性便不成立，例如:</p>
+<p>$n^{1+sin(n)} \neq O(n)$ 且 $n^{1+sin(n)} \neq \Omega(n)$</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习小结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithms </tag>
+            
+            <tag> 渐进记号 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[基于matplotlib的2D/3D抽象网格和能量曲线绘制程序]]></title>
       <url>http://pytlab.github.io/2017/04/25/%E5%9F%BA%E4%BA%8Ematplotlib%E5%86%99%E4%B8%80%E4%B8%AA2D-3D%E6%8A%BD%E8%B1%A1%E7%BD%91%E6%A0%BC%E5%92%8C%E8%83%BD%E9%87%8F%E6%9B%B2%E7%BA%BF%E7%BB%98%E5%88%B6%E7%A8%8B%E5%BA%8F/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写文章需要绘制一些一维的能量曲线(energy profile)和抽象的二维和三维的网格来表示晶体用来描述自己的算法，于是自己在之前的脚本的基础上进行了整改写成了只提供接口的Python库,基本思想就是封装了matplotlib中相关接口，方便快速搭建和定制自己的能量曲线和网格结构, 代码托管在GitHub上并上传至PyPI。对于研究晶体材料的同学如果想通过python来绘制简单的晶格图像可以参考一下。</p>
@@ -2952,9 +3037,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> Monte Carlo </tag>
-            
             <tag> 学术 </tag>
+            
+            <tag> Monte Carlo </tag>
             
             <tag> KMCLib </tag>
             
@@ -4238,11 +4323,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -4470,9 +4555,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> kMC </tag>
-            
             <tag> 学术 </tag>
+            
+            <tag> kMC </tag>
             
         </tags>
         
@@ -4619,13 +4704,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -4678,11 +4763,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -4730,11 +4815,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -6428,9 +6513,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> loggers </tag>
+            
+            <tag> python </tag>
             
             <tag> emuch </tag>
             
@@ -6578,11 +6663,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> ecust </tag>
             
             <tag> loggers </tag>
+            
+            <tag> python </tag>
             
             <tag> 校园网 </tag>
             
