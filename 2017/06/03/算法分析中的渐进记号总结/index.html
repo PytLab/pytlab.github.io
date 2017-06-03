@@ -3,7 +3,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>算法分析中的渐进记号总结 | PytLab</title>
+  <title>算法分析中的渐近记号总结 | PytLab</title>
   <meta name="author" content="PytLab">
   
   <meta name="description" content="Personal Blog of ShaoZhengjiang">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="算法分析中的渐进记号总结"/>
+  <meta property="og:title" content="算法分析中的渐近记号总结"/>
   <meta property="og:site_name" content="PytLab"/>
 
   
@@ -89,7 +89,7 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐进记号总结<span></span></a></li>
+              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
@@ -199,7 +199,7 @@
 
 	
 		<div class="page-header">		
-			<h1> 算法分析中的渐进记号总结</h1>
+			<h1> 算法分析中的渐近记号总结</h1>
 		</div>		
 	
 
@@ -217,40 +217,40 @@
 	  		
 
 	  <p>最近在看算导决定抽空把算法基础在夯实一遍, 算法相关的实现代码时不时会丢到<a href="https://github.com/PytLab/ALGO" target="_blank" rel="external">GitHub</a>上，主要以C++实现，也会有相应的Python和Javascript的实现。</p>
-<p>在这里，作为算法的渐进分析的标准方法之一，我对几种渐进记号进行下总结.</p>
-<h2 id="渐进记号"><a href="#渐进记号" class="headerlink" title="渐进记号"></a>渐进记号</h2><p>所有的渐进记号都表示一个函数的集合.</p>
+<p>在这里，作为算法的渐近分析的标准方法之一，对几种渐近记号进行下总结.</p>
+<h2 id="渐近记号"><a href="#渐近记号" class="headerlink" title="渐近记号"></a>渐近记号</h2><p>所有的渐近记号都表示一个函数的集合.</p>
 <a id="more"></a>
-<h3 id="Theta-记号"><a href="#Theta-记号" class="headerlink" title="$\Theta$ 记号"></a>$\Theta$ 记号</h3><p>$\Theta$ 记号表示一个函数的渐进紧确界，同时包含了渐进上界和渐进下界。</p>
-<p>通常对于$\Theta$ 的一种非形式化的概念，我们经常通过去掉低阶项并忽略最高项的系数。</p>
+<h3 id="Theta-记号"><a href="#Theta-记号" class="headerlink" title="$\Theta$ 记号"></a>$\Theta$ 记号</h3><p>$\Theta$ 记号表示一个函数的渐近紧确界，同时包含了渐近上界和渐近下界。</p>
+<p>通常对于$\Theta$ 的一种非形式化的概念，我们通过去掉低阶项并忽略最高项的系数来获取其紧确界的函数形式。</p>
 <p>来看下他的严格定义, 对于一个给定的函数$g(n)$, 我们用$\Theta(g(n))$ 表示这样的一个函数集合:</p>
 <blockquote>
 <p>$\Theta(g(n)) = \{f(n):$ 存在正常量 $c_{1}$、 $c_{2}$ 和 $n_{0}$, 使得对所有 $n &gt; n_{0}$, 有 $0 \leq c_{1}g(n) \leq f(n) \leq c_{2}g(n)\}$</p>
 </blockquote>
-<h3 id="O-记号"><a href="#O-记号" class="headerlink" title="$O$ 记号"></a>$O$ 记号</h3><p>$O$ 记号是一个比 $\Theta$ 记号更弱的概念，他只表示一个函数的渐进上界, 也就是最坏的运行时间。</p>
+<h3 id="O-记号"><a href="#O-记号" class="headerlink" title="$O$ 记号"></a>$O$ 记号</h3><p>$O$ 记号是一个比 $\Theta$ 记号更弱的概念，他只表示一个函数的渐近上界, 也就是最坏的运行时间。</p>
 <p>对于一个给定的函数$g(n)$, 我们用$O(g(n))$ 表示这样的一个函数集合:</p>
 <blockquote>
 <p>$O(g(n)) = \{f(n): $ 存在正常量 $c$和$n_{0}$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq f(n) \leq cg(n) \}$</p>
 </blockquote>
-<p>有时候$O$记号非形式化的表示一个函数的渐进紧确界，也就是$\Theta$记号表示的集合, 这也是为什么有时候看到$n = O(n^{2})$会感觉不对.</p>
-<h3 id="Omega-记号"><a href="#Omega-记号" class="headerlink" title="$\Omega$ 记号"></a>$\Omega$ 记号</h3><p>类似 $O$ 记号，$\Omega$ 记号表示的是一个函数的渐进下界，也就是最好的运行时间</p>
+<p>有时候$O$记号非形式化的表示一个函数的渐近紧确界，也就是$\Theta$记号表示的集合, 这也是为什么有时候看到$n = O(n^{2})$会感觉不对.</p>
+<h3 id="Omega-记号"><a href="#Omega-记号" class="headerlink" title="$\Omega$ 记号"></a>$\Omega$ 记号</h3><p>类似 $O$ 记号，$\Omega$ 记号表示的是一个函数的渐近下界，也就是最好的运行时间</p>
 <p>对于一个给定的函数$g(n)$, 我们用$\Omega(g(n))$ 表示这样的一个函数集合:</p>
 <blockquote>
 <p>$\Omega(g(n)) = \{f(n): $ 存在正常量 $c$和$n_{0}$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq cg(n) \leq f(n) \}$</p>
 </blockquote>
-<h3 id="o-记号"><a href="#o-记号" class="headerlink" title="$o$ 记号"></a>$o$ 记号</h3><p>$O$ 记号表示的是一个函数的渐进上界，但是可能是渐进紧确界也可能不是，例如$3n^{2} = O(n^{2})$ 中 $O$ 表示的就是紧确上界，而 $n = O(n^{2})$ 中的 $O(n^{2})$ 便不是紧确上界. $o$ 记号就表示非紧确界的情况, 即 $2n = o(n^{2})$ 但是 $2n^{2} \neq o(n^{2})$ </p>
+<h3 id="o-记号"><a href="#o-记号" class="headerlink" title="$o$ 记号"></a>$o$ 记号</h3><p>$O$ 记号表示的是一个函数的渐近上界，但是可能是渐近紧确界也可能不是，例如$3n^{2} = O(n^{2})$ 中 $O$ 表示的就是紧确上界，而 $n = O(n^{2})$ 中的 $O(n^{2})$ 便不是紧确上界. $o$ 记号就表示非紧确界的情况, 即 $2n = o(n^{2})$ 但是 $2n^{2} \neq o(n^{2})$ </p>
 <p>写下定义吧, 对于一个给定的函数 $g(n)$, 我们用 $o(g(n))$ 表示这样一个函数集合:</p>
 <blockquote>
 <p>$o(g(n)) = \{f(n):$ 对<strong>任意常量</strong> $c &gt; 0$, 存在常量 $n_{0}$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq f(n) \leq cg(n)\}$</p>
 </blockquote>
 <p>直观上来看，在 $o$ 记号中, 当 $n$ 趋近于无穷大时， 函数 $f(n)$ 的值会远小于 $g(n)$ 的值, 即</p>
 <p>$${\lim_{x \to \infty}} \frac{f(n)}{g(n)} = 0$$</p>
-<h3 id="omega-记号"><a href="#omega-记号" class="headerlink" title="$\omega$ 记号"></a>$\omega$ 记号</h3><p>类似 $o$ 与 $O$ 的关系类似, $\omega$ 记号用来表示一个非渐进紧确下界。 它的定义:</p>
+<h3 id="omega-记号"><a href="#omega-记号" class="headerlink" title="$\omega$ 记号"></a>$\omega$ 记号</h3><p>类似 $o$ 与 $O$ 的关系类似, $\omega$ 记号用来表示一个非渐近紧确下界。 它的定义:</p>
 <blockquote>
 <p>$\omega(g(n)) = \{f(n): $ 对<strong>任意正常量</strong> $c &gt; 0$, 存在常量 $n_{0} &gt; 0$, 使得对所有 $n \geq n_{0}$, 有 $0 \leq cg(n) \leq f(n) \}$</p>
 </blockquote>
 <p>类似 $o$ 记号， $\omega$ 记号也有</p>
 <p>$${\lim_{x \to \infty}} \frac{g(n)}{f(n)} = 0$$</p>
-<h2 id="渐进记号的比较"><a href="#渐进记号的比较" class="headerlink" title="渐进记号的比较"></a>渐进记号的比较</h2><p>假定 $f(n)$ 和 $g(n)$ 都渐进为正.</p>
+<h2 id="渐近记号的比较"><a href="#渐近记号的比较" class="headerlink" title="渐近记号的比较"></a>渐近记号的比较</h2><p>假定 $f(n)$ 和 $g(n)$ 都渐近为正.</p>
 <h3 id="传递性"><a href="#传递性" class="headerlink" title="传递性"></a>传递性</h3><ul>
 <li>$f(n) = \Theta(g(n))$ 且 $g(n) = \Theta(h(n))$ 则 $f(n) = \Theta(h(n))$</li>
 <li>$f(n) = O(g(n))$ 且 $g(n) = O(h(n))$ 则 $f(n) = O(h(n))$</li>
@@ -270,12 +270,12 @@
 <li>$f(n) = O(g(n))$ 当且仅当 $g(n) = \Omega(f(n))$</li>
 <li>$f(n) = o(g(n))$ 当且仅当 $g(n) = \omega(f(n))$</li>
 </ul>
-<h3 id="渐进比较和实数比较的类比"><a href="#渐进比较和实数比较的类比" class="headerlink" title="渐进比较和实数比较的类比"></a>渐进比较和实数比较的类比</h3><ul>
-<li>$f(n) = \Theta(g(n))$ 类似于 $a = b$, $f(n)$ 渐进等于 $g(n)$</li>
-<li>$f(n) = O(g(n))$ 类似于 $a \leq b$, $f(n)$ 渐进小于等于 $g(n)$</li>
-<li>$f(n) = \Omega(g(n))$ 类似于 $a \geq b$, $f(n)$ 渐进大于等于 $g(n)$</li>
-<li>$f(n) = o(g(n))$ 类似于 $a &lt; b$, $f(n)$ 渐进小于 $g(n)$</li>
-<li>$f(n) = \omega(g(n))$ 类似于 $a &gt; b$, $f(n)$ 渐进大于 $g(n)$</li>
+<h3 id="渐近比较和实数比较的类比"><a href="#渐近比较和实数比较的类比" class="headerlink" title="渐近比较和实数比较的类比"></a>渐近比较和实数比较的类比</h3><ul>
+<li>$f(n) = \Theta(g(n))$ 类似于 $a = b$, $f(n)$ 渐近等于 $g(n)$</li>
+<li>$f(n) = O(g(n))$ 类似于 $a \leq b$, $f(n)$ 渐近小于等于 $g(n)$</li>
+<li>$f(n) = \Omega(g(n))$ 类似于 $a \geq b$, $f(n)$ 渐近大于等于 $g(n)$</li>
+<li>$f(n) = o(g(n))$ 类似于 $a &lt; b$, $f(n)$ 渐近小于 $g(n)$</li>
+<li>$f(n) = \omega(g(n))$ 类似于 $a &gt; b$, $f(n)$ 渐近大于 $g(n)$</li>
 </ul>
 <h3 id="三分性-不一定成立"><a href="#三分性-不一定成立" class="headerlink" title="三分性 不一定成立"></a>三分性 <strong>不一定成立</strong></h3><p>对于值会来回摆动的函数三分性便不成立，例如:</p>
 <p>$n^{1+sin(n)} \neq O(n)$ 且 $n^{1+sin(n)} \neq \Omega(n)$</p>
@@ -374,7 +374,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li> <li><a href="/tags/渐进记号/">渐进记号<span class="badge">1</span></a></li>
+  <li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li> <li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
 
     </ul>
 	</div>
@@ -385,7 +385,7 @@
 	
 	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
 	   <div id="toc" class="toc collapse in">
-			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#渐进记号"><span class="toc-article-text">渐进记号</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Theta-记号"><span class="toc-article-text">$\Theta$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#O-记号"><span class="toc-article-text">$O$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Omega-记号"><span class="toc-article-text">$\Omega$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#o-记号"><span class="toc-article-text">$o$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#omega-记号"><span class="toc-article-text">$\omega$ 记号</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#渐进记号的比较"><span class="toc-article-text">渐进记号的比较</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#传递性"><span class="toc-article-text">传递性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#自反性"><span class="toc-article-text">自反性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#对称性"><span class="toc-article-text">对称性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#转置对称性"><span class="toc-article-text">转置对称性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#渐进比较和实数比较的类比"><span class="toc-article-text">渐进比较和实数比较的类比</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#三分性-不一定成立"><span class="toc-article-text">三分性 不一定成立</span></a></li></ol></li></ol>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#渐近记号"><span class="toc-article-text">渐近记号</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Theta-记号"><span class="toc-article-text">$\Theta$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#O-记号"><span class="toc-article-text">$O$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Omega-记号"><span class="toc-article-text">$\Omega$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#o-记号"><span class="toc-article-text">$o$ 记号</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#omega-记号"><span class="toc-article-text">$\omega$ 记号</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#渐近记号的比较"><span class="toc-article-text">渐近记号的比较</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#传递性"><span class="toc-article-text">传递性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#自反性"><span class="toc-article-text">自反性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#对称性"><span class="toc-article-text">对称性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#转置对称性"><span class="toc-article-text">转置对称性</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#渐近比较和实数比较的类比"><span class="toc-article-text">渐近比较和实数比较的类比</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#三分性-不一定成立"><span class="toc-article-text">三分性 不一定成立</span></a></li></ol></li></ol>
 		</div>
 	
 	</div>
