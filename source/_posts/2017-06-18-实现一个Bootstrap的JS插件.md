@@ -1,5 +1,5 @@
 layout: post
-title: 实现一个Bootstrap的JS插件
+title: 编写Bootstrap插件的步骤
 date: 2017-06-18 10:13:30
 tags:
  - Bootstrap
