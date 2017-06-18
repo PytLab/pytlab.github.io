@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">实现一个Bootstrap的JS插件<span></span></a></li>
+              
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
               
               <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
-              
-              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-08-09 </div>
+			<div class="article-title"><a href="/2016/08/09/在VASPy中使用延迟初始化/" title="今天重构了VASPy中的OutCar类，使其能够正确操作标准VASP文件，并在其中使用了延迟初始化方法进行了一定的优化。">在VASPy中使用延迟初始化</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/08/09/在VASPy中使用延迟初始化/"><img src="/assets/images/features/python_logo.png" alt="在VASPy中使用延迟初始化"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>由于之前版本的VASPy是基于课题组修改过的VASP版本所写的，其中OUTCAR中的一些受力信息是标准VASP代码中不会输出的，但是当时为了省事我就直接拿课题组VASP输出的OUTCAR中的信息写了VASPy中的<code>OutCar</code>类。。。</p>
+<p>为了能让VASPy具有更好的通用性，今天特地重构了<code>OutCar</code>这个类使其能够操作标准VASP的OUTCAR文件。</p>
+<p>具体重构后的OutCar类代码的链接：<a href="https://github.com/PytLab/VASPy/blob/master/vaspy/iter.py"><span class="fa fa-github"></span> VASPy/iter.py at master · PytLab/VASPy</a></p>
+<p>由于OUTCAR是VASP所有输出的文件，自然会比较大，因此要操作这个文件就要特别的处理。</p>
+	
+	</div>
+  <a type="button" href="/2016/08/09/在VASPy中使用延迟初始化/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -366,38 +395,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-09 </div>
-			<div class="article-title"><a href="/2016/07/09/MPI学习-初识非阻塞通信/" title="对MPI非阻塞通信的初印象。">MPI学习--初识非阻塞通信</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/09/MPI学习-初识非阻塞通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--初识非阻塞通信"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="非阻塞通信与阻塞通信的区别"><a href="#非阻塞通信与阻塞通信的区别" class="headerlink" title="非阻塞通信与阻塞通信的区别"></a>非阻塞通信与阻塞通信的区别</h3><p>对于非阻塞通信的理解还是要理解他和阻塞通信的区别。这个区别书上扯了一大堆好像也没有用简单通俗的语言总结这两者之间的区别让人看着后面的例子一开始有点头晕。那其实区别很简单：</p>
-<h4 id="阻塞通信"><a href="#阻塞通信" class="headerlink" title="阻塞通信"></a>阻塞通信</h4><p>阻塞通信就是使用前面几篇博客里面的那些发送和接收函数，例如<code>MPI_Send()</code>和<code>MPI_Recv()</code>，这些函数有一个特点就是<strong>这些函数在通信完成之前是不会返回的，也就是阻塞</strong>。</p>
-<p>那什么时候是通信完成呢？</p>
-<ul>
-<li>对于<strong>发送端</strong>，所谓完成就是指发送缓冲区可以被安全的在使用，也就意味着之前发送缓冲区的数据已经被成功的转移走了，可能被MPI保存在其他地方，或者放到了接收端的缓冲区中。</li>
-<li>对于<strong>接收端</strong>，所谓的完成就是指数据已经成功的复制到了接受缓冲区中，接收进程可以放心使用缓冲区。</li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2016/07/09/MPI学习-初识非阻塞通信/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -447,6 +444,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>实现一个Bootstrap的JS插件</a>
+      </li>
+    
+      <li>
         <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐近记号总结</a>
       </li>
     
@@ -462,10 +463,6 @@
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
-      <li>
-        <a href="/2017/02/16/一本不错的MPI教程/" ><i class="fa fa-file-o"></i>推荐一本不错的MPI教程</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -478,7 +475,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">80</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">81</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -500,48 +497,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/渐进记号/">渐进记号<span class="badge">0</span></a></li>
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">70</span></a></li>
+		   <li><a href="/tags">...<span class="badge">71</span></a></li>
 		 
 		</ul>
 	</div>

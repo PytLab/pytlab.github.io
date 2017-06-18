@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">实现一个Bootstrap的JS插件<span></span></a></li>
+              
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
               
               <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
-              
-              <li><a href="/2017/02/08/ECMAScript中的OOP-继承/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的OOP-继承<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-02 </div>
+			<div class="article-title"><a href="/2016/04/02/初识代码封装工具SWIG/" title="在这里简单介绍下关于swig的使用方法，和大致工作方式。">初识代码封装工具SWIG</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/02/初识代码封装工具SWIG/"><img src="/assets/images/features/swig.png" alt="初识代码封装工具SWIG"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这不是我最早使用swig了，之前在写Kynetix的时候就使用了swig为python封装了C语言写的扩展模块。但是当时我对C++还不是很了解，对其中的一些概念也只是拿来直接用，没有理解到底是什么，为什么会有这种功能。所以昨天我又拿出了《python科学计算》这本书来温习了一下swig那一部分，果然对swig又有了新的认识。</p>
+<p>对swig真正全的使用都在swig的文档中有详细的介绍，而且由于swig支持很多种语言，例如java、python、Tcl等，因此这份文档内容相当的丰富。由于现在还没有很好的中文资源，所以现在只能默默的看英文文档了。</p>
+	
+	</div>
+  <a type="button" href="/2016/04/02/初识代码封装工具SWIG/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -362,35 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-24 </div>
-			<div class="article-title"><a href="/2016/03/24/KMCLib中的Configuration/" title="KMCLib中的Configuration用于描述附着在晶格之上的元素相关的信息&lt;br&gt;包括他们的坐标，索引，ID号等">KMCLib中的Configuration</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/24/KMCLib中的Configuration/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Configuration"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这个类由于在之前都有提及到，而且已经针对其中重要的成员函数进行了分析，在这里就不多扯了。<br>总之这个类是独立于晶格LatticeMap类的类型类，我还剩听佩服作者这样抽象的，这样如果后面我想加入多位点的话，也可以独立于晶格之外描述多位点的类，这样实现起来耦合量可以尽量减小。</p>
-<p>其实这里我一直有个疑问，不知道看完全部代码的时候能不能找到答案，就是在<code>performProcess()</code>函数中：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Configuration::performProcess(Process &amp; process,</div><div class="line">                                   <span class="keyword">const</span> <span class="keyword">int</span> site_index,</div><div class="line">                                   <span class="keyword">const</span> LatticeMap &amp; lattice_map)</div></pre></td></tr></table></figure></p>
-<p>根本就没有用到这个变量，为啥要传他进来？？</p>
-
-	
-	</div>
-  <a type="button" href="/2016/03/24/KMCLib中的Configuration/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>实现一个Bootstrap的JS插件</a>
+      </li>
+    
+      <li>
         <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐近记号总结</a>
       </li>
     
@@ -455,10 +457,6 @@
         <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
       </li>
     
-      <li>
-        <a href="/2017/02/16/一本不错的MPI教程/" ><i class="fa fa-file-o"></i>推荐一本不错的MPI教程</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -471,7 +469,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">80</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">81</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -493,48 +491,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">44</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
 			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
 			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">70</span></a></li>
+		   <li><a href="/tags">...<span class="badge">71</span></a></li>
 		 
 		</ul>
 	</div>

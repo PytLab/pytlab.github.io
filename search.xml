@@ -4,6 +4,62 @@
   
     
     <entry>
+      <title><![CDATA[实现一个Bootstrap的JS插件]]></title>
+      <url>http://pytlab.github.io/2017/06/18/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AABootstrap%E7%9A%84JS%E6%8F%92%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<p>最近在给自己的动力学模拟程序写个web界面，目前采用了bootstrap + flask的组合, 看了下bootstrap的一些组件样式和内置的插件的使用，在实现自己的网站的时候肯定会有自己的需求，于是需要开发或者扩展Bootstrap插件，这里就总结下开发Bootstrap插件的步骤。</p>
+<p>Bootstrap插件本质上就是一个jQuery插件,除了将插件函数绑定到jQuery的原型对象上以外，Bootstrap还需要遵守一些其他的额外的步骤方便维护和学习等。</p>
+<a id="more"></a>
+<h2 id="Bootstrap的JS插件的实现步骤"><a href="#Bootstrap的JS插件的实现步骤" class="headerlink" title="Bootstrap的JS插件的实现步骤"></a>Bootstrap的JS插件的实现步骤</h2><h3 id="1-声明立即调用函数"><a href="#1-声明立即调用函数" class="headerlink" title="1. 声明立即调用函数"></a>1. 声明立即调用函数</h3><p>这个就和开发jQuery插件相同，是为了在文档加载完之后执行回调函数, 类似<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>但是为了避免与其他库的命名冲突，Bootstrap里统一使用这种方式:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</div><div class="line">    <span class="string">"use restrict"</span>;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;)(jQuery)</div></pre></td></tr></table></figure></p>
+<h3 id="2-定义插件核心类以及相关的原型方法"><a href="#2-定义插件核心类以及相关的原型方法" class="headerlink" title="2. 定义插件核心类以及相关的原型方法"></a>2. 定义插件核心类以及相关的原型方法</h3><p>通过定义插件类，我们能够将选择器获取的元素以及操作元素的接口都封装到类中。这样Bootstrap插件实际上都是核心类的原型方法的调用。</p>
+<h3 id="3-定义jQuery插件并重设插件构造函数"><a href="#3-定义jQuery插件并重设插件构造函数" class="headerlink" title="3. 定义jQuery插件并重设插件构造函数"></a>3. 定义jQuery插件并重设插件构造函数</h3><p>这一步是在上一步已经定义好操作jQuery对象的接口的基础上的，我们定义一个jQuery插件(就是一个js函数绑定到jQuery原型<code>jQuery.fn</code>上)。执行这个插件的过程就是将第2步插件类实例化并绑定到相应元素和判断执行相应原型方法的过程。</p>
+<h3 id="4-防冲突处理"><a href="#4-防冲突处理" class="headerlink" title="4. 防冲突处理"></a>4. 防冲突处理</h3><p>毕竟是自定义插件，难免有可能会与空间中定义好的其他插件重名造成冲突，这个时候我们需要写一个函数可以将插件的名称还给原始的插件。这部分比较固定，一般是这样处理:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 例如我的插件名叫form_status</span></div><div class="line"></div><div class="line"><span class="comment">// 将初始的插件先保存下来</span></div><div class="line"><span class="keyword">var</span> old = $.fn.form_status</div><div class="line"></div><div class="line"><span class="comment">// 定义一个放冲突函数，可以将原始的插件对象归还回来</span></div><div class="line">$.fn.form_status.noConflict = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $.fn.form_status = old;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="5-绑定触发事件"><a href="#5-绑定触发事件" class="headerlink" title="5. 绑定触发事件"></a>5. 绑定触发事件</h3><p>在前面4步以后已经可以通过js直接调用插件实现相应效果，这里的事件绑定主要是针对Bootstrap的HTML声明式的事件触发。</p>
+<h2 id="插件开发实例"><a href="#插件开发实例" class="headerlink" title="插件开发实例"></a>插件开发实例</h2><p>这里我就以一个简单用于我自己web应用的一个现实表单状态现实的Bootstrap插件的开发为例子说明下。</p>
+<ol>
+<li><p>声明立即调用函数</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">; (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="string">"use restrict"</span>;</div><div class="line">&#125;)(<span class="built_in">window</span>.jQuery);</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义插件类</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Define FormStatus class */</span></div><div class="line"><span class="keyword">var</span> FormStatus = <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.$element = $(element);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">FormStatus.DEFAULTS = &#123;</div><div class="line">    <span class="attr">show</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">status</span>: <span class="string">'error'</span>,</div><div class="line">    <span class="attr">msg</span>: <span class="string">'Error!'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p> 这里主要是定义类构造函数，已经类属性用于存放默认参数。属性中包含相应的元素的jQuery对象，可以在原型方法中方便的操作相应的元素.</p>
+<p> 然后我们需要定义用于操作绑定元素的接口：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Prototype methods.</span></div><div class="line">FormStatus.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params">option</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> wrapper = <span class="string">'&lt;div class="form-group has-'</span> + option.status + <span class="string">'"&gt;&lt;/div&gt;'</span>;</div><div class="line">    <span class="keyword">this</span>.$element.wrap(wrapper);</div><div class="line">    <span class="keyword">var</span> msg_element = <span class="string">'&lt;label class="control-label"&gt;'</span> + option.msg + <span class="string">'&lt;/label&gt;'</span>;</div><div class="line">    <span class="keyword">this</span>.$element.before(msg_element);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">FormStatus.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params">option</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.$element.parent(<span class="string">'form-group'</span>)) &#123;</div><div class="line">        <span class="keyword">this</span>.$element.unwrap();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.$element.prev(<span class="string">'label.control-label'</span>).remove();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建form_status jQuery插件</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// New jQuery plugin.</span></div><div class="line"><span class="keyword">var</span> old = $.fn.form_status;</div><div class="line">$.fn.form_status = <span class="function"><span class="keyword">function</span>(<span class="params">option</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">        <span class="keyword">var</span> data = $<span class="keyword">this</span>.data(<span class="string">'bs.form_status'</span>);</div><div class="line"></div><div class="line">        <span class="comment">// Merge options.</span></div><div class="line">        <span class="keyword">var</span> options = $.extend(&#123;&#125;, FormStatus.DEFAULTS, option);</div><div class="line"></div><div class="line">        <span class="comment">// Bind FormStatus instance to element.</span></div><div class="line">        <span class="keyword">if</span> (!data) &#123;</div><div class="line">            $<span class="keyword">this</span>.data(<span class="string">'bs.form_status'</span>, (data = <span class="keyword">new</span> FormStatus(<span class="keyword">this</span>)));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Call corresponding prototype methods.</span></div><div class="line">        <span class="keyword">if</span> (options.remove) &#123;</div><div class="line">            data.remove(options);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (options.show) &#123;</div><div class="line">            data.show(options);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line">$.fn.form_status.Constructor = FormStatus;</div></pre></td></tr></table></figure>
+<p> 可以见到我们将插件类的实例绑定到了元素的<code>bs.form_status</code>属性中，当我们调用<code>$(selector).form_status(options)</code>的时候便会根据传入的参数选择调用原型方法。</p>
+</li>
+<li><p>防冲突处理</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// No conflict.</span></div><div class="line">$.fn.form_status.noConflict = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    $.fn.form_status = old;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>触发事件绑定<br> 由于我不是很喜欢HTML声明式调用，于是我就没有写相应的绑定事件，绑定会在js中单独编写就好了。</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是开发一个Bootstrap插件的过程。主要是如何编写插件类已经绑定jQuery插件，插件类是为了封装操作接口，jQuery插件用于调用接口操作元素对象。我自己开发的代码都放在GitHub上:<a href="https://github.com/PytLab/kynetix-webapp" target="_blank" rel="external">https://github.com/PytLab/kynetix-webapp</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习小结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> Bootstrap </tag>
+            
+            <tag> jQuery </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[算法分析中的渐近记号总结]]></title>
       <url>http://pytlab.github.io/2017/06/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%AD%E7%9A%84%E6%B8%90%E8%BF%9B%E8%AE%B0%E5%8F%B7%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>最近在看算导决定抽空把算法基础在夯实一遍, 算法相关的实现代码时不时会丢到<a href="https://github.com/PytLab/ALGO" target="_blank" rel="external">GitHub</a>上，主要以C++实现，也会有相应的Python和Javascript的实现。</p>
@@ -469,9 +525,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
         </tags>
         
@@ -545,9 +601,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> OOP </tag>
             
@@ -634,9 +690,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> OOP </tag>
             
@@ -694,9 +750,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> OOP </tag>
             
@@ -3037,9 +3093,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
             <tag> KMCLib </tag>
             
@@ -4323,11 +4379,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4555,9 +4611,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4704,13 +4760,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4763,11 +4819,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -4815,11 +4871,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
