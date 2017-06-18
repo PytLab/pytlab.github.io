@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[实现一个Bootstrap的JS插件]]></title>
+      <title><![CDATA[编写Bootstrap插件的步骤]]></title>
       <url>http://pytlab.github.io/2017/06/18/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AABootstrap%E7%9A%84JS%E6%8F%92%E4%BB%B6/</url>
       <content type="html"><![CDATA[<p>最近在给自己的动力学模拟程序写个web界面，目前采用了bootstrap + flask的组合, 看了下bootstrap的一些组件样式和内置的插件的使用，在实现自己的网站的时候肯定会有自己的需求，于是需要开发或者扩展Bootstrap插件，这里就总结下开发Bootstrap插件的步骤。</p>
 <p>Bootstrap插件本质上就是一个jQuery插件,除了将插件函数绑定到jQuery的原型对象上以外，Bootstrap还需要遵守一些其他的额外的步骤方便维护和学习等。</p>
