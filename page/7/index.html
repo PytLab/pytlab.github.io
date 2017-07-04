@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
+              
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
-              
-              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,36 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-06 </div>
+			<div class="article-title"><a href="/2016/07/06/MPI学习-并行系统和并行模式/" title="这里主要总结并行系统的分类和几种并行编程模式，都是些概念。">MPI学习--并行系统和并行模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/06/MPI学习-并行系统和并行模式/"><img src="/assets/images/features/parallel_computing.png" alt="MPI学习--并行系统和并行模式"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>当然现在的目的还是为了学习MPI，不过事实上MPI并不能完全的算作是理想意义上的并行编程模型，它只是提供了一种<strong>粗粒度</strong>的并行机制，而在进程的粒度上看，MPI程序仍是并行的。</p>
+<h2 id="并行系统"><a href="#并行系统" class="headerlink" title="并行系统"></a>并行系统</h2><h3 id="Flynn分类法-–-按指令-数据模式的分类"><a href="#Flynn分类法-–-按指令-数据模式的分类" class="headerlink" title="Flynn分类法 – 按指令/数据模式的分类"></a>Flynn分类法 – 按指令/数据模式的分类</h3><p>从处理器指令级别的并行来考察的话，Flynn依据指令和数据流的不同给出计算机的分类，例如SIMD和MIMD。<br>关于什么是单指令多数据流和多指令多数据流，我在<a href="https://www.quora.com/Parallel-Computing-What-is-the-difference-between-SIMD-and-MIMD">quora</a>上面搜到了个不错的解释：</p>
+<p><p></p>
+<blockquote>
+<p>SIMD and MIMD are types of parallel architectures identified in Flynn’s taxonomy, which basically says that computers have single (S) or multiple (M) streams of instructions (I) and data (D), leading to four types of computers: SISD, SIMD, MISD, and MIMD. Let’s skip SISD and MISD, since the question doesn’t ask about them, and neither is spectacularly interesting.<br>
+	
+	</div>
+  <a type="button" href="/2016/07/06/MPI学习-并行系统和并行模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -356,38 +386,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-22 </div>
-			<div class="article-title"><a href="/2016/05/22/Effective-Python-列表排序中的优先级/" title="在《Effective Python》的第15条 “了解如何在闭包里使用外围作用域中的变量”中，作者使用了一个排序的例子，使用了list的sort方法中的key参数，由于我之前从来没有这样使用过，所以特地去查了下怎么使用排序关键字（sort key）。">Effective Python -- 列表排序中的优先级</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/05/22/Effective-Python-列表排序中的优先级/"><img src="/assets/images/features/effectivepython.jpeg" alt="Effective Python -- 列表排序中的优先级"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="sort方法的参数"><a href="#sort方法的参数" class="headerlink" title="sort方法的参数"></a>sort方法的参数</h3><p>首先还是先看看python列表中<code>sort</code>方法的参数的作用。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">In [9]: a = ['123', 'sd', 'asdfgf']</div><div class="line"></div><div class="line">In [10]: a.sort??</div><div class="line">Docstring: L.sort(key=None, reverse=False) -&gt; None -- stable sort *IN PLACE*</div><div class="line">Type:      builtin_function_or_method</div></pre></td></tr></table></figure></p>
-<p>sort在python3中有两个可选参数<code>key</code>, <code>reverse</code>。<code>reverse</code>参数就不多说了，那么<code>key</code>要怎么用？</p>
-<p>官方文档中的解释为：</p>
-<blockquote>
-<p>key specifies a function of one argument that is used to extract a comparison key from each list element: <code>key=str.lower</code>. The default value is None (compare the elements directly).</p>
-</blockquote>
-<p>也就是说<code>key</code>需要接受一个函数对象，一个可以作为排序依据的对象，这个函数将作用域列表中的所有元素，然后根据这个函数的返回值进行排序。<br>
-	
-	</div>
-  <a type="button" href="/2016/05/22/Effective-Python-列表排序中的优先级/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -437,6 +435,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
+      </li>
+    
+      <li>
         <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
       </li>
     
@@ -452,10 +454,6 @@
         <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
       </li>
     
-      <li>
-        <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -466,7 +464,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">81</span></a></li>
 		
@@ -490,48 +488,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">45</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">44</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">71</span></a></li>
+		   <li><a href="/tags">...<span class="badge">77</span></a></li>
 		 
 		</ul>
 	</div>

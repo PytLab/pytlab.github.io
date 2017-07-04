@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
+              
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
-              
-              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-05 </div>
+			<div class="article-title"><a href="/2016/02/05/Cpp函数模板小结/" title="由于C++函数重载和模板函数是C++对C语言的扩展部分，属于学到的新知识，在这里进行下小结。">C++函数模板小结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载比较简单，主要就是掌握函数特征标(function signature)–函数的参数列表<br><strong>是特征标，而不是函数类型使得函数进行重载的。</strong></p>
+<p>C++编译器也是通过<strong>名称修饰(name decoration)</strong>来跟踪每一个重载函数的。</p>
+<blockquote>
+<p>名称修饰或者名称矫正， 是C++编译器根据函数原型中指定的形参类型对每一个函<strong>数名</strong>进行加密。</p>
+</blockquote>
+<div class="alert alert-info"><i class="fa fa-info"></i>  C++标准允许每个编译器设计人员以他们认为合适的方式实现名称修饰，因此由不同编译器创建的二进制模块（对象代码文件）很可无法正确的链接。也就是说，两个编译器将为同一个函数生成不同的修饰名称。名称的不同将使连接器无法将一个编译器生成的函数调用与另一个编译器生成的函数定义相匹配。在链接编译模块时，请确保所有对象文件或者库都是用同一个编译器生成的。如果有源代码，通常可以用自己的编译器重新编译源代码来相处链接错误。</div>
+<h2 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h2><p>函数模板就是使用泛型来定义函数，通过类型作为参数传给函数模板，编译器随后会生成相应类型版本的函数定义，供其他函数调用。<br>函数模板并<strong>不创建任何函数</strong>，而是告诉编译器如何定义函数。编译器检查所使用的参数类型，并生成相应的函数。最终的代码不包含任何模板，只包含了为程序生成的实际函数。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/05/Cpp函数模板小结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -333,33 +360,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-01-26 </div>
-			<div class="article-title"><a href="/2016/01/26/Cpp-Primer-Plus-6th-Answers/" title="C++ Primer Plus第6版课后习题答案">Cpp Primer Plus 6th Answers</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>因为接触了KMCLib，觉得有必要入C++的坑了，决定尽快把《C++ Primer Plus》这本书的课后练习敲一边以达到入门目的，当然我也不指望像这学期开始的时候一样花6天就把Fortran那本书看完了, 毕竟是个大坑我得轻轻的跳免得自己摔得很惨，代码会同步更新到GitHub<br><br><br>PS.由于对C比较熟悉前面几张和C重叠的部分习题就没有写，只写了数据读取和C不同的部分用来学习，所以前几章的习题并不完整。<br><br><br>代码地址: <a href="https://github.com/PytLab/Cpp-Primer-Plus">Cpp Primer Plus Answers</a></p>
-<p><strong>Table of Content</strong></p>
-<ul>
-<li><a href="https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch03">第三章 处理数据</a></li>
-<li><a href="https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch04">第四章 复合类型</a></li>
-<li><a href="https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch05">第五章 循环和关系表达式</a></li>
-<li><a href="https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch06">第六章 分支语句和逻辑运算符</a>
-	
-	</div>
-  <a type="button" href="/2016/01/26/Cpp-Primer-Plus-6th-Answers/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +409,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
+      </li>
+    
+      <li>
         <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
       </li>
     
@@ -424,10 +428,6 @@
         <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
       </li>
     
-      <li>
-        <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -438,7 +438,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">81</span></a></li>
 		
@@ -462,48 +462,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
 			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">71</span></a></li>
+		   <li><a href="/tags">...<span class="badge">77</span></a></li>
 		 
 		</ul>
 	</div>

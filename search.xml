@@ -4,6 +4,75 @@
   
     
     <entry>
+      <title><![CDATA[KinLab - 基于Flask+Bootstrap实现的用于微观动力学计算的web应用]]></title>
+      <url>http://pytlab.github.io/2017/07/04/KinLab-%E5%9F%BA%E4%BA%8EFlask-Bootstrap%E5%AE%9E%E7%8E%B0%E5%BE%AE%E8%A7%82%E5%8A%A8%E5%8A%9B%E5%AD%A6%E8%AE%A1%E7%AE%97%E7%9A%84web%E5%BA%94%E7%94%A8/</url>
+      <content type="html"><![CDATA[<p>前两周花了些时间给自己的动力学程序Kynetix和KMCLibX写了个web界面方便别人使用，目前程序完成了计算微观动力学的部分，并部署在了腾讯云上<a href="http://123.206.225.154:5000/" target="_blank" rel="external">http://123.206.225.154:5000/</a>, 程序命名为KinLab (<a href="https://github.com/PytLab/kynetix-webapp" target="_blank" rel="external">https://github.com/PytLab/kynetix-webapp</a>).</p>
+<p>目前KinLab主要包含四个部分:</p>
+<ol>
+<li>文件系统</li>
+<li>模型定义</li>
+<li>模型计算</li>
+<li>结算结果报告</li>
+</ol>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文件系统这里我模仿jupyternotebook写的，因为着急实现主要的计算过程，这里一些常用的文件操作还没实现(后续有时间会加上)，正常可以在任何路径下创建或者打开一个作业设置界面。<br><a id="more"></a><br><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/filestree.png" alt=""></p>
+<p>同时在文件系统中可以查看文本文件的内容，若是非文本文件则会进行下载，其中代码高亮使用了rainbow插件显示。</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/filecontent.png" alt=""></p>
+<h2 id="模型创建"><a href="#模型创建" class="headerlink" title="模型创建"></a>模型创建</h2><p>在创建模型的时候，程序会判断当前路径下是否已经存在模型相关的文件，如果存在则会打开现有的模型，否则创建一个空的设置面板。</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/openjob.png" alt=""></p>
+<p>模型设置面板的界面如下:</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/model-panel.png" alt=""></p>
+<h3 id="添加就基元反应方程式"><a href="#添加就基元反应方程式" class="headerlink" title="添加就基元反应方程式"></a>添加就基元反应方程式</h3><p>根据有无能垒的反应，可以自行选择，一下以包含能垒的反应式为例:</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/choose-rxn.png" alt=""></p>
+<p>创建基元反应的弹窗，为了能对基元反应进行检测，我特地把化学方程式解析的部分独立出来成一个模块rxn-parser.js(<a href="https://github.com/PytLab/rxn-parser.js" target="_blank" rel="external">https://github.com/PytLab/rxn-parser.js</a>)</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/rxn-modal.png" alt=""></p>
+<h3 id="反应式存档"><a href="#反应式存档" class="headerlink" title="反应式存档"></a>反应式存档</h3><p>通过单击<code>save</code>可以将方程式信息保存到当前路径下</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/rxn-save.png" alt=""></p>
+<h3 id="绘制energy-profile"><a href="#绘制energy-profile" class="headerlink" title="绘制energy-profile"></a>绘制energy-profile</h3><p>当选中一个或者多个基元反应的时候，便可以绘制交互式的energy profile</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/energy-profile.png" alt=""></p>
+<p>其他相关功能在使用时可以进行尝试</p>
+<h3 id="模型参数"><a href="#模型参数" class="headerlink" title="模型参数"></a>模型参数</h3><p>模型参数便是常用的求解微观动力学的参数，这里需要注意的是在添加好基元反应后，通过<code>Load</code>程序可以解析反应式中的物种并生成压强和总覆盖度表单。</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/load-pressure.png" alt=""></p>
+<h2 id="作业计算"><a href="#作业计算" class="headerlink" title="作业计算"></a>作业计算</h2><p>设置好模型后便可以<code>Run</code>了。程序会打开Running界面，并实时显示作业生成的日志</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/running.png" alt=""></p>
+<h2 id="生成结果报告"><a href="#生成结果报告" class="headerlink" title="生成结果报告"></a>生成结果报告</h2><p>报告会以图标和表格的方式显示:</p>
+<p>其中包括ODE积分的轨迹图，稳态覆盖度，TOF以及可逆度。</p>
+<p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/report.png" alt=""></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 代码作品 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> chemistry </tag>
+            
+            <tag> catalyst </tag>
+            
+            <tag> jQuery </tag>
+            
+            <tag> webapp </tag>
+            
+            <tag> javascript </tag>
+            
+            <tag> KinLab </tag>
+            
+            <tag> kynetix </tag>
+            
+            <tag> bootstrap </tag>
+            
+            <tag> flask </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[编写Bootstrap插件的步骤]]></title>
       <url>http://pytlab.github.io/2017/06/18/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AABootstrap%E7%9A%84JS%E6%8F%92%E4%BB%B6/</url>
       <content type="html"><![CDATA[<p>最近在给自己的动力学模拟程序写个web界面，目前采用了bootstrap + flask的组合, 看了下bootstrap的一些组件样式和内置的插件的使用，在实现自己的网站的时候肯定会有自己的需求，于是需要开发或者扩展Bootstrap插件，这里就总结下开发Bootstrap插件的步骤。</p>
@@ -525,9 +594,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
         </tags>
         
@@ -601,9 +670,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -690,9 +759,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -750,9 +819,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -3093,9 +3162,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> Monte Carlo </tag>
-            
             <tag> 学术 </tag>
+            
+            <tag> Monte Carlo </tag>
             
             <tag> KMCLib </tag>
             
@@ -4379,11 +4448,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -4611,9 +4680,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> kMC </tag>
-            
             <tag> 学术 </tag>
+            
+            <tag> kMC </tag>
             
         </tags>
         
@@ -4760,13 +4829,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -4819,11 +4888,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -4871,11 +4940,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         

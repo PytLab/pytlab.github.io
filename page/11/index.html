@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
+              
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
-              
-              <li><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" style="font-size: 15px; font-family: 微软雅黑">ECMAScript中的作用域链和闭包<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-25 </div>
+			<div class="article-title"><a href="/2016/03/25/消除蛋疼的-M/" >消除蛋疼的^M</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/25/消除蛋疼的-M/"><img src="/assets/images/features/git_logo.png" alt="消除蛋疼的^M"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>在github上面向别人的项目代码pull request的时候遇到了一个蛋疼的问题，问题都在一个字符上面就是<code>^M</code>，我的代码虽然只修改了几行代码，但是使用<code>git diff</code>的时候发现整个文件全部修改了。</p>
+<p><p><br>原因就是我修改的文件在每一行末尾都新增了一个<code>^M</code>字符，这样就导致每一行都和以前不同diff的时候自然就全部不同了，这样就非常的蛋疼，向别人项目中pull request的时候一整片红色和一整片绿色，别人包括我自己都不知道我到底是修改的哪一部分，感觉像是在捣乱的。。。像这样的pull request人家才不会给我merge呢。</p>
+<p><p><br>真是太不好意思了，诶…效果就是这蛋疼的下图：<br>
+	
+	</div>
+  <a type="button" href="/2016/03/25/消除蛋疼的-M/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -357,43 +385,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-20 </div>
-			<div class="article-title"><a href="/2016/03/20/KMCLib中的Process/" title="KMCLib C++部分的Process类, &lt;br&gt;此类主要用于描述KMC过程中局部反应发生的过程，同时也包含了该过程在全局网格中的统计结果，也就是匹配结果。">KMCLib中的Process</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><p>此类的成员数据均为<code>protected</code></p>
-<ul>
-<li><p><code>int process_number_;</code><br>  该过程ID号；</p>
-</li>
-<li><p><code>int range_;</code><br>  还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。</p>
-</li>
-<li><p><code>double rate_;</code><br>  这没什么好说的，反应速率；</p>
-</li>
-<li><p><code>double cutoff</code><br>  和坐标距离相关，数值上应该等于process涉及到的点到中心<br>  也就是process中第一个点）的最大距离，<br>  尚未弄清求作用；</p>
-</li>
-<li><p><code>std::vector&lt;int&gt; sites_;</code><br>  在整个网格中能和此反应匹配上的位点的向量；</p>
-</li>
-<li><p><code>std::vector&lt;MinimalMatchListEntry&gt; minimal_match_list_;</code><br>  用于存储每个位点信息的数据结构；</p>
-</li>
-<li><p><code>std::vector&lt;int&gt; affected_indices_;</code><br>  查看process前后每个位点类型是否相同<br>  如果不同则将0追加到其末尾<br>  (2016-03-31更新)<br>  这个变量主要用于更新process发生后确定发生process的index周围有哪些位置<strong>受影响</strong>,<br>  所谓受影响，也就是指由于该点由于参与了反应，元素的类型会发生变化，他的match_list也就相应的发生变化，也导致原本能够匹配的process不再能够在该点匹配或者原本不能匹配的process可以在该点匹配了。这个信息主要是用于Matcher类中。</p>
-</li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2016/03/20/KMCLib中的Process/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -443,6 +434,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
+      </li>
+    
+      <li>
         <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
       </li>
     
@@ -458,10 +453,6 @@
         <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
       </li>
     
-      <li>
-        <a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" ><i class="fa fa-file-o"></i>Python多进程并行编程实践-mpi4py的使用</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -472,7 +463,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">10</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">81</span></a></li>
 		
@@ -496,48 +487,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
 			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">24</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">1</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
 			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
 			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">71</span></a></li>
+		   <li><a href="/tags">...<span class="badge">77</span></a></li>
 		 
 		</ul>
 	</div>
