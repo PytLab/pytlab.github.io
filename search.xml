@@ -11,8 +11,7 @@
 <ol>
 <li>文件系统</li>
 <li>模型定义</li>
-<li>模型计算</li>
-<li>结算结果报告</li>
+<li>模型计算<br>生成结果报告</li>
 </ol>
 <h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文件系统这里我模仿jupyternotebook写的，因为着急实现主要的计算过程，这里一些常用的文件操作还没实现(后续有时间会加上)，正常可以在任何路径下创建或者打开一个作业设置界面。<br><a id="more"></a><br><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/filestree.png" alt=""></p>
 <p>同时在文件系统中可以查看文本文件的内容，若是非文本文件则会进行下载，其中代码高亮使用了rainbow插件显示。</p>
@@ -21,7 +20,7 @@
 <p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/openjob.png" alt=""></p>
 <p>模型设置面板的界面如下:</p>
 <p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/model-panel.png" alt=""></p>
-<h3 id="添加就基元反应方程式"><a href="#添加就基元反应方程式" class="headerlink" title="添加就基元反应方程式"></a>添加就基元反应方程式</h3><p>根据有无能垒的反应，可以自行选择，一下以包含能垒的反应式为例:</p>
+<h3 id="添加基元反应方程式"><a href="#添加基元反应方程式" class="headerlink" title="添加基元反应方程式"></a>添加基元反应方程式</h3><p>根据有无能垒的反应，可以自行选择，一下以包含能垒的反应式为例:</p>
 <p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/choose-rxn.png" alt=""></p>
 <p>创建基元反应的弹窗，为了能对基元反应进行检测，我特地把化学方程式解析的部分独立出来成一个模块rxn-parser.js(<a href="https://github.com/PytLab/rxn-parser.js" target="_blank" rel="external">https://github.com/PytLab/rxn-parser.js</a>)</p>
 <p><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/rxn-modal.png" alt=""></p>
