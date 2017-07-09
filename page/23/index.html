@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树<span></span></a></li>
+              
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
               
               <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
-              
-              <li><a href="/2017/02/16/一本不错的MPI教程/" style="font-size: 15px; font-family: 微软雅黑">推荐一本不错的MPI教程<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-06-14 </div>
+			<div class="article-title"><a href="/2015/06/14/动力学模型已兼容相对能量的输入文件/" >动力学模型已兼容相对能量的输入文件</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之前的动力学代码的数据文件我是在catmap的基础上进行改进，写了个tablemaker来生成一个csv文件，然后让要计算动力学的人把每个需要的物种的绝对能量输入到表格中，模型会在处理数据的时候自动计算其所有基元反应的能垒以及反应能量变化。之所有这样进行能量输入，是方便在后面能够基于每个物种的能量进行计算，比如在做出是猜测的时候进行Boltzmann分布，在进行敏感度分析时候能够针对每个中间态和过渡态进行分析。<br>但是之前有一次帮师姐计算它的反应，他只有相对能量。如下，</p>
+	
+	</div>
+  <a type="button" href="/2015/06/14/动力学模型已兼容相对能量的输入文件/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -335,36 +356,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-04-09 </div>
-			<div class="article-title"><a href="/2015/04/09/C-Notes--保护数组内容/" >C Notes -- 保护数组内容</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在C语言中，函数处理数组的时候，传递的是指向数组的指针。被调用函数接受数组指针后通过指针对数组进行操作，但是这样很容易不小心修改了数组本身的数值。这时候，利用const修饰符可以做到保护数组内容的效果。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ar[], <span class="keyword">int</span> n)</span> <span class="comment">/*函数原型*/</span></span></div></pre></td></tr></table></figure></p>
-<p>这个原型声明是告诉编译器，函数应当吧ar所指向的数组作为一个包含常量数据的数组对待，也就是指针ar是一个常量指针(指向常量的指针)。</p>
-<p>之所以在这里记录下这个是用来区分下普通指针和常量指针。<br><code>const</code>关键字可以创建数组常量，指针常量，指向常量的指针。<br>指针：</p>
-<ul>
-<li><p>普通指针，指向变量的指针</p>
-</li>
-<li><p>常量指针，指向常量的指针</p>
-</li>
-</ul>
-<p><strong>常量指针可以指向常量和变量，而且被指向的变量的值不能修改；<br>变量指针只能指向变量。</strong></p>
-	
-	</div>
-  <a type="button" href="/2015/04/09/C-Notes--保护数组内容/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -414,6 +405,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
       </li>
     
@@ -429,10 +424,6 @@
         <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib的2D/3D抽象网格和能量曲线...</a>
       </li>
     
-      <li>
-        <a href="/2017/03/26/优雅的在终端中编写Python/" ><i class="fa fa-file-o"></i>优雅的在终端中编写Python</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -445,7 +436,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">81</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">82</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -467,48 +458,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">77</span></a></li>
+		   <li><a href="/tags">...<span class="badge">79</span></a></li>
 		 
 		</ul>
 	</div>
