@@ -7,7 +7,7 @@
       <title><![CDATA[机器学习算法实践-决策树]]></title>
       <url>http://pytlab.github.io/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub(<a href="https://github.com/PytLab/MLBox)上" target="_blank" rel="external">https://github.com/PytLab/MLBox)上</a>.</p>
-<p>本文中我将一步步构建决策树，并通过MLiA的隐形眼镜处方数据构建并使用Graphviz可视化。</p>
+<p>本文中我将一步步通过MLiA的隐形眼镜处方数集构建决策树并使用Graphv将决策树可视化。</p>
 <a id="more"></a>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h3><p>决策树学习是根据数据的属性采用树状结构建立的一种决策模型，可以用此模型解决分类和回归问题。常见的算法包括 CART(Classification And Regression Tree), ID3, C4.5等。我们往往根据数据集来构建一棵决策树，他的一个重要任务就是为了数据中所蕴含的知识信息，并提取出一系列的规则，这些规则也就是树结构的创建过程就是机器学习的过程。</p>
 <h3 id="决策树的结构"><a href="#决策树的结构" class="headerlink" title="决策树的结构"></a>决策树的结构</h3><p>以下面一个简单的用于是否买电脑预测的决策树为例子，树中的内部节点表示某个属性，节点引出的分支表示此属性的所有可能的值，叶子节点表示最终的判断结果也就是类型。</p>
