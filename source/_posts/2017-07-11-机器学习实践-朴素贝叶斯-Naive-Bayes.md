@@ -283,3 +283,8 @@ print('Error Rate: {}'.format(error/len(test_classes)))
 ## 总结
 本文我们使用Python一步步实现了朴素贝叶斯分类器，并对短信进行了垃圾短信过滤，同样的数据我们同决策树的分类效果进行了简单的比较。
 
+## 参考
+- 《Machine Learning in Action》
+- [实例详解贝叶斯推理的原理](http://blog.jobbole.com/111399/)
+- [大道至简：朴素贝叶斯分类器](http://blog.jobbole.com/105367/)
+
