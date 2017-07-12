@@ -281,7 +281,7 @@ print('Error Rate: {}'.format(error/len(test_classes)))
 可见决策树的深度并不是很深，如果分类类型一多，估计深度增加上去决策树可能会有些麻烦。
 
 ## 总结
-本文我们使用Python一步步实现了朴素贝叶斯分类器，并对短信进行了垃圾短信过滤，同样的数据我们同决策树的分类效果进行了简单的比较。
+本文我们使用Python一步步实现了朴素贝叶斯分类器，并对短信进行了垃圾短信过滤，同样的数据我们同决策树的分类效果进行了简单的比较。本文相关代码实现:https://github.com/PytLab/MLBox/tree/master/naive_bayes 。决策树过滤垃圾短信的脚本在https://github.com/PytLab/MLBox/tree/master/decision_tree
 
 ## 参考
 - 《Machine Learning in Action》
