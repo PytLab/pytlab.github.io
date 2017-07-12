@@ -50,7 +50,7 @@
 <p>我们还是用Graphviz可视化看一下决策树都选取了那些词条作为判别标准(这时候决策树的好处就体现出来了)。</p>
 <p><img src="/assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-Naive-Bayes/sms_tree_2.gif" alt=""><br><img src="/assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-Naive-Bayes/sms_tree.gif" alt=""></p>
 <p>可见决策树的深度并不是很深，如果分类类型一多，估计深度增加上去决策树可能会有些麻烦。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文我们使用Python一步步实现了朴素贝叶斯分类器，并对短信进行了垃圾短信过滤，同样的数据我们同决策树的分类效果进行了简单的比较。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文我们使用Python一步步实现了朴素贝叶斯分类器，并对短信进行了垃圾短信过滤，同样的数据我们同决策树的分类效果进行了简单的比较。本文相关代码实现:<a href="https://github.com/PytLab/MLBox/tree/master/naive_bayes" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/naive_bayes</a> 。决策树过滤垃圾短信的脚本在<a href="https://github.com/PytLab/MLBox/tree/master/decision_tree" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/decision_tree</a></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>《Machine Learning in Action》</li>
 <li><a href="http://blog.jobbole.com/111399/" target="_blank" rel="external">实例详解贝叶斯推理的原理</a></li>
