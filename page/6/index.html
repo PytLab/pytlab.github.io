@@ -89,7 +89,9 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树<span></span></a></li>
+              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
+              
+              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
@@ -100,8 +102,6 @@
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
-              
-              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-16 </div>
+			<div class="article-title"><a href="/2016/07/16/记一次自己坑了自己的Python编译过程/" >记一次自己坑了自己的Python编译过程</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/16/记一次自己坑了自己的Python编译过程/"><img src="/assets/images/features/rihe.png" alt="记一次自己坑了自己的Python编译过程"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这两天把VASPy代码兼容了Python3，于是打算在IBM上用python3跑，结果发现IBM上没有python3，于是我就打算编译一下，本以为就几分钟的事，结果发生了奇怪的错误。。。最终找到原因，竟是自己坑了自己。</p>
+<p>就第一步编译<code>python.c</code>就直接报错了，我也是崩溃的</p>
+<p>　　　パ..パ<br>　　（　°Д°）・・・<br>＿＿（＿っ /￣￣￣￣￣/＿<br>　　　　＼/＿＿＿＿＿/ </p>
+	
+	</div>
+  <a type="button" href="/2016/07/16/记一次自己坑了自己的Python编译过程/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -366,32 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-07 </div>
-			<div class="article-title"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/" title="本篇通过一个小例子来总结下阻塞通信中的标准通信模式">MPI学习--阻塞通信之标准通信模式</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之标准通信模式"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="阻塞通信"><a href="#阻塞通信" class="headerlink" title="阻塞通信"></a>阻塞通信</h3><p>阻塞通信是指消息发送发的<code>send</code>调用需要接收方的<code>recv</code>调用的配合才可完成。即在发送的消息信封和数据被安全的“保存”起来之前，<code>send</code>函数的调用不会返回。<br>所谓的安全保存，就是指<code>send</code>调用可再次被执行而不会对上一次发送的数据带来任何破坏。<br>不同模式下所要求的“配合”程度也不同，尤其有的MPI环境下还要结合运行时环境本身提供的缓存机制综合考虑实际效果。<br>
-	
-	</div>
-  <a type="button" href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -441,7 +443,11 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树</a>
+        <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习实践-朴素贝叶斯(Naive Bayes)</a>
+      </li>
+    
+      <li>
+        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
       <li>
@@ -456,10 +462,6 @@
         <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐近记号总结</a>
       </li>
     
-      <li>
-        <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib的2D/3D抽象网格和能量曲线...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -472,7 +474,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">82</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">83</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -494,48 +496,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">47</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
 			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">79</span></a></li>
+		   <li><a href="/tags">...<span class="badge">80</span></a></li>
 		 
 		</ul>
 	</div>

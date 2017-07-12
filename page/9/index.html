@@ -89,7 +89,9 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树<span></span></a></li>
+              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
+              
+              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
@@ -100,8 +102,6 @@
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
-              
-              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-30 </div>
+			<div class="article-title"><a href="/2016/04/30/Windows下py2与py3共存的方法/" title="最近打算转移阵地至python3，但是有有老代码是python2的，于是就像在电脑上装两个版本的python和相应的ipython。下面记录一下处理方法。">Windows下py2与py3共存的方法</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/30/Windows下py2与py3共存的方法/"><img src="/assets/images/features/ipython.jpg" alt="Windows下py2与py3共存的方法"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>现在的情况是我已经在我的系统中安装了python2.7以及ipython和其他我经常用的库。现在我需要在安装python3.5的解释器以及相应版本的ipython。</p>
+<h3 id="1-安装python3-5-1"><a href="#1-安装python3-5-1" class="headerlink" title="1. 安装python3.5.1"></a>1. 安装python3.5.1</h3><p>直接去官网下载后安装到默认路径下。我安装的路径为：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:<span class="symbol">\U</span>sers<span class="symbol">\x</span>y<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\P</span>rograms<span class="symbol">\P</span>ython<span class="symbol">\P</span>ython35-32</div></pre></td></tr></table></figure>
+<p>在这路径下可以看到python3.5的所有，为了与之前的python2.7分开，我将python重命名为<code>python3.exe</code></p>
+	
+	</div>
+  <a type="button" href="/2016/04/30/Windows下py2与py3共存的方法/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -358,36 +387,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-04 </div>
-			<div class="article-title"><a href="/2016/04/04/SWIG中的指针/" title="由于C/C++大量的使用指针，因此如何处理指针是swig的一项重要的工作。">SWIG中的指针</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/04/SWIG中的指针/"><img src="/assets/images/features/swig.png" alt="SWIG中的指针"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>SWIG有一个简单规则就是</p>
-<blockquote>
-<p>Everything else is a pointer</p>
-</blockquote>
-<p>即除了基本的类型以外的其他数据类型，swig全部通过指针来处理。大致过程就是将操作C/C++中的结构，类，数组等是通过操作指向这些数据的指针操作，封装成python的数据也是一个包含指针信息的python对象。<br>C/C++的指针在python中是通过一个特殊的对象来保存的，在python中的变量保存的C/C++的数组以及类对象其实就是保存的这些指针对象，然后封装函数也是操作指针来操作真正的结构和数组等对象。</p>
-	
-	</div>
-  <a type="button" href="/2016/04/04/SWIG中的指针/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -437,7 +436,11 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树</a>
+        <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习实践-朴素贝叶斯(Naive Bayes)</a>
+      </li>
+    
+      <li>
+        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
       <li>
@@ -452,10 +455,6 @@
         <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐近记号总结</a>
       </li>
     
-      <li>
-        <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib的2D/3D抽象网格和能量曲线...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -468,7 +467,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">82</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">83</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -490,48 +489,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">46</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-		   <li><a href="/tags">...<span class="badge">79</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">47</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+		
+		   <li><a href="/tags">...<span class="badge">80</span></a></li>
 		 
 		</ul>
 	</div>

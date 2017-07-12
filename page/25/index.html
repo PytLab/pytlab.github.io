@@ -89,7 +89,9 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树<span></span></a></li>
+              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
+              
+              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
@@ -100,8 +102,6 @@
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
-              
-              <li><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" style="font-size: 15px; font-family: 微软雅黑">Python多进程并行编程实践-mpi4py的使用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-13 </div>
+			<div class="article-title"><a href="/2015/02/13/自动登录小木虫并获取每日金币的Python脚本/" >自动登录小木虫并获取每日金币的Python脚本</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>前段时间用<code>urllib, urllib2, cookielib</code>实现了自动登录校园网的脚本，类似发送请求的原理同样可以用在小木虫等类似的这种用PHP+MySQL实现的<a href="http://www.discuz.net/forum.php" title="discuz">discuz</a>论坛上面。于是就动手开始写了。<br>写这个脚本的最初目的是懒得每天手动到小木虫网站上点击领取金币了，而且我这种经常忘记这种事情，等要用到金币的时候就后悔莫及了，那干脆用python写一个开机自动领取金币的脚本更省事。<br>对了这个脚本实际上是上个登录校园网的一个分支，也就是LoggerBase的一个子类，一开始采用OO的方式果然是对的。。。<br>看了下小木虫的领取金币的页面的代码，获取小木虫金币的方式是通过POST方式向<a href="http://emuch.net/bbs/memcp.php?action=getcredit">http://emuch.net/bbs/memcp.php?action=getcredit</a>传表单信息。于是原理就可以是通过python向这个页面发送表单信息达到自动领取金币的效果。<br>
+	
+	</div>
+  <a type="button" href="/2015/02/13/自动登录小木虫并获取每日金币的Python脚本/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -379,7 +400,11 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树</a>
+        <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习实践-朴素贝叶斯(Naive Bayes)</a>
+      </li>
+    
+      <li>
+        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
       <li>
@@ -394,10 +419,6 @@
         <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐近记号总结</a>
       </li>
     
-      <li>
-        <a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" ><i class="fa fa-file-o"></i>基于matplotlib的2D/3D抽象网格和能量曲线...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -410,7 +431,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">82</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">83</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -432,48 +453,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">46</span></a></li>
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
 			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-		   <li><a href="/tags">...<span class="badge">79</span></a></li>
+		
+		   <li><a href="/tags">...<span class="badge">80</span></a></li>
 		 
 		</ul>
 	</div>

@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>机器学习实践-朴素贝叶斯(Naive Bayes) | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="机器学习实践-朴素贝叶斯(Naive Bayes)"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
+              
+              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
+              
+              <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
+              
+              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
+              
+              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
+              
+              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
+              
+              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 机器学习实践-朴素贝叶斯(Naive Bayes)</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="external">SMS垃圾短信语料库</a>中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>与决策树分类和k近邻分类算法不同，贝叶斯分类主要借助概率论的知识来通过比较提供的数据属于每个类型的条件概率, 将他们分别计算出来然后预测具有最大条件概率的那个类别是最后的类别。当然样本越多我们统计的不同类型的特征值分布就越准确，使用此分布进行预测则会更加准确。</p>
+<a id="more"></a>
+<h3 id="贝叶斯准则"><a href="#贝叶斯准则" class="headerlink" title="贝叶斯准则"></a>贝叶斯准则</h3><p>朴素贝叶斯分类器中最核心的便是贝叶斯准则，他用如下的公式表示:<br>$$<br>p(c|x) = \frac{p(x|c)p(c)}{p(x)}<br>$$</p>
+<p>此公式表示两个互换的条件条件概率之间的关系，他们通过联合概率关联起来，这样使得我们知道$p(B|A)$的情况下去计算$p(A|B)$成为了可能，而我们的贝叶斯模型便是通过贝叶斯准则去计算某个样本在不同类别条件下的条件概率并取具有最大条件概率的那个类型作为分类的预测结果。</p>
+<h3 id="使用条件概率来进行分类"><a href="#使用条件概率来进行分类" class="headerlink" title="使用条件概率来进行分类"></a>使用条件概率来进行分类</h3><p>这里我通俗的介绍下如何通过条件概率来进行分类，假设我们看到了一个人的背影，想通过他背影的一些特征(数据)来判断这个人的性别(类别)，假设其中涉及到的特征有: 是否是长发, 身高是否在170以上，腿细，是否穿裙子。当我们看到一个背影便会得到一个特征向量用来描述上述特征(1表示是，0表示否): $\omega = [0, 1, 1, 0]$</p>
+<p>贝叶斯分类便是比较如下两个条件概率:</p>
+<ol>
+<li>$p(男生 | \omega)$，$\omega$ 等于 $[0, 1, 1, 0]$ 的条件下此人是<strong>男生</strong>的概率</li>
+<li>$p(女生 | \omega)$，$\omega$ 等于 $[0, 1, 1, 0]$ 的条件下此人是<strong>女生</strong>的概率</li>
+</ol>
+<p>若$p(男生 | \omega) &gt; p(女生 | \omega)$, 则判定此人为男生, 否则为女生</p>
+<p>那么$p(男生 | \omega)$ 怎么求呢? 这就要上贝叶斯准则了</p>
+<p>根据贝叶斯准则，<br>$$<br>p(男生 | \omega) = \frac{p(\omega | 男生)p(男生)}{p(\omega)}<br>$$<br>写成好理解些的便是:<br>$$<br>p(男生 | 短发且身高在170以上且腿细且不穿裙子) = \frac{p(短发且身高在170以上且腿细且不穿裙子 | 男生)p(男生)}{p(短发且身高在170以上且腿细且不穿裙子)}<br>$$</p>
+<p>如果特征之间都是相互独立的(条件独立性假设)，那么便可以将上述条件概率改写成:</p>
+<p>$$<br>p(短发且身高在170以上且腿细且不穿裙子 | 男生) = p(短发 | 男生) * p(170以上 | 男生) * p(腿细 | 男生) * p(没穿裙子 | 男生)<br>$$</p>
+<p>这样我们就能计算当前这个背影属于男生和属于女生的条件概率了。</p>
+<h3 id="实现自己的贝叶斯分类器"><a href="#实现自己的贝叶斯分类器" class="headerlink" title="实现自己的贝叶斯分类器"></a>实现自己的贝叶斯分类器</h3><p>贝叶斯分类器实现起来非常的简单, 下面我以进行文本分类为目的使用Python实现一个朴素贝叶斯文本分类器.</p>
+<p>为了计算条件概率，我们需要计算各个特征的在不同类别下的条件概率以及类型的边际概率，这就需要我们通过大量的训练数据进行统计获取近似值了，这也就是我们训练我们朴素贝叶斯模型的过程.</p>
+<p>针对不同的文本，我们可以将所有出现的单词作为数据特征向量，统计每个文本中出现词条的数目(或者是否出现某个词条)作为数据向量。这样一个文本就可以处理成一个整数列表，并且长度是所有词条的数目，这个向量也许会很长，用于本文的数据集中的短信词条大概一共3000多个单词。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_doc_vector</span><span class="params">(words, vocabulary)</span>:</span></div><div class="line">    <span class="string">''' 根据词汇表将文档中的词条转换成文档向量</span></div><div class="line"></div><div class="line">    :param words: 文档中的词条列表</div><div class="line">    :type words: list of str</div><div class="line"></div><div class="line">    :param vocabulary: 总的词汇列表</div><div class="line">    :type vocabulary: list of str</div><div class="line"></div><div class="line">    :return doc_vect: 用于贝叶斯分析的文档向量</div><div class="line">    :type doc_vect: list of int</div><div class="line">    '''</div><div class="line">    doc_vect = [<span class="number">0</span>]*len(vocabulary)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocabulary:</div><div class="line">            idx = vocabulary.index(word)</div><div class="line">            doc_vect[idx] = <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> doc_vect</div></pre></td></tr></table></figure>
+<p>统计训练的过程的代码实现如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self, dataset, classes)</span>:</span></div><div class="line">    <span class="string">''' 训练朴素贝叶斯模型</span></div><div class="line"></div><div class="line">    :param dataset: 所有的文档数据向量</div><div class="line">    :type dataset: MxN matrix containing all doc vectors.</div><div class="line"></div><div class="line">    :param classes: 所有文档的类型</div><div class="line">    :type classes: 1xN list</div><div class="line"></div><div class="line">    :return cond_probs: 训练得到的条件概率矩阵</div><div class="line">    :type cond_probs: dict</div><div class="line"></div><div class="line">    :return cls_probs: 各种类型的概率</div><div class="line">    :type cls_probs: dict</div><div class="line">    '''</div><div class="line">    <span class="comment"># 按照不同类型记性分类</span></div><div class="line">    sub_datasets = defaultdict(<span class="keyword">lambda</span>: [])</div><div class="line">    cls_cnt = defaultdict(<span class="keyword">lambda</span>: <span class="number">0</span>)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> doc_vect, cls <span class="keyword">in</span> zip(dataset, classes):</div><div class="line">        sub_datasets[cls].append(doc_vect)</div><div class="line">        cls_cnt[cls] += <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="comment"># 计算类型概率</span></div><div class="line">    cls_probs = &#123;k: v/len(classes) <span class="keyword">for</span> k, v <span class="keyword">in</span> cls_cnt.items()&#125;</div><div class="line"></div><div class="line">    <span class="comment"># 计算不同类型的条件概率</span></div><div class="line">    cond_probs = &#123;&#125;</div><div class="line">    dataset = np.array(dataset)</div><div class="line">    <span class="keyword">for</span> cls, sub_dataset <span class="keyword">in</span> sub_datasets.items():</div><div class="line">        sub_dataset = np.array(sub_dataset)</div><div class="line">        <span class="comment"># Improve the classifier.</span></div><div class="line">        cond_prob_vect = np.log((np.sum(sub_dataset, axis=<span class="number">0</span>) + <span class="number">1</span>)/(np.sum(dataset) + <span class="number">2</span>))</div><div class="line">        cond_probs[cls] = cond_prob_vect</div><div class="line"></div><div class="line">    <span class="keyword">return</span> cond_probs, cls_probs</div></pre></td></tr></table></figure></p>
+<p>注意这里对于基本的条件概率直接相乘有两处改进:</p>
+<ol>
+<li>各个特征的概率初始值为1，分母上统计的某一类型的样本总数的初始值是1，这是为了避免如果有一个特征统计的概率为0，则联合概率也为零那自然没有什么意义了, 如果训练样本足够大时，并不会对比较结果产生影响.</li>
+<li>由于各个独立特征的概率都是小于1的数，累积起来必然会是个更小的书，这会遇到浮点数下溢的问题，因此在这里我们对所有的概率都取了对数处理，这样在保证不会有损失的情况下避免了下溢的问题。</li>
+</ol>
+<p>获取了统计概率信息后，我们便可以通过贝叶斯准则预测我们数据的类型了，这里我并没有直接计算每种情况的概率，而是通过统计得到的向量与数据向量进行内积获取条件概率的相对值并进行相对比较做出决策的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(self, doc_vect, cond_probs, cls_probs)</span>:</span></div><div class="line">    <span class="string">''' 使用朴素贝叶斯将doc_vect进行分类.</span></div><div class="line">    '''</div><div class="line">    pred_probs = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> cls, cls_prob <span class="keyword">in</span> cls_probs.items():</div><div class="line">        cond_prob_vect = cond_probs[cls]</div><div class="line">        pred_probs[cls] = np.sum(cond_prob_vect*doc_vect) + np.log(cls_prob)</div><div class="line">    <span class="keyword">return</span> max(pred_probs, key=pred_probs.get)</div></pre></td></tr></table></figure>
+<h3 id="进行短信分类"><a href="#进行短信分类" class="headerlink" title="进行短信分类"></a>进行短信分类</h3><p>已经构建好了朴素贝叶斯模型，我们就可以使用此模型来统计数据并用来预测了。这里我使用了<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="external">SMS垃圾短信语料库</a>中的垃圾短信数据, 并随机抽取90%的数据作为训练数据，剩下10%的数据作为测试数据来测试我们的贝叶斯模型预测的准确性。</p>
+<p>当然在建立模型前我们需要将数据处理成模型能够处理的格式:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">ENCODING = <span class="string">'ISO-8859-1'</span></div><div class="line">TRAIN_PERCENTAGE = <span class="number">0.9</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_doc_vector</span><span class="params">(words, vocabulary)</span>:</span></div><div class="line">    <span class="string">''' 根据词汇表将文档中的词条转换成文档向量</span></div><div class="line"></div><div class="line">    :param words: 文档中的词条列表</div><div class="line">    :type words: list of str</div><div class="line"></div><div class="line">    :param vocabulary: 总的词汇列表</div><div class="line">    :type vocabulary: list of str</div><div class="line"></div><div class="line">    :return doc_vect: 用于贝叶斯分析的文档向量</div><div class="line">    :type doc_vect: list of int</div><div class="line">    '''</div><div class="line">    doc_vect = [<span class="number">0</span>]*len(vocabulary)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocabulary:</div><div class="line">            idx = vocabulary.index(word)</div><div class="line">            doc_vect[idx] = <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> doc_vect</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_line</span><span class="params">(line)</span>:</span></div><div class="line">    <span class="string">''' 解析数据集中的每一行返回词条向量和短信类型.</span></div><div class="line">    '''</div><div class="line">    cls = line.split(<span class="string">','</span>)[<span class="number">-1</span>].strip()</div><div class="line">    content = <span class="string">','</span>.join(line.split(<span class="string">','</span>)[: <span class="number">-1</span>])</div><div class="line">    word_vect = [word.lower() <span class="keyword">for</span> word <span class="keyword">in</span> re.split(<span class="string">r'\W+'</span>, content) <span class="keyword">if</span> word]</div><div class="line">    <span class="keyword">return</span> word_vect, cls</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_file</span><span class="params">(filename)</span>:</span></div><div class="line">    <span class="string">''' 解析文件中的数据</span></div><div class="line">    '''</div><div class="line">    vocabulary, word_vects, classes = [], [], []</div><div class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>, encoding=ENCODING) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line">            <span class="keyword">if</span> line:</div><div class="line">                word_vect, cls = parse_line(line)</div><div class="line">                vocabulary.extend(word_vect)</div><div class="line">                word_vects.append(word_vect)</div><div class="line">                classes.append(cls)</div><div class="line">    vocabulary = list(set(vocabulary))</div><div class="line"></div><div class="line">    <span class="keyword">return</span> vocabulary, word_vects, classes</div></pre></td></tr></table></figure></p>
+<p>有了上面三个函数我们就可以直接将我们的文本转换成模型需要的数据向量，之后我们就可以划分数据集并将训练数据集给贝叶斯模型进行统计。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 训练数据 &amp; 测试数据</span></div><div class="line">ntest = int(len(classes)*(<span class="number">1</span>-TRAIN_PERCENTAGE))</div><div class="line"></div><div class="line">test_word_vects = []</div><div class="line">test_classes = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(ntest):</div><div class="line">    idx = random.randint(<span class="number">0</span>, len(word_vects)<span class="number">-1</span>)</div><div class="line">    test_word_vects.append(word_vects.pop(idx))</div><div class="line">    test_classes.append(classes.pop(idx))</div><div class="line"></div><div class="line">train_word_vects = word_vects</div><div class="line">train_classes = classes</div><div class="line"></div><div class="line">train_dataset = [get_doc_vector(words, vocabulary) <span class="keyword">for</span> words <span class="keyword">in</span> train_word_vects]</div></pre></td></tr></table></figure></p>
+<p>训练模型:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cond_probs, cls_probs = clf.train(train_dataset, train_classes)</div></pre></td></tr></table></figure></p>
+<p>剩下我们用测试数据来测试我们贝叶斯模型的预测准确度:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 测试模型</span></div><div class="line">error = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> test_word_vect, test_cls <span class="keyword">in</span> zip(test_word_vects, test_classes):</div><div class="line">    test_data = get_doc_vector(test_word_vect, vocabulary)</div><div class="line">    pred_cls = clf.classify(test_data, cond_probs, cls_probs)</div><div class="line">    <span class="keyword">if</span> test_cls != pred_cls:</div><div class="line">        print(<span class="string">'Predict: &#123;&#125; -- Actual: &#123;&#125;'</span>.format(pred_cls, test_cls))</div><div class="line">        error += <span class="number">1</span></div><div class="line"></div><div class="line">print(<span class="string">'Error Rate: &#123;&#125;'</span>.format(error/len(test_classes)))</div></pre></td></tr></table></figure></p>
+<p>随机测了四组，错误率分别为:0, 0.037, 0.015, 0. 平均错误率为1.3%</p>
+<p>测完了我们尝试下看看不同类型短信各个词条的概率分布是怎样的吧:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 绘制不同类型的概率分布曲线</span></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line"><span class="keyword">for</span> cls, probs <span class="keyword">in</span> cond_probs.items():</div><div class="line">    ax.scatter(np.arange(<span class="number">0</span>, len(probs)),</div><div class="line">               probs*cls_probs[cls],</div><div class="line">               label=cls,</div><div class="line">               alpha=<span class="number">0.3</span>)</div><div class="line">    ax.legend()</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="/assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-Naive-Bayes/distribution.png" alt=""></p>
+<h3 id="试试决策树"><a href="#试试决策树" class="headerlink" title="试试决策树"></a>试试决策树</h3><p>上一篇我们基于ID3算法实现了决策树，同样是分类问题，我们同样可以使用我们的文本数据来构建用于分类短信的决策树，当然唯一比较麻烦的地方在于如果按照与贝叶斯相同的向量作为数据，则属性可能会非常多，我们在构建决策树的时候每层树结构都是递归通过遍历属性根据信息增益来选取最佳属性进行树分裂的，这样很多的属性可能会对构建决策树这一过程来说会比较耗时.那我们就试试吧…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 生成决策树</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'sms_tree.pkl'</span>):</div><div class="line">    clf.create_tree(train_dataset, train_classes, vocabulary)</div><div class="line">    clf.dump_tree(<span class="string">'sms_tree.pkl'</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    clf.load_tree(<span class="string">'sms_tree.pkl'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 测试模型</span></div><div class="line">error = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> test_word_vect, test_cls <span class="keyword">in</span> zip(test_word_vects, test_classes):</div><div class="line">    test_data = get_doc_vector(test_word_vect, vocabulary)</div><div class="line">    pred_cls = clf.classify(test_data, feat_names=vocabulary)</div><div class="line">    <span class="keyword">if</span> test_cls != pred_cls:</div><div class="line">        print(<span class="string">'Predict: &#123;&#125; -- Actual: &#123;&#125;'</span>.format(pred_cls, test_cls))</div><div class="line">        error += <span class="number">1</span></div><div class="line"></div><div class="line">print(<span class="string">'Error Rate: &#123;&#125;'</span>.format(error/len(test_classes)))</div></pre></td></tr></table></figure>
+<p>随机测了两次，错误率分别为:0.09, 0.0</p>
+<p>效果还算不错</p>
+<p>我们还是用Graphviz可视化看一下决策树都选取了那些词条作为判别标准(这时候决策树的好处就体现出来了)。</p>
+<p><img src="/assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-Naive-Bayes/sms_tree_2.gif" alt=""><br><img src="/assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-Naive-Bayes/sms_tree.gif" alt=""></p>
+<p>可见决策树的深度并不是很深，如果分类类型一多，估计深度增加上去决策树可能会有些麻烦。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文我们使用Python一步步实现了朴素贝叶斯分类器，并对短信进行了垃圾短信过滤，同样的数据我们同决策树的分类效果进行了简单的比较。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/07/09/机器学习算法实践-决策树/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-07-11 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">83</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">47</span></a></li> <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">2</span></a></li> <li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#前言"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#正文"><span class="toc-article-text">正文</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#贝叶斯准则"><span class="toc-article-text">贝叶斯准则</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#使用条件概率来进行分类"><span class="toc-article-text">使用条件概率来进行分类</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#实现自己的贝叶斯分类器"><span class="toc-article-text">实现自己的贝叶斯分类器</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#进行短信分类"><span class="toc-article-text">进行短信分类</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#试试决策树"><span class="toc-article-text">试试决策树</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>
