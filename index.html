@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
+              
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
               
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
-              
-              <li><a href="/2017/03/26/优雅的在终端中编写Python/" style="font-size: 15px; font-family: 微软雅黑">优雅的在终端中编写Python<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-07-13 </div>
+			<div class="article-title"><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" >机器学习算法实践-Logistic回归与梯度上升算法(上)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/"><img src="/assets/images/blog_img/2017-07-13-机器学习算法实践-Logistic回归与梯度上升算法-上/logistic-regression.jpg" alt="机器学习算法实践-Logistic回归与梯度上升算法(上)"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于Logistic回归分类器我打算用两部分总结，第一部分主要介绍Logistic回归的理论相关的部分，因为这里涉及到通过似然函数建立Logistic回归模型以及使用梯度上升算法优化参数两个主要的内容, 感觉可能比较多, 不过对于学习过最优化方法, 概率论以及线性代数的基础内容童鞋来说，这部分也是很快就掌握得啦。第二部分主要总结Logistic回归模型的代码实现和模型训练以及测试等。</p>
+<h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><p>Logistic回归为概率型非线性回归模型, 是研究二值型输出分类的一种多变量分析方法。通过logistic回归我们可以将二分类的观察结果$y$与一些影响因素$[x_{1}, x_{2}, x_{3}, …]$ 建立起关系从而对某些因素条件下某个结果发生的概率进行估计并分类。</p>
+	
+	</div>
+  <a type="button" href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -356,36 +383,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-04-25 </div>
-			<div class="article-title"><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" >基于matplotlib的2D/3D抽象网格和能量曲线绘制程序</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/"><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/grid_3d.png" alt="基于matplotlib的2D/3D抽象网格和能量曲线绘制程序"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写文章需要绘制一些一维的能量曲线(energy profile)和抽象的二维和三维的网格来表示晶体用来描述自己的算法，于是自己在之前的脚本的基础上进行了整改写成了只提供接口的Python库,基本思想就是封装了matplotlib中相关接口，方便快速搭建和定制自己的能量曲线和网格结构, 代码托管在GitHub上并上传至PyPI。对于研究晶体材料的同学如果想通过python来绘制简单的晶格图像可以参考一下。</p>
-<ul>
-<li>GitHub地址: <a href="https://github.com/PytLab/catplot/">https://github.com/PytLab/catplot/</a></li>
-<li>PyPI地址: <a href="https://pypi.python.org/pypi/catplot/">https://pypi.python.org/pypi/catplot/</a></li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -435,6 +432,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
       </li>
     
@@ -450,10 +451,6 @@
         <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
       </li>
     
-      <li>
-        <a href="/2017/06/03/算法分析中的渐进记号总结/" ><i class="fa fa-file-o"></i>算法分析中的渐近记号总结</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -466,7 +463,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">83</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">84</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -488,48 +485,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">80</span></a></li>
+		   <li><a href="/tags">...<span class="badge">83</span></a></li>
 		 
 		</ul>
 	</div>
