@@ -11,8 +11,6 @@ feature: /assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-N
 toc: true
 ---
 
-### 相关阅读
-- [机器学习算法实践-决策树(Decision Tree)](http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/)
 
 ## 前言
 [上一篇](http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/)总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用[SMS垃圾短信语料库](http://www.esp.uem.es/jmgomez/smsspamcorpus/)中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。
@@ -290,4 +288,7 @@ print('Error Rate: {}'.format(error/len(test_classes)))
 - 《Machine Learning in Action》
 - [实例详解贝叶斯推理的原理](http://blog.jobbole.com/111399/)
 - [大道至简：朴素贝叶斯分类器](http://blog.jobbole.com/105367/)
+
+## 相关阅读
+- [机器学习算法实践-决策树(Decision Tree)](http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/)
 
