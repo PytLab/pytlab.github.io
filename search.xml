@@ -6,12 +6,7 @@
     <entry>
       <title><![CDATA[机器学习算法实践-Logistic回归与梯度上升算法(下)]]></title>
       <url>http://pytlab.github.io/2017/07/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8B/</url>
-      <content type="html"><![CDATA[<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
-<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">机器学习算法实践-决策树(Decision Tree)</a></li>
-<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/" target="_blank" rel="external">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
-<li><a href="http://pytlab.org/2017/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8A/" target="_blank" rel="external">机器学习算法实践-Logistic回归与梯度上升算法(上)</a></li>
-</ul>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇主要总结了Logistic回归模型建立的理论基础，主要包含模型似然函数的建立以及梯度上升算法的优化推导。本文在上文的基础上使用Python一步步实现一个Logistic回归分类器，并分别使用梯度上升和随机梯度上升算法实现，对二维数据点分类进行可视化，最后使用之前使用过的<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="external">SMS垃圾短信语料库</a>中的短信数据进行模型训练并对短信数据进行分类。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇主要总结了Logistic回归模型建立的理论基础，主要包含模型似然函数的建立以及梯度上升算法的优化推导。本文在上文的基础上使用Python一步步实现一个Logistic回归分类器，并分别使用梯度上升和随机梯度上升算法实现，对二维数据点分类进行可视化，最后使用之前使用过的<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="external">SMS垃圾短信语料库</a>中的短信数据进行模型训练并对短信数据进行分类。</p>
 <a id="more"></a>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><p>从文件中读取特征以及类别标签用于优化模型参数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span><span class="params">(filename)</span>:</span></div><div class="line">    dataset, labels = [], []</div><div class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line">            splited_line = [float(i) <span class="keyword">for</span> i <span class="keyword">in</span> line.strip().split(<span class="string">'\t'</span>)]</div><div class="line">            data, label = [<span class="number">1.0</span>] + splited_line[: <span class="number">-1</span>], splited_line[<span class="number">-1</span>]</div><div class="line">            dataset.append(data)</div><div class="line">            labels.append(label)</div><div class="line">    dataset = np.array(dataset)</div><div class="line">    labels = np.array(labels)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> dataset, labels</div></pre></td></tr></table></figure>
@@ -39,6 +34,11 @@
 <p><img src="/assets/images/blog_img/2017-07-15-机器学习算法实践-Logistic回归与梯度上升算法-下/error-rates.png" alt=""></p>
 <p>平均错误率为5.3%。可见我们的Logistic回归分类器也能较好的对垃圾短信文本进行识别。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了Logistic回归和相关的优化算法(梯度上升以及随机梯度上升)的理论和代码实现，并对实现的模型进行了训练和测试。</p>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h2><ul>
+<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">机器学习算法实践-决策树(Decision Tree)</a></li>
+<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/" target="_blank" rel="external">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
+<li><a href="http://pytlab.org/2017/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8A/" target="_blank" rel="external">机器学习算法实践-Logistic回归与梯度上升算法(上)</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -69,11 +69,7 @@
     <entry>
       <title><![CDATA[机器学习算法实践-Logistic回归与梯度上升算法(上)]]></title>
       <url>http://pytlab.github.io/2017/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8A/</url>
-      <content type="html"><![CDATA[<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
-<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">机器学习算法实践-决策树(Decision Tree)</a></li>
-<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/" target="_blank" rel="external">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
-</ul>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于Logistic回归分类器我打算用两部分总结，第一部分主要介绍Logistic回归的理论相关的部分，因为这里涉及到通过似然函数建立Logistic回归模型以及使用梯度上升算法优化参数两个主要的内容, 感觉可能比较多, 不过对于学习过最优化方法, 概率论以及线性代数的基础内容童鞋来说，这部分也是很快就掌握得啦。第二部分主要总结Logistic回归模型的代码实现和模型训练以及测试等。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于Logistic回归分类器我打算用两部分总结，第一部分主要介绍Logistic回归的理论相关的部分，因为这里涉及到通过似然函数建立Logistic回归模型以及使用梯度上升算法优化参数两个主要的内容, 感觉可能比较多, 不过对于学习过最优化方法, 概率论以及线性代数的基础内容童鞋来说，这部分也是很快就掌握得啦。第二部分主要总结Logistic回归模型的代码实现和模型训练以及测试等。</p>
 <h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><p>Logistic回归为概率型非线性回归模型, 是研究二值型输出分类的一种多变量分析方法。通过logistic回归我们可以将二分类的观察结果$y$与一些影响因素$[x_{1}, x_{2}, x_{3}, …]$ 建立起关系从而对某些因素条件下某个结果发生的概率进行估计并分类。</p>
 <a id="more"></a>
 <h2 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h2><p>对于二分类问题，我们想要一个函数能够接受所有输入然后预测出两种类别，可以通过输出0或者1。这个函数就是sigmoid函数，它是一种阶跃函数具体的计算公式如下:<br>$$<br>\sigma(z) = \frac{1}{1 + e^{-z}}<br>$$<br>Sigmoid函数的性质: 当$x$为0时，Sigmoid函数值为0.5，随着$x$的增大对应的Sigmoid值将逼近于1; 而随着$x$的减小, Sigmoid函数会趋近于0。</p>
@@ -121,6 +117,10 @@
 <li><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="external">https://en.wikipedia.org/wiki/Likelihood_function</a></li>
 <li>《Machine Learning in Action》</li>
 </ul>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h2><ul>
+<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">机器学习算法实践-决策树(Decision Tree)</a></li>
+<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/" target="_blank" rel="external">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -149,10 +149,7 @@
     <entry>
       <title><![CDATA[机器学习算法实践-朴素贝叶斯(Naive Bayes)]]></title>
       <url>http://pytlab.github.io/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/</url>
-      <content type="html"><![CDATA[<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
-<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">机器学习算法实践-决策树(Decision Tree)</a></li>
-</ul>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">上一篇</a>总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="external">SMS垃圾短信语料库</a>中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">上一篇</a>总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="external">SMS垃圾短信语料库</a>中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。</p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>与决策树分类和k近邻分类算法不同，贝叶斯分类主要借助概率论的知识来通过比较提供的数据属于每个类型的条件概率, 将他们分别计算出来然后预测具有最大条件概率的那个类别是最后的类别。当然样本越多我们统计的不同类型的特征值分布就越准确，使用此分布进行预测则会更加准确。</p>
 <a id="more"></a>
 <h3 id="贝叶斯准则"><a href="#贝叶斯准则" class="headerlink" title="贝叶斯准则"></a>贝叶斯准则</h3><p>朴素贝叶斯分类器中最核心的便是贝叶斯准则，他用如下的公式表示:<br>$$<br>p(c|x) = \frac{p(x|c)p(c)}{p(x)}<br>$$</p>
@@ -202,6 +199,9 @@
 <li><a href="http://blog.jobbole.com/111399/" target="_blank" rel="external">实例详解贝叶斯推理的原理</a></li>
 <li><a href="http://blog.jobbole.com/105367/" target="_blank" rel="external">大道至简：朴素贝叶斯分类器</a></li>
 </ul>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h2><ul>
+<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/" target="_blank" rel="external">机器学习算法实践-决策树(Decision Tree)</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -226,12 +226,7 @@
     <entry>
       <title><![CDATA[机器学习算法实践-决策树(Decision Tree)]]></title>
       <url>http://pytlab.github.io/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/</url>
-      <content type="html"><![CDATA[<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
-<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/" target="_blank" rel="external">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
-<li><a href="http://pytlab.org/2017/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8A/" target="_blank" rel="external">机器学习算法实践-Logistic回归与梯度上升算法(上)</a></li>
-<li><a href="http://pytlab.org/2017/07/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8B/" target="_blank" rel="external">机器学习算法实践-Logistic回归与梯度上升算法(下)</a></li>
-</ul>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox" target="_blank" rel="external">https://github.com/PytLab/MLBox</a>).</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox" target="_blank" rel="external">https://github.com/PytLab/MLBox</a>).</p>
 <p>本文中我将一步步通过MLiA的隐形眼镜处方数集构建决策树并使用Graphviz将决策树可视化。</p>
 <a id="more"></a>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h3><p>决策树学习是根据数据的属性采用树状结构建立的一种决策模型，可以用此模型解决分类和回归问题。常见的算法包括 CART(Classification And Regression Tree), ID3, C4.5等。我们往往根据数据集来构建一棵决策树，他的一个重要任务就是为了数据中所蕴含的知识信息，并提取出一系列的规则，这些规则也就是树结构的创建过程就是机器学习的过程。</p>
