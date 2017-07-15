@@ -233,7 +233,12 @@
 		</div>
 	
 	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇主要总结了Logistic回归模型建立的理论基础，主要包含模型似然函数的建立以及梯度上升算法的优化推导。本文在上文的基础上使用Python一步步实现一个Logistic回归分类器，并分别使用梯度上升和随机梯度上升算法实现，对二维数据点分类进行可视化，最后使用之前使用过的<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/">SMS垃圾短信语料库</a>中的短信数据进行模型训练并对短信数据进行分类。</p>
+		<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
+<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/">机器学习算法实践-决策树(Decision Tree)</a></li>
+<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
+<li><a href="http://pytlab.org/2017/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8A/">机器学习算法实践-Logistic回归与梯度上升算法(上)</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇主要总结了Logistic回归模型建立的理论基础，主要包含模型似然函数的建立以及梯度上升算法的优化推导。本文在上文的基础上使用Python一步步实现一个Logistic回归分类器，并分别使用梯度上升和随机梯度上升算法实现，对二维数据点分类进行可视化，最后使用之前使用过的<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/">SMS垃圾短信语料库</a>中的短信数据进行模型训练并对短信数据进行分类。</p>
 	
 	</div>
   <a type="button" href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/#more" class="btn btn-default more">Read More</a>
@@ -259,7 +264,11 @@
 		</div>
 	
 	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于Logistic回归分类器我打算用两部分总结，第一部分主要介绍Logistic回归的理论相关的部分，因为这里涉及到通过似然函数建立Logistic回归模型以及使用梯度上升算法优化参数两个主要的内容, 感觉可能比较多, 不过对于学习过最优化方法, 概率论以及线性代数的基础内容童鞋来说，这部分也是很快就掌握得啦。第二部分主要总结Logistic回归模型的代码实现和模型训练以及测试等。</p>
+		<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
+<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/">机器学习算法实践-决策树(Decision Tree)</a></li>
+<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于Logistic回归分类器我打算用两部分总结，第一部分主要介绍Logistic回归的理论相关的部分，因为这里涉及到通过似然函数建立Logistic回归模型以及使用梯度上升算法优化参数两个主要的内容, 感觉可能比较多, 不过对于学习过最优化方法, 概率论以及线性代数的基础内容童鞋来说，这部分也是很快就掌握得啦。第二部分主要总结Logistic回归模型的代码实现和模型训练以及测试等。</p>
 <h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><p>Logistic回归为概率型非线性回归模型, 是研究二值型输出分类的一种多变量分析方法。通过logistic回归我们可以将二分类的观察结果$y$与一些影响因素$[x_{1}, x_{2}, x_{3}, …]$ 建立起关系从而对某些因素条件下某个结果发生的概率进行估计并分类。</p>
 	
 	</div>
@@ -286,7 +295,10 @@
 		</div>
 	
 	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/">SMS垃圾短信语料库</a>中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。</p>
+		<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
+<li><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/">机器学习算法实践-决策树(Decision Tree)</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/">上一篇</a>总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/">SMS垃圾短信语料库</a>中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。</p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>与决策树分类和k近邻分类算法不同，贝叶斯分类主要借助概率论的知识来通过比较提供的数据属于每个类型的条件概率, 将他们分别计算出来然后预测具有最大条件概率的那个类别是最后的类别。当然样本越多我们统计的不同类型的特征值分布就越准确，使用此分布进行预测则会更加准确。</p>
 	
 	</div>
@@ -313,7 +325,12 @@
 		</div>
 	
 	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox">https://github.com/PytLab/MLBox</a>).</p>
+		<h3 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h3><ul>
+<li><a href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
+<li><a href="http://pytlab.org/2017/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8A/">机器学习算法实践-Logistic回归与梯度上升算法(上)</a></li>
+<li><a href="http://pytlab.org/2017/07/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Logistic%E5%9B%9E%E5%BD%92%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E4%B8%8B/">机器学习算法实践-Logistic回归与梯度上升算法(下)</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox">https://github.com/PytLab/MLBox</a>).</p>
 <p>本文中我将一步步通过MLiA的隐形眼镜处方数集构建决策树并使用Graphviz将决策树可视化。</p>
 	
 	</div>
@@ -483,45 +500,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">84</span></a></li>
