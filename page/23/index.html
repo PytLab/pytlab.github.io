@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
+              
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
-              
-              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-14 </div>
+			<div class="article-title"><a href="/2015/08/14/关于逻辑运算符/" >C Notes - 关于逻辑运算符</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>昨天写了个c语言处理文件的练习题，题目是：</p>
+<blockquote>
+<p>编写一个代开两个文件的程序。可以使用命令行参数或者请求用户输入来获取文件名。让程序打印第一个文件的第一行，第二个文件的第二行，第一个文件第一行，第二个文件第二行。。。以此类推，知道打印完行数较多的文件的最后一行。</p>
+</blockquote>
+<p>程序很短很好写，但是在写程序的过程中我是通过逻辑或来判断是否两个文件都读完。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(fgets(line1, SLEN, fp1) != <span class="literal">NULL</span> || fgets(line2, SLEN, fp2) != <span class="literal">NULL</span>)</div><div class="line">&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>可是这样输出的结果是先打印了第一个文件的所有行然后是第二个文件的所有行。<br>后来想了想，之所以出现这样的结果，有可能是逻辑运算符如果第一个条件满足后就不会运算<code>||</code>后面的表达式了。<br>于是我把代码改成如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pt1 = fgets(line1, SLEN, fp1);</div><div class="line">pt2 = fgets(line2, SLEN, fp2);</div><div class="line"><span class="keyword">while</span>(pt1 || pt2)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">fputs</span>(line1, <span class="built_in">stdout</span>);</div><div class="line">    <span class="built_in">fputs</span>(line2, <span class="built_in">stdout</span>);</div><div class="line">    pt1 = fgets(line1, SLEN, fp1);</div><div class="line">    pt2 = fgets(line2, SLEN, fp2);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>果然是猜测的原因，以后用或运算符的时候要注意这里了。<br>以上。</p>
+
+	
+	</div>
+  <a type="button" href="/2015/08/14/关于逻辑运算符/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -339,27 +367,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-04-18 </div>
-			<div class="article-title"><a href="/2015/04/18/动力学模型使用Multiple-Thread/" >动力学模型使用Multiple-Thread</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>这两天想学习下优化代码，既然手底下有自己写完的动力学代码，那正好可以拿着练手。按我现在的认识程度，能对现在写好的动力学代码优化提升效率的方法除了改进算法外，单纯在编程方面一个是<strong>使用多线程并行</strong>，一个是<strong>用c api把循环部分重写</strong>。<br>把python多线程的一点点皮毛看了看就现学现卖了下。<br>把迭代的部分看了看，每步迭代里面都不是各自独立不相关的运算，真心不能给每个部分的运算分配子线程。在整个动力学模型里面最适合用多线程的地方就是作图了，因为作图中的阴影以及循环添加注释是可以分别分配子线程来进行的。于是我就把plotter里面画图的部分改了下:<br>分别添加了两个<code>threading.Thread</code>的子类<code>ShadowThread</code>，<code>NoteThread</code>用来实例化阴影和添加注释的子进程。</p>
-	
-	</div>
-  <a type="button" href="/2015/04/18/动力学模型使用Multiple-Thread/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +416,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
       </li>
     
@@ -424,10 +435,6 @@
         <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
       </li>
     
-      <li>
-        <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -440,7 +447,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">84</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -462,48 +469,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">48</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">83</span></a></li>
+		   <li><a href="/tags">...<span class="badge">84</span></a></li>
 		 
 		</ul>
 	</div>

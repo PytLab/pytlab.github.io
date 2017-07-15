@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
+              
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
-              
-              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-31 </div>
+			<div class="article-title"><a href="/2016/03/31/KMCLib中的Matcher/" title="KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，&lt;br&gt;并更新process中相关的信息，例如能发生反应的sites、总速率等">KMCLib中的Matcher</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/31/KMCLib中的Matcher/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Matcher"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这个类算是KMCLib中最后一个大类了，也回答了我在看代码之初有的很多疑问，例如如何更新匹配相关的信息，如何更新事件列表等。<br>这个类是没有成员数据的，可以把<code>Matcher</code>类看作是与匹配相关的函数的封装。</p>
+<p>但是在头文件中却定义了两个相关的结构来存储操作信息：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// A minimal struct for representing a task with a rate.</span></div><div class="line"><span class="keyword">struct</span> RateTask</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">int</span> process;</div><div class="line">    <span class="keyword">double</span> rate;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/// A minimal struct for representing a remove task.</span></div><div class="line"><span class="keyword">struct</span> RemoveTask</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">int</span> process;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/03/31/KMCLib中的Matcher/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -364,33 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-24 </div>
-			<div class="article-title"><a href="/2016/03/24/关于KMCLib中的Move/" title="关于KMCLib中的MOVE相关的东西涉及到坐标和各种索引，这里比较混乱我觉得还是有必要梳理下。">关于KMCLib中的Move</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>move来源于process并作用于configuration。</p>
-<h3 id="Process中的move相关"><a href="#Process中的move相关" class="headerlink" title="Process中的move相关"></a>Process中的move相关</h3><h4 id="Process中与move相关的变量："><a href="#Process中与move相关的变量：" class="headerlink" title="Process中与move相关的变量："></a>Process中与move相关的变量：</h4><ul>
-<li><p><code>std::vector&lt;int&gt; move_origins</code><br>  说明在process中那些元素是在process发生时有移动的，(0, 1)的话就是指第一个（中心）和第二个元素发生了移动。</p>
-</li>
-<li><p><code>std::vector&lt;Coordinate&gt; move_vectors</code><br>  对应move_origin的元素移动的向量。</p>
-</li>
-<li><p><code>std::vector&lt; std::pair&lt;int,int&gt; &gt; id_moves_</code><br>  用于描述元素移动前后位置的变化，通过元素在process中的minimal_match_list中的索引号来表示，例如<br>  id_moves_[0]中存放着两个值 (1, 4)，则就说明在minimal_match_list中的第1号元素（也就是第二个）通过process的作用之后会移动到第4号位置上。</p>
-	
-	</div>
-  <a type="button" href="/2016/03/24/关于KMCLib中的Move/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
       </li>
     
@@ -455,10 +459,6 @@
         <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
       </li>
     
-      <li>
-        <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -471,7 +471,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">84</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -493,48 +493,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
 			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">48</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">83</span></a></li>
+		   <li><a href="/tags">...<span class="badge">84</span></a></li>
 		 
 		</ul>
 	</div>

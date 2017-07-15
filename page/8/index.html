@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
+              
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
-              
-              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,32 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-05 </div>
+			<div class="article-title"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/" title="发现了一个很难发现的KMCLib中的bug，只需要修改以个参数就可以修复，但是很难发现。">发现KMCLib中一个隐藏bug</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/"><img src="/assets/images/features/kmclib.png" alt="发现KMCLib中一个隐藏bug"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>由于为了看自己的KMCLibX是不是能跑出正确的结果，我将每一个蒙特卡洛步的configuration进行了散点图，来观察每一步事件的选取和configuration发生的变化，把事件全部定义好以后，跑了500步做了下图就发现，吸附在top位的O有落单的现象，明明我没有在事件中定义过有破坏平躺吸附在表面的氧原子的事件啊，这就奇怪了。于是我就将做图的范围缩窄，逐渐定位到了是哪一步开始出现单个top位上的氧原子。<br>如下图，是发生在第27步的时候，直接会有一个氧分子直接变成吸附在bridge site上的CO：<br>
+	
+	</div>
+  <a type="button" href="/2016/07/05/发现KMCLib中一个隐藏bug/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -363,33 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-30 </div>
-			<div class="article-title"><a href="/2016/04/30/python-生成器小结/" title="对python中的生成器进行下总结。">python 生成器小结</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/30/python-生成器小结/"><img src="/assets/images/features/python_logo.png" alt="python 生成器小结"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>在python中生成器可以很方便的实现迭代协议。生成器通过生成器函数产生，生成器函数可以通过常规的def语句来定义，但是不用return返回，而是用yield一次返回一个结果，在每个结果之间挂起和继续它们的状态，来自动实现迭代协议。也就是说，yield是一个语法糖，内部实现支持了迭代器协议。</p>
-<p>生成器的强大之一就在于他提供了<strong>协同程序的概念</strong>，协同程序是可以运行的独立函数调用，可以暂停或者挂起，并从程序离开的地方继续或者重新开始。同时调用者也可以向程序传入额外的数据或者异常等，传入完毕后仍能在上次暂停的地方继续执行。</p>
-	
-	</div>
-  <a type="button" href="/2016/04/30/python-生成器小结/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -439,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
       </li>
     
@@ -454,10 +457,6 @@
         <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
       </li>
     
-      <li>
-        <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -470,7 +469,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">84</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -492,48 +491,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
 			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">48</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">83</span></a></li>
+		   <li><a href="/tags">...<span class="badge">84</span></a></li>
 		 
 		</ul>
 	</div>

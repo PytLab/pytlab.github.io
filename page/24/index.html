@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
+              
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
-              
-              <li><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" style="font-size: 15px; font-family: 微软雅黑">基于matplotlib的2D/3D抽象网格和能量曲线...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-04-18 </div>
+			<div class="article-title"><a href="/2015/04/18/动力学模型使用Multiple-Thread/" >动力学模型使用Multiple-Thread</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>这两天想学习下优化代码，既然手底下有自己写完的动力学代码，那正好可以拿着练手。按我现在的认识程度，能对现在写好的动力学代码优化提升效率的方法除了改进算法外，单纯在编程方面一个是<strong>使用多线程并行</strong>，一个是<strong>用c api把循环部分重写</strong>。<br>把python多线程的一点点皮毛看了看就现学现卖了下。<br>把迭代的部分看了看，每步迭代里面都不是各自独立不相关的运算，真心不能给每个部分的运算分配子线程。在整个动力学模型里面最适合用多线程的地方就是作图了，因为作图中的阴影以及循环添加注释是可以分别分配子线程来进行的。于是我就把plotter里面画图的部分改了下:<br>分别添加了两个<code>threading.Thread</code>的子类<code>ShadowThread</code>，<code>NoteThread</code>用来实例化阴影和添加注释的子进程。</p>
+	
+	</div>
+  <a type="button" href="/2015/04/18/动力学模型使用Multiple-Thread/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -330,28 +351,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-02-19 </div>
-			<div class="article-title"><a href="/2015/02/19/动力学模型工具类--Parser/" >动力学模型工具类--Parser</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>这部分其实在放假前就开始写了，后面在写的过程中又添加了前面的table_maker和后面的parser的一些修修补补。在这里整体介绍下这个类的一些特性和简要实现过程。<br>这个类最初的目的还是很简单，就是解析setup file 和 input file把所有的信息全部解析到模型对象中，其中包括模型所必需的一些属性，例如吸附物，过渡态，气体，表面等信息，能量数据，形成能数据等。。。整个类的大概属性和操作在<a href="http://ipytlab.com/%e5%8a%a8%e5%8a%9b%e5%ad%a6%e6%a8%a1%e5%9e%8b%e4%bb%a3%e7%a0%81%e7%9a%84%e6%95%b4%e4%bd%93%e7%bb%84%e7%bb%87%e6%a1%86%e6%9e%b6/" title="动力学模型代码的整体组织框架">UML图</a>中可以看到，其中包含一个基类<code>ParserBase</code>类，以及子类CsvParser类，在这里我只写了<code>CsvParser</code>，可以再扩展写用于其它表格的Parser，例如利用xlrd模块直接操作excel。</p>
-<p><strong>解析基元反应方程式:</strong><br>在KineticModel中已经通过load()方法中遍历执行setup file后的局部变量的方式将setup file加载到了model中成为model对象的属性。在setup file中定义了一个<code>species_definitions</code>的字典类型变量，用来存储model中所有物种和位点的信息，例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">'O_s'</span>: &#123;<span class="string">'elements'</span>: &#123;<span class="string">'O'</span>: <span class="number">1</span>&#125;,</div><div class="line">        <span class="string">'formation_energy'</span>: <span class="number">0.597</span>,</div><div class="line">        <span class="string">'frequencies'</span>: [<span class="number">359.5</span>, <span class="number">393.3</span>, <span class="number">507.0</span>],</div><div class="line">        <span class="string">'information'</span>: <span class="string">'None'</span>,</div><div class="line">        <span class="string">'name'</span>: <span class="string">'O'</span>,</div><div class="line">        <span class="string">'site'</span>: <span class="string">'s'</span>,</div><div class="line">        <span class="string">'type'</span>: <span class="string">'adsorbate'</span>&#125;</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2015/02/19/动力学模型工具类--Parser/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -401,6 +400,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
       </li>
     
@@ -416,10 +419,6 @@
         <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
       </li>
     
-      <li>
-        <a href="/2017/06/18/实现一个Bootstrap的JS插件/" ><i class="fa fa-file-o"></i>编写Bootstrap插件的步骤</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -432,7 +431,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">84</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -454,48 +453,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">83</span></a></li>
+		   <li><a href="/tags">...<span class="badge">84</span></a></li>
 		 
 		</ul>
 	</div>
