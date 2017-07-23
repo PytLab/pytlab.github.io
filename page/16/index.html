@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
+              
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
-              
-              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-04 </div>
+			<div class="article-title"><a href="/2016/03/04/关于C-返回对象/" title="总结一下C++返回对象的几种方式">关于C++的返回对象</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/04/关于C-返回对象/"><img src="../../../../assets/images/features/c_cpp_logo.jpg" alt="关于C++的返回对象"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这里主要总结两种: </p>
+<ol>
+<li>返回指向<code>const</code>/非<code>const</code>对象的引用</li>
+<li>返回<code>const</code>/非<code>const</code>对象
+	
+	</div>
+  <a type="button" href="/2016/03/04/关于C-返回对象/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -339,27 +368,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-25 </div>
-			<div class="article-title"><a href="/2016/02/25/关于错误passing-as-this-argument-of-discard-qualifiers/" >关于错误passing &#39;...&#39; as &#39;this&#39; argument of &#39;...&#39; discard qualifiers</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>今天又碰到了个新问题，先上代码：<br>vect.cpp<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="comment">// private methods</span></div><div class="line">    <span class="comment">// calculates magnitude from x and y</span></div><div class="line">    <span class="keyword">double</span> Vector::get_mag(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">sqrt</span>(a * a + b * b);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">double</span> Vector::get_ang(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (a == <span class="number">0.0</span> &amp;&amp; b == <span class="number">0.0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0.0</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">return</span> <span class="built_in">atan2</span>(b, a);</div><div class="line">    &#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/02/25/关于错误passing-as-this-argument-of-discard-qualifiers/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +417,10 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
@@ -424,10 +436,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
         <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -438,7 +446,7 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">12</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
@@ -462,48 +470,48 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">50</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">84</span></a></li>
+		   <li><a href="/tags">...<span class="badge">85</span></a></li>
 		 
 		</ul>
 	</div>

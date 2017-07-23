@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
+              
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
-              
-              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-08-09 </div>
+			<div class="article-title"><a href="/2016/08/09/在VASPy中使用延迟初始化/" title="今天重构了VASPy中的OutCar类，使其能够正确操作标准VASP文件，并在其中使用了延迟初始化方法进行了一定的优化。">在VASPy中使用延迟初始化</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/08/09/在VASPy中使用延迟初始化/"><img src="/assets/images/features/python_logo.png" alt="在VASPy中使用延迟初始化"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>由于之前版本的VASPy是基于课题组修改过的VASP版本所写的，其中OUTCAR中的一些受力信息是标准VASP代码中不会输出的，但是当时为了省事我就直接拿课题组VASP输出的OUTCAR中的信息写了VASPy中的<code>OutCar</code>类。。。</p>
+<p>为了能让VASPy具有更好的通用性，今天特地重构了<code>OutCar</code>这个类使其能够操作标准VASP的OUTCAR文件。</p>
+<p>具体重构后的OutCar类代码的链接：<a href="https://github.com/PytLab/VASPy/blob/master/vaspy/iter.py"><span class="fa fa-github"></span> VASPy/iter.py at master · PytLab/VASPy</a></p>
+<p>由于OUTCAR是VASP所有输出的文件，自然会比较大，因此要操作这个文件就要特别的处理。</p>
+	
+	</div>
+  <a type="button" href="/2016/08/09/在VASPy中使用延迟初始化/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -366,38 +395,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-09 </div>
-			<div class="article-title"><a href="/2016/07/09/MPI学习-初识非阻塞通信/" title="对MPI非阻塞通信的初印象。">MPI学习--初识非阻塞通信</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/09/MPI学习-初识非阻塞通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--初识非阻塞通信"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="非阻塞通信与阻塞通信的区别"><a href="#非阻塞通信与阻塞通信的区别" class="headerlink" title="非阻塞通信与阻塞通信的区别"></a>非阻塞通信与阻塞通信的区别</h3><p>对于非阻塞通信的理解还是要理解他和阻塞通信的区别。这个区别书上扯了一大堆好像也没有用简单通俗的语言总结这两者之间的区别让人看着后面的例子一开始有点头晕。那其实区别很简单：</p>
-<h4 id="阻塞通信"><a href="#阻塞通信" class="headerlink" title="阻塞通信"></a>阻塞通信</h4><p>阻塞通信就是使用前面几篇博客里面的那些发送和接收函数，例如<code>MPI_Send()</code>和<code>MPI_Recv()</code>，这些函数有一个特点就是<strong>这些函数在通信完成之前是不会返回的，也就是阻塞</strong>。</p>
-<p>那什么时候是通信完成呢？</p>
-<ul>
-<li>对于<strong>发送端</strong>，所谓完成就是指发送缓冲区可以被安全的在使用，也就意味着之前发送缓冲区的数据已经被成功的转移走了，可能被MPI保存在其他地方，或者放到了接收端的缓冲区中。</li>
-<li>对于<strong>接收端</strong>，所谓的完成就是指数据已经成功的复制到了接受缓冲区中，接收进程可以放心使用缓冲区。</li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2016/07/09/MPI学习-初识非阻塞通信/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -447,6 +444,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
@@ -462,10 +463,6 @@
         <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -476,7 +473,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">12</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
@@ -500,48 +497,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
 			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">84</span></a></li>
+		   <li><a href="/tags">...<span class="badge">85</span></a></li>
 		 
 		</ul>
 	</div>

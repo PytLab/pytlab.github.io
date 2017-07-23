@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
+              
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
-              
-              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-02 </div>
+			<div class="article-title"><a href="/2016/04/02/初识代码封装工具SWIG/" title="在这里简单介绍下关于swig的使用方法，和大致工作方式。">初识代码封装工具SWIG</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/02/初识代码封装工具SWIG/"><img src="/assets/images/features/swig.png" alt="初识代码封装工具SWIG"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这不是我最早使用swig了，之前在写Kynetix的时候就使用了swig为python封装了C语言写的扩展模块。但是当时我对C++还不是很了解，对其中的一些概念也只是拿来直接用，没有理解到底是什么，为什么会有这种功能。所以昨天我又拿出了《python科学计算》这本书来温习了一下swig那一部分，果然对swig又有了新的认识。</p>
+<p>对swig真正全的使用都在swig的文档中有详细的介绍，而且由于swig支持很多种语言，例如java、python、Tcl等，因此这份文档内容相当的丰富。由于现在还没有很好的中文资源，所以现在只能默默的看英文文档了。</p>
+	
+	</div>
+  <a type="button" href="/2016/04/02/初识代码封装工具SWIG/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -362,35 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-24 </div>
-			<div class="article-title"><a href="/2016/03/24/KMCLib中的Configuration/" title="KMCLib中的Configuration用于描述附着在晶格之上的元素相关的信息&lt;br&gt;包括他们的坐标，索引，ID号等">KMCLib中的Configuration</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/24/KMCLib中的Configuration/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Configuration"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这个类由于在之前都有提及到，而且已经针对其中重要的成员函数进行了分析，在这里就不多扯了。<br>总之这个类是独立于晶格LatticeMap类的类型类，我还剩听佩服作者这样抽象的，这样如果后面我想加入多位点的话，也可以独立于晶格之外描述多位点的类，这样实现起来耦合量可以尽量减小。</p>
-<p>其实这里我一直有个疑问，不知道看完全部代码的时候能不能找到答案，就是在<code>performProcess()</code>函数中：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Configuration::performProcess(Process &amp; process,</div><div class="line">                                   <span class="keyword">const</span> <span class="keyword">int</span> site_index,</div><div class="line">                                   <span class="keyword">const</span> LatticeMap &amp; lattice_map)</div></pre></td></tr></table></figure></p>
-<p>根本就没有用到这个变量，为啥要传他进来？？</p>
-
-	
-	</div>
-  <a type="button" href="/2016/03/24/KMCLib中的Configuration/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
@@ -455,10 +457,6 @@
         <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -469,7 +467,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">12</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
@@ -493,48 +491,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">49</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">84</span></a></li>
+		   <li><a href="/tags">...<span class="badge">85</span></a></li>
 		 
 		</ul>
 	</div>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
+              
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
-              
-              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-03-08 </div>
+			<div class="article-title"><a href="/2015/03/08/PARSER中的反应方程式配平/" >PARSER中的反应方程式配平</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之所以把反应方程式配平拿出来写是因为之前在这段时间写完solver的过程中发现自己还是对动力学的质量作用定理理解的不够深刻，在之前的setup file中的反应方程式我默认的是以已经配平好的基元反应作为输入的，例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">rxn_expressions = [</div><div class="line"></div><div class="line">                <span class="string">'CO_g + *_s -&gt; CO_s'</span>,</div><div class="line">                <span class="string">'3H2_g + 6*_s -&gt; 6H_s'</span>,</div><div class="line">                <span class="string">'CO_s + *_s &lt;-&gt; C-O_s + *_s -&gt; C_s + O_s'</span>,</div><div class="line">                <span class="string">'O_s + H_s -&gt; HO_s + *_s'</span>,</div><div class="line">                <span class="string">'HO_s + H_s &lt;-&gt; H-OH_s + *_s -&gt; H2O_g + 2*_s'</span>,</div><div class="line">                <span class="string">'C_s + H_s &lt;-&gt; H-C_s + *_s -&gt; CH_s + *_s'</span>,</div><div class="line">                <span class="string">'CH_s + H_s -&gt; CH2_s + *_s'</span>,</div><div class="line">                <span class="string">'CH2_s + H_s -&gt; CH3_s + *_s'</span>,</div><div class="line">                <span class="string">'CH3_s + H_s -&gt; CH4_g + 2*_s'</span></div><div class="line">]</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2015/03/08/PARSER中的反应方程式配平/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,30 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-02-10 </div>
-			<div class="article-title"><a href="/2015/02/10/利用PyUnit framework写单元测试/" >利用PyUnit framework写单元测试</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>以前写代码没有意识到单元测试的重要性。直到project的规模慢慢变大的时候，或者当把程序给别人使用抛出exception，自己着急要解决问题的时候才意识到提前写好unit test是很重要的(我理解的对么??)。于是慢慢的我也开始写unit test了。今天就看了下python的document上面介绍PyUnit的部分，简单的学习了一下利用PyUnit写单元测试脚本。<br>关于unit test,</p>
-<blockquote>
-<p>在计算机编程中，单元测试（又称为模块测试, Unit Testing）是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作。程序单元是应用的最小可测试部件。在过程化编程中，一个单元就是单个程序、函数、过程等；对于面向对象编程，最小单元就是方法，包括基类（超类）、抽象类、或者派生类（子类）中的方法。</p>
-<p>通常来说，程序员每修改一次程序就会进行最少一次单元测试，在编写程序的过程中前后很可能要进行多次单元测试，以证实程序达到软件规格书要求的工作目标，没有程序错误；虽然单元测试不是什么必须的，但也不坏，这牵涉到项目管理的政策决定。<br>
-	
-	</div>
-  <a type="button" href="/2015/02/10/利用PyUnit framework写单元测试/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -407,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
@@ -422,10 +423,6 @@
         <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -436,7 +433,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">12</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
@@ -460,48 +457,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">50</span></a></li>
 		
 			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">84</span></a></li>
+		   <li><a href="/tags">...<span class="badge">85</span></a></li>
 		 
 		</ul>
 	</div>

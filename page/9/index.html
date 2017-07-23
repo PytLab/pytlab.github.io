@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
+              
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
-              
-              <li><a href="/2017/06/03/算法分析中的渐进记号总结/" style="font-size: 15px; font-family: 微软雅黑">算法分析中的渐近记号总结<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-22 </div>
+			<div class="article-title"><a href="/2016/05/22/Effective-Python-拾贝/" >Effective Python 拾贝</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/05/22/Effective-Python-拾贝/"><img src="/assets/images/features/effectivepython.jpeg" alt="Effective Python 拾贝"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>自从看了《Effective C++》，我就喜欢上了这种以经验条目的书，简直是随身带的极品书，于是我也买了一本python版的《Effective Python》随时放在书包里，在地铁上，在任何闲下来的时候看，因为每个条目的长度都恰到好处，正好能将零碎的时间进行填充。</p>
+<p></p><p><br>因此我想在这里记录下自己在看《Effective Python》中收获的东西。这里我的总结并一定是每个条目中作者想强调的，而是对于我自己在使用python中没有注意到的东西，因此是针对我自己的特制版《Effective Python》总结。</p>
+<p></p><p><br><strong>我有预感，这本书能给我在python方面质的飞跃。 - ( ゜- ゜)つロ 乾杯~</strong></p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/22/Effective-Python-拾贝/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -362,35 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-15 </div>
-			<div class="article-title"><a href="/2016/04/15/为了组会临时写了个画三位网格的脚本/" title="这周的组会打算汇报下KMCLib的思想，但是直接这么讲担心下面的同学和老师听不懂就特地写了个脚本画出三位网格图，以方便解释lattice模型。">为了组会临时写了个画三维网格的脚本</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/15/为了组会临时写了个画三位网格的脚本/"><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/sites_points.png" alt="为了组会临时写了个画三维网格的脚本"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这次组会之所以汇报KMCLib的原理，其中一个重要的原因是我想趁这个机会把看得东西进行总结，以免以后忘记了能够拿回来PPT快速回忆起来重要的东西。所以为了能够让下面的人听懂我在讲什么特地用python写了个绘制三维网格图的脚本，帮我节省了不少时间。不多扯了，进入主题吧。</p>
-<p>三维网格主要是用来描述三维晶格的，因为KMCLib是一个可以模拟一维到三维的KMC模拟库，因此想要绘制三维图还是要结束matplotlib库的plot3d。同时还要配合着python的<code>itertools</code>提供的<code>product</code>和<code>combinations</code>函数，方便坐标的操作。<br>先倒入要用的库，然后创建figure对象和axes对象：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> proj3d</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product, combinations, permutations</div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.gca(projection=<span class="string">'3d'</span>)</div><div class="line">ax.set_aspect(<span class="string">"equal"</span>)</div></pre></td></tr></table></figure>
-<p>首先是三维网格的框架，先上一个效果图吧：<br>
-	
-	</div>
-  <a type="button" href="/2016/04/15/为了组会临时写了个画三位网格的脚本/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
@@ -455,10 +459,6 @@
         <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" ><i class="fa fa-file-o"></i>KinLab - 基于Flask+Bootstrap实...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -469,7 +469,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">11</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">12</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
@@ -493,48 +493,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">84</span></a></li>
+		   <li><a href="/tags">...<span class="badge">85</span></a></li>
 		 
 		</ul>
 	</div>
