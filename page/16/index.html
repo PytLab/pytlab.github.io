@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
+              
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
-              
-              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,31 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-04 </div>
+			<div class="article-title"><a href="/2016/03/04/Cpp类构造函数的特殊初始化成员函数的语法/" title="C++为类构造函数提供了一种可以用来初始化数据成员的特殊方法">C++类构造函数的特殊初始化成员函数的语法</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>先上个例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Quene &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> items;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> qsize;  <span class="comment">// 私有数据成员是常量</span></div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 构造函数</span></div><div class="line">Quene::Quene(<span class="keyword">int</span> qs)</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    qsize = qs;  <span class="comment">// !! NOT ALLOWED !!</span></div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>为什么不允许?</strong><br>首先类声明是不分配内存的,也就是说不能在类定义中进行变量初始化（静态常量除外,当然C++11已经支持在类声明中进行变量初始化了）。<br>程序接着执行，进行对象的创建：</p>
+<ol>
+<li>先分配内存创建对象，这个时候还没有执行构造函数函数体（也就是<code>{}</code>中的代码），还未对数据进行初始化</li>
+<li>然后执行构造函数的函数体，这是执行到赋值qs的时候就会报错，因为这是个常量，创建以后是无法修改常量的值的。
+	
+	</div>
+  <a type="button" href="/2016/03/04/Cpp类构造函数的特殊初始化成员函数的语法/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -342,32 +367,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-26 </div>
-			<div class="article-title"><a href="/2016/02/26/关于友元函数的访问权限/" >关于C++友元函数的访问权限</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>友元函数与普通的非成员函数不同，它可以访问类的私有成员。</p>
-<ul>
-<li>友元函数不是成员函数，因此不能使用成员运算符<code>.</code>来调用</li>
-<li>但它与成员函数的访问权限相同</li>
-</ul>
-<p>看到上面第二条我天真的理解成了，在友元函数定义中也可以向成员函数那样直接使用类中的变量呢，结果编译器就啪啪啪的打了我的脸。<br>我在一个<code>&lt;&lt;</code>运算符重载友元函数中这样使用的类变量：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// friend functions</span></div><div class="line"><span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp; os, <span class="keyword">const</span> Stonewt &amp; st)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(st.status == STN)</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; st.stone &lt;&lt; <span class="string">" stone, "</span> &lt;&lt; st.pds_left &lt;&lt; <span class="string">"pounds"</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(st.status == PDS)</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; st.pounds &lt;&lt; <span class="string">" pounds"</span>;     </div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Incorrect status"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/02/26/关于友元函数的访问权限/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -417,6 +416,10 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
       </li>
     
@@ -430,10 +433,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
     
       <li>
         <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
   </ul>
@@ -458,6 +457,8 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
+			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
 		</ul>
@@ -470,48 +471,48 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">17</span></a></li>
 		
 			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">85</span></a></li>
+		   <li><a href="/tags">...<span class="badge">86</span></a></li>
 		 
 		</ul>
 	</div>

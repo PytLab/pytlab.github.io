@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
+              
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
-              
-              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,43 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-20 </div>
+			<div class="article-title"><a href="/2016/03/20/KMCLib中的Process/" title="KMCLib C++部分的Process类, &lt;br&gt;此类主要用于描述KMC过程中局部反应发生的过程，同时也包含了该过程在全局网格中的统计结果，也就是匹配结果。">KMCLib中的Process</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><p>此类的成员数据均为<code>protected</code></p>
+<ul>
+<li><p><code>int process_number_;</code><br>  该过程ID号；</p>
+</li>
+<li><p><code>int range_;</code><br>  还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。</p>
+</li>
+<li><p><code>double rate_;</code><br>  这没什么好说的，反应速率；</p>
+</li>
+<li><p><code>double cutoff</code><br>  和坐标距离相关，数值上应该等于process涉及到的点到中心<br>  也就是process中第一个点）的最大距离，<br>  尚未弄清求作用；</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; sites_;</code><br>  在整个网格中能和此反应匹配上的位点的向量；</p>
+</li>
+<li><p><code>std::vector&lt;MinimalMatchListEntry&gt; minimal_match_list_;</code><br>  用于存储每个位点信息的数据结构；</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; affected_indices_;</code><br>  查看process前后每个位点类型是否相同<br>  如果不同则将0追加到其末尾<br>  (2016-03-31更新)<br>  这个变量主要用于更新process发生后确定发生process的index周围有哪些位置<strong>受影响</strong>,<br>  所谓受影响，也就是指由于该点由于参与了反应，元素的类型会发生变化，他的match_list也就相应的发生变化，也导致原本能够匹配的process不再能够在该点匹配或者原本不能匹配的process可以在该点匹配了。这个信息主要是用于Matcher类中。</p>
+</li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2016/03/20/KMCLib中的Process/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -354,34 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/" >初识STL迭代器(iterator)和函数符(functor)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/"><img src="/assets/images/features/stl.jpg" alt="初识STL迭代器(iterator)和函数符(functor)"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>对于STL我真的是久仰大名了，这次从《Cpp Primer Plus》中初次学习STL中的一些知识，学习到迭代器将算法从具体的容器类型中抽离出来，真的是很nb的想法。<br>我在这里稍微总结下我初次学习STL时候对其中迭代器和函数符概念的一点理解。<br><br></p>
-<h4 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h4><p>首先还是泛型编程，这种编程的范式是我之前没有接触过的，之前的面向对象编程的关注点是编程的数据方面，例如如何控制数据的访问权限等等。但是泛型编程的关注点是<strong>算法</strong>，例如将算法从数据类型中抽离出来，将算法从容器类型中抽离出来等等。<br>虽然面向对象和泛型编程的思想都是抽象和创建可重用的代码，但他们的理念是决然不同的。</p>
-<p>C++中的模板为编写独立于数据类型的函数和类提供了可能，而STL通过迭代器将编写独立于容器类型的通用函数提供了可能。<br>
-	
-	</div>
-  <a type="button" href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -431,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
       </li>
     
@@ -444,10 +457,6 @@
     
       <li>
         <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
   </ul>
@@ -472,6 +481,8 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
+			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
 		</ul>
@@ -484,48 +495,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">85</span></a></li>
+		   <li><a href="/tags">...<span class="badge">86</span></a></li>
 		 
 		</ul>
 	</div>

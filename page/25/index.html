@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
+              
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
-              
-              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-04-05 </div>
+			<div class="article-title"><a href="/2015/04/05/动力学模型工具类–Plotter/" >动力学模型工具类–Plotter</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>上周花了周末的时间完成了动力学模型energy profile的自动作图部分，写这个部分的主要目的是能够更加直观的查看整个动力学模型中的反应的热力学行为，也就是快速的数值可视化，通过做出来的图能够和动力学计算的结果做对比分析，方便查看吸附能、能垒、脱附能等数据。<br>此部分作图的主要实现是依赖<code>matplotlib</code>库这一面向对象的作图工具，借助numpy和scipy的数组和插值函数（我自己写写了个小的插值函数）根据输入的反应热力学数据计算出energy profile中的points，进而开启Artist Mode！虽然只是作图但是为了能够做出好看的图以及能够自动显示note等功能，这个类还是写了700行左右的python代码(包括注释和空行)。</p>
+	
+	</div>
+  <a type="button" href="/2015/04/05/动力学模型工具类–Plotter/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,27 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-02-10 </div>
-			<div class="article-title"><a href="/2015/02/10/what-does-if-name-main-do/" >What does if __name__ == &#39;__main__&#39;  do ?</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在python经常能看到<code>if __name__ == &#39;__main__: &#39;</code>这一判断句，而且双下划线就意味着是内置的变量。那这句话到底有什么作用？去stackoverflow上搜了下看到一个不错的回答<a href="http://http://stackoverflow.com/questions/419163/what-does-if-name-main-do" title="python - What does `if __name__ == &quot;__main__&quot;:` do? - Stack Overflow">[python - What does <code>if __name__ == &amp;quot;__main__&amp;quot;:</code> do? - Stack Overflow]</a>，这个判断句的作用也就了解了。<br>我大致的理解：<br>当python的解释器读取一个源文件的时候，解释器会在真正执行代码之前把文件中的代码执行一遍。在这个过程中，解释器会定义一些特殊的内部变量。例如，解释器直接运行该代码的时候会定义变量<code>__name__</code>，并把值<code>&#39;__main__&#39;</code>赋给它;相反，如果，这个代码正在被另一个python程序<code>import</code>的时候，那么解释器就会把<code>__name__</code>这个变量的值赋成代码文件本身的名字’<strong>‘(代码文件名为: </strong>.py)。</p>
-	
-	</div>
-  <a type="button" href="/2015/02/10/what-does-if-name-main-do/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -404,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
       </li>
     
@@ -417,10 +421,6 @@
     
       <li>
         <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
   </ul>
@@ -445,6 +445,8 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
+			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
 		</ul>
@@ -457,48 +459,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">51</span></a></li>
 		
 			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-		   <li><a href="/tags">...<span class="badge">85</span></a></li>
+		
+		   <li><a href="/tags">...<span class="badge">86</span></a></li>
 		 
 		</ul>
 	</div>

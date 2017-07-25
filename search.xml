@@ -4,6 +4,93 @@
   
     
     <entry>
+      <title><![CDATA[与机器学习, Python, 数学相关的速查表整理]]></title>
+      <url>http://pytlab.github.io/2017/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Python-%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9A%84%E9%80%9F%E6%9F%A5%E8%A1%A8/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>本文翻译自<a href="https://unsupervisedmethods.com/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6" target="_blank" rel="external">Cheat Sheet of Machine Learning and Python (and Math) Cheat Sheets</a>，首发于伯乐在线。</p>
+</blockquote>
+<p>机器学习涉及到的方面非常多。当我开始准备复习这些内容的时候，我找到了许多不同的”速查表”, 这些速查表针对某一主题都罗列出了所有我需要知道的知识重点。最终我编译了超过20份机器学习相关的速查表，其中一些是我经常用到的而且我相信其他人也会从中受益。本文整理了了27个我在网络上找到的我认为比较好的速查表。如果我有遗漏欢迎补充。</p>
+<a id="more"></a>
+<p>如果你们像我一样想要一次性批量下载所有资源，我已经将<a href="https://www.dropbox.com/s/v3yg8djhdf24g6v/UnsupervisedMethods.com%20-%20Cheat%20Sheets.zip?dl=0" target="_blank" rel="external">27个速查表整理打包</a>好了，请尽情享用吧！</p>
+<p>如果你喜欢本文，记得给我在下面点个赞哦。</p>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>这里我从一些和机器学习算法相关的流程图和表格中选择了我认为最全面的几个并在下面罗列出来。</p>
+<h4 id="Neural-Network-Architectures"><a href="#Neural-Network-Architectures" class="headerlink" title="Neural Network Architectures"></a>Neural Network Architectures</h4><p>链接: <a href="http://www.asimovinstitute.org/neural-network-zoo/" target="_blank" rel="external">http://www.asimovinstitute.org/neural-network-zoo/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/NN.png" alt=""><br>The Neural Network Zoo</p>
+<h4 id="Microsoft-Azure-Algorithm-Flowchart"><a href="#Microsoft-Azure-Algorithm-Flowchart" class="headerlink" title="Microsoft Azure Algorithm Flowchart"></a>Microsoft Azure Algorithm Flowchart</h4><p>链接: <a href="https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet" target="_blank" rel="external">https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/MS.png" alt=""><br>Machine learning algorithm cheat sheet for Microsoft Azure Machine Learning Studio</p>
+<h4 id="SAS-Algorithm-Flowchart"><a href="#SAS-Algorithm-Flowchart" class="headerlink" title="SAS Algorithm Flowchart"></a>SAS Algorithm Flowchart</h4><p>链接: <a href="http://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/" target="_blank" rel="external">http://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/SAS.png" alt=""><br>SAS: Which machine learning algorithm should I use?</p>
+<h4 id="Algorithm-Summary"><a href="#Algorithm-Summary" class="headerlink" title="Algorithm Summary"></a>Algorithm Summary</h4><p>链接: <a href="http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/" target="_blank" rel="external">http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/AS.png" alt=""><br>A Tour of Machine Learning Algorithms</p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/best.jpeg" alt=""><br>Which are the best known machine learning algorithms?</p>
+<h4 id="Algorithm-Pro-Con"><a href="#Algorithm-Pro-Con" class="headerlink" title="Algorithm Pro/Con"></a>Algorithm Pro/Con</h4><p>链接: <a href="https://blog.dataiku.com/machine-learning-explained-algorithms-are-your-friend" target="_blank" rel="external">https://blog.dataiku.com/machine-learning-explained-algorithms-are-your-friend</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/CON.jpeg" alt=""></p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>网上在线的Python资源可以说是相当的多。在这一部分，我挑选了我遇到的几个最好的速查表呈献给大家。</p>
+<h4 id="ML算法"><a href="#ML算法" class="headerlink" title="ML算法"></a>ML算法</h4><p>链接: <a href="https://www.analyticsvidhya.com/blog/2015/09/full-cheatsheet-machine-learning-algorithms/" target="_blank" rel="external">https://www.analyticsvidhya.com/blog/2015/09/full-cheatsheet-machine-learning-algorithms/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/PYALGO.png" alt=""></p>
+<h4 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h4><p>链接: <a href="http://datasciencefree.com/python.pdf" target="_blank" rel="external">http://datasciencefree.com/python.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/PYBASIC.png" alt=""></p>
+<p>链接: <a href="https://www.datacamp.com/community/tutorials/python-data-science-cheat-sheet-basics#gs.0x1rxEA" target="_blank" rel="external">https://www.datacamp.com/community/tutorials/python-data-science-cheat-sheet-basics#gs.0x1rxEA</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/PYBASIC2.png" alt=""></p>
+<h4 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h4><p>链接: <a href="https://www.dataquest.io/blog/numpy-cheat-sheet/" target="_blank" rel="external">https://www.dataquest.io/blog/numpy-cheat-sheet/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/NUMPY.png" alt=""></p>
+<p>链接: <a href="http://datasciencefree.com/numpy.pdf" target="_blank" rel="external">http://datasciencefree.com/numpy.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/numpy-pdf.png" alt=""></p>
+<p>链接: <a href="https://www.datacamp.com/community/blog/python-numpy-cheat-sheet#gs.Nw3V6CE" target="_blank" rel="external">https://www.datacamp.com/community/blog/python-numpy-cheat-sheet#gs.Nw3V6CE</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/numpy3.png" alt=""></p>
+<p>链接: <a href="https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/numpy/numpy.ipynb" target="_blank" rel="external">https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/numpy/numpy.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/numpy4.png" alt=""></p>
+<h4 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h4><p>链接: <a href="http://datasciencefree.com/pandas.pdf" target="_blank" rel="external">http://datasciencefree.com/pandas.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/pandas.png" alt=""></p>
+<p>链接: <a href="https://www.datacamp.com/community/blog/python-pandas-cheat-sheet#gs.S4P4T=U" target="_blank" rel="external">https://www.datacamp.com/community/blog/python-pandas-cheat-sheet#gs.S4P4T=U</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/pandas2.png" alt=""></p>
+<p>链接: <a href="https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/pandas/pandas.ipynb" target="_blank" rel="external">https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/pandas/pandas.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/pandas3.png" alt=""></p>
+<h4 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h4><p>链接: <a href="https://www.datacamp.com/community/blog/python-matplotlib-cheat-sheet" target="_blank" rel="external">https://www.datacamp.com/community/blog/python-matplotlib-cheat-sheet</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/matplotlib.png" alt=""></p>
+<p>链接: <a href="https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/matplotlib/matplotlib.ipynb" target="_blank" rel="external">https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/matplotlib/matplotlib.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/matplotlib2.png" alt=""></p>
+<h4 id="Scikit-Learn"><a href="#Scikit-Learn" class="headerlink" title="Scikit Learn"></a>Scikit Learn</h4><p>链接: <a href="https://www.datacamp.com/community/blog/scikit-learn-cheat-sheet#gs.fZ2A1Jk" target="_blank" rel="external">https://www.datacamp.com/community/blog/scikit-learn-cheat-sheet#gs.fZ2A1Jk</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/skl.png" alt=""></p>
+<p>链接: <a href="http://peekaboo-vision.blogspot.de/2013/01/machine-learning-cheat-sheet-for-scikit.html" target="_blank" rel="external">http://peekaboo-vision.blogspot.de/2013/01/machine-learning-cheat-sheet-for-scikit.html</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/skl2.png" alt=""></p>
+<p>链接: <a href="https://github.com/rcompton/ml_cheat_sheet/blob/master/supervised_learning.ipynb" target="_blank" rel="external">https://github.com/rcompton/ml_cheat_sheet/blob/master/supervised_learning.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/skl3.png" alt=""></p>
+<h4 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h4><p>链接: <a href="https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/1_Introduction/basic_operations.ipynb" target="_blank" rel="external">https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/1_Introduction/basic_operations.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/tf.png" alt=""></p>
+<h4 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h4><p>链接: <a href="https://github.com/bfortuner/pytorch-cheatsheet" target="_blank" rel="external">https://github.com/bfortuner/pytorch-cheatsheet</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/torch.png" alt=""></p>
+<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><p>如果你想真正的理解机器学习，你需要有扎实的统计学(尤其是概率论), 线性代数以及微积分基础。我在上大学的时候辅修了数学专业，但是我肯定还是需要对这些数学知识进行复习。如果你想理解常用机器学习算法背后的数学原理，那么下面的这些速查表将会是你需要的。</p>
+<h4 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h4><p>链接: <a href="http://www.wzchen.com/s/probability_cheatsheet.pdf" target="_blank" rel="external">http://www.wzchen.com/s/probability_cheatsheet.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/prob.png" alt=""></p>
+<h4 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h4><p>链接: <a href="https://minireference.com/static/tutorials/linear_algebra_in_4_pages.pdf" target="_blank" rel="external">https://minireference.com/static/tutorials/linear_algebra_in_4_pages.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/la.png" alt=""></p>
+<h4 id="统计学"><a href="#统计学" class="headerlink" title="统计学"></a>统计学</h4><p>链接: <a href="http://web.mit.edu/~csvoss/Public/usabo/stats_handout.pdf" target="_blank" rel="external">http://web.mit.edu/~csvoss/Public/usabo/stats_handout.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/stat.png" alt=""></p>
+<h4 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h4><p>链接: <a href="http://tutorial.math.lamar.edu/getfile.aspx?file=B,41,N" target="_blank" rel="external">http://tutorial.math.lamar.edu/getfile.aspx?file=B,41,N</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/calculus.png" alt=""></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 译文 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> MachineLearning </tag>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[GAFT-一个使用Python实现的遗传算法框架]]></title>
       <url>http://pytlab.github.io/2017/07/23/gaft-%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近需要用到遗传算法来优化一些东西，最初是打算直接基于某些算法实现一个简单的函数来优化，但是感觉单纯写个非通用的函数运行后期改进算子或者别人使用起来都会带来困难，同时遗传算法基本概念和运行流程相对固定，改进也一般通过编码机制，选择策略，交叉变异算子以及参数设计等方面，对于算法的整体结构并没有大的影响。这样对于遗传算法来说，就非常适合写个相对固定的框架然后给算子、参数等留出空间以便对新算法进行测试和改进。于是就动手写了个遗传算法的小框架gaft，本文对此框架进行一些介绍并分别以一个一维搜索和二维搜索为例子对使用方法进行了介绍。</p>
@@ -502,9 +589,9 @@
             
             <tag> chemistry </tag>
             
-            <tag> jQuery </tag>
-            
             <tag> catalyst </tag>
+            
+            <tag> jQuery </tag>
             
             <tag> webapp </tag>
             
@@ -7088,11 +7175,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
+            <tag> loggers </tag>
+            
             <tag> python </tag>
             
             <tag> emuch </tag>
-            
-            <tag> loggers </tag>
             
         </tags>
         
@@ -7238,11 +7325,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
+            <tag> ecust </tag>
             
             <tag> loggers </tag>
             
-            <tag> ecust </tag>
+            <tag> python </tag>
             
             <tag> 校园网 </tag>
             

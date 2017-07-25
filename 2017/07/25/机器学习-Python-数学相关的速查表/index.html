@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>与机器学习, Python, 数学相关的速查表整理 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="与机器学习, Python, 数学相关的速查表整理"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
+              
+              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
+              
+              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
+              
+              <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
+              
+              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
+              
+              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
+              
+              <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 与机器学习, Python, 数学相关的速查表整理</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <blockquote>
+<p>本文翻译自<a href="https://unsupervisedmethods.com/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6" target="_blank" rel="external">Cheat Sheet of Machine Learning and Python (and Math) Cheat Sheets</a>，首发于伯乐在线。</p>
+</blockquote>
+<p>机器学习涉及到的方面非常多。当我开始准备复习这些内容的时候，我找到了许多不同的”速查表”, 这些速查表针对某一主题都罗列出了所有我需要知道的知识重点。最终我编译了超过20份机器学习相关的速查表，其中一些是我经常用到的而且我相信其他人也会从中受益。本文整理了了27个我在网络上找到的我认为比较好的速查表。如果我有遗漏欢迎补充。</p>
+<a id="more"></a>
+<p>如果你们像我一样想要一次性批量下载所有资源，我已经将<a href="https://www.dropbox.com/s/v3yg8djhdf24g6v/UnsupervisedMethods.com%20-%20Cheat%20Sheets.zip?dl=0" target="_blank" rel="external">27个速查表整理打包</a>好了，请尽情享用吧！</p>
+<p>如果你喜欢本文，记得给我在下面点个赞哦。</p>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>这里我从一些和机器学习算法相关的流程图和表格中选择了我认为最全面的几个并在下面罗列出来。</p>
+<h4 id="Neural-Network-Architectures"><a href="#Neural-Network-Architectures" class="headerlink" title="Neural Network Architectures"></a>Neural Network Architectures</h4><p>链接: <a href="http://www.asimovinstitute.org/neural-network-zoo/" target="_blank" rel="external">http://www.asimovinstitute.org/neural-network-zoo/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/NN.png" alt=""><br>The Neural Network Zoo</p>
+<h4 id="Microsoft-Azure-Algorithm-Flowchart"><a href="#Microsoft-Azure-Algorithm-Flowchart" class="headerlink" title="Microsoft Azure Algorithm Flowchart"></a>Microsoft Azure Algorithm Flowchart</h4><p>链接: <a href="https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet" target="_blank" rel="external">https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/MS.png" alt=""><br>Machine learning algorithm cheat sheet for Microsoft Azure Machine Learning Studio</p>
+<h4 id="SAS-Algorithm-Flowchart"><a href="#SAS-Algorithm-Flowchart" class="headerlink" title="SAS Algorithm Flowchart"></a>SAS Algorithm Flowchart</h4><p>链接: <a href="http://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/" target="_blank" rel="external">http://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/SAS.png" alt=""><br>SAS: Which machine learning algorithm should I use?</p>
+<h4 id="Algorithm-Summary"><a href="#Algorithm-Summary" class="headerlink" title="Algorithm Summary"></a>Algorithm Summary</h4><p>链接: <a href="http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/" target="_blank" rel="external">http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/AS.png" alt=""><br>A Tour of Machine Learning Algorithms</p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/best.jpeg" alt=""><br>Which are the best known machine learning algorithms?</p>
+<h4 id="Algorithm-Pro-Con"><a href="#Algorithm-Pro-Con" class="headerlink" title="Algorithm Pro/Con"></a>Algorithm Pro/Con</h4><p>链接: <a href="https://blog.dataiku.com/machine-learning-explained-algorithms-are-your-friend" target="_blank" rel="external">https://blog.dataiku.com/machine-learning-explained-algorithms-are-your-friend</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/CON.jpeg" alt=""></p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>网上在线的Python资源可以说是相当的多。在这一部分，我挑选了我遇到的几个最好的速查表呈献给大家。</p>
+<h4 id="ML算法"><a href="#ML算法" class="headerlink" title="ML算法"></a>ML算法</h4><p>链接: <a href="https://www.analyticsvidhya.com/blog/2015/09/full-cheatsheet-machine-learning-algorithms/" target="_blank" rel="external">https://www.analyticsvidhya.com/blog/2015/09/full-cheatsheet-machine-learning-algorithms/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/PYALGO.png" alt=""></p>
+<h4 id="Python基础"><a href="#Python基础" class="headerlink" title="Python基础"></a>Python基础</h4><p>链接: <a href="http://datasciencefree.com/python.pdf" target="_blank" rel="external">http://datasciencefree.com/python.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/PYBASIC.png" alt=""></p>
+<p>链接: <a href="https://www.datacamp.com/community/tutorials/python-data-science-cheat-sheet-basics#gs.0x1rxEA" target="_blank" rel="external">https://www.datacamp.com/community/tutorials/python-data-science-cheat-sheet-basics#gs.0x1rxEA</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/PYBASIC2.png" alt=""></p>
+<h4 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h4><p>链接: <a href="https://www.dataquest.io/blog/numpy-cheat-sheet/" target="_blank" rel="external">https://www.dataquest.io/blog/numpy-cheat-sheet/</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/NUMPY.png" alt=""></p>
+<p>链接: <a href="http://datasciencefree.com/numpy.pdf" target="_blank" rel="external">http://datasciencefree.com/numpy.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/numpy-pdf.png" alt=""></p>
+<p>链接: <a href="https://www.datacamp.com/community/blog/python-numpy-cheat-sheet#gs.Nw3V6CE" target="_blank" rel="external">https://www.datacamp.com/community/blog/python-numpy-cheat-sheet#gs.Nw3V6CE</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/numpy3.png" alt=""></p>
+<p>链接: <a href="https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/numpy/numpy.ipynb" target="_blank" rel="external">https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/numpy/numpy.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/numpy4.png" alt=""></p>
+<h4 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h4><p>链接: <a href="http://datasciencefree.com/pandas.pdf" target="_blank" rel="external">http://datasciencefree.com/pandas.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/pandas.png" alt=""></p>
+<p>链接: <a href="https://www.datacamp.com/community/blog/python-pandas-cheat-sheet#gs.S4P4T=U" target="_blank" rel="external">https://www.datacamp.com/community/blog/python-pandas-cheat-sheet#gs.S4P4T=U</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/pandas2.png" alt=""></p>
+<p>链接: <a href="https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/pandas/pandas.ipynb" target="_blank" rel="external">https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/pandas/pandas.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/pandas3.png" alt=""></p>
+<h4 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h4><p>链接: <a href="https://www.datacamp.com/community/blog/python-matplotlib-cheat-sheet" target="_blank" rel="external">https://www.datacamp.com/community/blog/python-matplotlib-cheat-sheet</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/matplotlib.png" alt=""></p>
+<p>链接: <a href="https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/matplotlib/matplotlib.ipynb" target="_blank" rel="external">https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/matplotlib/matplotlib.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/matplotlib2.png" alt=""></p>
+<h4 id="Scikit-Learn"><a href="#Scikit-Learn" class="headerlink" title="Scikit Learn"></a>Scikit Learn</h4><p>链接: <a href="https://www.datacamp.com/community/blog/scikit-learn-cheat-sheet#gs.fZ2A1Jk" target="_blank" rel="external">https://www.datacamp.com/community/blog/scikit-learn-cheat-sheet#gs.fZ2A1Jk</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/skl.png" alt=""></p>
+<p>链接: <a href="http://peekaboo-vision.blogspot.de/2013/01/machine-learning-cheat-sheet-for-scikit.html" target="_blank" rel="external">http://peekaboo-vision.blogspot.de/2013/01/machine-learning-cheat-sheet-for-scikit.html</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/skl2.png" alt=""></p>
+<p>链接: <a href="https://github.com/rcompton/ml_cheat_sheet/blob/master/supervised_learning.ipynb" target="_blank" rel="external">https://github.com/rcompton/ml_cheat_sheet/blob/master/supervised_learning.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/skl3.png" alt=""></p>
+<h4 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h4><p>链接: <a href="https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/1_Introduction/basic_operations.ipynb" target="_blank" rel="external">https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/1_Introduction/basic_operations.ipynb</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/tf.png" alt=""></p>
+<h4 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h4><p>链接: <a href="https://github.com/bfortuner/pytorch-cheatsheet" target="_blank" rel="external">https://github.com/bfortuner/pytorch-cheatsheet</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/torch.png" alt=""></p>
+<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><p>如果你想真正的理解机器学习，你需要有扎实的统计学(尤其是概率论), 线性代数以及微积分基础。我在上大学的时候辅修了数学专业，但是我肯定还是需要对这些数学知识进行复习。如果你想理解常用机器学习算法背后的数学原理，那么下面的这些速查表将会是你需要的。</p>
+<h4 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h4><p>链接: <a href="http://www.wzchen.com/s/probability_cheatsheet.pdf" target="_blank" rel="external">http://www.wzchen.com/s/probability_cheatsheet.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/prob.png" alt=""></p>
+<h4 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h4><p>链接: <a href="https://minireference.com/static/tutorials/linear_algebra_in_4_pages.pdf" target="_blank" rel="external">https://minireference.com/static/tutorials/linear_algebra_in_4_pages.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/la.png" alt=""></p>
+<h4 id="统计学"><a href="#统计学" class="headerlink" title="统计学"></a>统计学</h4><p>链接: <a href="http://web.mit.edu/~csvoss/Public/usabo/stats_handout.pdf" target="_blank" rel="external">http://web.mit.edu/~csvoss/Public/usabo/stats_handout.pdf</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/stat.png" alt=""></p>
+<h4 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h4><p>链接: <a href="http://tutorial.math.lamar.edu/getfile.aspx?file=B,41,N" target="_blank" rel="external">http://tutorial.math.lamar.edu/getfile.aspx?file=B,41,N</a></p>
+<p><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/calculus.png" alt=""></p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-07-25 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">51</span></a></li> <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">5</span></a></li> <li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#机器学习"><span class="toc-article-text">机器学习</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Neural-Network-Architectures"><span class="toc-article-text">Neural Network Architectures</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Microsoft-Azure-Algorithm-Flowchart"><span class="toc-article-text">Microsoft Azure Algorithm Flowchart</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#SAS-Algorithm-Flowchart"><span class="toc-article-text">SAS Algorithm Flowchart</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Algorithm-Summary"><span class="toc-article-text">Algorithm Summary</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Algorithm-Pro-Con"><span class="toc-article-text">Algorithm Pro/Con</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Python"><span class="toc-article-text">Python</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#ML算法"><span class="toc-article-text">ML算法</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Python基础"><span class="toc-article-text">Python基础</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Numpy"><span class="toc-article-text">Numpy</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Pandas"><span class="toc-article-text">Pandas</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Matplotlib"><span class="toc-article-text">Matplotlib</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Scikit-Learn"><span class="toc-article-text">Scikit Learn</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Tensorflow"><span class="toc-article-text">Tensorflow</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Pytorch"><span class="toc-article-text">Pytorch</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#数学"><span class="toc-article-text">数学</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#概率论"><span class="toc-article-text">概率论</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#线性代数"><span class="toc-article-text">线性代数</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#统计学"><span class="toc-article-text">统计学</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#微积分"><span class="toc-article-text">微积分</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
+              
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
-              
-              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-02 </div>
+			<div class="article-title"><a href="/2016/04/02/在CMake中使用SWIG构建封装模块/" title="cmake支持SWIG的使用，因此在这里总结下在CMAKE中使用swig的方法，以KMCLib为例子。">在CMake中使用SWIG构建封装模块</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/02/在CMake中使用SWIG构建封装模块/"><img src="/assets/images/features/cmake_logo.jpg" alt="在CMake中使用SWIG构建封装模块"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>由于CMake与SWIG的相互支持，使得在cmake脚本中直接定义封装模块的构建成为可能，KMCLib中也是使用这种方式直接使用swig进行自动封装。也就是在生成的Makefile中包含了使用swig命令封装库文件。</p>
+<p>在这里我主要参考了<a href="http://www.swig.org/Doc1.3/Introduction.html#Introduction_build_system">swig文档中关于cmake的部分</a>和<a href="https://cmake.org/cmake/help/v3.5/module/UseSWIG.html">cmake文档中使用swig的部分</a>。</p>
+	
+	</div>
+  <a type="button" href="/2016/04/02/在CMake中使用SWIG构建封装模块/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -361,34 +388,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-25 </div>
-			<div class="article-title"><a href="/2016/03/25/消除蛋疼的-M/" >消除蛋疼的^M</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/25/消除蛋疼的-M/"><img src="/assets/images/features/git_logo.png" alt="消除蛋疼的^M"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>在github上面向别人的项目代码pull request的时候遇到了一个蛋疼的问题，问题都在一个字符上面就是<code>^M</code>，我的代码虽然只修改了几行代码，但是使用<code>git diff</code>的时候发现整个文件全部修改了。</p>
-<p><p><br>原因就是我修改的文件在每一行末尾都新增了一个<code>^M</code>字符，这样就导致每一行都和以前不同diff的时候自然就全部不同了，这样就非常的蛋疼，向别人项目中pull request的时候一整片红色和一整片绿色，别人包括我自己都不知道我到底是修改的哪一部分，感觉像是在捣乱的。。。像这样的pull request人家才不会给我merge呢。</p>
-<p><p><br>真是太不好意思了，诶…效果就是这蛋疼的下图：<br>
-	
-	</div>
-  <a type="button" href="/2016/03/25/消除蛋疼的-M/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -438,6 +437,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
       </li>
     
@@ -451,10 +454,6 @@
     
       <li>
         <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
   </ul>
@@ -479,6 +478,8 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
+			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
 		</ul>
@@ -491,48 +492,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">4</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">15</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">85</span></a></li>
+		   <li><a href="/tags">...<span class="badge">86</span></a></li>
 		 
 		</ul>
 	</div>

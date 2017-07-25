@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
+              
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
-              
-              <li><a href="/2017/06/18/实现一个Bootstrap的JS插件/" style="font-size: 15px; font-family: 微软雅黑">编写Bootstrap插件的步骤<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,38 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-22 </div>
+			<div class="article-title"><a href="/2016/05/22/Effective-Python-列表排序中的优先级/" title="在《Effective Python》的第15条 “了解如何在闭包里使用外围作用域中的变量”中，作者使用了一个排序的例子，使用了list的sort方法中的key参数，由于我之前从来没有这样使用过，所以特地去查了下怎么使用排序关键字（sort key）。">Effective Python -- 列表排序中的优先级</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/05/22/Effective-Python-列表排序中的优先级/"><img src="/assets/images/features/effectivepython.jpeg" alt="Effective Python -- 列表排序中的优先级"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="sort方法的参数"><a href="#sort方法的参数" class="headerlink" title="sort方法的参数"></a>sort方法的参数</h3><p>首先还是先看看python列表中<code>sort</code>方法的参数的作用。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">In [9]: a = ['123', 'sd', 'asdfgf']</div><div class="line"></div><div class="line">In [10]: a.sort??</div><div class="line">Docstring: L.sort(key=None, reverse=False) -&gt; None -- stable sort *IN PLACE*</div><div class="line">Type:      builtin_function_or_method</div></pre></td></tr></table></figure></p>
+<p>sort在python3中有两个可选参数<code>key</code>, <code>reverse</code>。<code>reverse</code>参数就不多说了，那么<code>key</code>要怎么用？</p>
+<p>官方文档中的解释为：</p>
+<blockquote>
+<p>key specifies a function of one argument that is used to extract a comparison key from each list element: <code>key=str.lower</code>. The default value is None (compare the elements directly).</p>
+</blockquote>
+<p>也就是说<code>key</code>需要接受一个函数对象，一个可以作为排序依据的对象，这个函数将作用域列表中的所有元素，然后根据这个函数的返回值进行排序。<br>
+	
+	</div>
+  <a type="button" href="/2016/05/22/Effective-Python-列表排序中的优先级/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -364,33 +396,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-21 </div>
-			<div class="article-title"><a href="/2016/04/21/C-部分终于写差不多了，转移至python部分/" >C++部分终于写差不多了，转移至python部分</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/21/C-部分终于写差不多了，转移至python部分/"><img src="/assets/images/blog_img/2016-04-21-C-部分终于写差不多了，转移至python部分/test.png" alt="C++部分终于写差不多了，转移至python部分"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>在C++中添加SitesMap完工.<br>新增了些测试，所有测试全部通过。。<br>下面开始搞python了，希望会快一些！</p>
-<p>　　　　　　<em>.，——..<br>　　　　　／　　　　　`＂</em><br>　　　　ノ　　　　　　　　\<br>　　　ノ　　　　　　　　　　\<br>　　　|　　／\　　／\　　　　|<br>　　　|　　　　　　　　　　｜<br>　　　\　　（<em>人</em>）　　　　/<br>　….—＼　　　　　　　＿／———.<br>|”　　　　‘ “<em>　　　　..,-＇　　　　　‘|<br>＇￣￣￣＼　　　　　　　／￣￣￣＇<br>　　　　　|　　　　　　　|<br>　　　　　\　　　|’￣＼｀　|<br>　　　　　＼　 　\　　　／<br>　　　　　　＼　　\</em>＿／<br>　　　　　　　＼_＿、\<br>
-	
-	</div>
-  <a type="button" href="/2016/04/21/C-部分终于写差不多了，转移至python部分/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +445,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
       </li>
     
@@ -453,10 +462,6 @@
     
       <li>
         <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/09/机器学习算法实践-决策树/" ><i class="fa fa-file-o"></i>机器学习算法实践-决策树(Decision Tree)</a>
       </li>
     
   </ul>
@@ -481,6 +486,8 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
+			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
 		</ul>
@@ -493,48 +500,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">5</span></a></li>
 		
-		   <li><a href="/tags">...<span class="badge">85</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+		
+		   <li><a href="/tags">...<span class="badge">86</span></a></li>
 		 
 		</ul>
 	</div>
