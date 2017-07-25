@@ -7,10 +7,11 @@
       <title><![CDATA[与机器学习, Python, 数学相关的速查表整理]]></title>
       <url>http://pytlab.github.io/2017/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Python-%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9A%84%E9%80%9F%E6%9F%A5%E8%A1%A8/</url>
       <content type="html"><![CDATA[<blockquote>
-<p>本文翻译自<a href="https://unsupervisedmethods.com/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6" target="_blank" rel="external">Cheat Sheet of Machine Learning and Python (and Math) Cheat Sheets</a>，首发于伯乐在线。</p>
+<p>本文翻译自<a href="https://unsupervisedmethods.com/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6" target="_blank" rel="external">Cheat Sheet of Machine Learning and Python (and Math) Cheat Sheets</a>，首发于<a href="http://python.jobbole.com/88157/" target="_blank" rel="external">伯乐在线</a>, 未经许可禁止转载。</p>
 </blockquote>
 <p>机器学习涉及到的方面非常多。当我开始准备复习这些内容的时候，我找到了许多不同的”速查表”, 这些速查表针对某一主题都罗列出了所有我需要知道的知识重点。最终我编译了超过20份机器学习相关的速查表，其中一些是我经常用到的而且我相信其他人也会从中受益。本文整理了了27个我在网络上找到的我认为比较好的速查表。如果我有遗漏欢迎补充。</p>
 <a id="more"></a>
+<p>如今机器学习领域的发展相当迅速，我可以想象出来这些资源将会很快过时，但是至少在当前，在2017年6月1日，他们都是相当流行的。</p>
 <p>如果你们像我一样想要一次性批量下载所有资源，我已经将<a href="https://www.dropbox.com/s/v3yg8djhdf24g6v/UnsupervisedMethods.com%20-%20Cheat%20Sheets.zip?dl=0" target="_blank" rel="external">27个速查表整理打包</a>好了，请尽情享用吧！</p>
 <p>如果你喜欢本文，记得给我在下面点个赞哦。</p>
 <h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>这里我从一些和机器学习算法相关的流程图和表格中选择了我认为最全面的几个并在下面罗列出来。</p>
@@ -3699,9 +3700,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
             <tag> KMCLib </tag>
             
@@ -4985,11 +4986,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -5217,9 +5218,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -5317,9 +5318,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> Kynetix </tag>
             
-            <tag> chemistry </tag>
-            
             <tag> C </tag>
+            
+            <tag> chemistry </tag>
             
             <tag> 学术 </tag>
             
@@ -5366,13 +5367,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -5425,11 +5426,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -5477,11 +5478,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -5510,11 +5511,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> Kynetix </tag>
             
+            <tag> C </tag>
+            
             <tag> catalysis </tag>
             
             <tag> chemistry </tag>
-            
-            <tag> C </tag>
             
             <tag> 随笔 </tag>
             
