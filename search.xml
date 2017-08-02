@@ -4,6 +4,171 @@
   
     
     <entry>
+      <title><![CDATA[使用MPI并行化遗传算法框架GAFT]]></title>
+      <url>http://pytlab.github.io/2017/08/02/%E4%BD%BF%E7%94%A8MPI%E5%B9%B6%E8%A1%8C%E5%8C%96%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文中作者使用MPI的Python接口mpi4py来将自己的遗传算法框架GAFT进行多进程并行加速。并对加速效果进行了简单测试。</p>
+<p>项目链接:</p>
+<ul>
+<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a></li>
+<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="external">https://pypi.python.org/pypi/gaft</a></li>
+</ul>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>我们在用遗传算法优化目标函数的时候，函数通常都是高维函数，其导数一般比较难求取。这样我们的适应度函数计算通常都是比较费时的计算。</p>
+<p>例如在使用遗传算法寻找最优结构时候通常需要调用量化软件进行第一性原理计算结构的total energy，这是非常费时的过程; 例如我们优化力场参数的时候，以力场计算出的能量同基准能量之前的误差作为适应度，也需要调用相应的力场程序获取总能量来求取，同样这个过程也是相对耗时的。</p>
+<a id="more"></a>
+<p>这就会导致一个问题，当我们的<strong>种群比较大</strong>的时候，我们需要利用适应度信息来产生下一代种群，这时候每一代繁殖的过程将会很耗时。但有幸的是，种群的选择交叉变异过程对于种群中的个体都是<strong>相互独立</strong>的过程，我们可以将这一部分进行并行处理来加速遗传算法的迭代。</p>
+<h3 id="使用mpi4py"><a href="#使用mpi4py" class="headerlink" title="使用mpi4py"></a>使用mpi4py</h3><p>由于实验室的集群都是MPI环境，我还是选择使用MPI接口来将代码并行化，这里我还是用了MPI接口的Python版本mpi4py来将代码并行化。关于mpi4py的使用，我之前写过一篇博客专门做了介绍，可以参见<a href="http://pytlab.org/2017/02/19/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-mpi4py%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank" rel="external">《Python多进程并行编程实践-mpi4py的使用》</a></p>
+<h3 id="将mpi4py的接口进一步封装"><a href="#将mpi4py的接口进一步封装" class="headerlink" title="将mpi4py的接口进一步封装"></a>将mpi4py的接口进一步封装</h3><p>为了能让mpi的接口在GAFT中更方便的调用，我决定将mpi4py针对遗传算法中需要用的地方进行进一步封装，为此我单独写了个<code>MPIUtil</code>类, 详细代码参见<a href="https://github.com/PytLab/gaft/blob/master/gaft/mpiutil.py" target="_blank" rel="external">gaft/mpiutil.py</a>。</p>
+<h4 id="封装通信子常用的接口"><a href="#封装通信子常用的接口" class="headerlink" title="封装通信子常用的接口"></a>封装通信子常用的接口</h4><p>例如进程同步, 获取rank，进程数，判断是否为主进程等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MPIUtil</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        logger_name = <span class="string">'gaft.&#123;&#125;'</span>.format(self.__class__.__name__)</div><div class="line">        self._logger = logging.getLogger(logger_name)</div><div class="line"></div><div class="line">    <span class="comment"># Wrapper for common MPI interfaces.</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">barrier</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> MPI_INSTALLED:</div><div class="line">            mpi_comm = MPI.COMM_WORLD</div><div class="line">            mpi_comm.barrier()</div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> MPI_INSTALLED:</div><div class="line">            mpi_comm = MPI.COMM_WORLD</div><div class="line">            <span class="keyword">return</span> mpi_comm.Get_rank()</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">size</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> MPI_INSTALLED:</div><div class="line">            mpi_comm = MPI.COMM_WORLD</div><div class="line">            <span class="keyword">return</span> mpi_comm.Get_size()</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line"></div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_master</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.rank == <span class="number">0</span></div></pre></td></tr></table></figure>
+<h4 id="组内集合通信接口"><a href="#组内集合通信接口" class="headerlink" title="组内集合通信接口"></a>组内集合通信接口</h4><p>由于本次并行化的任务是在种群繁衍时候进行的，因此我需要将上一代种群进行划分，划分成多个子部分，然后在每个进程中对划分好的子部分进行选择交叉变异等遗传操作。在最后将每个字部分得到的子种群进行收集合并。为此写了几个划分和收集的接口:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_seq</span><span class="params">(self, sequence)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Split the sequence according to rank and processor number.</div><div class="line">    '''</div><div class="line">    starts = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(sequence), len(sequence)//self.size)]</div><div class="line">    ends = starts[<span class="number">1</span>: ] + [len(sequence)]</div><div class="line">    start, end = list(zip(starts, ends))[self.rank]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> sequence[start: end]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_size</span><span class="params">(self, size)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Split a size number(int) to sub-size number.</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> size &lt; self.size:</div><div class="line">        warn_msg = (<span class="string">'Splitting size(&#123;&#125;) is smaller than process '</span> +</div><div class="line">                    <span class="string">'number(&#123;&#125;), more processor would be '</span> +</div><div class="line">                    <span class="string">'superflous'</span>).format(size, self.size)</div><div class="line">        self._logger.warning(warn_msg)</div><div class="line">        splited_sizes = [<span class="number">1</span>]*size + [<span class="number">0</span>]*(self.size - size)</div><div class="line">    <span class="keyword">elif</span> size % self.size != <span class="number">0</span>:</div><div class="line">        residual = size % self.size</div><div class="line">        splited_sizes = [size // self.size]*self.size</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(residual):</div><div class="line">            splited_sizes[i] += <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        splited_sizes = [size // self.size]*self.size</div><div class="line"></div><div class="line">    <span class="keyword">return</span> splited_sizes[self.rank]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_seq</span><span class="params">(self, seq)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Gather data in sub-process to root process.</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> self.size == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> seq</div><div class="line"></div><div class="line">    mpi_comm = MPI.COMM_WORLD</div><div class="line">    merged_seq= mpi_comm.allgather(seq)</div><div class="line">    <span class="keyword">return</span> list(chain(*merged_seq))</div></pre></td></tr></table></figure>
+<h4 id="用于限制程序在主进程执行的装饰器"><a href="#用于限制程序在主进程执行的装饰器" class="headerlink" title="用于限制程序在主进程执行的装饰器"></a>用于限制程序在主进程执行的装饰器</h4><p>有些函数例如日志输出，数据收集的函数，我只希望在主进程执行，为了方便，写了个装饰器来限制函数在主进程中执行:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">master_only</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Decorator to limit a function to be called</div><div class="line">    only in master process in MPI env.</div><div class="line">    '''</div><div class="line"><span class="meta">    @wraps(func)</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_call_in_master_proc</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">        <span class="keyword">if</span> mpi.is_master:</div><div class="line">            <span class="keyword">return</span> func(*args, **kwargs)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> _call_in_master_proc</div></pre></td></tr></table></figure>
+<h3 id="在遗传算法主循环中添加并行"><a href="#在遗传算法主循环中添加并行" class="headerlink" title="在遗传算法主循环中添加并行"></a>在遗传算法主循环中添加并行</h3><p>主要在种群繁衍中对种群针对进程数进行划分然后并行进行遗传操作并合并子种群完成并行，代码改动很少。详见:<a href="https://github.com/PytLab/gaft/blob/master/gaft/engine.py#L67" target="_blank" rel="external">https://github.com/PytLab/gaft/blob/master/gaft/engine.py#L67</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Enter evolution iteration.</span></div><div class="line"><span class="keyword">for</span> g <span class="keyword">in</span> range(ng):</div><div class="line">    <span class="comment"># Scatter jobs to all processes.</span></div><div class="line">    local_indvs = []</div><div class="line">    local_size = mpi.split_size(self.population.size // <span class="number">2</span>)</div><div class="line"></div><div class="line">    <span class="comment"># Fill the new population.</span></div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(local_size):</div><div class="line">        <span class="comment"># Select father and mother.</span></div><div class="line">        parents = self.selection.select(self.population, fitness=self.fitness)</div><div class="line">        <span class="comment"># Crossover.</span></div><div class="line">        children = self.crossover.cross(*parents)</div><div class="line">        <span class="comment"># Mutation.</span></div><div class="line">        children = [self.mutation.mutate(child) <span class="keyword">for</span> child <span class="keyword">in</span> children]</div><div class="line">        <span class="comment"># Collect children.</span></div><div class="line">        local_indvs.extend(children)</div><div class="line"></div><div class="line">    <span class="comment"># Gather individuals from all processes.</span></div><div class="line">    indvs = mpi.merge_seq(local_indvs)</div><div class="line">    <span class="comment"># The next generation.</span></div><div class="line">    self.population.individuals = indvs</div></pre></td></tr></table></figure>
+<h3 id="测试加速效果"><a href="#测试加速效果" class="headerlink" title="测试加速效果"></a>测试加速效果</h3><h4 id="测试一维搜索"><a href="#测试一维搜索" class="headerlink" title="测试一维搜索"></a>测试一维搜索</h4><p>下面我针对项目中的一维优化的例子进行并行加速测试来看看加速的效果。例子代码在<a href="https://github.com/PytLab/gaft/tree/master/examples/ex01" target="_blank" rel="external">/examples/ex01/</a></p>
+<p>由于自己本子核心数量有限，我把gaft安装在实验室集群上使用MPI利用多核心进行并行计算以为优化，种群大小为50，代数为100，针对不同核心数可以得到不同的优化时间和加速比。可视化如下图:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">核心数</th>
+<th style="text-align:left">优化时间(s)</th>
+<th style="text-align:left">加速比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1.473</td>
+<td style="text-align:left">1.0</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">0.877</td>
+<td style="text-align:left">1.68</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">0.657</td>
+<td style="text-align:left">2.24</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">0.533</td>
+<td style="text-align:left">2.76</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">0.467</td>
+<td style="text-align:left">3.15</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">0.540</td>
+<td style="text-align:left">2.73</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">0.431</td>
+<td style="text-align:left">3.42</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">0.382</td>
+<td style="text-align:left">3.86</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">0.355</td>
+<td style="text-align:left">4.15</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">0.317</td>
+<td style="text-align:left">4.65</td>
+</tr>
+</tbody>
+</table>
+<p>核心数与优化时间的关系:</p>
+<p><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/n_vs_time_1d.png" alt=""></p>
+<p>核心数与加速比:</p>
+<p><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/n_vs_speedup_1d.png" alt=""></p>
+<h4 id="测试力场优化"><a href="#测试力场优化" class="headerlink" title="测试力场优化"></a>测试力场优化</h4><p>这里我对自己要研究的对象进行加速测试，这部分代码并未开源，针对每个个体的适应度计算都需要调用其他的计算程序，因此此过程相比直接有函数表达式的目标函数计算要耗时很多。</p>
+<p>同样，我针对不同核心数看看使用MPI在集群上加速的效果:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">核心数</th>
+<th style="text-align:left">优化时间(s)</th>
+<th style="text-align:left">优化时间</th>
+<th style="text-align:left">加速比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2.29e04</td>
+<td style="text-align:left">6 h 21 min</td>
+<td style="text-align:left">1.0</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">1.94e04</td>
+<td style="text-align:left">5 h 23 min</td>
+<td style="text-align:left">1.18</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">1.62e04</td>
+<td style="text-align:left">4 h 30 min</td>
+<td style="text-align:left">1.41</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">1.35e04</td>
+<td style="text-align:left">3 h 45 min</td>
+<td style="text-align:left">1.69</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left">8.73e03</td>
+<td style="text-align:left">2 h 25 min</td>
+<td style="text-align:left">2.62</td>
+</tr>
+</tbody>
+</table>
+<p>核心数与优化时间的关系:</p>
+<p><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/n_vs_time.png" alt=""></p>
+<p>核心数与加速比:</p>
+<p><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/n_vs_speedup.png" alt=""></p>
+<p>可见针对上述两个案例，MPI对遗传算法的加速还是比较理想的，程序可以扔到集群上飞起啦~~~</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要总结了使用mpi4py对遗传算法进行并行化的方法和过程，并对加速效果进行了测试，可见MPI对于遗传算法框架GAFT的加速效果还是较为理想的。带有MPI并行的遗传算法框架目前也已更新并上传至GitHub(<a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a>) 欢迎围观[]~(￣▽￣)~*</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 代码作品 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> MPI </tag>
+            
+            <tag> Parallel Computing </tag>
+            
+            <tag> mpi4py </tag>
+            
+            <tag> GeneticAlgorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[与机器学习, Python, 数学相关的速查表整理]]></title>
       <url>http://pytlab.github.io/2017/07/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Python-%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9A%84%E9%80%9F%E6%9F%A5%E8%A1%A8/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -590,9 +755,9 @@
             
             <tag> chemistry </tag>
             
-            <tag> catalyst </tag>
-            
             <tag> jQuery </tag>
+            
+            <tag> catalyst </tag>
             
             <tag> webapp </tag>
             
@@ -1132,9 +1297,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
         </tags>
         
@@ -1208,9 +1373,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> OOP </tag>
             
@@ -1297,9 +1462,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> OOP </tag>
             
@@ -1357,9 +1522,9 @@
         
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ECMAScript </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> OOP </tag>
             
@@ -3700,9 +3865,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> Monte Carlo </tag>
-            
             <tag> 学术 </tag>
+            
+            <tag> Monte Carlo </tag>
             
             <tag> KMCLib </tag>
             
@@ -4986,11 +5151,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -5218,9 +5383,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> kMC </tag>
-            
             <tag> 学术 </tag>
+            
+            <tag> kMC </tag>
             
         </tags>
         
@@ -5318,9 +5483,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> Kynetix </tag>
             
-            <tag> C </tag>
-            
             <tag> chemistry </tag>
+            
+            <tag> C </tag>
             
             <tag> 学术 </tag>
             
@@ -5367,13 +5532,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -5426,11 +5591,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -5478,11 +5643,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
+            <tag> 学术 </tag>
+            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
-            
-            <tag> 学术 </tag>
             
         </tags>
         
@@ -5511,11 +5676,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> Kynetix </tag>
             
-            <tag> C </tag>
-            
             <tag> catalysis </tag>
             
             <tag> chemistry </tag>
+            
+            <tag> C </tag>
             
             <tag> 随笔 </tag>
             
@@ -6368,9 +6533,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
             
             <tag> 随笔 </tag>
             
-            <tag> Git </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Git </tag>
             
         </tags>
         

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
+              
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
               
               <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
-              
-              <li><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" style="font-size: 15px; font-family: 微软雅黑">KinLab - 基于Flask+Bootstrap实...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-07 </div>
+			<div class="article-title"><a href="/2016/03/07/Cpp类继承中需要注意的那点东西-一/" title="在这里总结下C++类继承的一些东西（针对于我自己，也是我自己的理解）">C++类继承中需要注意的那点东西(一)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>关于C++中的派生类和基类的关系就总结下来就是：</p>
+<ol>
+<li>派生类继承了基类的部分方法</li>
+<li>有些方法是不能被继承的，例如构造函数、析构函数、赋值运算符</li>
+<li>基类的数据成员也会继承下来，但是<code>private</code>成员是不能够被派生类直接访问的，需要通过基类的共有方法来访问，<code>protected</code>数据是可以向public数据一样被派生类通过名称空间解析运算符<code>::</code>来访问。</li>
+</ol>
+<div class="alert alert-info"><i class="fa fa-info"></i>  我就把派生类想象成了一个包含基类的类，基类的小秘密不对外公开，想要改变小秘密的内容要使用基类自己的方法（比如基类的构造函数，基类的赋值运算符函数等），总之代码写下来感觉，其实基类在派生类中还是很<strong>独立的</strong>。
+<br>
+在派生类构造派生类之前先调用基类的构造函数初始化基类组件，在调用派生类析构函数时会在析构派生类对象之后调用基类的析构函数释放基类组件。顺序保持一致。</div>
+	
+	</div>
+  <a type="button" href="/2016/03/07/Cpp类继承中需要注意的那点东西-一/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -339,34 +368,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-27 </div>
-			<div class="article-title"><a href="/2016/02/27/关于Cpp特殊成员函数/" title="在这里总结下C++类中的几个特殊成员函数">关于C++特殊成员函数</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>C++编译器会自动生成几个成员函数，这里属于接触到的新东西，而且如果不了解C++编译器的这种机制，在很多时候会因为隐式的调用这几个特殊的成员函数而导致程序发生错误。</p>
-<p><strong>特殊成员函数</strong></p>
-<ul>
-<li>默认构造函数</li>
-<li>默认析构函数</li>
-<li>复制构造函数</li>
-<li>赋值运算符</li>
-<li>地址运算符
-	
-	</div>
-  <a type="button" href="/2016/02/27/关于Cpp特殊成员函数/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -416,6 +417,10 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
+      </li>
+    
+      <li>
         <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
       </li>
     
@@ -431,10 +436,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
         <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" ><i class="fa fa-file-o"></i>机器学习算法实践-朴素贝叶斯(Naive Bayes)</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -445,7 +446,7 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">12</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
 		
@@ -471,45 +472,45 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">51</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">86</span></a></li>
