@@ -4,6 +4,69 @@
   
     
     <entry>
+      <title><![CDATA[递归式求解-代入法]]></title>
+      <url>http://pytlab.github.io/2017/08/11/%E9%80%92%E5%BD%92%E5%BC%8F%E6%B1%82%E8%A7%A3-%E4%BB%A3%E5%85%A5%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>放假没事继续看看算导，关于求解递归式一般使用三种方法：</p>
+<ol>
+<li>代入法</li>
+<li>递归树方法</li>
+<li>主方法</li>
+</ol>
+<p>本文主要总结一下在使用代入法求解递归式的方法以及需要注意的点和技巧。</p>
+<a id="more"></a>
+<p>代入式求解递归式一般分为两步：</p>
+<ol>
+<li>猜测解的形式</li>
+<li>使用数学归纳法求解出解中的常数$c$的范围，并进行证明</li>
+</ol>
+<h3 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h3><h4 id="做出合适的猜测"><a href="#做出合适的猜测" class="headerlink" title="做出合适的猜测"></a>做出合适的猜测</h4><p>虽然并没有通用的方法来猜测递归式的正确解，但我们可以根据经验来猜测似曾相识的递归式的解作为我们的猜测。例如如下递归式<br>$$<br>T(n) = 2T(\lfloor n/2 \rfloor + 17) + n<br>$$<br>当$n$足够大时，$\lfloor n/2 \rfloor$和$\lfloor n/2 + 17 \rfloor$的差距并不大，因此我们可以猜测递归式的解为$T(n) = O(nlgn)$</p>
+<p>另一种做出好猜测的方法就是先证明递归式较为<strong>宽松</strong>的上界($\Omega(n)$)和下界($O(n^{2})$)，然后缩小范围最终收敛到渐进紧确界($O(nlgn)$)。</p>
+<h4 id="减去低阶项"><a href="#减去低阶项" class="headerlink" title="减去低阶项"></a>减去低阶项</h4><p>有时及时猜测出了递归式解的渐进界，但是归纳证明的时候会失败，这常常是因为归纳假设不够强，无法证明出准确的界。这是可以通过在之前的猜测的基础上<strong>减去一个低阶的项</strong>，归纳证明往往能顺利进行。</p>
+<p>例如如下递归式：<br>$$<br>T(n) = T(\lfloor n/2 \rfloor) + T(\lceil n/2 \rceil) + 1<br>$$</p>
+<p>从递归式中我们可以看到问题的划分成两个子问题，但是子问题的规模也是原问题的1/2，因此可以猜测此递归式的渐进解为$O(n)$, 即$T(n) \le cn$</p>
+<p>归纳证明:<br>$$<br>T(n) \le c\lfloor n/2 \rfloor + c\lceil n/2 \rceil + 1 = cn + 1<br>$$</p>
+<p>显然无法归纳证明，这时候我们可以将猜测的解减去一个低阶项，$T(n) \le cn - d$, 这样便有<br>$$<br>T(n) \le (c\lfloor n/2 \rfloor - d) + (c\lceil n/2 \rceil -d) + 1 = cn - 2d + 1<br>$$</p>
+<p>当$d \ge 1$时，便有 $T(n) \le cn - d$.</p>
+<h4 id="要显式的证明不等式"><a href="#要显式的证明不等式" class="headerlink" title="要显式的证明不等式"></a>要显式的证明不等式</h4><p>这一点其实需要对渐进符号有个正确的理解，渐进符号本身便是一种满足不等式条件的函数集合，因此我们在求解递归式的时候，不能直接证明$T(n) = O(n)$, 因为这样我们并没有证明出以归纳假设<strong>严格一致</strong>的形式。例如：</p>
+<p>$$<br>T(n) \le 2(c\lfloor n/2 \rfloor) + n \le cn + n = O(n)<br>$$</p>
+<p>这样是错误的，我们必须要显式的的证明$T(n) \le cn$ 才行！</p>
+<h4 id="改变变量"><a href="#改变变量" class="headerlink" title="改变变量"></a>改变变量</h4><p>有时候递归关系式看起来比较复杂，但是经过变量替换便可以讲一个未知的递归式变成熟悉的形式。例如：</p>
+<p>$$<br>T(n) = 2T(\lfloor \sqrt{n} \rfloor) + lgn<br>$$</p>
+<p>我们令$m = lgn$ 则 $\sqrt{n} = 2^{m/2}$</p>
+<p>$$<br>T(2^{m}) = 2T(2^{m/2}) + m<br>$$</p>
+<p>使$S(m) = T(2^{m})$, 得到</p>
+<p>$$<br>S(m) = 2S(m/2) + m<br>$$</p>
+<p>这样，此递归式的形式我们在熟悉不过了，我们便可以得到$S(m) = O(mlgm) = T(2^{m})$</p>
+<p>令$m = lgn$代入，得到</p>
+<p>$$<br>T(n) = O((lgn)(lglgn))<br>$$</p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<p>证明: $T(n) = T(\lceil n/2 \rceil) + 1$ 的解为 $O(lgn)$</p>
+</blockquote>
+<p>根据递归关系式有:<br>$$<br>T(n) \le clg(\lceil n/2 \rceil) + 1 \le clgn + 1<br>$$<br>显然无法证明，这时我们尝试让解减去一个低阶项$d$, 即$clgn - d$</p>
+<p>$$<br>T(n) \le clg(\lceil n/2 \rceil) - d + 1 \le clg(n) - d + 1<br>$$</p>
+<p>取$d \ge 1$ 则有</p>
+<p>$$<br>T(n) \le clgn<br>$$</p>
+<p>然后是边界条件，我们这里假设$T(1) = 1$则有$T(1) \le clg1 - 1 = -1 \ne 1$ 矛盾。</p>
+<p>由于渐进符号仅要求我们的$n \ge n_{0}$就可以，因此我们可以尝试下$T(2) = 2$, 这样则有, 当$c \ge 3$<br>$$<br>T(2) = 2 \le clg2 - 1 = c - 1<br>$$</p>
+<p>因此完成归纳证明：对于$c \ge 3$， $n \le 2$ 有 $T(n) \le clgn - 1$, 即$T(n) = O(lgn)$</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习小结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用MPI并行化遗传算法框架GAFT]]></title>
       <url>http://pytlab.github.io/2017/08/02/%E4%BD%BF%E7%94%A8MPI%E5%B9%B6%E8%A1%8C%E5%8C%96%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文中作者使用MPI的Python接口mpi4py来将自己的遗传算法框架GAFT进行多进程并行加速。并对加速效果进行了简单测试。</p>
@@ -755,9 +818,9 @@
             
             <tag> chemistry </tag>
             
-            <tag> jQuery </tag>
-            
             <tag> catalyst </tag>
+            
+            <tag> jQuery </tag>
             
             <tag> webapp </tag>
             
@@ -1297,9 +1360,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
         </tags>
         
@@ -1373,9 +1436,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -1462,9 +1525,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -1522,9 +1585,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -6533,9 +6596,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
             
             <tag> 随笔 </tag>
             
-            <tag> Hexo </tag>
-            
             <tag> Git </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
         
@@ -7341,11 +7404,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> loggers </tag>
-            
             <tag> python </tag>
             
             <tag> emuch </tag>
+            
+            <tag> loggers </tag>
             
         </tags>
         
@@ -7491,11 +7554,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> ecust </tag>
+            <tag> python </tag>
             
             <tag> loggers </tag>
             
-            <tag> python </tag>
+            <tag> ecust </tag>
             
             <tag> 校园网 </tag>
             

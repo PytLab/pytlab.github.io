@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
+              
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
-              
-              <li><a href="/2017/07/09/机器学习算法实践-决策树/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-决策树(Decision Tree)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -132,9 +132,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
-              
               <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-07-11 </div>
+			<div class="article-title"><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" >机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/"><img src="/assets/images/blog_img/2017-07-11-机器学习实践-朴素贝叶斯-Naive-Bayes/bayes-rule.jpg" alt="机器学习算法实践-朴素贝叶斯(Naive Bayes)"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/">上一篇</a>总结了决策树的实现，本文中我将一步步实现一个朴素贝叶斯分类器，并采用<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/">SMS垃圾短信语料库</a>中的数据进行模型训练，对垃圾短信进行过滤，在最后对分类的错误率进行了计算。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>与决策树分类和k近邻分类算法不同，贝叶斯分类主要借助概率论的知识来通过比较提供的数据属于每个类型的条件概率, 将他们分别计算出来然后预测具有最大条件概率的那个类别是最后的类别。当然样本越多我们统计的不同类型的特征值分布就越准确，使用此分布进行预测则会更加准确。</p>
+	
+	</div>
+  <a type="button" href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -359,34 +386,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-03-26 </div>
-			<div class="article-title"><a href="/2017/03/26/优雅的在终端中编写Python/" >优雅的在终端中编写Python</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/03/26/优雅的在终端中编写Python/"><img src="/assets/images/features/vim_logo.png" alt="优雅的在终端中编写Python"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最早我也只是在服务器上编辑文件的时候用用vim来改改程序，并没有把vim当做自己的主力编辑器。但是偶然的一次机会需要改一个奇葩的输入文件的格式，用了下Vim的宏录制，尝到了甜头，于是后面就开始用Vim来写程序了，虽然使用初期有些阻力，但时间久了就会发现，双手再也不用离开键盘，即使使用sublime这样的编辑器我也要改成使用Vim模式，Vim真的能让自己一思维的速度编辑文本(对我来说就是写程序了)。</p>
-<p>正好最近换了新的电脑，需要在新电脑上配置一下，就干脆把一些配置相关的东东记录下来吧，相关的配置文件我都放在了github(<a href="https://github.com/PytLab/dotfiles">https://github.com/PytLab/dotfiles</a>) 上并写了相应的安装和卸载脚本，给有需要的同学做个参考吧。</p>
-<p>本文是有关配置的文章，并不对Vim的核心技巧进行说明，有需要的童鞋可以参考文档和相关书籍。这里主要配合tmux和vim可以更有优雅的帮助我们在终端中进行Python编程。</p>
-	
-	</div>
-  <a type="button" href="/2017/03/26/优雅的在终端中编写Python/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -436,6 +435,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
@@ -451,10 +454,6 @@
         <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
-      <li>
-        <a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(上)</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -467,7 +466,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">85</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">86</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -491,48 +490,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">52</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
 			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">86</span></a></li>
+		   <li><a href="/tags">...<span class="badge">87</span></a></li>
 		 
 		</ul>
 	</div>
