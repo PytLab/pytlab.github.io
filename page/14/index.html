@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
+              
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
-              
-              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -132,9 +132,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
               
-              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,31 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-17 </div>
+			<div class="article-title"><a href="/2016/03/17/开始看KMCLib源码/" >开始看KMCLib源码</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<div class="alert alert-info"><i class="fa fa-info"></i>  <br>
+今天开始看KMCLib的源码，预计一周之内搞定。<br>
+同时学习下人家C++的编码风格，我觉得人家代码写的很优美啊。<br>
+不多说了，开干吧～</div>
+
+	
+	</div>
+  <a type="button" href="/2016/03/17/开始看KMCLib源码/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -347,28 +372,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/ios-base-对象没有公共复制构造函数/" >ios_base()对象没有公共复制构造函数</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>今天写C++ Primer Plus17章的最后一题，要构造一个Store函数符来将vector中的string对象写入文件，但是写好后编译器一直报错<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::ios_base::ios_base(<span class="keyword">const</span> <span class="built_in">std</span>::ios_base&amp;) is <span class="keyword">private</span></div></pre></td></tr></table></figure></p>
-<p>看样子是标准库里面的报错，我写的Store类如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// functor Store</span></div><div class="line"><span class="keyword">class</span> Store</div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">std</span>::ostream os;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Store(<span class="built_in">std</span>::ostream &amp; o) : os(o) &#123;&#125;</div><div class="line">    <span class="comment">// overloaded funtions</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp; s)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/03/16/ios-base-对象没有公共复制构造函数/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -418,6 +421,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
       </li>
     
@@ -431,10 +438,6 @@
     
       <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
   </ul>
@@ -459,7 +462,7 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
-			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+			<li><a href="/categories/译文/">译文<span class="badge">2</span></a></li>
 		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
@@ -473,48 +476,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">52</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
 			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">87</span></a></li>
+		   <li><a href="/tags">...<span class="badge">88</span></a></li>
 		 
 		</ul>
 	</div>

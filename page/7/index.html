@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
+              
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
-              
-              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -132,9 +132,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
               
-              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-08-02 </div>
+			<div class="article-title"><a href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/" title="本文也是通过实例来理解总结一下非阻塞通信中的非重复的就绪通信和同步通信模式。">MPI学习-非阻塞通信之非重复的就绪通信和同步通信</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习-非阻塞通信之非重复的就绪通信和同步通信"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这里也没啥，就是通过两个例子来学习一下非阻塞通信中的就绪通信和同步通信。</p>
+<h3 id="非重复的就绪通信"><a href="#非重复的就绪通信" class="headerlink" title="非重复的就绪通信"></a>非重复的就绪通信</h3><p>这里的就绪通信同阻塞通信中的<a href="http://ipytlab.com/2016/07/08/MPI%E5%AD%A6%E4%B9%A0-%E9%98%BB%E5%A1%9E%E9%80%9A%E4%BF%A1%E4%B9%8B%E5%B0%B1%E7%BB%AA%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F/">就绪通信</a>一样，都是告诉MPI接收方已经准备就绪，如果检测到并没有准备就绪则MPI就会报错。其他地方就是非阻塞通信与阻塞通信之间的区别了。</p>
+<p>下面我就写了个例子来看看<code>MPI_Isend()</code>与<code>MPI_Irecv()</code>之间和<code>MPI_Isend()</code>和<code>MPI_Recv()</code>之间的通信。<br>下面的例子是不同进程之间从左边的进程接收数据并将当前进程的数据发送到右边的进程，因此代码中不需要对进程号进行判断处理。<br>
+	
+	</div>
+  <a type="button" href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -365,35 +393,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-08 </div>
-			<div class="article-title"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/" title="通过一个缓冲通信的例子来简单总结下缓冲通信模式。">MPI学习--阻塞通信之缓冲通信模式</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之缓冲通信模式"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>缓冲通信模式主要用于解开阻塞通信的发送和接受之间的耦合。有了缓冲机制，即使在接收端没有启动相应的接收情况下，在<strong>完成消息数据到缓冲区的转移后</strong>发送端的阻塞发送函数也可以返回。</p>
-<p>但缓冲方式带来了额外的内存到内存的复制开销，会导致一定的性能损失和资源占用。的确，每个进程都要在堆里分配内存然后注册成为缓冲区。</p>
-<p>缓冲区的使用并不能改变发送和接受之间的语义关系，及不能改变程序的正确性。</p>
-<p>与标准模式由于以来MPI环境提供的缓冲机制而受到远端进程状态左右不同，缓冲发送完成与否不会受远端匹配进程状态的影响。但当消息大小超过缓冲区容量时，会报错。</p>
-	
-	</div>
-  <a type="button" href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -443,6 +442,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
       </li>
     
@@ -456,10 +459,6 @@
     
       <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
   </ul>
@@ -484,7 +483,7 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
-			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+			<li><a href="/categories/译文/">译文<span class="badge">2</span></a></li>
 		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
@@ -498,48 +497,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">87</span></a></li>
+		   <li><a href="/tags">...<span class="badge">88</span></a></li>
 		 
 		</ul>
 	</div>

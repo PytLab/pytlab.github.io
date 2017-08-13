@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
+              
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
-              
-              <li><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-朴素贝叶斯(Naive Bayes)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -132,9 +132,9 @@
               
               <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
               
-              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,31 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-18 </div>
+			<div class="article-title"><a href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/" title="在这里对动力学蒙特卡洛(kMC)的基本原理进行下简单总结。&lt;br&gt;转载请注明出处。">动力学蒙特卡洛(kinetic Mont Carlo)基本原理小结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h4 id="克服模拟的时间尺度的局限"><a href="#克服模拟的时间尺度的局限" class="headerlink" title="克服模拟的时间尺度的局限"></a>克服模拟的时间尺度的局限</h4><p>由于许多动态的过程(dynamic evolution)，例如表面的生长或者材料的老化，时间的跨度都在s以上，超出了分子动力学模拟的范围，动力学蒙特卡洛模拟便是针对这种长时间尺度的动态模拟的。</p>
+<blockquote>
+<p>Kinetic Monte Carlo attempts to overcome this limitation by exploiting the fact that the long-time dynamics of this kind of system typically consists of diffusive jumps from state to state. Rather than following the trajectory through every vibrational period, these state-to-state transitions are treated directly</p>
+</blockquote>
+<p><img src="/assets/images/blog_img/2016-02-18-动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/PES.png" alt=""><br>
+	
+	</div>
+  <a type="button" href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -327,37 +352,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-13 </div>
-			<div class="article-title"><a href="/2016/02/13/关于C-Cpp的单定义规则/" title="在这里通过简单的程序对C和C++的单定义规则进行测试和说明以加深理解。">关于C/C++的单定义规则</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>我们知道一般头文件包含的内容有：</p>
-<ul>
-<li>函数原型</li>
-<li>使用<code>#define</code>或<code>const</code>(仅对于C++而言)定义的符号常量</li>
-<li>结构声明</li>
-<li>类声明</li>
-<li>模板声明</li>
-<li>内联函数</li>
-</ul>
-<p>正常在头文件中的内容是不进行内存分配的，例如若是变量则同一个变量会被重复定义声明，同理函数定义也是。所以也不能使用<code>#include</code>来包含源代码文件，也会导致<strong>多重声明</strong>。</p>
-<h3 id="单定义规则（One-Definition-Rule-ODR）"><a href="#单定义规则（One-Definition-Rule-ODR）" class="headerlink" title="单定义规则（One Definition Rule, ODR）"></a>单定义规则（One Definition Rule, ODR）</h3><div class="alert alert-info"><i class="fa fa-info"></i>  单定义规则（One Definition Rule, ODR）：变量只能有一次定义。</div>
-	
-	</div>
-  <a type="button" href="/2016/02/13/关于C-Cpp的单定义规则/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -407,6 +401,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
       </li>
     
@@ -420,10 +418,6 @@
     
       <li>
         <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
-      <li>
-        <a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" ><i class="fa fa-file-o"></i>机器学习算法实践-Logistic回归与梯度上升算法(下)</a>
       </li>
     
   </ul>
@@ -448,7 +442,7 @@
 		
 			<li><a href="/categories/教程/">教程<span class="badge">6</span></a></li>
 		
-			<li><a href="/categories/译文/">译文<span class="badge">1</span></a></li>
+			<li><a href="/categories/译文/">译文<span class="badge">2</span></a></li>
 		
 			<li><a href="/categories/随笔/">随笔<span class="badge">1</span></a></li>
 		
@@ -462,48 +456,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">87</span></a></li>
+		   <li><a href="/tags">...<span class="badge">88</span></a></li>
 		 
 		</ul>
 	</div>
