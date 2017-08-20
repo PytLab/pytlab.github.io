@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
+              
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
-              
-              <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,28 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-14 </div>
+			<div class="article-title"><a href="/2016/02/14/变量的静态初始化和动态初始化/" >变量的静态初始化和动态初始化</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>零初始化和常量表达式初始化统称为<strong>静态初始化</strong>，这意味着编译器处理文件时就初始化了变量。<br>动态初始化意味着变量将在编译后初始化（先分配内存空间）。</p>
+<p>使用常量表达式初始化变量，编译器根据文件内容对常量表达式进行简单的计算。但是编译器有没有那么的智能，它也只是能进行<strong>简单的计算</strong>，如果没有足够的信息，变量将被动态初始化。<br>但是，有一个比较特别的常量表达式，它没有使用字面常量。他就是<code>sizeof</code>运算符。<br>以下初始化表达式都是<strong>静态初始化</strong>：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> x;                 <span class="comment">// 零初始化</span></div><div class="line"><span class="keyword">int</span> y = <span class="number">5</span>;             <span class="comment">// 常量表达式初始化</span></div><div class="line"><span class="keyword">long</span> z = <span class="number">13</span> * <span class="number">13</span>;      <span class="comment">// 常量表达式初始化</span></div><div class="line"><span class="keyword">int</span> e = <span class="keyword">sizeof</span>(<span class="keyword">long</span>);  <span class="comment">// 常量表达式初始化</span></div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/02/14/变量的静态初始化和动态初始化/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -397,27 +419,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-02 </div>
-			<div class="article-title"><a href="/2016/02/02/博客新增时间线/" title="最近使用纯CSS和awesome font实现了简单的时间线并添加到about页面中。">使用CSS和font-awesome给博客添加时间线</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>想给自己的about页面修饰一下，于是就想添加个个人时间线功能希望能通过时间线功能把自己的故事展现给别人面前，于是就参考网上别人的方法使用CSS + font-awesome实现了简单的时间线功能，效果如下图（也可以直接访问我的<a href="../../../about/">about页面</a><br><img src="assets/images/blog_img/2016-02-02-博客新增时间线/timeline.png" alt=""><br>
-	
-	</div>
-  <a type="button" href="/2016/02/02/博客新增时间线/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -467,6 +468,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
@@ -482,10 +487,6 @@
         <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
       </li>
     
-      <li>
-        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -498,7 +499,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">86</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -522,48 +523,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">88</span></a></li>
+		   <li><a href="/tags">...<span class="badge">93</span></a></li>
 		 
 		</ul>
 	</div>

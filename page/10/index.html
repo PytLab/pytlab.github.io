@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
+              
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
-              
-              <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-30 </div>
+			<div class="article-title"><a href="/2016/04/30/python-生成器小结/" title="对python中的生成器进行下总结。">python 生成器小结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/30/python-生成器小结/"><img src="/assets/images/features/python_logo.png" alt="python 生成器小结"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>在python中生成器可以很方便的实现迭代协议。生成器通过生成器函数产生，生成器函数可以通过常规的def语句来定义，但是不用return返回，而是用yield一次返回一个结果，在每个结果之间挂起和继续它们的状态，来自动实现迭代协议。也就是说，yield是一个语法糖，内部实现支持了迭代器协议。</p>
+<p>生成器的强大之一就在于他提供了<strong>协同程序的概念</strong>，协同程序是可以运行的独立函数调用，可以暂停或者挂起，并从程序离开的地方继续或者重新开始。同时调用者也可以向程序传入额外的数据或者异常等，传入完毕后仍能在上次暂停的地方继续执行。</p>
+	
+	</div>
+  <a type="button" href="/2016/04/30/python-生成器小结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -364,33 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-06 </div>
-			<div class="article-title"><a href="/2016/04/06/初探SWIG对函数的封装/" title="对swig对C/C++函数的封装原理进行了初步的学习（内容很少，主要是避免让我写代码的时候陷入强迫症的苦恼。">初探SWIG对函数的封装</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/06/初探SWIG对函数的封装/"><img src="/assets/images/blog_img/2016-04-06-初探SWIG对函数的封装/funcwrap.png" alt="初探SWIG对函数的封装"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>看到KMCLib中在python中直接使用c++的函数，不禁又让我开始联想这是为什么，于是我就自己写个小测试看看swig是怎么封装函数的。</p>
-<p>先定义两个C++函数:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file: temp.h</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">showg</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/04/06/初探SWIG对函数的封装/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
@@ -455,10 +459,6 @@
         <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
       </li>
     
-      <li>
-        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -471,7 +471,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">86</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -495,48 +495,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">53</span></a></li>
 		
 			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
 			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">88</span></a></li>
+		   <li><a href="/tags">...<span class="badge">93</span></a></li>
 		 
 		</ul>
 	</div>

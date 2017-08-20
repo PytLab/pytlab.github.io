@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
+              
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
-              
-              <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,41 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-18 </div>
+			<div class="article-title"><a href="/2016/03/18/C-类型转换运算符/" title="最近在看KMCLib源码，里面的类型转换都是使用的C++的类型转换运算符，而不是C语言的类型转换，那我就在这把C++四种类型转换运算符总结下。">C++类型转换运算符</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/18/C-类型转换运算符/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C++类型转换运算符"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="C风格（C-Style）强制转型"><a href="#C风格（C-Style）强制转型" class="headerlink" title="C风格（C-Style）强制转型"></a>C风格（C-Style）强制转型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(T) expression  <span class="comment">// 将expression类型强制转换成T</span></div><div class="line"></div><div class="line"><span class="comment">// 函数风格</span></div><div class="line">T(expression)  <span class="comment">// cast expression to be of type T</span></div></pre></td></tr></table></figure>
+<p>这两种形式之间没有本质上的不同，纯粹就是形式的区别。</p>
+<h3 id="C-的四种强制类型转换"><a href="#C-的四种强制类型转换" class="headerlink" title="C++的四种强制类型转换"></a>C++的四种强制类型转换</h3><p>在C++创始人Bjarne Stroustrup看来，C与阿燕的类型转换太过松散，因此采取了措施，就是更严格地限制允许的类型转换，并添加4个类型转换运算符，是转换过程更规范。</p>
+<ul>
+<li><code>dynamic_cast</code></li>
+<li><code>const_cast</code></li>
+<li><code>static_cast</code></li>
+<li><code>reinterpret_cast</code></li>
+</ul>
+<p>这样可以根据转换的目的选择类型转换运算符，而不是通用的类型转换，让编译器能够检查程序的行为是否与设计者的想法吻合。<br>
+	
+	</div>
+  <a type="button" href="/2016/03/18/C-类型转换运算符/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -344,34 +379,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/C-Primer-Plus-6th-complete/" >C++ Primer Plus 6th, complete!</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/16/C-Primer-Plus-6th-complete/"><img src="/assets/images/features/cpp_primer_plus.jpg" alt="C++ Primer Plus 6th, complete!"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>终于把《C++ Primer Plus 6th》看完啦，课后习题全部敲玩，算是一只脚踩进了C++的大坑里.</p>
-<p>习题代码已放到GitHub上 $\rightarrow$ <a href="https://github.com/PytLab/Cpp-Primer-Plus"><span class="fa fa-github"></span> Cpp-Primer-Plus Answers</a></p>
-<p>接下来开始砍树啦，<br>KMCLib，先让我摸透你然后再搞定了你！</p>
-	
-	</div>
-  <a type="button" href="/2016/03/16/C-Primer-Plus-6th-complete/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -421,6 +428,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
@@ -436,10 +447,6 @@
         <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
       </li>
     
-      <li>
-        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -452,7 +459,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">86</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -476,48 +483,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">53</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
 			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
 			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">6</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">88</span></a></li>
+		   <li><a href="/tags">...<span class="badge">93</span></a></li>
 		 
 		</ul>
 	</div>

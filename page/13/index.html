@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
+              
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
-              
-              <li><a href="/2017/07/13/机器学习算法实践-Logistic回归与梯度上升算法-上/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(上)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-24 </div>
+			<div class="article-title"><a href="/2016/03/24/关于KMCLib中的Move/" title="关于KMCLib中的MOVE相关的东西涉及到坐标和各种索引，这里比较混乱我觉得还是有必要梳理下。">关于KMCLib中的Move</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>move来源于process并作用于configuration。</p>
+<h3 id="Process中的move相关"><a href="#Process中的move相关" class="headerlink" title="Process中的move相关"></a>Process中的move相关</h3><h4 id="Process中与move相关的变量："><a href="#Process中与move相关的变量：" class="headerlink" title="Process中与move相关的变量："></a>Process中与move相关的变量：</h4><ul>
+<li><p><code>std::vector&lt;int&gt; move_origins</code><br>  说明在process中那些元素是在process发生时有移动的，(0, 1)的话就是指第一个（中心）和第二个元素发生了移动。</p>
+</li>
+<li><p><code>std::vector&lt;Coordinate&gt; move_vectors</code><br>  对应move_origin的元素移动的向量。</p>
+</li>
+<li><p><code>std::vector&lt; std::pair&lt;int,int&gt; &gt; id_moves_</code><br>  用于描述元素移动前后位置的变化，通过元素在process中的minimal_match_list中的索引号来表示，例如<br>  id_moves_[0]中存放着两个值 (1, 4)，则就说明在minimal_match_list中的第1号元素（也就是第二个）通过process的作用之后会移动到第4号位置上。</p>
+	
+	</div>
+  <a type="button" href="/2016/03/24/关于KMCLib中的Move/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -365,41 +392,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-18 </div>
-			<div class="article-title"><a href="/2016/03/18/C-类型转换运算符/" title="最近在看KMCLib源码，里面的类型转换都是使用的C++的类型转换运算符，而不是C语言的类型转换，那我就在这把C++四种类型转换运算符总结下。">C++类型转换运算符</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/18/C-类型转换运算符/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C++类型转换运算符"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="C风格（C-Style）强制转型"><a href="#C风格（C-Style）强制转型" class="headerlink" title="C风格（C-Style）强制转型"></a>C风格（C-Style）强制转型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(T) expression  <span class="comment">// 将expression类型强制转换成T</span></div><div class="line"></div><div class="line"><span class="comment">// 函数风格</span></div><div class="line">T(expression)  <span class="comment">// cast expression to be of type T</span></div></pre></td></tr></table></figure>
-<p>这两种形式之间没有本质上的不同，纯粹就是形式的区别。</p>
-<h3 id="C-的四种强制类型转换"><a href="#C-的四种强制类型转换" class="headerlink" title="C++的四种强制类型转换"></a>C++的四种强制类型转换</h3><p>在C++创始人Bjarne Stroustrup看来，C与阿燕的类型转换太过松散，因此采取了措施，就是更严格地限制允许的类型转换，并添加4个类型转换运算符，是转换过程更规范。</p>
-<ul>
-<li><code>dynamic_cast</code></li>
-<li><code>const_cast</code></li>
-<li><code>static_cast</code></li>
-<li><code>reinterpret_cast</code></li>
-</ul>
-<p>这样可以根据转换的目的选择类型转换运算符，而不是通用的类型转换，让编译器能够检查程序的行为是否与设计者的想法吻合。<br>
-	
-	</div>
-  <a type="button" href="/2016/03/18/C-类型转换运算符/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -449,6 +441,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
@@ -464,10 +460,6 @@
         <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
       </li>
     
-      <li>
-        <a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" ><i class="fa fa-file-o"></i>GAFT-一个使用Python实现的遗传算法框架</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -480,7 +472,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">86</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -504,48 +496,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">88</span></a></li>
+		   <li><a href="/tags">...<span class="badge">93</span></a></li>
 		 
 		</ul>
 	</div>
