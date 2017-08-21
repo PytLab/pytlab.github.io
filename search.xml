@@ -108,7 +108,7 @@
 <p>$$<br>L(w, b, \alpha) = \frac{1}{2} \lVert w \rVert^{2} - \sum_{i=1}^{N} \alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1]<br>$$</p>
 <p>其中, $\sum_{i}^{N} \alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1] \ge 0$ 可知，</p>
 <p>$$\min L(w, b, \alpha) \le \min \frac{1}{2} \lVert w \rVert$$</p>
-<p>因此我们需要求$W(\alpha)$来使得对偶问题接近原问题的最小值。</p>
+<p>因此我们需要求$\max \limits_{\alpha} W(\alpha)$来使得对偶问题的最大值接近原问题的最小值。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了SVM中的算法原理，其中包含了SVM中涉及到的拉格朗日乘子法和KKT条件的推导。并最终获取了目标函数的对偶形式，后面我将对对偶问题的求解算法进行总结。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>《Machine Learning in Action》</li>
