@@ -109,6 +109,9 @@
 <p>其中, $\sum_{i}^{N} \alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1] \ge 0$ 可知，</p>
 <p>$$\min L(w, b, \alpha) \le \min \frac{1}{2} \lVert w \rVert$$</p>
 <p>因此我们需要求$\max \limits_{\alpha} W(\alpha)$来使得对偶问题的最大值接近原问题的最小值。</p>
+<p>Ok. 最终我们的优化目标函数可以写成:<br>$$<br>arg \max \limits_{\alpha} [\sum_{i=1}^{N}{\alpha_{i}} - \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}y_{i}y_{j}\alpha_{i}\alpha_{j}\langle x_{i}, x_{j} \rangle]<br>$$</p>
+<p>约束条件: $\alpha_{i} \ge 0, \sum_{i=1}^{N}y_{i}\alpha_{i} = 0$</p>
+<p>它是一个线性约束条件下多变量二次函数，一旦得到$\alpha$的解，便可以根据$\alpha$和$w$关系求出$w$，进而在得到$b$，于是我们就可以得到一个最优分割超平面。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了SVM中的算法原理，其中包含了SVM中涉及到的拉格朗日乘子法和KKT条件的推导。并最终获取了目标函数的对偶形式，后面我将对对偶问题的求解算法进行总结。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>《Machine Learning in Action》</li>
