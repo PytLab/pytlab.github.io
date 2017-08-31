@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
+              
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
-              
-              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -134,7 +134,7 @@
               
               <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,30 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-05-17 </div>
+			<div class="article-title"><a href="/2015/05/17/动力学模型添加QuasiEquilibriumSolver/" >动力学模型添加QuasiEquilibriumSolver</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在用sympy符号运算将动力学模型重新实现一遍以后，出了能进行latex输出等其他好处外，最初使用符号运算的目的是符号求解敏感度 $X_{TRC}$的值，不过由于完全用solve暴力解析求解稳态覆盖度，稍微复杂点的机理就会计算很久。于是我打算用平衡态近似来进行求解，并且写完平衡态solver后不仅仅是求$X_{TRC}$，单独用QuasiEquilibriumSolver求解动力学模型也是可以的。</p>
+<p>为了避免直接用sympy.solve()函数直接求解，分析了平衡态近似的求解方法后，自己用python先对求解过程进行了一下”预处理”，这样从一定程度上减小了对solve()依赖。由于这部分还是有点麻烦的，所以写在这里记录下来，方便自己以及其他人学习和改进。</p>
+<p>由于平衡态近似求解的方法还是比较单一的，大概过程就是在决定Rate Determining Step后，通过联立其他基元反应的平衡条件，也就是$\prod_{j} \theta_{i,j}^{-} \prod_{j} p_{i,j}^{-} =K_{i}\prod_{j} \theta_{i,j}^{+}\prod_{j} p_{i,j}^{+}$用$\theta^{*}$将其他的$\theta_{i}$表示出来，在回代到归一化条件中$\sum_{i}{\theta_{i}} = 1$,将$\theta^{*}$的表达式求出来，然后分别回代求出不同中间态的覆盖度。<br>计算方法很简单，但是这里涉及到对sympy.Symbol对象的引用和substitution以及后面基元反应的特殊情况，所以写起来略复杂。下面以甲酸裂解的一条路径的基元反应为例说明一下。</p>
+
+	
+	</div>
+  <a type="button" href="/2015/05/17/动力学模型添加QuasiEquilibriumSolver/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -330,27 +354,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-03-08 </div>
-			<div class="article-title"><a href="/2015/03/08/PARSER中的反应方程式配平/" >PARSER中的反应方程式配平</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>之所以把反应方程式配平拿出来写是因为之前在这段时间写完solver的过程中发现自己还是对动力学的质量作用定理理解的不够深刻，在之前的setup file中的反应方程式我默认的是以已经配平好的基元反应作为输入的，例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">rxn_expressions = [</div><div class="line"></div><div class="line">                <span class="string">'CO_g + *_s -&gt; CO_s'</span>,</div><div class="line">                <span class="string">'3H2_g + 6*_s -&gt; 6H_s'</span>,</div><div class="line">                <span class="string">'CO_s + *_s &lt;-&gt; C-O_s + *_s -&gt; C_s + O_s'</span>,</div><div class="line">                <span class="string">'O_s + H_s -&gt; HO_s + *_s'</span>,</div><div class="line">                <span class="string">'HO_s + H_s &lt;-&gt; H-OH_s + *_s -&gt; H2O_g + 2*_s'</span>,</div><div class="line">                <span class="string">'C_s + H_s &lt;-&gt; H-C_s + *_s -&gt; CH_s + *_s'</span>,</div><div class="line">                <span class="string">'CH_s + H_s -&gt; CH2_s + *_s'</span>,</div><div class="line">                <span class="string">'CH2_s + H_s -&gt; CH3_s + *_s'</span>,</div><div class="line">                <span class="string">'CH3_s + H_s -&gt; CH4_g + 2*_s'</span></div><div class="line">]</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2015/03/08/PARSER中的反应方程式配平/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -400,6 +403,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
@@ -415,10 +422,6 @@
         <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
-      <li>
-        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -431,7 +434,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -455,48 +458,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">53</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">93</span></a></li>
+		   <li><a href="/tags">...<span class="badge">95</span></a></li>
 		 
 		</ul>
 	</div>

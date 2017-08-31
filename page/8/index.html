@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
+              
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
-              
-              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -134,7 +134,7 @@
               
               <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,38 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-09 </div>
+			<div class="article-title"><a href="/2016/07/09/MPI学习-初识非阻塞通信/" title="对MPI非阻塞通信的初印象。">MPI学习--初识非阻塞通信</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/09/MPI学习-初识非阻塞通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--初识非阻塞通信"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="非阻塞通信与阻塞通信的区别"><a href="#非阻塞通信与阻塞通信的区别" class="headerlink" title="非阻塞通信与阻塞通信的区别"></a>非阻塞通信与阻塞通信的区别</h3><p>对于非阻塞通信的理解还是要理解他和阻塞通信的区别。这个区别书上扯了一大堆好像也没有用简单通俗的语言总结这两者之间的区别让人看着后面的例子一开始有点头晕。那其实区别很简单：</p>
+<h4 id="阻塞通信"><a href="#阻塞通信" class="headerlink" title="阻塞通信"></a>阻塞通信</h4><p>阻塞通信就是使用前面几篇博客里面的那些发送和接收函数，例如<code>MPI_Send()</code>和<code>MPI_Recv()</code>，这些函数有一个特点就是<strong>这些函数在通信完成之前是不会返回的，也就是阻塞</strong>。</p>
+<p>那什么时候是通信完成呢？</p>
+<ul>
+<li>对于<strong>发送端</strong>，所谓完成就是指发送缓冲区可以被安全的在使用，也就意味着之前发送缓冲区的数据已经被成功的转移走了，可能被MPI保存在其他地方，或者放到了接收端的缓冲区中。</li>
+<li>对于<strong>接收端</strong>，所谓的完成就是指数据已经成功的复制到了接受缓冲区中，接收进程可以放心使用缓冲区。</li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2016/07/09/MPI学习-初识非阻塞通信/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -359,34 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-05 </div>
-			<div class="article-title"><a href="/2016/07/05/MPI学习之MPICH2环境及安装/" title="打算这几天上手MPI，开始学习MPI并行编程，目前的主要目的是能够快速使用MPI的API将现有程序并行化，例子代码均用C语言实现。">MPI学习--MPICH并行环境搭建与配置</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/05/MPI学习之MPICH2环境及安装/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--MPICH并行环境搭建与配置"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这篇主要记录使用自己用户在实验室的IBM刀片集群上搭建MPI并行环境以及简单的测试，具体什么是MPI这里就不多讲了，主要记录自己的MPI环境的搭建过程。</p>
-<h3 id="下载MPICH"><a href="#下载MPICH" class="headerlink" title="下载MPICH"></a>下载MPICH</h3><p>现在<a href="http://www.mpich.org/downloads/">MPICH官网</a>上已经有MPICH3.2，但是安装了以后发现3.2的进程管理器并没有mpd而是<a href="https://wiki.mpich.org/mpich/index.php/Using_the_Hydra_Process_Manager">Hydra Process Manager</a>为了用上最新的我也就直接上最新版了肯定不会有错。</p>
-<p>下下来的压缩包为: <code>mpich-3.2.tar.gz</code><br>
-	
-	</div>
-  <a type="button" href="/2016/07/05/MPI学习之MPICH2环境及安装/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -436,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
@@ -451,10 +459,6 @@
         <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
-      <li>
-        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -467,7 +471,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -491,48 +495,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
 			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">93</span></a></li>
+		   <li><a href="/tags">...<span class="badge">95</span></a></li>
 		 
 		</ul>
 	</div>

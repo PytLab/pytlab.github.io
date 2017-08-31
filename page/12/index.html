@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
+              
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
-              
-              <li><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Logistic回归与梯度上升算法(下)<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -134,7 +134,7 @@
               
               <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
               
-              <li><a href="/categories/工具应用/" style="font-size: 15px; font-family: 微软雅黑">工具应用<span></span></a></li>
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-02 </div>
+			<div class="article-title"><a href="/2016/04/02/初识代码封装工具SWIG/" title="在这里简单介绍下关于swig的使用方法，和大致工作方式。">初识代码封装工具SWIG</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/02/初识代码封装工具SWIG/"><img src="/assets/images/features/swig.png" alt="初识代码封装工具SWIG"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这不是我最早使用swig了，之前在写Kynetix的时候就使用了swig为python封装了C语言写的扩展模块。但是当时我对C++还不是很了解，对其中的一些概念也只是拿来直接用，没有理解到底是什么，为什么会有这种功能。所以昨天我又拿出了《python科学计算》这本书来温习了一下swig那一部分，果然对swig又有了新的认识。</p>
+<p>对swig真正全的使用都在swig的文档中有详细的介绍，而且由于swig支持很多种语言，例如java、python、Tcl等，因此这份文档内容相当的丰富。由于现在还没有很好的中文资源，所以现在只能默默的看英文文档了。</p>
+	
+	</div>
+  <a type="button" href="/2016/04/02/初识代码封装工具SWIG/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -362,35 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-24 </div>
-			<div class="article-title"><a href="/2016/03/24/KMCLib中的Configuration/" title="KMCLib中的Configuration用于描述附着在晶格之上的元素相关的信息&lt;br&gt;包括他们的坐标，索引，ID号等">KMCLib中的Configuration</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/24/KMCLib中的Configuration/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Configuration"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这个类由于在之前都有提及到，而且已经针对其中重要的成员函数进行了分析，在这里就不多扯了。<br>总之这个类是独立于晶格LatticeMap类的类型类，我还剩听佩服作者这样抽象的，这样如果后面我想加入多位点的话，也可以独立于晶格之外描述多位点的类，这样实现起来耦合量可以尽量减小。</p>
-<p>其实这里我一直有个疑问，不知道看完全部代码的时候能不能找到答案，就是在<code>performProcess()</code>函数中：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Configuration::performProcess(Process &amp; process,</div><div class="line">                                   <span class="keyword">const</span> <span class="keyword">int</span> site_index,</div><div class="line">                                   <span class="keyword">const</span> LatticeMap &amp; lattice_map)</div></pre></td></tr></table></figure></p>
-<p>根本就没有用到这个变量，为啥要传他进来？？</p>
-
-	
-	</div>
-  <a type="button" href="/2016/03/24/KMCLib中的Configuration/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
@@ -455,10 +457,6 @@
         <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
-      <li>
-        <a href="/2017/07/25/机器学习-Python-数学相关的速查表/" ><i class="fa fa-file-o"></i>与机器学习, Python, 数学相关的速查表整理</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -471,7 +469,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">87</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -495,48 +493,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">93</span></a></li>
+		   <li><a href="/tags">...<span class="badge">95</span></a></li>
 		 
 		</ul>
 	</div>
