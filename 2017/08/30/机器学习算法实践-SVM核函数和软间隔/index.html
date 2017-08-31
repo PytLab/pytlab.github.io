@@ -237,12 +237,12 @@
 <p>我们需要使用一个函数来代替向量内积,但是这个核函数是可以表示成向量内积的形式的，只不过在计算结果的时候我们直接求函数值就好了，不需要做内积运算。这样复杂度会降低:<br>$$<br>K(x, z) = \langle \phi(x), \phi(z) \rangle<br>$$</p>
 <h3 id="核函数例子"><a href="#核函数例子" class="headerlink" title="核函数例子"></a>核函数例子</h3><p>这里总结下几个例子来对核函数的作用加深下理解.</p>
 <p>对于$x, z \in \mathbb{R}^{n}$, 我们令核函数为:<br>$$K(x, z) = (x^{T}z)^{2} = (\sum_{i=1}^{N}x_{i}z_{i})^{2} = \sum_{i=1}^{N}\sum_{j=1}^{N} (x_{i}x_{j})(z_{i}z_{j}) = \langle \phi(x), \phi(z) \rangle$$</p>
-<p>对于$x \in \mathbb{R}^{2}$, 这个时候$\phi(x)$的作用就相当于:<br>$$<br>\phi(x) = \left[ \begin{matrix}<br>x_{1} &amp; x_{1} \\<br>x_{1} &amp; x_{2} \\<br>x_{2} &amp; x_{1} \\<br>x_{2} &amp; x_{2} \\<br>\end{matrix} \right]<br>$$</p>
+<p>对于$x \in \mathbb{R}^{2}$, 这个时候$\phi(x)$的作用就相当于:<br>$$<br>\phi(x) = \left[ \begin{matrix}<br>x_{1}x_{1} \\<br>x_{1}x_{2} \\<br>x_{2}x_{1} \\<br>x_{2}x_{2} \\<br>\end{matrix} \right]<br>$$</p>
 <p>那么我们可以分析下，如果没有引入核函数，我们需要计算维数为$n^{2}$的向量的内积，其运算时间复杂度为$O(n^{2})$。d但是通过核函数的引入我们不需要显式的计算向量内积了，而是直接计算核函数$(x^{T}z)^2$的值，计算核函数的值我们只需要计算一次维数为$n$的向量内积和一次平方运算，时间复杂度为$O(n)$。</p>
 <p>可见，我们通过计算核函数，隐式的处理了一个维数很高的向量空间，降低了计算复杂度($O(n^{2} \rightarrow O(n)$)。</p>
 <p>对于上面的核函数进行推广，我们可以有核函数:</p>
 <p>$$<br>K(x, z) = (x^{T}z + C)^{2} = (x^{T}z)^{2} + 2C(x^{T}z) + c^{2}<br>$$</p>
-<p>对于$x \in \mathbb{R}^{2}$, 这时$\phi(x)$相当于:<br>$$<br>\phi(x) = \left[ \begin{matrix}<br>x_{1} &amp; x_{1} \\<br>x_{1} &amp; x_{2} \\<br>x_{2} &amp; x_{1} \\<br>x_{2} &amp; x_{2} \\<br>\sqrt{2C} &amp; x_{1} \\<br>\sqrt{2C} &amp; x_{2} \\<br>C \\<br>\end{matrix} \right]<br>$$</p>
+<p>对于$x \in \mathbb{R}^{2}$, 这时$\phi(x)$相当于:<br>$$<br>\phi(x) = \left[ \begin{matrix}<br>x_{1}x_{1} \\<br>x_{1}x_{2} \\<br>x_{2}x_{1} \\<br>x_{2}x_{2} \\<br>\sqrt{2C}x_{1} \\<br>\sqrt{2C}x_{2} \\<br>C \\<br>\end{matrix} \right]<br>$$</p>
 <p>这样我们将原本需要计算长度为$n^{2} + n + 1$的向量内积改成了直接计算两个长度为$n$的向量内积以及一个求和一次乘积运算。复杂度从$O(n^{2})$降到了$O(n)$</p>
 <p>更通用的形式可以写成:</p>
 <p>$$<br>K(x, z) = (x^{T}z + C)^{d}<br>$$</p>
