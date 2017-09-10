@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
+              
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
-              
-              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-16 </div>
+			<div class="article-title"><a href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/" >初识STL迭代器(iterator)和函数符(functor)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/"><img src="/assets/images/features/stl.jpg" alt="初识STL迭代器(iterator)和函数符(functor)"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>对于STL我真的是久仰大名了，这次从《Cpp Primer Plus》中初次学习STL中的一些知识，学习到迭代器将算法从具体的容器类型中抽离出来，真的是很nb的想法。<br>我在这里稍微总结下我初次学习STL时候对其中迭代器和函数符概念的一点理解。<br><br></p>
+<h4 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h4><p>首先还是泛型编程，这种编程的范式是我之前没有接触过的，之前的面向对象编程的关注点是编程的数据方面，例如如何控制数据的访问权限等等。但是泛型编程的关注点是<strong>算法</strong>，例如将算法从数据类型中抽离出来，将算法从容器类型中抽离出来等等。<br>虽然面向对象和泛型编程的思想都是抽象和创建可重用的代码，但他们的理念是决然不同的。</p>
+<p>C++中的模板为编写独立于数据类型的函数和类提供了可能，而STL通过迭代器将编写独立于容器类型的通用函数提供了可能。<br>
+	
+	</div>
+  <a type="button" href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -343,28 +371,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-11 </div>
-			<div class="article-title"><a href="/2016/03/11/Cpp类模板小结/" title="在这里就只总结下关于类模板具体化">C++类模板小结</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>之前有总结过C++的<a href="../../../2016/02/05/Cpp函数模板小结/"><strong>函数模板具体化</strong></a>，里面按照隐式实例化、显式实例化和显式具体化来总结的。<br>类似函数模板的具体化，类模板具体化除了上面三种具体化方式还有一种叫部分具体化，下面简单总结下：</p>
-<h3 id="隐式实例化"><a href="#隐式实例化" class="headerlink" title="隐式实例化"></a>隐式实例化</h3><p>这是最常使用的类模板实例化的方式，在<code>&lt;&gt;</code>中指出对象所需的类型，编译器使用通用模板提供的方式生成具体的类定义，编译器在程序需要对象之前不会隐式实例化生成类的具体定义的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ArrayTP&lt;<span class="keyword">int</span>, <span class="number">10</span>&gt; stuff;  <span class="comment">// 编译器使用参数int和10生成类定义然后生成对象并命名为stuff</span></div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/03/11/Cpp类模板小结/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -414,6 +420,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
       </li>
     
@@ -427,10 +437,6 @@
     
       <li>
         <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
-      <li>
-        <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
   </ul>
@@ -469,48 +475,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">53</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">95</span></a></li>
+		   <li><a href="/tags">...<span class="badge">97</span></a></li>
 		 
 		</ul>
 	</div>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
+              
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
-              
-              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-09-01 </div>
+			<div class="article-title"><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" >机器学习算法实践-SVM中的SMO算法</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/"><img src="/assets/images/blog_img/2017-09-01-机器学习算法实践-SVM中的SMO算法/coord_ascent.png" alt="机器学习算法实践-SVM中的SMO算法"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前两篇关于SVM的文章分别总结了SVM基本原理和核函数以及软间隔原理，本文我们就针对前面推导出的SVM对偶问题的一种高效的优化方法-序列最小优化算法(Sequential Minimal Optimization, SMO)的原理进行总结并进行相应的Python实现。</p>
+<h2 id="坐标上升算法-Coordiante-Ascent"><a href="#坐标上升算法-Coordiante-Ascent" class="headerlink" title="坐标上升算法(Coordiante Ascent)"></a>坐标上升算法(Coordiante Ascent)</h2><p>在SMO算法之前，还是需要总结下坐标上升算法，因为SMO算法的思想与坐标上升算法的思想类似。</p>
+<p>坐标上升算法每次通过更新多元函数中的一维，经过多次迭代直到收敛来达到优化函数的目的。简单的讲就是不断地选中一个变量做一维最优化直到函数达到局部最优点。</p>
+	
+	</div>
+  <a type="button" href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -370,35 +398,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-07-25 </div>
-			<div class="article-title"><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" >与机器学习, Python, 数学相关的速查表整理</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/07/25/机器学习-Python-数学相关的速查表/"><img src="/assets/images/blog_img/2017-07-25-机器学习-Python-数学相关的速查表/feature.jpeg" alt="与机器学习, Python, 数学相关的速查表整理"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<blockquote>
-<p>本文翻译自<a href="https://unsupervisedmethods.com/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6">Cheat Sheet of Machine Learning and Python (and Math) Cheat Sheets</a>，首发于<a href="http://blog.jobbole.com/112009/">伯乐在线</a>, 未经许可禁止转载。</p>
-</blockquote>
-<p>机器学习涉及到的方面非常多。当我开始准备复习这些内容的时候，我找到了许多不同的”速查表”, 这些速查表针对某一主题都罗列出了所有我需要知道的知识重点。最终我编译了超过20份机器学习相关的速查表，其中一些是我经常用到的而且我相信其他人也会从中受益。本文整理了了27个我在网络上找到的我认为比较好的速查表。如果我有遗漏欢迎补充。</p>
-	
-	</div>
-  <a type="button" href="/2017/07/25/机器学习-Python-数学相关的速查表/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -448,6 +447,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
       </li>
     
@@ -461,10 +464,6 @@
     
       <li>
         <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
-      <li>
-        <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
   </ul>
@@ -503,48 +502,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">95</span></a></li>
+		   <li><a href="/tags">...<span class="badge">97</span></a></li>
 		 
 		</ul>
 	</div>

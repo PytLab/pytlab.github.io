@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
+              
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
-              
-              <li><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" style="font-size: 15px; font-family: 微软雅黑">GAFT-一个使用Python实现的遗传算法框架<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-19 </div>
+			<div class="article-title"><a href="/2016/02/19/使用C扩展为Kynetix提速/" title="使用C语言和swig为Kynetix统计部分代码写了C扩展，提升计算效率&lt;strong&gt;20多&lt;/strong&gt;倍！">使用C语言编写extension为Kynetix大幅提速</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之前Kynetix代码几乎全部是使用Python写的，使用了KMCLib(Python + C++)之后，在进行主体KMC循环的时候效率得到了明显的提升，但是在刚刚完成on-the-fly分析部分代码以后开始跑程序，明显感觉程序异常的慢，因为kmc写到现在真心感受到kMC程序真心是个compute intense的活，其中没有用到矩阵运算，没有用到什么传统的优化算法，<br><div class="alert alert-danger"><i class="fa fa-bug"></i>  所以尝试只用一种解释性语言如matlab和python去完成整个kMC程序的最终肯定会使程序慢得一塌糊涂！跑蒙特卡洛程序慢成狗，那这程序也几乎没啥用了感觉。</div><br>于是我也想学习KMCLib那样使用静态语言为我的python程序编写扩展模块，虽然我也知道针对Fortran有<a href="https://sysbio.ioc.ee/projects/f2py2e/"><strong>f2py</strong></a>这种工具存在，但是由于我个人的喜好，不是历史原因必须使用fortran的话，我还是选择C或者C++。<br>至于python的C扩展，我选择使用<a href="http://www.swig.org/"><strong>SWIG</strong></a>。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/19/使用C扩展为Kynetix提速/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,32 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-17 </div>
-			<div class="article-title"><a href="/2016/02/17/关于翻译单元（编译单元）/" title="在这里简单写下我对翻译单元的认识。">关于翻译单元（编译单元）</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>我的理解，翻译单元(translation unit)就是一个源代码文件，或者说是经过预处理器宏展开后得到的源码文件。在别人的博客中看到过</p>
-<blockquote>
-<p>translation unit（翻译单元）也可称为compilation unit(编译单元），translation unit是C预处理后的输出，即一个源文件经过预处理后.<br>经过translation unit后产生一个目标文件（比如.c通过编译产生.o文件）</p>
-</blockquote>
-<p>我个人的理解，一个翻译单元，至少是能够用编译器单独编译成<code>.o</code>文件的，因此有时候把函数定义或者类成员函数的定义放在单独的代码文件中时候，时候包含头文件与否要看是否能够单独将文件编译通过。例如类成员方法的文件中就应该要包含类定义的头文件，不然单独编译这些成员函数的时候，所操作的成员变量以及类名称都没告诉编译器，怎么让编译器给你编译？<br>但是有些时候例如使用关键字<code>extern</code>声明的引用声明，是可以进行编译的，我的理解就是编译器看到类似声明的变量或者函数的时候，应该会认为这个变量虽然在本单元中没有提供，但是链接器会把这个变量从其他的地方找到，因此就不报错了。估计调用在其他地方定义的函数也是类似的原因，反正有函数原型了，能不能执行函数就看连接器的了，我编译器就不管了（纯属个人意淫。</p>
-
-	
-	</div>
-  <a type="button" href="/2016/02/17/关于翻译单元（编译单元）/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
+      </li>
+    
+      <li>
         <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
       </li>
     
@@ -422,10 +421,6 @@
     
       <li>
         <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
-      <li>
-        <a href="/2017/08/02/使用MPI并行化遗传算法/" ><i class="fa fa-file-o"></i>使用MPI并行化遗传算法框架GAFT</a>
       </li>
     
   </ul>
@@ -464,48 +459,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
 			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">8</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">95</span></a></li>
+		   <li><a href="/tags">...<span class="badge">97</span></a></li>
 		 
 		</ul>
 	</div>
