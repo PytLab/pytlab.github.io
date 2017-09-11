@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
-              
-              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,37 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-06 </div>
+			<div class="article-title"><a href="/2016/07/06/MPI学习--消息传递通信/" title="本文主要总结MPI消息传递的一些基本概念">MPI学习--消息传递通信</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/06/MPI学习--消息传递通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--消息传递通信"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="MPI的工作模式"><a href="#MPI的工作模式" class="headerlink" title="MPI的工作模式"></a>MPI的工作模式</h3><p>目前我对MPI的工作模式的理解就是他其实呢是把一份程序传送到不同的进程中，通过MPI的接口我们可以获取当前进程中的一些信息，例如进程号，进程总数等，这样我们就可以在程序中显式的对进程信息进行判断，然后做不同的处理，这样同一份程序在不同的进程中做的事情是不一样的，尽管代码（变量，函数等）都是一样的，可见这种并行的粒度是很大的。</p>
+<p>下面引用下书里的一段话：</p>
+<blockquote>
+<p>MPI程序工作模式<br>在不同工作模式下可以适合SPMD或者MPMD等体系结构。以串行方式编写，运行时分别执行不同的块。</p>
+</blockquote>
+<p>这里的不同的块其实就是通过MPI提供的接口获取的进程信息进而写出的条件判断语句。</p>
+	
+	</div>
+  <a type="button" href="/2016/07/06/MPI学习--消息传递通信/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -358,34 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-26 </div>
-			<div class="article-title"><a href="/2016/05/26/Cluster-Expansion中Projection-Matrix的应用/" title="以前一直知道投影矩阵可以用来进行最小二乘拟合，但是始终没有在真实情况中遇到，这次看到了进行表面相互作用矫正的Cluster Expansion，其中要用到最小二乘算法对要求解的系数进行拟合，正好这都是些线性方程，投影矩阵终于可以派上用场了！">Cluster Expansion中Projection Matrix的应用</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/05/26/Cluster-Expansion中Projection-Matrix的应用/"><img src="/assets/images/features/linear_transformation.png" alt="Cluster Expansion中Projection Matrix的应用"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这里只是记录下我对Cluster Expansion的理解，不一定正确。</p>
-<p>首先对于直接使用DFT计算所有configuration表面上发生反应（如吸附，基元反应等）的能量是不现实的，耗资源耗时间。那么通过统一的公式对能量进行矫正可以将DFT算得能量进行延伸，得到不同configuration表面的相关能量的近似值，便是一种很方便的方法。</p>
-<p><strong>Cluster Expansion</strong>便是一种通过展开的方式将相互作用矫正项表达出来的一种方法。这种方法有点类似线性代数中的使用一组基向量展开，也就类似泰勒展开和傅立叶展开。</p>
-	
-	</div>
-  <a type="button" href="/2016/05/26/Cluster-Expansion中Projection-Matrix的应用/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -435,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
@@ -450,10 +457,6 @@
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
-      <li>
-        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -466,7 +469,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -490,45 +493,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
 			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

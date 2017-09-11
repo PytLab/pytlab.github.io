@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
-              
-              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-07 </div>
+			<div class="article-title"><a href="/2016/03/07/Cpp类继承中需要注意的那点东西-一/" title="在这里总结下C++类继承的一些东西（针对于我自己，也是我自己的理解）">C++类继承中需要注意的那点东西(一)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>关于C++中的派生类和基类的关系就总结下来就是：</p>
+<ol>
+<li>派生类继承了基类的部分方法</li>
+<li>有些方法是不能被继承的，例如构造函数、析构函数、赋值运算符</li>
+<li>基类的数据成员也会继承下来，但是<code>private</code>成员是不能够被派生类直接访问的，需要通过基类的共有方法来访问，<code>protected</code>数据是可以向public数据一样被派生类通过名称空间解析运算符<code>::</code>来访问。</li>
+</ol>
+<div class="alert alert-info"><i class="fa fa-info"></i>  我就把派生类想象成了一个包含基类的类，基类的小秘密不对外公开，想要改变小秘密的内容要使用基类自己的方法（比如基类的构造函数，基类的赋值运算符函数等），总之代码写下来感觉，其实基类在派生类中还是很<strong>独立的</strong>。
+<br>
+在派生类构造派生类之前先调用基类的构造函数初始化基类组件，在调用派生类析构函数时会在析构派生类对象之后调用基类的析构函数释放基类组件。顺序保持一致。</div>
+	
+	</div>
+  <a type="button" href="/2016/03/07/Cpp类继承中需要注意的那点东西-一/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -339,34 +368,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-27 </div>
-			<div class="article-title"><a href="/2016/02/27/关于Cpp特殊成员函数/" title="在这里总结下C++类中的几个特殊成员函数">关于C++特殊成员函数</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>C++编译器会自动生成几个成员函数，这里属于接触到的新东西，而且如果不了解C++编译器的这种机制，在很多时候会因为隐式的调用这几个特殊的成员函数而导致程序发生错误。</p>
-<p><strong>特殊成员函数</strong></p>
-<ul>
-<li>默认构造函数</li>
-<li>默认析构函数</li>
-<li>复制构造函数</li>
-<li>赋值运算符</li>
-<li>地址运算符
-	
-	</div>
-  <a type="button" href="/2016/02/27/关于Cpp特殊成员函数/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -416,6 +417,10 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
@@ -431,10 +436,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
-      <li>
-        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -447,7 +448,7 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -471,45 +472,45 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
 			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

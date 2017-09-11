@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
-              
-              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,32 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-01-26 </div>
+			<div class="article-title"><a href="/2016/01/26/指针的两级间接关系与const-非const混合赋值的理解/" title=" 对于指针的两级间接关系同`const`关键字赋值这部分，无论在看《C Primer Plus》还是《C++ Primer Plus》都是比较绕的地方，在这里我尝试简单梳理下关系。">指针的两级间接关系与`const`/非`const`混合赋值的理解</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p class="text-danger">为什么进入两级间接关系与一级间接关系不同, `const`与非`const`混合指针赋值方式将不再安全?</p>
+<p><br></p>
+<h4 id="首先要明确一件事"><a href="#首先要明确一件事" class="headerlink" title="首先要明确一件事:"></a>首先要明确一件事:</h4><div class="alert alert-warning"><i class="fa fa-bell"></i>  非`const`指针是不能指向`const`值的。</div>
+<p>原因很简单,非<code>const</code>指针可以改变指向的值,所以非<code>const</code>指针若指向<code>const</code>值,故可以改变<code>const</code>值,前后就矛盾了,因此这种赋值时禁止的。</p>
+<p><br></p>
+<h4 id="那再来看两级关系，"><a href="#那再来看两级关系，" class="headerlink" title="那再来看两级关系，"></a>那再来看两级关系，</h4><p>先声明两级关系的变量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> ** pp;</div><div class="line"><span class="keyword">int</span> * p;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">13</span>;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/01/26/指针的两级间接关系与const-非const混合赋值的理解/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -339,43 +365,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-01-22 </div>
-			<div class="article-title"><a href="/2016/01/22/用Freemind装修新家/" >用Freemind装修新家</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>决定使用<a href="https://github.com/hexojs/hexo">Freemind</a>主题，主要是对boostrap颇有好感, 很喜欢boostrap的风格。</p>
-<h3 id="建站步骤"><a href="#建站步骤" class="headerlink" title="建站步骤"></a>建站步骤</h3><ol>
-<li><p>建站方式我也是按照网上的博客，用git建立两个分支:</p>
-<ul>
-<li><span class="label label-info">hexo</span> , 为默认分支，主要放博客的Markdown文件和theme等网站文件.</li>
-<li><span class="label label-default">master</span> , 部署后的网站文件(尽量不要再本地<code>git checkout</code>到master分支，不然要把hexo在装一遍，当然是我git用的不熟的原因啦)</li>
-</ul>
-</li>
-<li><p>在hexo分支执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo</div><div class="line">$ hexo init</div><div class="line">$ npm install</div><div class="line">$ npm install hexo-deployer-git</div></pre></td></tr></table></figure>
-</li>
-<li><p>备份网站原始文件就通过<code>git add</code>, <code>git commit</code>, <code>git push</code>等命令提交到远程git服务器</p>
-</li>
-<li><p>生成和部署以及自动备份到github:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate <span class="_">-d</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-	
-	</div>
-  <a type="button" href="/2016/01/22/用Freemind装修新家/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -425,6 +414,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
@@ -440,10 +433,6 @@
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
-      <li>
-        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -456,7 +445,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -480,45 +469,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

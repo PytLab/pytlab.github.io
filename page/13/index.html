@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
-              
-              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-27 </div>
+			<div class="article-title"><a href="/2016/03/27/关于CMake中添加共享库/" >关于CMake中添加共享库</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/27/关于CMake中添加共享库/"><img src="/assets/images/features/cmake_logo.jpg" alt="关于CMake中添加共享库"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这两天学习一下CMake的一点语法，为了以后能使用CMake跨平台构建项目。但是在为target添加共享库的时候，即使我在CMakeLists.txt中使用了<code>LINK_DIRECTORIES()</code>和<code>TARGET_LINK_LIBRARIES()</code>，<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">ADD_EXECUTABLE</span><span class="params">(hellomain main.c)</span></span></div><div class="line"><span class="function"><span class="title">SET</span><span class="params">(EXECUTABLE_OUTPUT_PATH $&#123;HELLOMAIN_BINARY_DIR&#125;/bin)</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="title">INCLUDE_DIRECTORIES</span><span class="params">(BEFORE /mnt/hgfs/CentOS_code/cmake_practice/t4/zjshao/include/hello)</span></span></div><div class="line"><span class="function"><span class="title">LINK_DIRECTORIES</span><span class="params">(/mnt/hgfs/CentOS_code/cmake_practice/t4/zjshao/lib)</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="title">TARGET_LINK_LIBRARIES</span><span class="params">(hellomain libhello.so)</span></span></div></pre></td></tr></table></figure></p>
+<p>但是在make的时候还是很出现了<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/usr/</span>bin/<span class="string">ld:</span> cannot find -lhello</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/03/27/关于CMake中添加共享库/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -358,33 +385,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-21 </div>
-			<div class="article-title"><a href="/2016/03/21/KMCLib中的CustomRateProcess/" title="CustomRateProcess是Process的派生类，&lt;br&gt;主要表示不同位置上速率不同的反应">KMCLib中的CustomRateProcess</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/21/KMCLib中的CustomRateProcess/"><img src="/assets/images/features/rate_table.png" alt="KMCLib中的CustomRateProcess"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>此类是<code>Process</code>的派生类，所以在<code>Process</code>类中的成员变量为<code>protected</code>，而且很多成员函数都为虚函数。</p>
-<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 由于不同site上面的速率不同，因此此vector存放对应sites_的速率</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; site_rates_;</div><div class="line"></div><div class="line"><span class="comment">// 递增的速率列表</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; incremental_rate_table_;</div></pre></td></tr></table></figure>
-	
-	</div>
-  <a type="button" href="/2016/03/21/KMCLib中的CustomRateProcess/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -434,6 +434,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
@@ -449,10 +453,6 @@
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
-      <li>
-        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -465,7 +465,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -489,45 +489,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
 			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

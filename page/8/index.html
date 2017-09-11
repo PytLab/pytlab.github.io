@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
-              
-              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-16 </div>
+			<div class="article-title"><a href="/2016/07/16/VASPy已兼容python3-x/" >VASPy已兼容python3.x</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/16/VASPy已兼容python3-x/"><img src="/assets/images/features/python_logo.png" alt="VASPy已兼容python3.x"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>趁着代码量还不多，把VASPy进行了修改使其同时兼容Python 2.7.x 和 Python 3.x</p>
+<p>今后新增功能都将以Python3语法优先并向下兼容Python2.7.x</p>
+<p>项目GitHub链接：<a href="https://github.com/PytLab/VASPy"><span class="fa fa-github"></span> PytLab/VASPy: Manipulating VASP files with Python</a></p>
+	
+	</div>
+  <a type="button" href="/2016/07/16/VASPy已兼容python3-x/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -364,37 +392,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-06 </div>
-			<div class="article-title"><a href="/2016/07/06/MPI学习--消息传递通信/" title="本文主要总结MPI消息传递的一些基本概念">MPI学习--消息传递通信</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/06/MPI学习--消息传递通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--消息传递通信"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="MPI的工作模式"><a href="#MPI的工作模式" class="headerlink" title="MPI的工作模式"></a>MPI的工作模式</h3><p>目前我对MPI的工作模式的理解就是他其实呢是把一份程序传送到不同的进程中，通过MPI的接口我们可以获取当前进程中的一些信息，例如进程号，进程总数等，这样我们就可以在程序中显式的对进程信息进行判断，然后做不同的处理，这样同一份程序在不同的进程中做的事情是不一样的，尽管代码（变量，函数等）都是一样的，可见这种并行的粒度是很大的。</p>
-<p>下面引用下书里的一段话：</p>
-<blockquote>
-<p>MPI程序工作模式<br>在不同工作模式下可以适合SPMD或者MPMD等体系结构。以串行方式编写，运行时分别执行不同的块。</p>
-</blockquote>
-<p>这里的不同的块其实就是通过MPI提供的接口获取的进程信息进而写出的条件判断语句。</p>
-	
-	</div>
-  <a type="button" href="/2016/07/06/MPI学习--消息传递通信/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -444,6 +441,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
@@ -459,10 +460,6 @@
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
-      <li>
-        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -475,7 +472,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -499,45 +496,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
 			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

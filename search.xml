@@ -4,6 +4,59 @@
   
     
     <entry>
+      <title><![CDATA[递归式求解-主方法]]></title>
+      <url>http://pytlab.github.io/2017/09/10/%E9%80%92%E5%BD%92%E5%BC%8F%E6%B1%82%E8%A7%A3-%E4%B8%BB%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>本文对递归式求解中很重要的主方法进行介绍总结。</p>
+<h3 id="主方法"><a href="#主方法" class="headerlink" title="主方法"></a>主方法</h3><p>主方法为如下形式的递归式提供了一种”菜谱式”的求解方法:<br>$$T(n) = aT(n/b) + f(n)$$<br>其中$a \ge 1, b \gt 1$是常数，$f(n)$是渐进正数。</p>
+<p>上式描述了这样的一个算法运行时间: 他将原问题的规模为$n$的问题划分为$a$个小的子问题，每个子问题的规模为原来的$\frac{1}{b}$. $a$个子问题递归的进行求解，每个花费时间为$T(n/b)$。子问题合并的代价为$f(n)$</p>
+<a id="more"></a>
+<h3 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h3><p>这里我将书上的定义直接贴上来了。</p>
+<p>主方法依赖主定理:</p>
+<p>令$a \ge 1$和$b \gt 1$是常数，$f(n)$是一个函数，$T(n)$是定义在非负整数上的递归式:<br>$$T(n) = aT(n/b) + f(n)$$<br>其中我们将忽略舍入问题$n/b$解释为$\lfloor n/b \rfloor$和$\lceil n/b \rceil$, 那么$T(n)$有如下渐进界:</p>
+<ol>
+<li>若对某个常数$\epsilon &gt; 0$有$f(n)=O(n^{\log_{b}a - \epsilon})$, $T(n) = \Theta(n^{\log_{b}a})$</li>
+<li>若$f(n) = \Theta(n^{\log_{b}a})$, 则$T(n) = \Theta(n^{b}a lgn)$</li>
+<li>若对某个常数$\epsilon &gt; 0$有$f(n) = \Omega(n^{log_{b}a + \epsilon})$, 且对某个常数$c &lt; 1$和所有足够大的$n$y有$af(n/b) \le cf(n)$, 则$T(n) = \Theta(f(n))$</li>
+</ol>
+<h3 id="主定理的直观理解"><a href="#主定理的直观理解" class="headerlink" title="主定理的直观理解"></a>主定理的直观理解</h3><p>主定理其实主要是比较两个函数$f(n)$和$n^{\log_{b}a}$, 其中较大的那个决定最终递归式的渐近解。</p>
+<ol>
+<li>若$n^{\log_{b}a} &gt; f(n)$, 则就是情况1, 解就直接是$T(n) = \Theta(n^{\log_{b}a})$</li>
+<li>若$n^{\log_{b}a} = f(n)$, 则就是情况2, 解就需要在$f(n)$的基础上乘上个对数因子$lgn$, $T(n) = \Theta(n^{\log_{b}a}lgn)$</li>
+<li>若$n^{\log_{b}a} &lt; f(n)$, 则就是情况3, 解为$T(n) = \Theta(f(n))$</li>
+</ol>
+<h3 id="主定理的细节理解"><a href="#主定理的细节理解" class="headerlink" title="主定理的细节理解"></a>主定理的细节理解</h3><h4 id="多项式意义上大于"><a href="#多项式意义上大于" class="headerlink" title="多项式意义上大于"></a>多项式意义上大于</h4><p>主定理中，除了渐进大于(小于)以外，还有一个重要的概念就是<strong>多项式意义的大于(小于)</strong>(polynomially larger/smaller)</p>
+<p>多项式大于意味着函数的比值会渐进的落在两个多项式之间。$f(n)$多项式意义上大于$g(n)$，当且仅当存在两个广义的多项式(分数指数也是可以的)$p(n), q(n)$使得如下不等式渐进成立:<br>$$p(n) \le \frac{f(n)}{g(n)} &lt; q(n)$$</p>
+<p>例如对于两个函数$n^2$和$\frac{n}{lgn}$, 我们有$\frac{n^2}{nlgn} = \frac{n}{lgn}$,<br>$$n^{\frac{1}{3}} \le \frac{n}{lgn} \le n$$<br>则函数$n^2$多项式意义上大于$nlgn$.</p>
+<h4 id="主定理中的细节"><a href="#主定理中的细节" class="headerlink" title="主定理中的细节"></a>主定理中的细节</h4><p>除了像上一部分那样有个大致的“大于”，“小于”的直观理解外，我们要理解定义中的具体细节，其实就是多项式大于/小于的应用。</p>
+<ol>
+<li>第一种情况中，我们需要$f(n)$多项式意义上小于$n^{\log_{b}a}$， 即$f(n)$渐进小于$n^{\log_{b}a - \epsilon}$。 $f(n)$必须渐近小于$n^{\log_{b}a}$, 同时要相差一个因子$n^{\epsilon}$, 其中$\epsilon$是大于0的常数。</li>
+<li>第二种情况中，除了多项式意义上的大于以外，而且还要满足“正则”条件$af(n/b) \le cf(n)$</li>
+</ol>
+<p>但是主方法中的三种情况并不能覆盖所有此形式的情况。情况1和情况2之间有一定的间隙，即$f(n)$渐近小于$n^{\log_{b}a}$d但不是多项式意义上的小于。同样的情况2和情况3也有类似的间隙。<strong>如果$f(n)$满足的条件正好落在间隙中，或者不满足情况3中的“正则”条件</strong>，就不能通过主方法来求解了。</p>
+<p>例如求解如下递归式的时候:<br>$$T(n) = 2T(n/2) + nlgn$$</p>
+<p>我们按照主方法，$a = 2, b = 2, f(n) = nlgn$</p>
+<p>$$<br>n^{\log_{b}a} = n^{\log_{2}2} = n<br>$$</p>
+<p>我们可以看到$f(n) = nlgn$ 渐近大于 $n^{\log_{b}a} = n$, 但是我们需要的是多项式意义上的大于即<br>$$<br>nlgn &gt; n \cdot n^{\epsilon}, \epsilon &gt; 0<br>$$<br>但是对于任意$\epsilon &gt; 0$都无法满足$lgn$渐近大于$n^{\epsilon}$, 于是它并不是多项式意义上的大于，此递归式无法使用主方法来求解。</p>
+<h3 id="使用主方法的例子"><a href="#使用主方法的例子" class="headerlink" title="使用主方法的例子"></a>使用主方法的例子</h3><p>对于矩阵乘法的Strassen方法递归式:<br>$$<br>T(n) = 7T(n/2) + \Theta(n^2)<br>$$</p>
+<p>有$a = 7, b = 2, f(n) = \Theta(n^2)$, 因此$n^{\log_{b}a} = n^{\log_{2}7}$, 由于$2.8 &lt; lg7 &lt; 2.81$, 对于$\epsilon = 0.8$, 就有$f(n) = \Theta(n^2)$多项式意义上大于$O(n^{lg7})$, 于是我们便可以得到最终的解为:<br>$$<br>T(n) = \Theta(n^{lg7})<br>$$</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习小结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[机器学习算法实践-SVM中的SMO算法]]></title>
       <url>http://pytlab.github.io/2017/09/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-SVM%E4%B8%AD%E7%9A%84SMO%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前两篇关于SVM的文章分别总结了SVM基本原理和核函数以及软间隔原理，本文我们就针对前面推导出的SVM对偶问题的一种高效的优化方法-序列最小优化算法(Sequential Minimal Optimization, SMO)的原理进行总结并进行相应的Python实现。</p>
@@ -1941,9 +1994,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
         </tags>
         
@@ -2017,9 +2070,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -2106,9 +2159,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -2166,9 +2219,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             

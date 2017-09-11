@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
-              
-              <li><a href="/2017/07/25/机器学习-Python-数学相关的速查表/" style="font-size: 15px; font-family: 微软雅黑">与机器学习, Python, 数学相关的速查表整理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,38 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-01-19 </div>
+			<div class="article-title"><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/" >Python多进程并行编程实践-multiprocessing模块</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/"><img src="/assets/images/features/python_logo.jpg" alt="Python多进程并行编程实践-multiprocessing模块"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>并行计算是使用并行计算机来减少单个计算问题所需要的时间，我们可以通过利用编程语言显式的说明计算中的不同部分如何再不同的处理器上同时执行来设计我们的并行程序，最终达到大幅度提升程序效率的目的。</p>
+<p>众所周知，Python中的GIL限制了Python多线程并行对多核CPU的利用，但是我们仍然可以通过各种其他的方式来让Python真正利用多核资源, 例如通过C/C++扩展来实现多线程/多进程, 以及直接利用Python的多进程模块multiprocessing来进行多进程编程。</p>
+<p>本文主要尝试仅仅通过python内置的multiprocessing模块对自己的动力学计算程序来进行优化和效率提升，其中:</p>
+<ul>
+<li>实现了单机利用多核资源来实现并行并进行加速对比</li>
+<li>使用manager模块实现了简单的多机的分布式计算</li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2017/01/19/Python多进程并行编程实践-multiprocessing模块/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -353,33 +385,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-10-20 </div>
-			<div class="article-title"><a href="/2016/10/20/C-的delegation-constructor/" >C++的delegation constructor</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/10/20/C-的delegation-constructor/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C++的delegation constructor"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>昨晚给KMCLibX的Process类添加了一个新的构造函数，目的是想快速添加slow_flag到process中。结果我想能不能在一个构造函数中调用同类中的另一个构造函数，于是我发现了C++11有了个新特性叫做<a href="https://en.wikipedia.org/wiki/C%2B%2B11#Object_construction_improvement">delegation constructor</a></p>
-<p>在C++03中是不允许在一个构造函数中调用另一个构造函数的，要实现这种效果需要写一个共有的初始化函数然后再不同的构造函数中调用，例如：<br>
-	
-	</div>
-  <a type="button" href="/2016/10/20/C-的delegation-constructor/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -429,6 +434,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
@@ -444,10 +453,6 @@
         <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
       </li>
     
-      <li>
-        <a href="/2017/08/11/递归式求解-代入法/" ><i class="fa fa-file-o"></i>递归式求解-代入法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -460,7 +465,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">88</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -484,45 +489,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>
