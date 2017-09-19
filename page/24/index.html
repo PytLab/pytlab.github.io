@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子的比较<span></span></a></li>
+              
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
-              
-              <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -156,9 +156,9 @@
               <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
-              
               <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
               
               <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
               
@@ -213,6 +213,28 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-09-01 </div>
+			<div class="article-title"><a href="/2015/09/01/关于Fortran和C数组的优先模式/" >关于Fortran和C数组的优先模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>熟悉了C语言和Python中的行优先模式，上手Fortran的列优先模式时候有点绕，大致在这整理下思路。<br>无论对于C或者Fortran数据对象在内存中都是连续排列的。比如我初始化一个3×3的二维数组.<br>C语言<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> c[<span class="number">3</span>][<span class="number">3</span>] = &#123;</div><div class="line">    &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;,</div><div class="line">    &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;,</div><div class="line">    &#123;<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>Fortran<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">integer</span> :: f(<span class="number">3</span>, <span class="number">3</span>)</div><div class="line"><span class="keyword">integer</span> :: r, c</div><div class="line"><span class="keyword">data</span> ((m(r, c), r=<span class="number">1</span>, <span class="number">3</span>), c=<span class="number">1</span>, <span class="number">3</span>) /(i, i=<span class="number">1</span>,<span class="number">9</span>)/ <span class="comment">! 注意我这里是按照列进行初始化的</span></div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2015/09/01/关于Fortran和C数组的优先模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -337,28 +359,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-06-14 </div>
-			<div class="article-title"><a href="/2015/06/14/有共鸣啦/" >有共鸣啦</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>今天看Gilbert Strang的公开课，他提到了矩阵的应用中说了化学，<br>这种方法在我之前写kinetic模型的时候就用了，核心代码很少，就能把一连串基元反应配平并合并了哈哈哈。<br>来来来，上code(主要代码)：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">null</span><span class="params">(A, eps=<span class="number">1e-10</span>)</span>:</span></div><div class="line">    <span class="string">"get null space of transposition of site_matrix"</span></div><div class="line">     u, s, vh = np.linalg.svd(A, full_matrices=<span class="number">1</span>, compute_uv=<span class="number">1</span>)</div><div class="line">     null_space = np.compress(s &lt;= eps, vh, axis=<span class="number">0</span>)</div><div class="line">     <span class="keyword">return</span> null_space.T</div><div class="line"> x = null(site_matrix.T)  <span class="comment"># basis of null space</span></div><div class="line"> <span class="keyword">if</span> <span class="keyword">not</span> x.any():  <span class="comment"># x is not empty</span></div><div class="line">     <span class="keyword">raise</span> ValueError(<span class="string">'Failed to get basis of nullspace.'</span>)</div><div class="line"> x = map(abs, x.T.tolist()[<span class="number">0</span>])</div></pre></td></tr></table></figure></p>
-
-	
-	</div>
-  <a type="button" href="/2015/06/14/有共鸣啦/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -408,6 +408,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子的比较</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
@@ -423,10 +427,6 @@
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
-      <li>
-        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -437,7 +437,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">14</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -463,45 +463,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">53</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子的比较<span></span></a></li>
+              
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
-              
-              <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -156,9 +156,9 @@
               <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
-              
               <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
               
               <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
               
@@ -213,6 +213,29 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-04-09 </div>
+			<div class="article-title"><a href="/2015/04/09/C-Notes--指针和多维数组/" >C Notes -- 指针和多维数组</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>这个地方在看书的时候有点绕，花了点时间顺了顺思路，大概记一下。<br>先声明个二维数组：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> zippo[<span class="number">2</span>][<span class="number">2</span>]; <span class="comment">//整数数组的数组</span></div></pre></td></tr></table></figure></p>
+<p>之所以被绕进去是因为下面两点：</p>
+<p>把上面两点合起来看的话，就有：<br><code>zippo == &amp;zippo</code><br><code>zippo[0] == &amp;zippo[0][0]</code><br>也就是有：<br><code>zippo[0] == &amp;zippo[0] //zippo[0]存的是自己的地址??</code><br><code>&amp;zippo[0] == &amp;zippo[0][0] //两个不同值的地址竟然一样??</code><br>我就是在这里绕进去了，囧～<br>自己写了个小函数测试下：</p>
+	
+	</div>
+  <a type="button" href="/2015/04/09/C-Notes--指针和多维数组/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -338,27 +361,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-02-13 </div>
-			<div class="article-title"><a href="/2015/02/13/自动登录小木虫并获取每日金币的Python脚本/" >自动登录小木虫并获取每日金币的Python脚本</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>前段时间用<code>urllib, urllib2, cookielib</code>实现了自动登录校园网的脚本，类似发送请求的原理同样可以用在小木虫等类似的这种用PHP+MySQL实现的<a href="http://www.discuz.net/forum.php" title="discuz">discuz</a>论坛上面。于是就动手开始写了。<br>写这个脚本的最初目的是懒得每天手动到小木虫网站上点击领取金币了，而且我这种经常忘记这种事情，等要用到金币的时候就后悔莫及了，那干脆用python写一个开机自动领取金币的脚本更省事。<br>对了这个脚本实际上是上个登录校园网的一个分支，也就是LoggerBase的一个子类，一开始采用OO的方式果然是对的。。。<br>看了下小木虫的领取金币的页面的代码，获取小木虫金币的方式是通过POST方式向<a href="http://emuch.net/bbs/memcp.php?action=getcredit">http://emuch.net/bbs/memcp.php?action=getcredit</a>传表单信息。于是原理就可以是通过python向这个页面发送表单信息达到自动领取金币的效果。<br>
-	
-	</div>
-  <a type="button" href="/2015/02/13/自动登录小木虫并获取每日金币的Python脚本/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -408,6 +410,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子的比较</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
@@ -423,10 +429,6 @@
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
-      <li>
-        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -437,7 +439,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">14</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -463,43 +465,43 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子的比较<span></span></a></li>
+              
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
-              
-              <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -156,9 +156,9 @@
               <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
-              
               <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
               
               <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
               
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-03-26 </div>
+			<div class="article-title"><a href="/2017/03/26/优雅的在终端中编写Python/" >优雅的在终端中编写Python</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/03/26/优雅的在终端中编写Python/"><img src="/assets/images/features/vim_logo.png" alt="优雅的在终端中编写Python"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最早我也只是在服务器上编辑文件的时候用用vim来改改程序，并没有把vim当做自己的主力编辑器。但是偶然的一次机会需要改一个奇葩的输入文件的格式，用了下Vim的宏录制，尝到了甜头，于是后面就开始用Vim来写程序了，虽然使用初期有些阻力，但时间久了就会发现，双手再也不用离开键盘，即使使用sublime这样的编辑器我也要改成使用Vim模式，Vim真的能让自己一思维的速度编辑文本(对我来说就是写程序了)。</p>
+<p>正好最近换了新的电脑，需要在新电脑上配置一下，就干脆把一些配置相关的东东记录下来吧，相关的配置文件我都放在了github(<a href="https://github.com/PytLab/dotfiles">https://github.com/PytLab/dotfiles</a>) 上并写了相应的安装和卸载脚本，给有需要的同学做个参考吧。</p>
+<p>本文是有关配置的文章，并不对Vim的核心技巧进行说明，有需要的童鞋可以参考文档和相关书籍。这里主要配合tmux和vim可以更有优雅的帮助我们在终端中进行Python编程。</p>
+	
+	</div>
+  <a type="button" href="/2017/03/26/优雅的在终端中编写Python/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -374,38 +402,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-02-05 </div>
-			<div class="article-title"><a href="/2017/02/05/ECMAScript对象属性小结/" >ECMAScript对象属性小结</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/02/05/ECMAScript对象属性小结/"><img src="/assets/images/features/js_logo.png" alt="ECMAScript对象属性小结"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>最近两天过了一遍JS高程的前7章，第一次了解ECMAScript中基于原型(prototype-based)的面向对象的实现。思想看起来是那么的顺理成章并不难理解，但是由于属于新事物，所以打算对ECMAScript的OOP进行一下简单的小结，方便以后回来温习。</p>
-<h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p>ECMAScript对象中有两种属性：</p>
-<ul>
-<li>数据属性</li>
-<li>访问器属性</li>
-</ul>
-<h3 id="属性特征值-characteristic"><a href="#属性特征值-characteristic" class="headerlink" title="属性特征值(characteristic)"></a>属性特征值(characteristic)</h3><p>ECMAScript对象创建时都带有一些特征值，JS通过这些特征值来定义对象属性的行为。</p>
-	
-	</div>
-  <a type="button" href="/2017/02/05/ECMAScript对象属性小结/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -455,6 +451,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子的比较</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
@@ -470,10 +470,6 @@
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
-      <li>
-        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -484,7 +480,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">14</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -510,45 +506,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

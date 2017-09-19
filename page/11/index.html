@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子的比较<span></span></a></li>
+              
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
-              
-              <li><a href="/2017/08/02/使用MPI并行化遗传算法/" style="font-size: 15px; font-family: 微软雅黑">使用MPI并行化遗传算法框架GAFT<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -156,9 +156,9 @@
               <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
               <li class="divider"></li>
               
-              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
-              
               <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
               
               <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
               
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-30 </div>
+			<div class="article-title"><a href="/2016/04/30/Windows下py2与py3共存的方法/" title="最近打算转移阵地至python3，但是有有老代码是python2的，于是就像在电脑上装两个版本的python和相应的ipython。下面记录一下处理方法。">Windows下py2与py3共存的方法</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/30/Windows下py2与py3共存的方法/"><img src="/assets/images/features/ipython.jpg" alt="Windows下py2与py3共存的方法"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>现在的情况是我已经在我的系统中安装了python2.7以及ipython和其他我经常用的库。现在我需要在安装python3.5的解释器以及相应版本的ipython。</p>
+<h3 id="1-安装python3-5-1"><a href="#1-安装python3-5-1" class="headerlink" title="1. 安装python3.5.1"></a>1. 安装python3.5.1</h3><p>直接去官网下载后安装到默认路径下。我安装的路径为：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:<span class="symbol">\U</span>sers<span class="symbol">\x</span>y<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\P</span>rograms<span class="symbol">\P</span>ython<span class="symbol">\P</span>ython35-32</div></pre></td></tr></table></figure>
+<p>在这路径下可以看到python3.5的所有，为了与之前的python2.7分开，我将python重命名为<code>python3.exe</code></p>
+	
+	</div>
+  <a type="button" href="/2016/04/30/Windows下py2与py3共存的方法/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -358,36 +387,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-04 </div>
-			<div class="article-title"><a href="/2016/04/04/SWIG中的指针/" title="由于C/C++大量的使用指针，因此如何处理指针是swig的一项重要的工作。">SWIG中的指针</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/04/SWIG中的指针/"><img src="/assets/images/features/swig.png" alt="SWIG中的指针"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>SWIG有一个简单规则就是</p>
-<blockquote>
-<p>Everything else is a pointer</p>
-</blockquote>
-<p>即除了基本的类型以外的其他数据类型，swig全部通过指针来处理。大致过程就是将操作C/C++中的结构，类，数组等是通过操作指向这些数据的指针操作，封装成python的数据也是一个包含指针信息的python对象。<br>C/C++的指针在python中是通过一个特殊的对象来保存的，在python中的变量保存的C/C++的数组以及类对象其实就是保存的这些指针对象，然后封装函数也是操作指针来操作真正的结构和数组等对象。</p>
-	
-	</div>
-  <a type="button" href="/2016/04/04/SWIG中的指针/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -437,6 +436,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子的比较</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
@@ -452,10 +455,6 @@
         <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
       </li>
     
-      <li>
-        <a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" ><i class="fa fa-file-o"></i>150多个最好的与机器学习,自然语言处理和Python...</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -466,7 +465,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">13</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">14</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -492,45 +491,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
 			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>
