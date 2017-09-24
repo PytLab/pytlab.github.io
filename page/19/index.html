@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
+              
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
-              
-              <li><a href="/2017/08/11/递归式求解-代入法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-代入法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,28 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-23 </div>
+			<div class="article-title"><a href="/2016/02/23/Kynetix支持KMC连续计算/" title="由于KMC的计算经常会需要在已经算完的作业的基础上继续跑作业以达到TOF或者覆盖度稳定,因此使程序能够进行连续的作业计算。">Kynetix支持KMC连续计算</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>关于连续计算这里其实是很早以前就加进来的功能，但是由于这里也算是一个比较重要而且比较复杂的更新，在这里记一下以免自己忘记。</p>
+<p>这部分比较难处理的是关于连续作业的起始时间<code>start_time</code>和起始步数<code>start_step</code>的设定。然后再<code>KMCAnalysisPlugin</code>类（或者子类）中将新的KMC循环的time和step进行相应的<strong>“平移处理”</strong>。<br>这里我写了个装饰器来处理，对<code>KMCAnalysisPlugin</code>的<code>setup()</code>方法进行装饰，使其能够在进行on-the-fly分析的时候能够先把time和step处理完毕。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset_step_and_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="string">'''</div><div class="line">    Decorator function to decorate analysis plugin methods.</div><div class="line">    '''</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapped_func</span><span class="params">(self, step, time, configuration)</span>:</span></div><div class="line">        step = step + self.step_base</div><div class="line">        time = time + self.time_base</div><div class="line">        func(self, step, time, configuration)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> wrapped_func</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">KynetixPlugin</span><span class="params">(KMCAnalysisPlugin)</span>:</span></div><div class="line">    ...</div><div class="line"></div><div class="line"><span class="meta">    @reset_step_and_time</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setup</span><span class="params">(self, step, time, configuration)</span>:</span></div><div class="line">        ...</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/02/23/Kynetix支持KMC连续计算/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -330,31 +352,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-18 </div>
-			<div class="article-title"><a href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/" title="在这里对动力学蒙特卡洛(kMC)的基本原理进行下简单总结。&lt;br&gt;转载请注明出处。">动力学蒙特卡洛(kinetic Mont Carlo)基本原理小结</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h4 id="克服模拟的时间尺度的局限"><a href="#克服模拟的时间尺度的局限" class="headerlink" title="克服模拟的时间尺度的局限"></a>克服模拟的时间尺度的局限</h4><p>由于许多动态的过程(dynamic evolution)，例如表面的生长或者材料的老化，时间的跨度都在s以上，超出了分子动力学模拟的范围，动力学蒙特卡洛模拟便是针对这种长时间尺度的动态模拟的。</p>
-<blockquote>
-<p>Kinetic Monte Carlo attempts to overcome this limitation by exploiting the fact that the long-time dynamics of this kind of system typically consists of diffusive jumps from state to state. Rather than following the trajectory through every vibrational period, these state-to-state transitions are treated directly</p>
-</blockquote>
-<p><img src="/assets/images/blog_img/2016-02-18-动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/PES.png" alt=""><br>
-	
-	</div>
-  <a type="button" href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -404,6 +401,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
       </li>
     
@@ -419,10 +420,6 @@
         <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
       </li>
     
-      <li>
-        <a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" ><i class="fa fa-file-o"></i>机器学习算法实践-支持向量机(SVM)算法原理</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -433,7 +430,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">14</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">15</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -459,45 +456,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">55</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">97</span></a></li>

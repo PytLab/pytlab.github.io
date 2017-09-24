@@ -4,6 +4,96 @@
   
     
     <entry>
+      <title><![CDATA[遗传算法中适值函数的标定与大变异算法]]></title>
+      <url>http://pytlab.github.io/2017/09/23/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%B8%AD%E9%80%82%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%87%E5%AE%9A%E4%B8%8E%E5%A4%A7%E5%8F%98%E5%BC%82%E7%AE%97%E6%B3%95/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文尝试对遗传算法中不同适值函数的标定(Scaling)方法进行下总结，并针对常用的线性标定和动态线性标定进行了Python实现，以装饰器的形式添加到遗传算法框架GAFT中，这样在使用GAFT运行遗传算法迭代的时候更以更加Pythonic的给自定义的适值函数进行标定。最后针对能够防止早熟情况的大变异算法进行了相应的实现。</p>
+<p>目前(动态)线性标定装饰器以及大变异算子均已添加到GAFT中，gaft项目链接:</p>
+<ul>
+<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a></li>
+<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="external">https://pypi.python.org/pypi/gaft</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="适值函数的标定"><a href="#适值函数的标定" class="headerlink" title="适值函数的标定"></a>适值函数的标定</h2><h3 id="选择压力"><a href="#选择压力" class="headerlink" title="选择压力"></a>选择压力</h3><blockquote>
+<p>The tendency to select the best member of the current generation is known as selective pressure.</p>
+</blockquote>
+<p>选择压力也就是种群中最好个体与最坏个体被选中概率的差值，这个差距越大，选中好个体的趋势就越大，则成为选择压力大。</p>
+<h3 id="适值函数的标定-1"><a href="#适值函数的标定-1" class="headerlink" title="适值函数的标定"></a>适值函数的标定</h3><p>一般情况下，直接拿目标函数作为适值函数十分的方便，但是很多情况下却不能这么做，例如对于求最小值问题，我们必须将目标函数取反才能作为适值函数(这是最简单的情况)。</p>
+<p>当我们遗传算法中不同个体适值函数的值相对差别很小的时候，我们根据适应度值的大小进行个体选择的选择压力(Selective pressure)就会变小，选优的能力弱化，这个时候我们需要对原始的适值函数进行标定(Scaling)是的他们<strong>相对</strong>差别增大，进而增大选择压力，增强算法的选优能力。</p>
+<p>例如:<br>$$<br>\left[\begin{matrix}<br>f_1 = 1001 \\<br>f_2 = 1002 \\<br>f_3 = 999 \\<br>f_4 = 997 \\<br>\end{matrix} \right] \xrightarrow{scaling} \left[\begin{matrix}<br>f_1’ = f_1 - f_4 = 4 \\<br>f_2’ = f_2 - f_4 = 5 \\<br>f_3’ = f_3 - f_4 = 2 \\<br>f_4’ = f_4 - f_4 = 0<br>\end{matrix} \right]<br>$$</p>
+<h3 id="局部搜索、广域搜索与选择压力的关系"><a href="#局部搜索、广域搜索与选择压力的关系" class="headerlink" title="局部搜索、广域搜索与选择压力的关系"></a>局部搜索、广域搜索与选择压力的关系</h3><p>在遗传算法中，局部搜索同广域搜索其实相互矛盾的，注重局部搜索则会陷入局部最优，但是注重广域搜索会导致算法精确开发能力不强。因此需要综合两者考虑，我们可以在搜索刚刚开始的时候使用较小的选择压力来广域搜索，随着迭代的进行可以动态的增大选择压力来使算法偏向于局部搜索。</p>
+<h2 id="几种不同的适值函数标定方法"><a href="#几种不同的适值函数标定方法" class="headerlink" title="几种不同的适值函数标定方法"></a>几种不同的适值函数标定方法</h2><p>对目标函数的标定方法一般有:线性标定、动态线性标定、幂律标定、对数标定等</p>
+<h3 id="线性标定"><a href="#线性标定" class="headerlink" title="线性标定"></a>线性标定</h3><p>线性标定的形式:<br>$$<br>f’ = af + b<br>$$<br>其中$f’$为标定后的适值函数，$f$为原始的目标函数。</p>
+<h4 id="求最大值"><a href="#求最大值" class="headerlink" title="求最大值"></a>求最大值</h4><p>对于求目标函数的最大值的时候, 即 $arg \max f(x)$</p>
+<p>我们取$a = 1, b = -f_{min} + \xi$, 其中$\xi$是一个较小的数，目的是使得种群中最差个体也有被选中的机会，不然自身减掉$f - f_{min} = 0$, $\xi$的存在可以增加种群的多样性。</p>
+<p>最终的适值函数表达式:<br>$$f’ = f(x) - f_{min} + \xi$$</p>
+<h4 id="求最小值"><a href="#求最小值" class="headerlink" title="求最小值"></a>求最小值</h4><p>当我们需要求目标函数最小值的时候，$arg \min f(x)$，我们需要对目标函数进行取反操作, 即<br>$a = -1, b = f_{max} - f(x) + \xi$</p>
+<p>最终的适值函数表达式:<br>$$f’ = f_{max} - f(x) + \xi$$</p>
+<h4 id="GAFT中添加对于目标函数的标定"><a href="#GAFT中添加对于目标函数的标定" class="headerlink" title="GAFT中添加对于目标函数的标定"></a>GAFT中添加对于目标函数的标定</h4><p>由于适值函数标定并不针对某个目标函数，我便想通过装饰器的方式来方便给任何自定义的fitness函数进行标定。对于基本的线性标定，我在<code>GAEngine</code>中添加了个带参数的装饰器:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">linear_scaling</span><span class="params">(self, target=<span class="string">'max'</span>, ksi=<span class="number">0.5</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    A decorator constructor for fitness function linear scaling.</div><div class="line"></div><div class="line">    :param target: The optimization target, maximization or minimization.</div><div class="line">    :type target: str, 'max' or 'min'</div><div class="line"></div><div class="line">    :param ksi: Selective pressure adjustment value.</div><div class="line">    :type ksi: float</div><div class="line"></div><div class="line">    Linear Scaling:</div><div class="line">        1. arg max f(x), then f' = f - min&#123;f(x)&#125; + ksi;</div><div class="line">        2. arg min f(x), then f' = max&#123;f(x)&#125; - f(x) + ksi;</div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_linear_scaling</span><span class="params">(fn)</span>:</span></div><div class="line">        <span class="comment"># For original fitness calculation.</span></div><div class="line">        self.ori_fitness = fn</div><div class="line"></div><div class="line"><span class="meta">        @wraps(fn)</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_fn_with_linear_scaling</span><span class="params">(indv)</span>:</span></div><div class="line">            <span class="comment"># Original fitness value.</span></div><div class="line">            f = fn(indv)</div><div class="line"></div><div class="line">            <span class="comment"># Determine the value of a and b.</span></div><div class="line">            <span class="keyword">if</span> target == <span class="string">'max'</span>:</div><div class="line">                f_prime = f - self.ori_fmin + ksi</div><div class="line">            <span class="keyword">elif</span> target == <span class="string">'min'</span>:</div><div class="line">                f_prime = self.ori_fmax - f + ksi</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">raise</span> ValueError(<span class="string">'Invalid target type(&#123;&#125;)'</span>.format(target))</div><div class="line">            <span class="keyword">return</span> f_prime</div><div class="line"></div><div class="line">        <span class="keyword">return</span> _fn_with_linear_scaling</div><div class="line"></div><div class="line">    <span class="keyword">return</span> _linear_scaling</div></pre></td></tr></table></figure></p>
+<p>这个时候如果我们在定义了一个自己的目标函数以后，想对其进行线性标定便可以使用engine的这个装饰器对函数进行修饰即可, 像下面这样:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Create a GA engine...</span></div><div class="line"></div><div class="line"><span class="comment"># 先标定，后注册到引擎中</span></div><div class="line"><span class="meta">@engine.fitness_register</span></div><div class="line"><span class="meta">@engine.linear_scaling(target='min', ksi=0.5)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fitness</span><span class="params">(indv)</span>:</span></div><div class="line">    x, = indv.variants</div><div class="line">    <span class="keyword">return</span> x + <span class="number">10</span>*sin(<span class="number">5</span>*x) + <span class="number">7</span>*cos(<span class="number">4</span>*x)</div></pre></td></tr></table></figure></p>
+<p>其中装饰器中的参数分别为:</p>
+<ul>
+<li><code>target</code>: 优化目标函数到最小值还是最大值，值可以是:<code>&#39;max&#39;</code>或者<code>&#39;min&#39;</code></li>
+<li><code>ksi</code>: 即公式中$\xi$</li>
+</ul>
+<h3 id="动态线性标定"><a href="#动态线性标定" class="headerlink" title="动态线性标定"></a>动态线性标定</h3><p>动态线性标定是遗传算法中最常用的标定方法，他是基于上面提到的线性标定，在线性标定中的$\xi$在动态线性标定中并不是一成不变的，而是随着迭代次数的增加而变化。</p>
+<p>动态线性标定的函数表达式:<br>$$f’ = a^{k}f + b^{k}$$<br>其中，$k$为迭代指标，表示$\xi$会随着迭代数而不同。</p>
+<h4 id="求最大值-1"><a href="#求最大值-1" class="headerlink" title="求最大值"></a>求最大值</h4><p>当我们的优化目标是目标函数的最大值，这是我们取$a^{k} = 1, b^{k} = -f_{min} + \xi^{k}$, 这是的函数表达为:<br>$$f’ = f - f_{min} + \xi^{k}$$</p>
+<h4 id="求最小值-1"><a href="#求最小值-1" class="headerlink" title="求最小值"></a>求最小值</h4><p>求最小值的时候需要取反操作，这时取$a^{k} = -1, b^{k} = f_{max} + \xi^{k}$, 最终函数表达式:<br>$$f’ = f_{max} - f + \xi^{k}$$</p>
+<h4 id="关于-xi-k"><a href="#关于-xi-k" class="headerlink" title="关于$\xi^{k}$"></a>关于$\xi^{k}$</h4><p>动态线性标定中的$\xi^{k}$作用同线性标定中的$\xi$为<strong>选择压力调节值</strong>, 它的存在使得种群中最坏的个体仍有被选中的机会，但是动态标定中的$\xi^{k}$的值会随着$k$增大而减小。</p>
+<p>$\xi^{k}$的取值: $\xi^{0} = M, \xi^{k} = \xi^{k-1}\cdot r, r \in \left[0.9, 0.999\right]$, 我们通过调节$M$和$r$来调节$\xi^{k}$</p>
+<p>通过可以动态变化的$\xi^{k}$，我们可以使广域搜索范围宽保持种群的多样性，局部搜索保持收敛性，即，开始时希望选择小，迭代到后面希望选择压力逐渐变大.</p>
+<h4 id="GAFT中添加给目标函数添加动态线性标定"><a href="#GAFT中添加给目标函数添加动态线性标定" class="headerlink" title="GAFT中添加给目标函数添加动态线性标定"></a>GAFT中添加给目标函数添加动态线性标定</h4><p>与上面线性标定的方法相同，GAFT中同样使用了标定装饰器来装饰用户自定义的目标函数，实现代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dynamic_linear_scaling</span><span class="params">(self, target=<span class="string">'max'</span>, ksi0=<span class="number">2</span>, r=<span class="number">0.9</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    A decorator constructor for fitness dynamic linear scaling.</div><div class="line"></div><div class="line">    :param target: The optimization target, maximization or minimization.</div><div class="line">    :type target: str, 'max' or 'min'</div><div class="line"></div><div class="line">    :param ksi0: Initial selective pressure adjustment value, default value</div><div class="line">                 is 2</div><div class="line">    :type ksi0: float</div><div class="line"></div><div class="line">    :param r: The reduction factor for selective pressure adjustment value,</div><div class="line">              ksi^(k-1)*r is the adjustment value for generation k, default</div><div class="line">              value is 0.9</div><div class="line">    :type r: float in range [0.9, 0.999]</div><div class="line"></div><div class="line">    Dynamic Linear Scaling:</div><div class="line">        For maximizaiton, f' = f(x) - min&#123;f(x)&#125; + ksi^k, k is generation number.</div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_dynamic_linear_scaling</span><span class="params">(fn)</span>:</span></div><div class="line">        <span class="comment"># For original fitness calculation.</span></div><div class="line">        self.ori_fitness = fn</div><div class="line"></div><div class="line"><span class="meta">        @wraps(fn)</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_fn_with_dynamic_linear_scaling</span><span class="params">(indv)</span>:</span></div><div class="line">            f = fn(indv)</div><div class="line">            k = self.current_generation + <span class="number">1</span></div><div class="line"></div><div class="line">            <span class="keyword">if</span> target == <span class="string">'max'</span>:</div><div class="line">                f_prime = f - self.ori_fmin + ksi0*(r**k)</div><div class="line">            <span class="keyword">elif</span> target == <span class="string">'min'</span>:</div><div class="line">                f_prime = self.ori_fmax - f + ksi0*(r**k)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">raise</span> ValueError(<span class="string">'Invalid target type(&#123;&#125;)'</span>.format(target))</div><div class="line">            <span class="keyword">return</span> f_prime</div><div class="line"></div><div class="line">        <span class="keyword">return</span> _fn_with_dynamic_linear_scaling</div><div class="line"></div><div class="line">    <span class="keyword">return</span> _dynamic_linear_scaling</div></pre></td></tr></table></figure></p>
+<p>这里充分的利用Python的闭包，在engine中获取当前种群最大值与最小值的相关数据。</p>
+<p>在脚本中修饰目标函数便可以这样:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@engine.fitness_register</span></div><div class="line"><span class="meta">@engine.dynamic_linear_scaling(target='max', ksi0=2, r=0.9)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fitness</span><span class="params">(indv)</span>:</span></div><div class="line">    x, = indv.variants</div><div class="line">    <span class="keyword">return</span> x + <span class="number">10</span>*sin(<span class="number">5</span>*x) + <span class="number">7</span>*cos(<span class="number">4</span>*x)</div></pre></td></tr></table></figure></p>
+<h3 id="其他标定方法"><a href="#其他标定方法" class="headerlink" title="其他标定方法"></a>其他标定方法</h3><p>这里简要的介绍下其他标定方法。</p>
+<h4 id="幂律标定"><a href="#幂律标定" class="headerlink" title="幂律标定"></a>幂律标定</h4><ul>
+<li>函数表达式: $f’ = f^{\alpha}$</li>
+<li>$\alpha$的取值, $\alpha &gt; 1$增大选择压力, $\alpha &lt; 1$减小选择压力</li>
+</ul>
+<h4 id="对数标定"><a href="#对数标定" class="headerlink" title="对数标定"></a>对数标定</h4><ul>
+<li>函数表达式: $f’ = aLnf + b$</li>
+<li>作用: 缩小目标函数之间的差别</li>
+</ul>
+<h4 id="指数标定"><a href="#指数标定" class="headerlink" title="指数标定"></a>指数标定</h4><ul>
+<li>函数表达式: $f’ = ae^{bf} + c$</li>
+<li>作用: 扩大目标函数间的差别</li>
+</ul>
+<h4 id="窗口技术"><a href="#窗口技术" class="headerlink" title="窗口技术"></a>窗口技术</h4><ul>
+<li>函数表达式: $f’ = af - f_w$</li>
+<li>$f_w$为前$W$代中的目标函数最小值，他考虑了各代$f_{min}$的波动，这样$f_w$具有记忆性</li>
+</ul>
+<h2 id="大变异算法"><a href="#大变异算法" class="headerlink" title="大变异算法"></a>大变异算法</h2><p>众所周知，简单的遗传算法存在“早熟”的问题，也就是算法过早的收敛到一个非全局最优点，出现此问题的主要原因是一种被称为“顶端优势”的现象存在，即当算法进行到某一代时，在种群中某个个体的适应度远远大于任何一个个体的适应度，导致选择算法总是会选到此个体生成子代个体，极限情况下就是所有个体都来自统一祖先，即”早熟”。除了对目标函数进行标定，我们可以通过大变异算法来避免早熟。</p>
+<p>大致思路: 当某代中所有个体集中在一起时，我们以一个远大于通常变异概率的概率执行一次变异操作，具有大变异概率的变异操作能够随机、独立的产生许多新的个体，从而是整个种群脱了“早熟”。</p>
+<h3 id="如何判断种群个体的集中程度"><a href="#如何判断种群个体的集中程度" class="headerlink" title="如何判断种群个体的集中程度"></a>如何判断种群个体的集中程度</h3><p>通常采取比较种群中所有个体的适应度值的平均值$f_{avg}$与最大值$f_{max}$的接近程度来判断，如果最大值与平均值越接近说明个体就越集中。</p>
+<h3 id="具体过程"><a href="#具体过程" class="headerlink" title="具体过程"></a>具体过程</h3><p>当某一代的最大适应度$f_{max}$与平均适应度值$f_{avg}$满足:<br>$$\alpha \cdot f_{max} &lt; f_{avg}$$</p>
+<p>其中，$0.5 &lt; \alpha &lt; 1$, 被称为密集因子，表征个体集中程度。随后，我们以一个大变异概率进行一次变异操作(通常大5倍以上), 即“打散”。</p>
+<h3 id="大变异操作的两个参数"><a href="#大变异操作的两个参数" class="headerlink" title="大变异操作的两个参数"></a>大变异操作的两个参数</h3><ol>
+<li>密集因子$\alpha$: 决定大变异操作在整个过程中所占的比重，其数值约接近$0.5$，大变异操作越频繁</li>
+<li>大变异概率: 概率越大，大变异算法的稳定性就越好，但是收敛速度可能会降低，当大变异概率的数值为0.5的时候，大变异操作就近似退化为随机搜索</li>
+</ol>
+<h3 id="GAFT中的大变异算子"><a href="#GAFT中的大变异算子" class="headerlink" title="GAFT中的大变异算子"></a>GAFT中的大变异算子</h3><p>大变异操作与具体的变异算子实现无关，这里我还是依据内置的<code>FlipBitMutation</code>算子为基础, 具体的代码实现参见<a href="https://github.com/PytLab/gaft/blob/master/gaft/operators/mutation/flip_bit_mutation.py。" target="_blank" rel="external">https://github.com/PytLab/gaft/blob/master/gaft/operators/mutation/flip_bit_mutation.py。</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlipBitBigMutation</span><span class="params">(FlipBitMutation)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, pm, pbm, alpha)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        Mutation operator using Flip Bit mutation implementation with adaptive</div><div class="line">        big mutation rate to overcome premature or local-best solution.</div><div class="line"></div><div class="line">        :param pm: The probability of mutation (usually between 0.001 ~ 0.1)</div><div class="line">        :type pm: float in (0.0, 1.0]</div><div class="line"></div><div class="line">        :param pbm: The probability of big mutation, usually more than 5 times</div><div class="line">                    bigger than pm.</div><div class="line">        :type pbm: float</div><div class="line"></div><div class="line">        :param alpha: intensive factor</div><div class="line">        :type alpha: float, in range (0.5, 1)</div><div class="line">        '''</div><div class="line">        super(self.__class__, self).__init__(pm)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0.0</span> &lt; pbm &lt; <span class="number">1.0</span>):</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'Invalid big mutation probability'</span>)</div><div class="line">        <span class="keyword">if</span> pbm &lt; <span class="number">5</span>*pm:</div><div class="line">            self.logger.warning(<span class="string">'Relative low probability for big mutation'</span>)</div><div class="line">        self.pbm = pbm</div><div class="line"></div><div class="line">        <span class="comment"># Intensive factor.</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0.5</span> &lt; alpha &lt; <span class="number">1.0</span>):</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'Invalid intensive factor, should be in (0.5, 1.0)'</span>)</div><div class="line">        self.alpha = alpha</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span><span class="params">(self, individual, engine)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        Mutate the individual with adaptive big mutation rate.</div><div class="line">        '''</div><div class="line">        pm = self.pm</div><div class="line"></div><div class="line">        <span class="keyword">if</span> engine.fmax*self.alpha &lt; engine.fmean:</div><div class="line">            self.pm = self.pbm</div><div class="line">            self.logger.info(<span class="string">'Big mutation probabilty: &#123;&#125; -&gt; &#123;&#125;'</span>.format(pm, self.pm))</div><div class="line"></div><div class="line">        <span class="comment"># Mutate with big probability.</span></div><div class="line">        individual = super(self.__class__, self).mutate(individual, engine)</div><div class="line"></div><div class="line">        <span class="comment"># Recover probability.</span></div><div class="line">        self.pm = pm</div><div class="line"></div><div class="line">        <span class="keyword">return</span> individual</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文尝试对遗传算法中不同适值函数的标定(Scaling)方法进行下总结，并针对常用的线性标定和动态线性标定进行了Python实现，以装饰器的形式添加到遗传算法框架GAFT中，这样在使用GAFT运行遗传算法迭代的时候更以更加Pythonic的给自定义的适值函数进行标定。最后针对能够防止早熟情况的大变异算法进行了相应的实现。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 代码作品 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> GeneticAlgorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[遗传算法中几种不同选择算子]]></title>
       <url>http://pytlab.github.io/2017/09/19/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%B8%AD%E5%87%A0%E7%A7%8D%E4%B8%8D%E5%90%8C%E9%80%89%E6%8B%A9%E7%AE%97%E5%AD%90%E7%9A%84%E6%AF%94%E8%BE%83/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文对遗传算法中的几种选择策略进行了总结, 其中包括:</p>
@@ -6264,9 +6354,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> Kynetix </tag>
             
-            <tag> chemistry </tag>
-            
             <tag> C </tag>
+            
+            <tag> chemistry </tag>
             
             <tag> 学术 </tag>
             
@@ -6457,11 +6547,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> Kynetix </tag>
             
+            <tag> C </tag>
+            
             <tag> catalysis </tag>
             
             <tag> chemistry </tag>
-            
-            <tag> C </tag>
             
             <tag> 随笔 </tag>
             
@@ -8122,11 +8212,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
+            <tag> loggers </tag>
+            
             <tag> python </tag>
             
             <tag> emuch </tag>
-            
-            <tag> loggers </tag>
             
         </tags>
         
@@ -8272,11 +8362,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
+            <tag> ecust </tag>
             
             <tag> loggers </tag>
             
-            <tag> ecust </tag>
+            <tag> python </tag>
             
             <tag> 校园网 </tag>
             
