@@ -3,6 +3,7 @@ title: GAFT-一个使用Python实现的遗传算法框架
 date: 2017-07-23 15:27:28
 tags:
  - python
+ - gaft
  - GeneticAlgorithm
 categories:
  - 代码作品
