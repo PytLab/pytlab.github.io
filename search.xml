@@ -478,7 +478,7 @@
 <h4 id="标准形式"><a href="#标准形式" class="headerlink" title="标准形式"></a>标准形式</h4><p>我们的优化目标是最大化数据点到超平面的间隔，这里可以把最小化的部分(寻找支持向量)放到约束条件中, 有<br>$$<br>arg \max \limits_{w, b} \frac{\hat{\gamma}}{\lVert w \rVert}<br>$$<br>subject to<br>$$<br>y_{i} \cdot (wx_{i}^{T} + b) \ge \hat{\gamma}, i = 1,2,…,k<br>$$<br>其中$\hat{\gamma}$ 是支持向量到超平面的函数间隔。</p>
 <p>我们将所有参数$w$和$b$除以$\hat{\gamma}$，便有$\hat{\gamma} = \min y_{i}(wx_{i}^{T} + b) = 1$, 于是有:<br>$$<br>arg \max \limits_{w, b} \frac{1}{\lVert w \rVert}<br>$$<br>subject to<br>$$<br>y_{i} \cdot (wx_{i}^{T} + b) \ge 1, i = 1,2,…,k<br>$$</p>
 <p>将最大化问题转换为求最小值:</p>
-<p>$$<br>arg \min \limits_{w, b} \frac{1}{2} \lVert w \rVert ^{2}<br>$$<br>subject to<br>$$<br>-y_{i} \cdot (wx_{i}^{T} + b) \ge 1, i = 1,2,…,k<br>$$</p>
+<p>$$<br>arg \min \limits_{w, b} \frac{1}{2} \lVert w \rVert ^{2}<br>$$<br>subject to<br>$$<br>-y_{i} \cdot (wx_{i}^{T} + b) \le 1, i = 1,2,…,k<br>$$</p>
 <p>这便是一个线性不等式约束下的二次优化问题, 下面我本就使用拉格朗日乘子法来获取我们优化目标的对偶形式。</p>
 <h4 id="通过拉格朗日乘子法和KKT条件将约束条件放入到目标函数中"><a href="#通过拉格朗日乘子法和KKT条件将约束条件放入到目标函数中" class="headerlink" title="通过拉格朗日乘子法和KKT条件将约束条件放入到目标函数中"></a>通过拉格朗日乘子法和KKT条件将约束条件放入到目标函数中</h4><p>拉格朗日乘数法是一种寻找多元函数在其变量受到一个或多个条件的约束时的极值的方法。这种方法可以将一个有n个变量与k个约束条件的最优化问题转换为一个解有n + k个变量的方程组的解的问题。这样我们可以将我们带约束的目标函数通过拉格朗日乘子法将约束放入到目标函数中方便优化。KKT条件是拉格朗日乘子法在约束条件为不等式的一种延伸。下面我就对拉格朗日乘子法和KKT条件进行下简单总结。</p>
 <h3 id="拉格朗日乘子法和KKT条件"><a href="#拉格朗日乘子法和KKT条件" class="headerlink" title="拉格朗日乘子法和KKT条件"></a>拉格朗日乘子法和KKT条件</h3><p>我们从无约束优化到带有不等式约束条件逐渐介绍下几种不同类型的优化问题。</p>
@@ -518,7 +518,7 @@
 </ul>
 <h3 id="继续SVM"><a href="#继续SVM" class="headerlink" title="继续SVM"></a>继续SVM</h3><h4 id="SVM的拉格朗日函数"><a href="#SVM的拉格朗日函数" class="headerlink" title="SVM的拉格朗日函数"></a>SVM的拉格朗日函数</h4><p>上面对拉格朗日乘子法和KKT条件进行了简单的总结，下面我们将其应用在SVM目标函数上。</p>
 <p>我们现在求解SVM，是要进行带约束的优化问题:</p>
-<p>$$<br>arg \min \limits_{w, b} \frac{1}{2} \lVert w \rVert ^{2}<br>$$<br>subject to<br>$$<br>1 + y_{i} \cdot (wx_{i}^{T} + b) \le 0, i = 1,2,…,k<br>$$</p>
+<p>$$<br>arg \min \limits_{w, b} \frac{1}{2} \lVert w \rVert ^{2}<br>$$<br>subject to<br>$$<br>1 - y_{i} \cdot (wx_{i}^{T} + b) \le 0, i = 1,2,…,k<br>$$</p>
 <p>对应的拉格朗日函数:<br>$$<br>L(w, b, \alpha) = \frac{1}{2} \lVert w \rVert^{2} - \sum_{i=1}^{N} \alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1]<br>$$<br>其中, $\alpha_{i} \ge 0$</p>
 <p>令$g_{i}(w, b) = -y_{i}(w^{T}x_{i} + b) + 1$，则有$g_{i}(w, b) \le 0$.</p>
 <ul>
@@ -528,7 +528,7 @@
 <p>可见，<strong>支持向量对应的约束为活动约束, 我们的目标函数是由支持向量决定的，毕竟我们就是支持向量机嘛.</strong></p>
 <h4 id="对偶形式"><a href="#对偶形式" class="headerlink" title="对偶形式"></a>对偶形式</h4><p>接下来我们要获取目标函数的对偶问题，通过求解对偶问题的解来获取逼近SVM最优解的解。</p>
 <p>$$<br>L(w, b, \alpha) = \frac{1}{2} \lVert w \rVert^{2} - \sum_{i=1}^{N} \alpha_{i}[y_{i}(w^{T}x_{i} + b) - 1]<br>$$</p>
-<p>我们的目标是求$L(w, b, \alpha)$的最大值，因此我们先把$L$看成是$w, b$的函数，通过梯度为零获取获取极小值的必要条件:<br>$$<br>\theta_{D}(\alpha) = \min \limits_{w, b} L(w, b, \alpha)<br>$$</p>
+<p>我们的目标是求$L(w, b, \alpha)$的最小值，因此我们先把$L$看成是$w, b$的函数，通过梯度为零获取获取极小值的必要条件:<br>$$<br>\theta_{D}(\alpha) = \min \limits_{w, b} L(w, b, \alpha)<br>$$</p>
 <ol>
 <li><p>对于$w$: $\nabla _{w} L(w, b, \alpha) = w - \sum_{i=1}^{N} \alpha_{i} y_{i} x_{i} = 0$，得到$w = \sum_{i=1}^{N}\alpha_{i}y_{i}x_{i}$<br> 我们可以看到，最终的参数$w$是输入向量的<strong>线性组合</strong>, $\alpha$就是其权重</p>
 </li>
