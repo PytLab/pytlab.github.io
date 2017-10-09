@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
-              
-              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-31 </div>
+			<div class="article-title"><a href="/2016/03/31/KMCLib中的Matcher/" title="KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，&lt;br&gt;并更新process中相关的信息，例如能发生反应的sites、总速率等">KMCLib中的Matcher</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/31/KMCLib中的Matcher/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Matcher"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这个类算是KMCLib中最后一个大类了，也回答了我在看代码之初有的很多疑问，例如如何更新匹配相关的信息，如何更新事件列表等。<br>这个类是没有成员数据的，可以把<code>Matcher</code>类看作是与匹配相关的函数的封装。</p>
+<p>但是在头文件中却定义了两个相关的结构来存储操作信息：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// A minimal struct for representing a task with a rate.</span></div><div class="line"><span class="keyword">struct</span> RateTask</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">int</span> process;</div><div class="line">    <span class="keyword">double</span> rate;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/// A minimal struct for representing a remove task.</span></div><div class="line"><span class="keyword">struct</span> RemoveTask</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> index;</div><div class="line">    <span class="keyword">int</span> process;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/03/31/KMCLib中的Matcher/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -364,33 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-24 </div>
-			<div class="article-title"><a href="/2016/03/24/关于KMCLib中的Move/" title="关于KMCLib中的MOVE相关的东西涉及到坐标和各种索引，这里比较混乱我觉得还是有必要梳理下。">关于KMCLib中的Move</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>move来源于process并作用于configuration。</p>
-<h3 id="Process中的move相关"><a href="#Process中的move相关" class="headerlink" title="Process中的move相关"></a>Process中的move相关</h3><h4 id="Process中与move相关的变量："><a href="#Process中与move相关的变量：" class="headerlink" title="Process中与move相关的变量："></a>Process中与move相关的变量：</h4><ul>
-<li><p><code>std::vector&lt;int&gt; move_origins</code><br>  说明在process中那些元素是在process发生时有移动的，(0, 1)的话就是指第一个（中心）和第二个元素发生了移动。</p>
-</li>
-<li><p><code>std::vector&lt;Coordinate&gt; move_vectors</code><br>  对应move_origin的元素移动的向量。</p>
-</li>
-<li><p><code>std::vector&lt; std::pair&lt;int,int&gt; &gt; id_moves_</code><br>  用于描述元素移动前后位置的变化，通过元素在process中的minimal_match_list中的索引号来表示，例如<br>  id_moves_[0]中存放着两个值 (1, 4)，则就说明在minimal_match_list中的第1号元素（也就是第二个）通过process的作用之后会移动到第4号位置上。</p>
-	
-	</div>
-  <a type="button" href="/2016/03/24/关于KMCLib中的Move/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
       </li>
     
@@ -455,10 +459,6 @@
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
-      <li>
-        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -469,7 +469,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">15</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -495,45 +495,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">4</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/SVM/">SVM<span class="badge">3</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

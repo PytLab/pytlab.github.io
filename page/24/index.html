@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
-              
-              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,28 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-10-09 </div>
+			<div class="article-title"><a href="/2015/10/09/开始看VASP源码/" >开始看VASP源码</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>最近开始看VASP源码啦，心得什么的会写在这里，当然几十万行的VASP代码不可能全部都看，重点还是ionic relaxation的部分啦～come on！</p>
+
+	
+	</div>
+  <a type="button" href="/2015/10/09/开始看VASP源码/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -328,34 +350,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-08-14 </div>
-			<div class="article-title"><a href="/2015/08/14/关于逻辑运算符/" >C Notes - 关于逻辑运算符</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>昨天写了个c语言处理文件的练习题，题目是：</p>
-<blockquote>
-<p>编写一个代开两个文件的程序。可以使用命令行参数或者请求用户输入来获取文件名。让程序打印第一个文件的第一行，第二个文件的第二行，第一个文件第一行，第二个文件第二行。。。以此类推，知道打印完行数较多的文件的最后一行。</p>
-</blockquote>
-<p>程序很短很好写，但是在写程序的过程中我是通过逻辑或来判断是否两个文件都读完。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(fgets(line1, SLEN, fp1) != <span class="literal">NULL</span> || fgets(line2, SLEN, fp2) != <span class="literal">NULL</span>)</div><div class="line">&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p>可是这样输出的结果是先打印了第一个文件的所有行然后是第二个文件的所有行。<br>后来想了想，之所以出现这样的结果，有可能是逻辑运算符如果第一个条件满足后就不会运算<code>||</code>后面的表达式了。<br>于是我把代码改成如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pt1 = fgets(line1, SLEN, fp1);</div><div class="line">pt2 = fgets(line2, SLEN, fp2);</div><div class="line"><span class="keyword">while</span>(pt1 || pt2)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">fputs</span>(line1, <span class="built_in">stdout</span>);</div><div class="line">    <span class="built_in">fputs</span>(line2, <span class="built_in">stdout</span>);</div><div class="line">    pt1 = fgets(line1, SLEN, fp1);</div><div class="line">    pt2 = fgets(line2, SLEN, fp2);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>果然是猜测的原因，以后用或运算符的时候要注意这里了。<br>以上。</p>
-
-	
-	</div>
-  <a type="button" href="/2015/08/14/关于逻辑运算符/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -405,6 +399,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
       </li>
     
@@ -420,10 +418,6 @@
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
-      <li>
-        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -434,7 +428,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">15</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -460,45 +454,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/gaft/">gaft<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">55</span></a></li>
-		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
-              
-              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,37 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-08-15 </div>
+			<div class="article-title"><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" >机器学习算法实践-支持向量机(SVM)算法原理</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/"><img src="/assets/images/blog_img/2017-08-15-机器学习算法实践-支持向量机-SVM-算法原理/Lagrange_multiplier.png" alt="机器学习算法实践-支持向量机(SVM)算法原理"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于SVM的算法实践我打算分成多个部分进行总结。本文为第一部分主要介绍SVM的原理以及相关算法的简单推导，其中包括SVM原理，最初表达式，标准形式以及对偶形式(二次规划问题)，形式变化过程中涉及到求解有约束优化问题的拉格朗日乘子法以及KKT条件等。</p>
+<h2 id="什么是支持向量机"><a href="#什么是支持向量机" class="headerlink" title="什么是支持向量机"></a>什么是支持向量机</h2><p>对于线性可分两类数据，支持向量机就是条<strong>直线</strong>(对于高维数据点就是一个<strong>超平面</strong>), 两类数据点中的的分割线有无数条，SVM就是这无数条中最完美的一条，怎么样才算最完美呢？就是这条线距离两类数据点越远，则当有新的数据点的时候我们使用这条线将其分类的结果也就越可信。例如下图中的三条直线都可以将A中的数据分类，那条可以有最优的分类能力呢？</p>
+<ol>
+<li>我们需要线找到数据点中距离分割超平面距离<strong>最近的点</strong>(找最小)</li>
+<li>然后尽量使得距离超平面最近的点的距离的绝对值尽量的<strong>大</strong>(求最大)</li>
+</ol>
+	
+	</div>
+  <a type="button" href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -363,32 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-07-15 </div>
-			<div class="article-title"><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" >机器学习算法实践-Logistic回归与梯度上升算法(下)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/"><img src="/assets/images/blog_img/2017-07-15-机器学习算法实践-Logistic回归与梯度上升算法-下/grad_ascent_animation.gif" alt="机器学习算法实践-Logistic回归与梯度上升算法(下)"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇主要总结了Logistic回归模型建立的理论基础，主要包含模型似然函数的建立以及梯度上升算法的优化推导。本文在上文的基础上使用Python一步步实现一个Logistic回归分类器，并分别使用梯度上升和随机梯度上升算法实现，对二维数据点分类进行可视化，最后使用之前使用过的<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/">SMS垃圾短信语料库</a>中的短信数据进行模型训练并对短信数据进行分类。</p>
-	
-	</div>
-  <a type="button" href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -438,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
       </li>
     
@@ -453,10 +462,6 @@
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
-      <li>
-        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -467,7 +472,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">15</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -493,45 +498,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/gaft/">gaft<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

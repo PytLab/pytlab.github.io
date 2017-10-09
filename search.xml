@@ -4,6 +4,78 @@
   
     
     <entry>
+      <title><![CDATA[遗传算法框架GAFT优化小记]]></title>
+      <url>http://pytlab.github.io/2017/10/08/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6GAFT%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间一直在用自己写的遗传算法框架测试算法在优化力场参数的效果，但是跑起来效率很慢，因为适应度函数需要调用多次力场程序计算能量，但是还是比我预想中的慢我也没有及时对程序进行profiling和优化。直到放假前在github有个使用gaft做SVM参数优化的童鞋开了个<a href="https://github.com/PytLab/gaft/issues/2" target="_blank" rel="external">issue</a>中说道在gaft优化的过程中会大量调用适应度函数，这才使我在国庆放假期间对gaft进行了profiling找到程序瓶颈并针对性的优化。</p>
+<p>本文就记录下自己gaft做profiling并优化的过程以及优化的效果。</p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="对GAFT进行性能分析-Profiling"><a href="#对GAFT进行性能分析-Profiling" class="headerlink" title="对GAFT进行性能分析(Profiling)"></a>对GAFT进行性能分析(Profiling)</h3><p>关于如何对Python程序进行性能分析生成分析报告并可视化分析报告，我在之前的一篇博客里《<a href="http://pytlab.github.io/2016/12/20/Python%E4%BC%98%E5%8C%96%E7%AC%AC%E4%B8%80%E6%AD%A5-%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%AE%9E%E8%B7%B5/">Python优化第一步: 性能分析实践</a>》进行了详细的介绍，这里我就直接分析了。</p>
+<p>为了能针对gaft中不同的函数进行分析，借助Python内置的<code>cProfile</code>和<code>pstats</code>模块我写了个装饰器方便分析并生成不同的分析统计文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_profile</span><span class="params">(filename, sortby=<span class="string">'tottime'</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Constructor for function profiling decorator.</div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_do_profile</span><span class="params">(func)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        Function profiling decorator.</div><div class="line">        '''</div><div class="line"><span class="meta">        @wraps(func)</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">profiled_func</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">            <span class="string">'''</span></div><div class="line">            Decorated function.</div><div class="line">            '''</div><div class="line">            <span class="comment"># Flag for doing profiling or not.</span></div><div class="line">            DO_PROF = os.getenv(<span class="string">'PROFILING'</span>)</div><div class="line"></div><div class="line">            <span class="keyword">if</span> DO_PROF:</div><div class="line">                profile = cProfile.Profile()</div><div class="line">                profile.enable()</div><div class="line">                result = func(*args, **kwargs)</div><div class="line">                profile.disable()</div><div class="line">                ps = pstats.Stats(profile).sort_stats(sortby)</div><div class="line">                ps.dump_stats(filename)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                result = func(*args, **kwargs)</div><div class="line">            <span class="keyword">return</span> result</div><div class="line">        <span class="keyword">return</span> profiled_func</div><div class="line"></div><div class="line">    <span class="keyword">return</span> _do_profile</div></pre></td></tr></table></figure>
+<p>对上面的带参数的装饰器我在这里稍微解释下，装饰器构造器<code>do_profile</code>的两个参数<code>filename</code>和<code>sortby</code>分别指定分析结果报告的文件名以及统计结果的排序方式。它会对需要进行性能分析的函数进行装饰，然后在函数运行完后在当前目录生成结果报告。例如我需要对gaft中遗传算法迭代主循环进行分析，则需要:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@do_profile(filename='gaft_run.prof')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self, ng=<span class="number">100</span>)</span>:</span></div><div class="line">    ...</div></pre></td></tr></table></figure>
+<p>同时为了方便，我还需要一个环境变量<code>PROFILING</code>来启动分析:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PROFILING=y</div></pre></td></tr></table></figure></p>
+<h3 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h3><p>这里为了方便查看函数的相互调用关系，我是用了pyprof2calltree 然后使用Mac上的QCacheGrind来可视化分析结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyprof2calltree -i gaft_run.prof -k</div></pre></td></tr></table></figure>
+<p>将Python的profiling文件转换并直接调用QCacheGrind便可以方便的查看分析相关信息。</p>
+<p><img src="/assets/images/blog_img/2017-10-08-遗传算法框架GAFT优化小记/original.png" alt=""></p>
+<p>通过调用关系图可以看到，gaft的初始版本的<code>min</code>,<code>max</code>,<code>mean</code>等函数多次调用<code>best_indv</code>和<code>worst_indv</code>会多次调用适应度函数来相互比较，而通常情况下用户自定义的适应度函数都是需要额外去调用外部程序的，一般都比较费时。所以必须要通过优化<code>best_indv</code>和<code>worst_indv</code>对<code>fitness</code>的调用次数才能提升gaft的效率。</p>
+<h3 id="优化GAFT"><a href="#优化GAFT" class="headerlink" title="优化GAFT"></a>优化GAFT</h3><h4 id="函数返回值缓存"><a href="#函数返回值缓存" class="headerlink" title="函数返回值缓存"></a>函数返回值缓存</h4><p>从之前我写的<code>best_indv</code>中可以看到，我将<code>fitness</code>作为<code>key</code>用于获取最大值，Python内置的<code>max</code>函数会内部调用<code>fitness</code>进行相互比较来获取最大值，这个时候便对<code>fitness</code>进行了多余的调用，因为在遗传算法中，每一代的population中的个体是不会发生变化的我们只需要在每一次迭代的一开始调用<code>fitness</code>n次就好了(n为种群大小)，每一代中再次需要用到适应度值的地方直接获取。这样需要我们对种群中的个体进行惰性求值，也就是对所有的fitness的值进行缓存。这种操作我在优化自己的催化动力学程序的时候也使用过，叫做<strong>函数返回值缓存</strong>.</p>
+<p>但是在gaft中这种缓存有稍微麻烦一点，因为缓存并不是缓存一次就可以一直用了，它会随着条件的变化需要重新计算种群中所有个体的适应度然后重新缓存。</p>
+<h4 id="重新计算适应度值需要同时满足的条件"><a href="#重新计算适应度值需要同时满足的条件" class="headerlink" title="重新计算适应度值需要同时满足的条件"></a>重新计算适应度值需要同时满足的条件</h4><ol>
+<li>种群中的所有个体没有发生任何变化 (如果变化了那肯定要重新计算适应度值了)。</li>
+<li>已有缓存的适应度值 (如果是第一次那肯定需要计算一次所有个体的适应度值)。</li>
+<li>计算适应度值的适应度函数与之前比较没有发生变化(如果计算适应度函数都改变了，那当然需要重新估计适应度值了)。</li>
+</ol>
+<h4 id="函数返回值缓存描述符"><a href="#函数返回值缓存描述符" class="headerlink" title="函数返回值缓存描述符"></a>函数返回值缓存描述符</h4><p>为此我写了个装饰器来缓存函数的返回值:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Memoized</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Descriptor for population statistical varibles caching.</div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></div><div class="line">        self.func = func</div><div class="line">        self.result = <span class="keyword">None</span></div><div class="line">        self.fitness = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, cls)</span>:</span></div><div class="line">        self.instance = instance</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, fitness)</span>:</span></div><div class="line">        <span class="keyword">if</span> ((<span class="keyword">not</span> self.instance._updated)         <span class="comment"># population not changed</span></div><div class="line">                <span class="keyword">and</span> (self.result <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>)    <span class="comment"># result already cached</span></div><div class="line">                <span class="keyword">and</span> (fitness == self.fitness)):  <span class="comment"># fitness not changed</span></div><div class="line">            <span class="comment"># Return cached result directly.</span></div><div class="line">            <span class="keyword">return</span> self.result</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># Update fitness function.</span></div><div class="line">            self.fitness = fitness</div><div class="line">            <span class="comment"># Update and memoize result.</span></div><div class="line">            self.result = self.func(self.instance, fitness)</div><div class="line">            <span class="comment"># Recover flag.</span></div><div class="line">            self.instance._updated = <span class="keyword">False</span></div><div class="line">            <span class="keyword">return</span> self.result</div></pre></td></tr></table></figure>
+<h4 id="动态监视种群的变化"><a href="#动态监视种群的变化" class="headerlink" title="动态监视种群的变化"></a>动态监视种群的变化</h4><p>好了上面我们可以通过描述符来缓存函数返回值，但是一旦种群不满足上述的三个条件就需要重新计算适应度值，那我们如何监控种群的变化呢？</p>
+<p>我在<code>GAPopulation</code>中添加了一个标记<code>_updated</code>用于标记种群是否已经发生了变化, 然后我们的任务就是在其他能够影响到种群的地方试图去更新这个flag。</p>
+<p><strong>如何能更Pythonic的更新这个标记呢？</strong></p>
+<p>所谓的种群发生变化，也是就种群中的个体列表发生了变化，种群中的个体我都放在了一个列表中，我需要监控这个列表是否发生变化以便更新flag，具体又是那些变化呢？</p>
+<ol>
+<li>列表整体是否发生了变化(赋值操作)</li>
+<li>列表中的元素是否发生变化(对列表中的元素赋值操作，列表的<code>append</code>, <code>extend</code>操作等)</li>
+</ol>
+<p><strong>好了我们要具体怎么实现呢？</strong></p>
+<ol>
+<li><p>对于第一种，由于Python中无法进行赋值运算符重载，但是我们可以通过描述符的<code>__set__</code>来处理:</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GAIndividuals</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Descriptor for all individuals in population.</div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></div><div class="line">        self.name = <span class="string">'_&#123;&#125;'</span>.format(name)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, owner)</span>:</span></div><div class="line">        <span class="keyword">return</span> instance.__dict__[self.name]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__set__</span><span class="params">(self, instance, value)</span>:</span></div><div class="line">        instance.__dict__[self.name] = value</div><div class="line">        <span class="comment"># Update flag.</span></div><div class="line">        instance._updated = <span class="keyword">True</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>对于第二种情况，我们需要对Python的List类型的相应方法进行override</p>
+<p> 但是嘞，即使重写了list的接口，又如何更新population中的变量呢？这个时候就需要用闭包了。在<code>GAPopulation</code>的构造函数<code>__init__</code>中定义list的派生类，并立即实例化，这时候派生类的便可以获取population对象了，于是<code>GAPopulation</code>的构造函数可以这些写:</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, indv_template, size=<span class="number">100</span>)</span>:</span></div><div class="line"></div><div class="line">    <span class="comment"># ...</span></div><div class="line"></div><div class="line">    <span class="comment"># Flag for monitoring changes of population.</span></div><div class="line">    self._updated = <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="comment"># Container for all individuals.</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">IndvList</span><span class="params">(list)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        A proxy class inherited from built-in list to contain all</div><div class="line">        individuals which can update the population._updated flag</div><div class="line">        automatically when its content is changed.</div><div class="line">        '''</div><div class="line">        <span class="comment"># <span class="doctag">NOTE:</span> Use 'this' here to avoid name conflict.</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(this, *args)</span>:</span></div><div class="line">            super(this.__class__, this).__init__(*args)</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(this, key, value)</span>:</span></div><div class="line">            <span class="string">'''</span></div><div class="line">            Override __setitem__ in built-in list type.</div><div class="line">            '''</div><div class="line">            old_value = this[key]</div><div class="line">            <span class="keyword">if</span> old_value == value:</div><div class="line">                <span class="keyword">return</span></div><div class="line">            super(this.__class__, self).__setitem__(key, value)</div><div class="line">            <span class="comment"># Update population flag.</span></div><div class="line">            self._updated = <span class="keyword">True</span></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">append</span><span class="params">(this, item)</span>:</span></div><div class="line">            <span class="string">'''</span></div><div class="line">            Override append method of built-in list type.</div><div class="line">            '''</div><div class="line">            super(this.__class__, this).append(item)</div><div class="line">            <span class="comment"># Update population flag.</span></div><div class="line">            self._updated = <span class="keyword">True</span></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">extend</span><span class="params">(this, iterable_item)</span>:</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> iterable_item:</div><div class="line">                <span class="keyword">return</span></div><div class="line">            super(this.__class__, this).extend(iterable_item)</div><div class="line">            <span class="comment"># Update population flag.</span></div><div class="line">            self._updated = <span class="keyword">True</span></div><div class="line"></div><div class="line">    self._individuals = IndvList()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="优化效果"><a href="#优化效果" class="headerlink" title="优化效果"></a>优化效果</h3><p>通过上面对代码的优化，我们看看我们优化的效果如何，使用分析描述符来分析<code>GAEngine.run</code>跑一代种群的情况，其中种群大小为10。如下图为cProfile生成的分析报告对比:</p>
+<p><img src="/assets/images/blog_img/2017-10-08-遗传算法框架GAFT优化小记/time.png" alt=""></p>
+<p>可以看到优化后的跑一代种群的时间缩短为将近原来的<strong>1/7</strong>! 优化效果还是很明显的。</p>
+<p>然后看一看调用关系图:</p>
+<p><img src="/assets/images/blog_img/2017-10-08-遗传算法框架GAFT优化小记/optimized.png" alt=""></p>
+<p><code>energy_fitness</code>的调用次数从3807降到了621次！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文记录了遗传算法框架GAFT的一次profiling和优化过程，通过缓存值的方式极大的减少了适值函数的调用次数，在时间上，跑一代种群的效率提升了7倍左右。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 代码作品 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> gaft </tag>
+            
+            <tag> GeneticAlgorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[遗传算法中适值函数的标定与大变异算法]]></title>
       <url>http://pytlab.github.io/2017/09/23/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%B8%AD%E9%80%82%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%87%E5%AE%9A%E4%B8%8E%E5%A4%A7%E5%8F%98%E5%BC%82%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文尝试对遗传算法中不同适值函数的标定(Scaling)方法进行下总结，并针对常用的线性标定和动态线性标定进行了Python实现，以装饰器的形式添加到遗传算法框架GAFT中，这样在使用GAFT运行遗传算法迭代的时候可以更加Pythonic的给自定义的适值函数进行标定。最后针对能够防止早熟情况的大变异算法进行了相应的实现。</p>
@@ -91,9 +163,9 @@
             
             <tag> python </tag>
             
-            <tag> GeneticAlgorithm </tag>
-            
             <tag> gaft </tag>
+            
+            <tag> GeneticAlgorithm </tag>
             
         </tags>
         
@@ -177,9 +249,9 @@
             
             <tag> python </tag>
             
-            <tag> GeneticAlgorithm </tag>
-            
             <tag> gaft </tag>
+            
+            <tag> GeneticAlgorithm </tag>
             
         </tags>
         
@@ -1041,9 +1113,9 @@
             
             <tag> mpi4py </tag>
             
-            <tag> GeneticAlgorithm </tag>
-            
             <tag> gaft </tag>
+            
+            <tag> GeneticAlgorithm </tag>
             
         </tags>
         
@@ -1267,9 +1339,9 @@
             
             <tag> python </tag>
             
-            <tag> GeneticAlgorithm </tag>
-            
             <tag> gaft </tag>
+            
+            <tag> GeneticAlgorithm </tag>
             
         </tags>
         
@@ -1638,9 +1710,9 @@
             
             <tag> chemistry </tag>
             
-            <tag> catalyst </tag>
-            
             <tag> jQuery </tag>
+            
+            <tag> catalyst </tag>
             
             <tag> webapp </tag>
             
@@ -6366,9 +6438,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> Kynetix </tag>
             
-            <tag> C </tag>
-            
             <tag> chemistry </tag>
+            
+            <tag> C </tag>
             
             <tag> 学术 </tag>
             
@@ -6559,11 +6631,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> Kynetix </tag>
             
-            <tag> C </tag>
-            
             <tag> catalysis </tag>
             
             <tag> chemistry </tag>
+            
+            <tag> C </tag>
             
             <tag> 随笔 </tag>
             
@@ -8224,9 +8296,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> loggers </tag>
-            
             <tag> python </tag>
+            
+            <tag> loggers </tag>
             
             <tag> emuch </tag>
             
@@ -8374,11 +8446,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
+            <tag> python </tag>
+            
             <tag> ecust </tag>
             
             <tag> loggers </tag>
-            
-            <tag> python </tag>
             
             <tag> 校园网 </tag>
             

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
-              
-              <li><a href="/2017/08/12/超过150个最好的与机器学习-自然语言处理和Python相关的教程/" style="font-size: 15px; font-family: 微软雅黑">150多个最好的与机器学习,自然语言处理和Python...<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-08 </div>
+			<div class="article-title"><a href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/" title="本篇对阻塞通信中的就绪通信模式和同步通信模式进行小结。">MPI学习--阻塞通信之就绪通信模式和同步通信模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之就绪通信模式和同步通信模式"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="就绪通信模式"><a href="#就绪通信模式" class="headerlink" title="就绪通信模式"></a>就绪通信模式</h2><p>就绪模式的发送方式与同步和标准发送完全一致，不一样的是就绪通信模式是：</p>
+<p>仅当对方的接收操作启动并且准备就绪时，才可发生数据，并不是MPI会自动判断是否就绪（他没那么智能？）而是<strong>告诉MPI对方以准备就绪接收你发的消息，如果你骗了MPI，MPI会不爽，然后报错</strong>。</p>
+<p>基于你告诉MPI的这个信息，就可以避免一些列的缓冲操作以及收发双方的握手操作，是的MPI环境可对通信做更细致的优化以提高通信效率。</p>
+<p>需要注意的是：<br><div class="alert alert-warning"><i class="fa fa-bell"></i>  就绪通信并不意味着发送方的发送动作是否结束取决于接收端的状态，对发送方而言，这仅仅意味着发送缓冲区在发送函数返回之后即可被安全的用于其它操作，因为你告诉MPI，接收方早已就绪了，所以MPI也就信任了你。</div></p>
+	
+	</div>
+  <a type="button" href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -358,32 +387,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-05 </div>
-			<div class="article-title"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/" title="发现了一个很难发现的KMCLib中的bug，只需要修改以个参数就可以修复，但是很难发现。">发现KMCLib中一个隐藏bug</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/"><img src="/assets/images/features/kmclib.png" alt="发现KMCLib中一个隐藏bug"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>由于为了看自己的KMCLibX是不是能跑出正确的结果，我将每一个蒙特卡洛步的configuration进行了散点图，来观察每一步事件的选取和configuration发生的变化，把事件全部定义好以后，跑了500步做了下图就发现，吸附在top位的O有落单的现象，明明我没有在事件中定义过有破坏平躺吸附在表面的氧原子的事件啊，这就奇怪了。于是我就将做图的范围缩窄，逐渐定位到了是哪一步开始出现单个top位上的氧原子。<br>如下图，是发生在第27步的时候，直接会有一个氧分子直接变成吸附在bridge site上的CO：<br>
-	
-	</div>
-  <a type="button" href="/2016/07/05/发现KMCLib中一个隐藏bug/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -433,6 +436,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
+      </li>
+    
+      <li>
         <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
       </li>
     
@@ -448,10 +455,6 @@
         <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
       </li>
     
-      <li>
-        <a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM核函数和软间隔</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -462,7 +465,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">15</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
 		
@@ -488,45 +491,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/python/">python<span class="badge">55</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/SVM/">SVM<span class="badge">3</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>
