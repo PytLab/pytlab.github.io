@@ -288,7 +288,7 @@
 <p>OK， 这样我们就知道如何将选取的一对$\alpha_{i}, \alpha_{j}$进行优化更新了。</p>
 <h4 id="更新阈值-b"><a href="#更新阈值-b" class="headerlink" title="更新阈值$b$"></a>更新阈值$b$</h4><p>当我们更新了一对$\alpha_{i}, \alpha_{j}$之后都需要重新计算阈值$b$，因为$b$关系到我们$f(x)$的计算，关系到下次优化的时候误差$E_{i}$的计算。</p>
 <p>为了使得被优化的样本都满足KKT条件，</p>
-<p>当$\alpha_{1}^{new}$不在边界，即$0 &lt; \alpha_{1}^{new} &lt; C$, 根据KKT条件可知相应的数据点为支持向量，满足$y_{1}(w^{T} + b) = 1$, 两边同时乘上$y_{1}$得到$\sum_{i=1}^{N}\alpha_{i}y_{i}K_{i, 1} + b = y_{1}$, 进而得到$b_{1}^{new}$的值:<br>$$<br>b_{1}^{new} = y_{1} - \sum_{i=3}^{N}\alpha_{i}y_{i}K_{i, 1} - \alpha_{1}^{new}y_{1}K_{1, 1} - \alpha_{2}^{new}y_{2}K_{2, 1}<br>$$</p>
+<p>当$\alpha_{1}^{new}$不在边界，即$0 &lt; \alpha_{1}^{new} &lt; C$, 根据KKT条件可知相应的数据点为支持向量，满足$y_{1}(w^{T}x_{1} + b) = 1$, 两边同时乘上$y_{1}$得到$\sum_{i=1}^{N}\alpha_{i}y_{i}K_{i, 1} + b = y_{1}$, 进而得到$b_{1}^{new}$的值:<br>$$<br>b_{1}^{new} = y_{1} - \sum_{i=3}^{N}\alpha_{i}y_{i}K_{i, 1} - \alpha_{1}^{new}y_{1}K_{1, 1} - \alpha_{2}^{new}y_{2}K_{2, 1}<br>$$</p>
 <p>其中上式的前两项可以写成:<br>$$<br>y_{1} - \sum_{i=3}^{N}\alpha_{i}y_{i}K_{i, 1} = -E_{1} + \alpha_{1}^{old}y_{1}K_{1, 1} + \alpha_{2}^{old}y_{2}K_{2, 1} + b^{old}<br>$$</p>
 <p>代入$b_{new}$的表达式中得到:<br>$$<br>b_{1}^{new} = -E_{1} - y_{1}K_{1, 1}(\alpha_{1}^{new} - \alpha_{1}^{old}) - y_{2}K_{2, 1}(\alpha_{2}^{new} - \alpha_{2}^{old}) + b^{old}<br>$$</p>
 <p>当$0 &lt; \alpha_{2}^{new} &lt; C$, 可以得到$b_{2}^{new}$的表达式(推导同上):</p>
