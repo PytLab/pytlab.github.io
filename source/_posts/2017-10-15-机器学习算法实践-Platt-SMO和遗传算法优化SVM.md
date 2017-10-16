@@ -18,7 +18,7 @@ toc: true
 
 本文在之前简化版SMO算法的基础上实现了使用启发式选取$\\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个[遗传算法框架GAFT](https://github.com/PytLab/gaft)，便也尝试使用遗传算法对于SVM的原始形式进行了优化。
 
-对于本文算法的相应实现，参考:https://github.com/PytLab/MLBox/tree/master/svm
+对于本文算法的相应实现，参考:https://github.com/PytLab/MLBox/tree/master/svm , 遗传算法框架GAFT项目地址: https://github.com/PytLab/gaft
 
 <!-- more -->
 
@@ -48,10 +48,29 @@ $$
 
 之后就是不断地在两个数据集中来回交替，最终所有的$\\alpha$都满足KKT条件的时候，算法中止。
 
-第一个变量的选择的相应Python实现(完整实现见https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py):
+为了能够快速选取有最大步长的$\\alpha$，我们需要对所有数据对应的误差进行缓存，因此特地写了个`SVMUtil`类来保存svm中重要的变量以及一些辅助方法:
 ``` python
+class SVMUtil(object):
+    '''
+    Struct to save all important values in SVM.
+    '''
+    def __init__(self, dataset, labels, C, tolerance=0.001):
+        self.dataset, self.labels, self.C = dataset, labels, C
+
+        self.m, self.n = np.array(dataset).shape
+        self.alphas = np.zeros(self.m)
+        self.b = 0
+        self.tolerance = tolerance
+        # Cached errors ,f(x_i) - y_i
+        self.errors = [self.get_error(i) for i in range(self.m)]
+
+    # 其他方法...
 ...
 
+```
+
+下面为第一个变量选择交替遍历的大致代码，相应完整的Python实现(完整实现见https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py):
+``` python
 while (it < max_iter):
     pair_changed = 0
     if entire:
