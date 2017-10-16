@@ -221,6 +221,7 @@ ax.plot([x1, x2], [y1, y2])
 
 plt.show()
 ```
+得到的分割曲线如下图：
 
 ![](/assets/images/blog_img/2017-10-15-机器学习算法实践-Platt-SMO和遗传算法优化SVM/svm_ga.png)
 
