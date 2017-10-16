@@ -18,7 +18,8 @@ toc: true
 
 本文在之前简化版SMO算法的基础上实现了使用启发式选取$\\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个[遗传算法框架GAFT](https://github.com/PytLab/gaft)，便也尝试使用遗传算法对于SVM的原始形式进行了优化。
 
-对于本文算法的相应实现，参考:https://github.com/PytLab/MLBox/tree/master/svm , 遗传算法框架GAFT项目地址: https://github.com/PytLab/gaft
+- 对于本文算法的相应实现，参考:https://github.com/PytLab/MLBox/tree/master/svm
+- 遗传算法框架GAFT项目地址: https://github.com/PytLab/gaft
 
 <!-- more -->
 
