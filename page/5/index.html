@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
-              
-              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,38 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-02-14 </div>
+			<div class="article-title"><a href="/2017/02/14/ECMAScript中的作用域链和闭包/" >ECMAScript中的作用域链和闭包</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/02/14/ECMAScript中的作用域链和闭包/"><img src="/assets/images/blog_img/2017-02-14-ECMAScript中的作用域链和闭包/scope_chain_1.png" alt="ECMAScript中的作用域链和闭包"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>本文对ECMAScript中的作用域以及闭包的概念进行一下小结。主要是整理概念便于理解和回忆。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>任何程序设计语言都有作用域的概念，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。</p>
+<h2 id="函数创建和调用时的作用域链"><a href="#函数创建和调用时的作用域链" class="headerlink" title="函数创建和调用时的作用域链"></a>函数创建和调用时的作用域链</h2><p>函数和其他对象一样，都拥有</p>
+<ol>
+<li>可以直接通过代码访问的属性</li>
+<li>一些仅供js引擎访问的内部属性(用<code>[[...]]</code>扩起来的那些)。</li>
+</ol>
+	
+	</div>
+  <a type="button" href="/2017/02/14/ECMAScript中的作用域链和闭包/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -376,33 +408,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-12-10 </div>
-			<div class="article-title"><a href="/2016/12/10/有效的python属性管理-描述符的使用/" >有效的python属性管理: 描述符的使用</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/12/10/有效的python属性管理-描述符的使用/"><img src="/assets/images/features/python_logo_bw.png" alt="有效的python属性管理: 描述符的使用"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近使用描述符对自己的催化动力学模拟程序进行了改进，在Python描述符的帮助下实现了更加灵活而且强大有效的属性管理，使得程序各个组件的数据封装更加完善管理也更加有条理。</p>
-<p>本文就以自己程序中运用描述符来进行有效的python属性管理为例子，介绍python中描述符的概念以及如何更好的使用描述符这个强有力的工具帮助我们有效管理python程序中的数据访问控制。</p>
-	
-	</div>
-  <a type="button" href="/2016/12/10/有效的python属性管理-描述符的使用/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -452,6 +457,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
@@ -467,10 +476,6 @@
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -483,7 +488,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -507,45 +512,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

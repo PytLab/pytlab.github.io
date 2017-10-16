@@ -4,6 +4,80 @@
   
     
     <entry>
+      <title><![CDATA[机器学习算法实践-Platt SMO和遗传算法优化SVM]]></title>
+      <url>http://pytlab.github.io/2017/10/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-Platt-SMO%E5%92%8C%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96SVM/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前实现了简单的SMO算法来优化SVM的对偶问题，其中在选取$\alpha$的时候使用的是两重循环通过完全随机的方式选取，具体的实现参考《<a href="http://pytlab.github.io/2017/09/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-SVM%E4%B8%AD%E7%9A%84SMO%E7%AE%97%E6%B3%95/">机器学习算法实践-SVM中的SMO算法</a>》。</p>
+<p>本文在之前简化版SMO算法的基础上实现了使用启发式选取$\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个<a href="https://github.com/PytLab/gaft" target="_blank" rel="external">遗传算法框架GAFT</a>，便也尝试使用遗传算法对于SVM的原始形式进行了优化。</p>
+<p>对于本文算法的相应实现，参考:<a href="https://github.com/PytLab/MLBox/tree/master/svm" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/svm</a></p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="SMO中启发式选择变量"><a href="#SMO中启发式选择变量" class="headerlink" title="SMO中启发式选择变量"></a>SMO中启发式选择变量</h3><p>在SMO算法中，我们每次需要选取一对$\alpha$来进行优化，通过启发式的选取我们可以更高效的选取待优化的变量使得目标函数下降的最快。</p>
+<p>针对第一个$\alpha_1$和第二个$\alpha_2$ Platt SMO采取不同的启发式手段。</p>
+<h4 id="第一个变量的选择"><a href="#第一个变量的选择" class="headerlink" title="第一个变量的选择"></a>第一个变量的选择</h4><p>第一个变量的选择为外循环，与之前便利整个$\alpha$列表不同，在这里我们在<strong>整个样本集</strong>和<strong>非边界样本集</strong>间进行交替:</p>
+<ol>
+<li><p>首先我们对整个训练集进行遍历, 检查是否违反KKT条件，如果改点的$\alpha_i$和$x_i, y_i$违反了KKT条件则说明改点需要进行优化。<br>Karush-Kuhn-Tucker(KKT)条件是正定二次规划问题最优点的充分必要条件。针对SVM对偶问题，KKT条件非常简单:<br>$$<br>\begin{cases}<br>\alpha_i = 0 \Longleftrightarrow y_i(w^{T}x_i + b) \ge 1 \\<br>\alpha_i = C \Longleftrightarrow y_i(w^{T}x_i + b) \le 1 \\<br>0 &lt; \alpha_i &lt; C \Longleftrightarrow y_i(w^{T}x_i + b) = 1<br>\end{cases}<br>$$</p>
+</li>
+<li><p>在遍历了整个训练集并优化了相应的$\alpha$后第二轮迭代我们仅仅需要遍历其中的非边界$\alpha$. 所谓的非边界$\alpha$就是指那些不等于边界0或者C的$\alpha$值。 同样这些点仍然需要检查是否违反KKT条件并进行优化.</p>
+</li>
+</ol>
+<p>之后就是不断地在两个数据集中来回交替，最终所有的$\alpha$都满足KKT条件的时候，算法中止。</p>
+<p>第一个变量的选择的相应Python实现(完整实现见<a href="https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py" target="_blank" rel="external">https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py</a>):<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line"><span class="keyword">while</span> (it &lt; max_iter):</div><div class="line">    pair_changed = <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> entire:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(svm_util.m):</div><div class="line">            pair_changed += examine_example(i, svm_util)</div><div class="line">            print(<span class="string">'Full set - iter: &#123;&#125;, pair changed: &#123;&#125;'</span>.format(i, pair_changed))</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        alphas = svm_util.alphas</div><div class="line">        non_bound_indices = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(svm_util.m)</div><div class="line">                             <span class="keyword">if</span> alphas[i] &gt; <span class="number">0</span> <span class="keyword">and</span> alphas[i] &lt; C]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> non_bound_indices:</div><div class="line">            pair_changed += examine_example(i, svm_util)</div><div class="line"></div><div class="line">    ...</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h4 id="第二个变量的选择"><a href="#第二个变量的选择" class="headerlink" title="第二个变量的选择"></a>第二个变量的选择</h4><p>SMO中的第二个变量的选择过程为内循环，当我们已经选取第一个$\alpha_1$之后，我们希望我们选取的第二个变量$\alpha_2$优化后能有较大的变化。根据我们之前推导的式子$\alpha_{2}^{new, unclipped} = \alpha_{2}^{old} + \frac{y_{2}(E_{1} - E_{2})}{\eta}$ 可以知道，新的$\alpha_2$的变化依赖于$\lvert E_1 - E_2 \rvert$, 当$E_1$为正时， 那么选择最小的$E_i$作为$E_2$，通常将每个样本的$E_i$缓存到一个列表中，通过在列表中选择具有$\lvert E_1 - E_2 \rvert$的$\alpha_2$来近似最大化步长。</p>
+<p>有时候按照上述的启发式方式仍不能够是的函数值有足够的下降，这是按下述步骤进行选择:</p>
+<ol>
+<li>在非边界数据集上选择能够使函数值足够下降的样本作为第二个变量</li>
+<li>如果非边界数据集上没有，则在整个数据仅上进行第二个变量的选择</li>
+<li>如果仍然没有则重新选择第一个$\alpha_1$</li>
+</ol>
+<p>第二个变量选取的Python实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_j</span><span class="params">(i, svm_util)</span>:</span></div><div class="line">    <span class="string">''' 通过最大化步长的方式来获取第二个alpha值的索引.</span></div><div class="line">    '''</div><div class="line">    errors = svm_util.errors</div><div class="line">    valid_indices = [i <span class="keyword">for</span> i, a <span class="keyword">in</span> enumerate(svm_util.alphas) <span class="keyword">if</span> <span class="number">0</span> &lt; a &lt; svm_util.C]</div><div class="line"></div><div class="line">    <span class="keyword">if</span> len(valid_indices) &gt; <span class="number">1</span>:</div><div class="line">        j = <span class="number">-1</span></div><div class="line">        max_delta = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> valid_indices:</div><div class="line">            <span class="keyword">if</span> k == i:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            delta = abs(errors[i] - errors[j])</div><div class="line">            <span class="keyword">if</span> delta &gt; max_delta:</div><div class="line">                j = k</div><div class="line">                max_delta = delta</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        j = select_j_rand(i, svm_util.m)</div><div class="line">    <span class="keyword">return</span> j</div></pre></td></tr></table></figure></p>
+<h4 id="KKT条件允许一定的误差"><a href="#KKT条件允许一定的误差" class="headerlink" title="KKT条件允许一定的误差"></a>KKT条件允许一定的误差</h4><p>在Platt论文中的KKT条件的判断中有一个<code>tolerance</code>允许一定的误差，相应的Python实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">r = E_i*y_i</div><div class="line"></div><div class="line"><span class="comment"># 是否违反KKT条件</span></div><div class="line"><span class="keyword">if</span> (r &lt; -tolerance <span class="keyword">and</span> alpha &lt; C) <span class="keyword">or</span> (r &gt; tolerance <span class="keyword">and</span> alpha &gt; <span class="number">0</span>):</div><div class="line">    ...</div></pre></td></tr></table></figure>
+<p>关于Platt SMO的完整实现详见:<a href="https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py" target="_blank" rel="external">https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py</a></p>
+<p>针对之前的数据集我们使用Platt SMO进行优化可以得到：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">w = [<span class="number">0.8289668843516077</span>, <span class="number">-0.26578914269411114</span>]</div><div class="line">b = <span class="number">-3.9292583040559448</span></div></pre></td></tr></table></figure></p>
+<p>将分割线和支持向量可视化：</p>
+<p><img src="/assets/images/blog_img/2017-10-15-机器学习算法实践-Platt-SMO和遗传算法优化SVM/platt_smo.png" alt=""></p>
+<p>可见通过Platt SMO优化出来的支持向量与简化版的SMO算法有些许不同。</p>
+<h3 id="使用遗传算法优化SVM"><a href="#使用遗传算法优化SVM" class="headerlink" title="使用遗传算法优化SVM"></a>使用遗传算法优化SVM</h3><p>由于最近自己写了个遗传算法框架，遗传算法作为一个启发式无导型的搜索算法非常易用，于是我就尝试使用遗传算法来优化SVM。</p>
+<p>使用遗传算法优化，我们就可以直接优化SVM的最初形式了也就是最直观的形式:<br>$$<br>arg \max \limits_{w, b} \{ \min \limits_{n} (y_{i} \cdot (w^{T}x + b)) \cdot \frac{1}{\lVert w \rVert} \}<br>$$</p>
+<p>顺便再安利下自己的遗传算法框架，在此框架的帮助下，优化SVM算法我们只需要写几十行的Python代码即可。其中最主要的就是编写适应度函数，根据上面的公式我们需要计算数据集中每个点到分割线的距离并返回<strong>最小</strong>的距离即可，然后放到遗传算法中进行进化迭代。</p>
+<p>遗传算法框架GAFT项目地址: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a> , 使用方法详见README。</p>
+<p>Ok， 我们开始构建种群用于进化迭代。</p>
+<h4 id="创建个体与种群"><a href="#创建个体与种群" class="headerlink" title="创建个体与种群"></a>创建个体与种群</h4><p>对于二维数据点，我们需要优化的参数只有三个也就是$[w_1, w_2]$和$b$, 个体的定义如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">indv_template = GAIndividual(ranges=[(<span class="number">-2</span>, <span class="number">2</span>), (<span class="number">-2</span>, <span class="number">2</span>), (<span class="number">-5</span>, <span class="number">5</span>)],</div><div class="line">                             encoding=<span class="string">'binary'</span>,</div><div class="line">                             eps=[<span class="number">0.001</span>, <span class="number">0.001</span>, <span class="number">0.005</span>])</div></pre></td></tr></table></figure>
+<p>种群大小这里取600，创建种群<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">population = GAPopulation(indv_template=indv_template, size=<span class="number">600</span>).init()</div></pre></td></tr></table></figure></p>
+<h4 id="创建遗传算子和GA引擎"><a href="#创建遗传算子和GA引擎" class="headerlink" title="创建遗传算子和GA引擎"></a>创建遗传算子和GA引擎</h4><p>这里没有什么特别的，直接使用框架中内置的算子就好了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">selection = RouletteWheelSelection()</div><div class="line">crossover = UniformCrossover(pc=<span class="number">0.8</span>, pe=<span class="number">0.5</span>)</div><div class="line">mutation = FlipBitBigMutation(pm=<span class="number">0.1</span>, pbm=<span class="number">0.55</span>, alpha=<span class="number">0.6</span>)</div><div class="line"></div><div class="line">engine = GAEngine(population=population, selection=selection,</div><div class="line">                  crossover=crossover, mutation=mutation,</div><div class="line">                  analysis=[ConsoleOutput, FitnessStore])</div></pre></td></tr></table></figure></p>
+<h4 id="适应度函数"><a href="#适应度函数" class="headerlink" title="适应度函数"></a>适应度函数</h4><p>这一部分只要把上面svm初始形式描述出来就好了，只需要三行代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@engine.fitness_register</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fitness</span><span class="params">(indv)</span>:</span></div><div class="line">    w, b = indv.variants[: <span class="number">-1</span>], indv.variants[<span class="number">-1</span>]</div><div class="line">    min_dis = min([y*(np.dot(w, x) + b) <span class="keyword">for</span> x, y <span class="keyword">in</span> zip(dataset, labels)])</div><div class="line">    <span class="keyword">return</span> float(min_dis)</div></pre></td></tr></table></figure></p>
+<h4 id="开始迭代"><a href="#开始迭代" class="headerlink" title="开始迭代"></a>开始迭代</h4><p>这里迭代300代种群<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="string">'__main__'</span> == __name__:</div><div class="line">    engine.run(<span class="number">300</span>)</div></pre></td></tr></table></figure></p>
+<h4 id="绘制遗传算法优化的分割线"><a href="#绘制遗传算法优化的分割线" class="headerlink" title="绘制遗传算法优化的分割线"></a>绘制遗传算法优化的分割线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">variants = engine.population.best_indv(engine.fitness).variants</div><div class="line">w = variants[: <span class="number">-1</span>]</div><div class="line">b = variants[<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="comment"># 分类数据点</span></div><div class="line">classified_pts = &#123;<span class="string">'+1'</span>: [], <span class="string">'-1'</span>: []&#125;</div><div class="line"><span class="keyword">for</span> point, label <span class="keyword">in</span> zip(dataset, labels):</div><div class="line">    <span class="keyword">if</span> label == <span class="number">1.0</span>:</div><div class="line">        classified_pts[<span class="string">'+1'</span>].append(point)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        classified_pts[<span class="string">'-1'</span>].append(point)</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line"></div><div class="line"><span class="comment"># 绘制数据点</span></div><div class="line"><span class="keyword">for</span> label, pts <span class="keyword">in</span> classified_pts.items():</div><div class="line">    pts = np.array(pts)</div><div class="line">    ax.scatter(pts[:, <span class="number">0</span>], pts[:, <span class="number">1</span>], label=label)</div><div class="line"></div><div class="line"><span class="comment"># 绘制分割线</span></div><div class="line">x1, _ = max(dataset, key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</div><div class="line">x2, _ = min(dataset, key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</div><div class="line">a1, a2 = w</div><div class="line">y1, y2 = (-b - a1*x1)/a2, (-b - a1*x2)/a2</div><div class="line">ax.plot([x1, x2], [y1, y2])</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-10-15-机器学习算法实践-Platt-SMO和遗传算法优化SVM/svm_ga.png" alt=""></p>
+<p>完整的代码详见: <a href="https://github.com/PytLab/MLBox/blob/master/svm/svm_ga.py" target="_blank" rel="external">https://github.com/PytLab/MLBox/blob/master/svm/svm_ga.py</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文对SVM的优化进行了介绍，主要实现了Platt SMO算法优化SVM模型，并尝试使用遗传算法框架GAFT对初始SVM进行了优化。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.researchgate.net/publication/2624239_Sequential_Minimal_Optimization_A_Fast_Algorithm_for_Training_Support_Vector_Machines?enrichId=rgreq-2d15adb4fdbd3450fc47381a44207c68-XXX&amp;enrichSource=Y292ZXJQYWdlOzI2MjQyMzk7QVM6OTc2NzgyNzY5NTYxNjBAMTQwMDI5OTcyNDA4Mg%3D%3D&amp;el=1_x_3&amp;_esc=publicationCoverPdf" target="_blank" rel="external">Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习小结 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MachineLearning </tag>
+            
+            <tag> GeneticAlgorithm </tag>
+            
+            <tag> SVM </tag>
+            
+            <tag> SMO </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[遗传算法框架GAFT优化小记]]></title>
       <url>http://pytlab.github.io/2017/10/08/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6GAFT%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间一直在用自己写的遗传算法框架测试算法在优化力场参数的效果，但是跑起来效率很慢，因为适应度函数需要调用多次力场程序计算能量，但是还是比我预想中的慢我也没有及时对程序进行profiling和优化。直到放假前在github有个使用gaft做SVM参数优化的童鞋开了个<a href="https://github.com/PytLab/gaft/issues/2" target="_blank" rel="external">issue</a>中说道在gaft优化的过程中会大量调用适应度函数，这才使我在国庆放假期间对gaft进行了profiling找到程序瓶颈并针对性的优化。</p>
@@ -1712,8 +1786,6 @@
             
             <tag> jQuery </tag>
             
-            <tag> catalyst </tag>
-            
             <tag> webapp </tag>
             
             <tag> javascript </tag>
@@ -1721,6 +1793,8 @@
             <tag> KinLab </tag>
             
             <tag> kynetix </tag>
+            
+            <tag> catalyst </tag>
             
             <tag> bootstrap </tag>
             
@@ -4820,9 +4894,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
             <tag> KMCLib </tag>
             
@@ -6106,11 +6180,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6338,9 +6412,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6487,13 +6561,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6546,11 +6620,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6598,11 +6672,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -8296,9 +8370,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> loggers </tag>
+            
+            <tag> python </tag>
             
             <tag> emuch </tag>
             
@@ -8446,11 +8520,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> ecust </tag>
             
             <tag> loggers </tag>
+            
+            <tag> python </tag>
             
             <tag> 校园网 </tag>
             

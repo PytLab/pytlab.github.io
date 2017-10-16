@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
-              
-              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-10-15 </div>
+			<div class="article-title"><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" >机器学习算法实践-Platt SMO和遗传算法优化SVM</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/"><img src="/assets/images/blog_img/2017-10-15-机器学习算法实践-Platt-SMO和遗传算法优化SVM/feature.jpg" alt="机器学习算法实践-Platt SMO和遗传算法优化SVM"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前实现了简单的SMO算法来优化SVM的对偶问题，其中在选取$\alpha$的时候使用的是两重循环通过完全随机的方式选取，具体的实现参考《<a href="http://pytlab.github.io/2017/09/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-SVM%E4%B8%AD%E7%9A%84SMO%E7%AE%97%E6%B3%95/">机器学习算法实践-SVM中的SMO算法</a>》。</p>
+<p>本文在之前简化版SMO算法的基础上实现了使用启发式选取$\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个<a href="https://github.com/PytLab/gaft">遗传算法框架GAFT</a>，便也尝试使用遗传算法对于SVM的原始形式进行了优化。</p>
+<p>对于本文算法的相应实现，参考:<a href="https://github.com/PytLab/MLBox/tree/master/svm">https://github.com/PytLab/MLBox/tree/master/svm</a></p>
+	
+	</div>
+  <a type="button" href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -366,37 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-08-30 </div>
-			<div class="article-title"><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" >机器学习算法实践-SVM核函数和软间隔</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/"><img src="/assets/images/blog_img/2017-08-30-机器学习算法实践-SVM核函数和软间隔/mapping.png" alt="机器学习算法实践-SVM核函数和软间隔"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上文中简单总结了对于线性可分数据的SVM的算法原理，本文对于非线性可分以及有噪声存在的时候我们需要对基本SVM算法的改进进行下总结其中包括:</p>
-<ol>
-<li>核函数在SVM算法中的使用</li>
-<li>引入松弛变量和惩罚函数的软间隔分类器</li>
-</ol>
-<h2 id="SVM对偶问题"><a href="#SVM对偶问题" class="headerlink" title="SVM对偶问题"></a>SVM对偶问题</h2><p>这里稍微回顾下SVM最终的对偶优化问题，因为后面的改进都是在对偶问题的形式上衍生的。</p>
-	
-	</div>
-  <a type="button" href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -446,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
@@ -461,10 +462,6 @@
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -477,7 +474,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -501,45 +498,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
-		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

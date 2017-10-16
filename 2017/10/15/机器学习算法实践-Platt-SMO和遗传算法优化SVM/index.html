@@ -1,0 +1,465 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>机器学习算法实践-Platt SMO和遗传算法优化SVM | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="机器学习算法实践-Platt SMO和遗传算法优化SVM"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
+              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
+              
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
+              
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
+              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
+              
+              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 机器学习算法实践-Platt SMO和遗传算法优化SVM</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前实现了简单的SMO算法来优化SVM的对偶问题，其中在选取$\alpha$的时候使用的是两重循环通过完全随机的方式选取，具体的实现参考《<a href="http://pytlab.github.io/2017/09/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-SVM%E4%B8%AD%E7%9A%84SMO%E7%AE%97%E6%B3%95/">机器学习算法实践-SVM中的SMO算法</a>》。</p>
+<p>本文在之前简化版SMO算法的基础上实现了使用启发式选取$\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个<a href="https://github.com/PytLab/gaft" target="_blank" rel="external">遗传算法框架GAFT</a>，便也尝试使用遗传算法对于SVM的原始形式进行了优化。</p>
+<p>对于本文算法的相应实现，参考:<a href="https://github.com/PytLab/MLBox/tree/master/svm" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/svm</a></p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="SMO中启发式选择变量"><a href="#SMO中启发式选择变量" class="headerlink" title="SMO中启发式选择变量"></a>SMO中启发式选择变量</h3><p>在SMO算法中，我们每次需要选取一对$\alpha$来进行优化，通过启发式的选取我们可以更高效的选取待优化的变量使得目标函数下降的最快。</p>
+<p>针对第一个$\alpha_1$和第二个$\alpha_2$ Platt SMO采取不同的启发式手段。</p>
+<h4 id="第一个变量的选择"><a href="#第一个变量的选择" class="headerlink" title="第一个变量的选择"></a>第一个变量的选择</h4><p>第一个变量的选择为外循环，与之前便利整个$\alpha$列表不同，在这里我们在<strong>整个样本集</strong>和<strong>非边界样本集</strong>间进行交替:</p>
+<ol>
+<li><p>首先我们对整个训练集进行遍历, 检查是否违反KKT条件，如果改点的$\alpha_i$和$x_i, y_i$违反了KKT条件则说明改点需要进行优化。<br>Karush-Kuhn-Tucker(KKT)条件是正定二次规划问题最优点的充分必要条件。针对SVM对偶问题，KKT条件非常简单:<br>$$<br>\begin{cases}<br>\alpha_i = 0 \Longleftrightarrow y_i(w^{T}x_i + b) \ge 1 \\<br>\alpha_i = C \Longleftrightarrow y_i(w^{T}x_i + b) \le 1 \\<br>0 &lt; \alpha_i &lt; C \Longleftrightarrow y_i(w^{T}x_i + b) = 1<br>\end{cases}<br>$$</p>
+</li>
+<li><p>在遍历了整个训练集并优化了相应的$\alpha$后第二轮迭代我们仅仅需要遍历其中的非边界$\alpha$. 所谓的非边界$\alpha$就是指那些不等于边界0或者C的$\alpha$值。 同样这些点仍然需要检查是否违反KKT条件并进行优化.</p>
+</li>
+</ol>
+<p>之后就是不断地在两个数据集中来回交替，最终所有的$\alpha$都满足KKT条件的时候，算法中止。</p>
+<p>第一个变量的选择的相应Python实现(完整实现见<a href="https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py" target="_blank" rel="external">https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py</a>):<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line"><span class="keyword">while</span> (it &lt; max_iter):</div><div class="line">    pair_changed = <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> entire:</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(svm_util.m):</div><div class="line">            pair_changed += examine_example(i, svm_util)</div><div class="line">            print(<span class="string">'Full set - iter: &#123;&#125;, pair changed: &#123;&#125;'</span>.format(i, pair_changed))</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        alphas = svm_util.alphas</div><div class="line">        non_bound_indices = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(svm_util.m)</div><div class="line">                             <span class="keyword">if</span> alphas[i] &gt; <span class="number">0</span> <span class="keyword">and</span> alphas[i] &lt; C]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> non_bound_indices:</div><div class="line">            pair_changed += examine_example(i, svm_util)</div><div class="line"></div><div class="line">    ...</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h4 id="第二个变量的选择"><a href="#第二个变量的选择" class="headerlink" title="第二个变量的选择"></a>第二个变量的选择</h4><p>SMO中的第二个变量的选择过程为内循环，当我们已经选取第一个$\alpha_1$之后，我们希望我们选取的第二个变量$\alpha_2$优化后能有较大的变化。根据我们之前推导的式子$\alpha_{2}^{new, unclipped} = \alpha_{2}^{old} + \frac{y_{2}(E_{1} - E_{2})}{\eta}$ 可以知道，新的$\alpha_2$的变化依赖于$\lvert E_1 - E_2 \rvert$, 当$E_1$为正时， 那么选择最小的$E_i$作为$E_2$，通常将每个样本的$E_i$缓存到一个列表中，通过在列表中选择具有$\lvert E_1 - E_2 \rvert$的$\alpha_2$来近似最大化步长。</p>
+<p>有时候按照上述的启发式方式仍不能够是的函数值有足够的下降，这是按下述步骤进行选择:</p>
+<ol>
+<li>在非边界数据集上选择能够使函数值足够下降的样本作为第二个变量</li>
+<li>如果非边界数据集上没有，则在整个数据仅上进行第二个变量的选择</li>
+<li>如果仍然没有则重新选择第一个$\alpha_1$</li>
+</ol>
+<p>第二个变量选取的Python实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_j</span><span class="params">(i, svm_util)</span>:</span></div><div class="line">    <span class="string">''' 通过最大化步长的方式来获取第二个alpha值的索引.</span></div><div class="line">    '''</div><div class="line">    errors = svm_util.errors</div><div class="line">    valid_indices = [i <span class="keyword">for</span> i, a <span class="keyword">in</span> enumerate(svm_util.alphas) <span class="keyword">if</span> <span class="number">0</span> &lt; a &lt; svm_util.C]</div><div class="line"></div><div class="line">    <span class="keyword">if</span> len(valid_indices) &gt; <span class="number">1</span>:</div><div class="line">        j = <span class="number">-1</span></div><div class="line">        max_delta = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> valid_indices:</div><div class="line">            <span class="keyword">if</span> k == i:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            delta = abs(errors[i] - errors[j])</div><div class="line">            <span class="keyword">if</span> delta &gt; max_delta:</div><div class="line">                j = k</div><div class="line">                max_delta = delta</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        j = select_j_rand(i, svm_util.m)</div><div class="line">    <span class="keyword">return</span> j</div></pre></td></tr></table></figure></p>
+<h4 id="KKT条件允许一定的误差"><a href="#KKT条件允许一定的误差" class="headerlink" title="KKT条件允许一定的误差"></a>KKT条件允许一定的误差</h4><p>在Platt论文中的KKT条件的判断中有一个<code>tolerance</code>允许一定的误差，相应的Python实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">r = E_i*y_i</div><div class="line"></div><div class="line"><span class="comment"># 是否违反KKT条件</span></div><div class="line"><span class="keyword">if</span> (r &lt; -tolerance <span class="keyword">and</span> alpha &lt; C) <span class="keyword">or</span> (r &gt; tolerance <span class="keyword">and</span> alpha &gt; <span class="number">0</span>):</div><div class="line">    ...</div></pre></td></tr></table></figure>
+<p>关于Platt SMO的完整实现详见:<a href="https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py" target="_blank" rel="external">https://github.com/PytLab/MLBox/blob/master/svm/svm_platt_smo.py</a></p>
+<p>针对之前的数据集我们使用Platt SMO进行优化可以得到：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">w = [<span class="number">0.8289668843516077</span>, <span class="number">-0.26578914269411114</span>]</div><div class="line">b = <span class="number">-3.9292583040559448</span></div></pre></td></tr></table></figure></p>
+<p>将分割线和支持向量可视化：</p>
+<p><img src="/assets/images/blog_img/2017-10-15-机器学习算法实践-Platt-SMO和遗传算法优化SVM/platt_smo.png" alt=""></p>
+<p>可见通过Platt SMO优化出来的支持向量与简化版的SMO算法有些许不同。</p>
+<h3 id="使用遗传算法优化SVM"><a href="#使用遗传算法优化SVM" class="headerlink" title="使用遗传算法优化SVM"></a>使用遗传算法优化SVM</h3><p>由于最近自己写了个遗传算法框架，遗传算法作为一个启发式无导型的搜索算法非常易用，于是我就尝试使用遗传算法来优化SVM。</p>
+<p>使用遗传算法优化，我们就可以直接优化SVM的最初形式了也就是最直观的形式:<br>$$<br>arg \max \limits_{w, b} \{ \min \limits_{n} (y_{i} \cdot (w^{T}x + b)) \cdot \frac{1}{\lVert w \rVert} \}<br>$$</p>
+<p>顺便再安利下自己的遗传算法框架，在此框架的帮助下，优化SVM算法我们只需要写几十行的Python代码即可。其中最主要的就是编写适应度函数，根据上面的公式我们需要计算数据集中每个点到分割线的距离并返回<strong>最小</strong>的距离即可，然后放到遗传算法中进行进化迭代。</p>
+<p>遗传算法框架GAFT项目地址: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a> , 使用方法详见README。</p>
+<p>Ok， 我们开始构建种群用于进化迭代。</p>
+<h4 id="创建个体与种群"><a href="#创建个体与种群" class="headerlink" title="创建个体与种群"></a>创建个体与种群</h4><p>对于二维数据点，我们需要优化的参数只有三个也就是$[w_1, w_2]$和$b$, 个体的定义如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">indv_template = GAIndividual(ranges=[(<span class="number">-2</span>, <span class="number">2</span>), (<span class="number">-2</span>, <span class="number">2</span>), (<span class="number">-5</span>, <span class="number">5</span>)],</div><div class="line">                             encoding=<span class="string">'binary'</span>,</div><div class="line">                             eps=[<span class="number">0.001</span>, <span class="number">0.001</span>, <span class="number">0.005</span>])</div></pre></td></tr></table></figure>
+<p>种群大小这里取600，创建种群<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">population = GAPopulation(indv_template=indv_template, size=<span class="number">600</span>).init()</div></pre></td></tr></table></figure></p>
+<h4 id="创建遗传算子和GA引擎"><a href="#创建遗传算子和GA引擎" class="headerlink" title="创建遗传算子和GA引擎"></a>创建遗传算子和GA引擎</h4><p>这里没有什么特别的，直接使用框架中内置的算子就好了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">selection = RouletteWheelSelection()</div><div class="line">crossover = UniformCrossover(pc=<span class="number">0.8</span>, pe=<span class="number">0.5</span>)</div><div class="line">mutation = FlipBitBigMutation(pm=<span class="number">0.1</span>, pbm=<span class="number">0.55</span>, alpha=<span class="number">0.6</span>)</div><div class="line"></div><div class="line">engine = GAEngine(population=population, selection=selection,</div><div class="line">                  crossover=crossover, mutation=mutation,</div><div class="line">                  analysis=[ConsoleOutput, FitnessStore])</div></pre></td></tr></table></figure></p>
+<h4 id="适应度函数"><a href="#适应度函数" class="headerlink" title="适应度函数"></a>适应度函数</h4><p>这一部分只要把上面svm初始形式描述出来就好了，只需要三行代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@engine.fitness_register</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fitness</span><span class="params">(indv)</span>:</span></div><div class="line">    w, b = indv.variants[: <span class="number">-1</span>], indv.variants[<span class="number">-1</span>]</div><div class="line">    min_dis = min([y*(np.dot(w, x) + b) <span class="keyword">for</span> x, y <span class="keyword">in</span> zip(dataset, labels)])</div><div class="line">    <span class="keyword">return</span> float(min_dis)</div></pre></td></tr></table></figure></p>
+<h4 id="开始迭代"><a href="#开始迭代" class="headerlink" title="开始迭代"></a>开始迭代</h4><p>这里迭代300代种群<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="string">'__main__'</span> == __name__:</div><div class="line">    engine.run(<span class="number">300</span>)</div></pre></td></tr></table></figure></p>
+<h4 id="绘制遗传算法优化的分割线"><a href="#绘制遗传算法优化的分割线" class="headerlink" title="绘制遗传算法优化的分割线"></a>绘制遗传算法优化的分割线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">variants = engine.population.best_indv(engine.fitness).variants</div><div class="line">w = variants[: <span class="number">-1</span>]</div><div class="line">b = variants[<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="comment"># 分类数据点</span></div><div class="line">classified_pts = &#123;<span class="string">'+1'</span>: [], <span class="string">'-1'</span>: []&#125;</div><div class="line"><span class="keyword">for</span> point, label <span class="keyword">in</span> zip(dataset, labels):</div><div class="line">    <span class="keyword">if</span> label == <span class="number">1.0</span>:</div><div class="line">        classified_pts[<span class="string">'+1'</span>].append(point)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        classified_pts[<span class="string">'-1'</span>].append(point)</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line"></div><div class="line"><span class="comment"># 绘制数据点</span></div><div class="line"><span class="keyword">for</span> label, pts <span class="keyword">in</span> classified_pts.items():</div><div class="line">    pts = np.array(pts)</div><div class="line">    ax.scatter(pts[:, <span class="number">0</span>], pts[:, <span class="number">1</span>], label=label)</div><div class="line"></div><div class="line"><span class="comment"># 绘制分割线</span></div><div class="line">x1, _ = max(dataset, key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</div><div class="line">x2, _ = min(dataset, key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</div><div class="line">a1, a2 = w</div><div class="line">y1, y2 = (-b - a1*x1)/a2, (-b - a1*x2)/a2</div><div class="line">ax.plot([x1, x2], [y1, y2])</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-10-15-机器学习算法实践-Platt-SMO和遗传算法优化SVM/svm_ga.png" alt=""></p>
+<p>完整的代码详见: <a href="https://github.com/PytLab/MLBox/blob/master/svm/svm_ga.py" target="_blank" rel="external">https://github.com/PytLab/MLBox/blob/master/svm/svm_ga.py</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文对SVM的优化进行了介绍，主要实现了Platt SMO算法优化SVM模型，并尝试使用遗传算法框架GAFT对初始SVM进行了优化。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.researchgate.net/publication/2624239_Sequential_Minimal_Optimization_A_Fast_Algorithm_for_Training_Support_Vector_Machines?enrichId=rgreq-2d15adb4fdbd3450fc47381a44207c68-XXX&amp;enrichSource=Y292ZXJQYWdlOzI2MjQyMzk7QVM6OTc2NzgyNzY5NTYxNjBAMTQwMDI5OTcyNDA4Mg%3D%3D&amp;el=1_x_3&amp;_esc=publicationCoverPdf" target="_blank" rel="external">Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines</a></li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/10/08/遗传算法框架GAFT优化小记/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-10-15 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">10</span></a></li> <li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li> <li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li> <li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#前言"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#正文"><span class="toc-article-text">正文</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#SMO中启发式选择变量"><span class="toc-article-text">SMO中启发式选择变量</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#第一个变量的选择"><span class="toc-article-text">第一个变量的选择</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#第二个变量的选择"><span class="toc-article-text">第二个变量的选择</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#KKT条件允许一定的误差"><span class="toc-article-text">KKT条件允许一定的误差</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#使用遗传算法优化SVM"><span class="toc-article-text">使用遗传算法优化SVM</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#创建个体与种群"><span class="toc-article-text">创建个体与种群</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#创建遗传算子和GA引擎"><span class="toc-article-text">创建遗传算子和GA引擎</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#适应度函数"><span class="toc-article-text">适应度函数</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#开始迭代"><span class="toc-article-text">开始迭代</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#绘制遗传算法优化的分割线"><span class="toc-article-text">绘制遗传算法优化的分割线</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#参考"><span class="toc-article-text">参考</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

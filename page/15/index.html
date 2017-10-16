@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
-              
-              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-20 </div>
+			<div class="article-title"><a href="/2016/03/20/Python开发者沙龙/" title="2016-03-19 参加了Python开发者沙龙，记录下">Python开发者沙龙之后的小感想</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/20/Python开发者沙龙/"><img src="/assets/images/features/python_logo.png" alt="Python开发者沙龙之后的小感想"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>昨天大老远跑到杨浦区去参加Python开发者沙龙，主要是听听牛人对Python的认识和见解，也想和喜欢python的朋友们进行线下的交流，同时也想知道自己大概是处在什么样的水平上。<br>结果一早我就背着我那有厚有重的T430和一堆线和移动电源出发了，大概坐地铁要一个小时才能到杨浦，我就带着我现在的宝贝《Effective C++》在车上看（最后事实证明其实我只需要带着本书就够了，电脑啥的压根我就没打开。<br>早到了一个小时，我还是喝了杯咖啡接着看我的宝贝。<br>。。。好烦，不想再记流水账了，直接进入主题吧</p>
+<h3 id="一般人不知道的python秘密"><a href="#一般人不知道的python秘密" class="headerlink" title="一般人不知道的python秘密"></a>一般人不知道的python秘密</h3><p>这个是Coding CTO 孙宇聪讲的报告，主要讲解了他在Google使用python的一些原因和经历，对python中的一些优缺点进行了评价，同时对python内置的基本数据类型进行了简单的讲解其中最重要的还是python中避不开的话题GIL（全局解释器锁）。<br>
+	
+	</div>
+  <a type="button" href="/2016/03/20/Python开发者沙龙/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -355,30 +382,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/关于C-中的智能指针模板类/" title="以后要熟悉使用智能指针来避免使用常规指针带来的隐患，所以在这里总结一下关于C++中的智能指针模板类">关于C++中的智能指针模板类</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>智能指针是行为类似于指针的类对象，但是他们还有更重要的功能来帮助管理动态内存分配。<br>他们的一个主要的思想就是：</p>
-<div class="alert alert-info"><i class="fa fa-info"></i>  使用智能指针指向堆中的内存（这和常规指针相同），但是智能指针<strong>会在智能指针变量过期销毁时自动将其指向的堆内存释放掉</strong>。这样就避免了程序员忘记释放内存而造成的隐患，如内存泄漏。。。
-<br>
-其本质也就是将智能指针模板类的<code>*</code>运算符进行了重载，然后再析构函数中添加了释放对内存的功能。</div>
-	
-	</div>
-  <a type="button" href="/2016/03/16/关于C-中的智能指针模板类/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -428,6 +431,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
@@ -443,10 +450,6 @@
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -459,7 +462,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -483,45 +486,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
 		
 			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
 		
 			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+		
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

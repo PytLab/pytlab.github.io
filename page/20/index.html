@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
-              
-              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-18 </div>
+			<div class="article-title"><a href="/2016/02/18/Kynetix的kMC-plotter/" title="简单介绍下用来绘制kMC模拟表面演化过程的绘图程序.">Kynetix的kmc_plotter</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>为了显示kMC模拟的表面动态演化过程,给Kynetix的plotters中新增了</p>
+<ul>
+<li><code>kmc_plotter.py</code>, 其中的KMCPlotter是ModelShell的子类，实例化model对象的绘制工具。</li>
+<li><code>grid_plot.py</code>， 提供绘制网格和圆圈的函数（适合小型网格，例如10x10、5x5）</li>
+<li><code>scatter_plot.py</code>， 提供使用绘制散点图的方式绘制网格（适合大型的网格，例如200x200）</li>
+<li><code>images2gif.py</code>， 负责将多个图片合并成动态gif的模块。</li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2016/02/18/Kynetix的kMC-plotter/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -333,28 +360,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-16 </div>
-			<div class="article-title"><a href="/2016/02/16/函数定义可无需提供原型单独编译/" >函数定义可无需提供原型单独编译</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在多文件程序中一般我们会把结构相关的函数定义放在一个文件中以供调用，但是之前我一直不知道在这个文件中还需不需要这些函数的原型，正好在写练习的时候碰到了，就把原型删掉单独编译函数文件，编译通过。<br>这就说明了函数定义可以无需提供原型单独编译，原型仅是提供给调用函数的地方让编译器进行检查调用是否合法的。</p>
-
-	
-	</div>
-  <a type="button" href="/2016/02/16/函数定义可无需提供原型单独编译/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -404,6 +409,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
@@ -419,10 +428,6 @@
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -435,7 +440,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -459,45 +464,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">10</span></a></li>
 		
 			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">1</span></a></li>
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

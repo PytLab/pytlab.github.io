@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
-              
-              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-17 </div>
+			<div class="article-title"><a href="/2015/08/17/C-NOTE--数组初始化总结/" >C Notes -- 数组初始化总结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>今天给结构数组初始化的时候发现也能指定初始化项目列表。于是试了试int数组也可以，在这里把这几种常用的数组初始化方法总结下。</p>
+	
+	</div>
+  <a type="button" href="/2015/08/17/C-NOTE--数组初始化总结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -343,30 +364,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-05-17 </div>
-			<div class="article-title"><a href="/2015/05/17/动力学模型添加QuasiEquilibriumSolver/" >动力学模型添加QuasiEquilibriumSolver</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在用sympy符号运算将动力学模型重新实现一遍以后，出了能进行latex输出等其他好处外，最初使用符号运算的目的是符号求解敏感度 $X_{TRC}$的值，不过由于完全用solve暴力解析求解稳态覆盖度，稍微复杂点的机理就会计算很久。于是我打算用平衡态近似来进行求解，并且写完平衡态solver后不仅仅是求$X_{TRC}$，单独用QuasiEquilibriumSolver求解动力学模型也是可以的。</p>
-<p>为了避免直接用sympy.solve()函数直接求解，分析了平衡态近似的求解方法后，自己用python先对求解过程进行了一下”预处理”，这样从一定程度上减小了对solve()依赖。由于这部分还是有点麻烦的，所以写在这里记录下来，方便自己以及其他人学习和改进。</p>
-<p>由于平衡态近似求解的方法还是比较单一的，大概过程就是在决定Rate Determining Step后，通过联立其他基元反应的平衡条件，也就是$\prod_{j} \theta_{i,j}^{-} \prod_{j} p_{i,j}^{-} =K_{i}\prod_{j} \theta_{i,j}^{+}\prod_{j} p_{i,j}^{+}$用$\theta^{*}$将其他的$\theta_{i}$表示出来，在回代到归一化条件中$\sum_{i}{\theta_{i}} = 1$,将$\theta^{*}$的表达式求出来，然后分别回代求出不同中间态的覆盖度。<br>计算方法很简单，但是这里涉及到对sympy.Symbol对象的引用和substitution以及后面基元反应的特殊情况，所以写起来略复杂。下面以甲酸裂解的一条路径的基元反应为例说明一下。</p>
-
-	
-	</div>
-  <a type="button" href="/2015/05/17/动力学模型添加QuasiEquilibriumSolver/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -416,6 +413,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
@@ -431,10 +432,6 @@
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -447,7 +444,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -471,45 +468,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
+		
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
 			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
-              
-              <li><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-支持向量机(SVM)算法原理<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-24 </div>
+			<div class="article-title"><a href="/2016/03/24/KMCLib中的Configuration/" title="KMCLib中的Configuration用于描述附着在晶格之上的元素相关的信息&lt;br&gt;包括他们的坐标，索引，ID号等">KMCLib中的Configuration</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/24/KMCLib中的Configuration/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的Configuration"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这个类由于在之前都有提及到，而且已经针对其中重要的成员函数进行了分析，在这里就不多扯了。<br>总之这个类是独立于晶格LatticeMap类的类型类，我还剩听佩服作者这样抽象的，这样如果后面我想加入多位点的话，也可以独立于晶格之外描述多位点的类，这样实现起来耦合量可以尽量减小。</p>
+<p>其实这里我一直有个疑问，不知道看完全部代码的时候能不能找到答案，就是在<code>performProcess()</code>函数中：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> Configuration::performProcess(Process &amp; process,</div><div class="line">                                   <span class="keyword">const</span> <span class="keyword">int</span> site_index,</div><div class="line">                                   <span class="keyword">const</span> LatticeMap &amp; lattice_map)</div></pre></td></tr></table></figure></p>
+<p>根本就没有用到这个变量，为啥要传他进来？？</p>
+
+	
+	</div>
+  <a type="button" href="/2016/03/24/KMCLib中的Configuration/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -365,33 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-20 </div>
-			<div class="article-title"><a href="/2016/03/20/Python开发者沙龙/" title="2016-03-19 参加了Python开发者沙龙，记录下">Python开发者沙龙之后的小感想</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/20/Python开发者沙龙/"><img src="/assets/images/features/python_logo.png" alt="Python开发者沙龙之后的小感想"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>昨天大老远跑到杨浦区去参加Python开发者沙龙，主要是听听牛人对Python的认识和见解，也想和喜欢python的朋友们进行线下的交流，同时也想知道自己大概是处在什么样的水平上。<br>结果一早我就背着我那有厚有重的T430和一堆线和移动电源出发了，大概坐地铁要一个小时才能到杨浦，我就带着我现在的宝贝《Effective C++》在车上看（最后事实证明其实我只需要带着本书就够了，电脑啥的压根我就没打开。<br>早到了一个小时，我还是喝了杯咖啡接着看我的宝贝。<br>。。。好烦，不想再记流水账了，直接进入主题吧</p>
-<h3 id="一般人不知道的python秘密"><a href="#一般人不知道的python秘密" class="headerlink" title="一般人不知道的python秘密"></a>一般人不知道的python秘密</h3><p>这个是Coding CTO 孙宇聪讲的报告，主要讲解了他在Google使用python的一些原因和经历，对python中的一些优缺点进行了评价，同时对python内置的基本数据类型进行了简单的讲解其中最重要的还是python中避不开的话题GIL（全局解释器锁）。<br>
-	
-	</div>
-  <a type="button" href="/2016/03/20/Python开发者沙龙/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -441,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
@@ -456,10 +462,6 @@
         <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" ><i class="fa fa-file-o"></i>机器学习算法实践-SVM中的SMO算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -472,7 +474,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">89</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -496,45 +498,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">5</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
 			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">98</span></a></li>
