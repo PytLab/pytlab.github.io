@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
+              
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
-              
-              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,43 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-20 </div>
+			<div class="article-title"><a href="/2016/03/20/KMCLib中的Process/" title="KMCLib C++部分的Process类, &lt;br&gt;此类主要用于描述KMC过程中局部反应发生的过程，同时也包含了该过程在全局网格中的统计结果，也就是匹配结果。">KMCLib中的Process</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><p>此类的成员数据均为<code>protected</code></p>
+<ul>
+<li><p><code>int process_number_;</code><br>  该过程ID号；</p>
+</li>
+<li><p><code>int range_;</code><br>  还未完全弄清楚其作用，是和坐标有关的一个范围，后续添加。</p>
+</li>
+<li><p><code>double rate_;</code><br>  这没什么好说的，反应速率；</p>
+</li>
+<li><p><code>double cutoff</code><br>  和坐标距离相关，数值上应该等于process涉及到的点到中心<br>  也就是process中第一个点）的最大距离，<br>  尚未弄清求作用；</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; sites_;</code><br>  在整个网格中能和此反应匹配上的位点的向量；</p>
+</li>
+<li><p><code>std::vector&lt;MinimalMatchListEntry&gt; minimal_match_list_;</code><br>  用于存储每个位点信息的数据结构；</p>
+</li>
+<li><p><code>std::vector&lt;int&gt; affected_indices_;</code><br>  查看process前后每个位点类型是否相同<br>  如果不同则将0追加到其末尾<br>  (2016-03-31更新)<br>  这个变量主要用于更新process发生后确定发生process的index周围有哪些位置<strong>受影响</strong>,<br>  所谓受影响，也就是指由于该点由于参与了反应，元素的类型会发生变化，他的match_list也就相应的发生变化，也导致原本能够匹配的process不再能够在该点匹配或者原本不能匹配的process可以在该点匹配了。这个信息主要是用于Matcher类中。</p>
+</li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2016/03/20/KMCLib中的Process/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -354,34 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/" >初识STL迭代器(iterator)和函数符(functor)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/"><img src="/assets/images/features/stl.jpg" alt="初识STL迭代器(iterator)和函数符(functor)"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>对于STL我真的是久仰大名了，这次从《Cpp Primer Plus》中初次学习STL中的一些知识，学习到迭代器将算法从具体的容器类型中抽离出来，真的是很nb的想法。<br>我在这里稍微总结下我初次学习STL时候对其中迭代器和函数符概念的一点理解。<br><br></p>
-<h4 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h4><p>首先还是泛型编程，这种编程的范式是我之前没有接触过的，之前的面向对象编程的关注点是编程的数据方面，例如如何控制数据的访问权限等等。但是泛型编程的关注点是<strong>算法</strong>，例如将算法从数据类型中抽离出来，将算法从容器类型中抽离出来等等。<br>虽然面向对象和泛型编程的思想都是抽象和创建可重用的代码，但他们的理念是决然不同的。</p>
-<p>C++中的模板为编写独立于数据类型的函数和类提供了可能，而STL通过迭代器将编写独立于容器类型的通用函数提供了可能。<br>
-	
-	</div>
-  <a type="button" href="/2016/03/16/初始STL迭代器-iterator-和函数符-functor/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -431,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
@@ -446,10 +459,6 @@
         <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
       </li>
     
-      <li>
-        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -462,7 +471,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -486,48 +495,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">98</span></a></li>
+		   <li><a href="/tags">...<span class="badge">99</span></a></li>
 		 
 		</ul>
 	</div>

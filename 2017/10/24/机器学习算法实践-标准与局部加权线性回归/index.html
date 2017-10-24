@@ -1,0 +1,457 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>机器学习算法实践-标准与局部加权线性回归 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="机器学习算法实践-标准与局部加权线性回归"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
+              
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
+              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
+              
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
+              
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
+              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 机器学习算法实践-标准与局部加权线性回归</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近开始总结学习回归相关的东东了，与分类的目标变量是标称型不同，回归是对连续型数据进预测。当然还是从最简单的线性回归开始，本文主要介绍无偏差的标准线性回归和有偏局部加权线性回归的理论基础以及相应的Python实现。</p>
+<h2 id="标准线性回归"><a href="#标准线性回归" class="headerlink" title="标准线性回归"></a>标准线性回归</h2><p>标准线性回归的理论知识很简单，我们既可以写出它的标量表达式也可以写成矩阵的形式，其中矩阵的形式也可以通过投影矩阵进行推到得到。本部分就对标准线性回归的表达式进行下简单的推导。</p>
+<a id="more"></a>
+<p>给定一组数据其中包括特征矩阵$X$, 目标变量向量$y$:<br>$$<br>y = \left[ \begin{matrix}<br>y_1 \\<br>y_2 \\<br>: \\<br>y_m<br>\end{matrix} \right]<br>$$</p>
+<p>$$<br>X = \left[ \begin{matrix}<br>1 &amp; x_{11} &amp; x_{12} &amp; … &amp; x_{1n} \\<br>1 &amp; x_{21} &amp; x_{22} &amp; … &amp; x_{2n} \\<br>: &amp; : &amp; : &amp; … &amp; : &amp; \\<br>1 &amp; x_{n1} &amp; x_{n2} &amp; … &amp; x_{nn} \\<br>\end{matrix} \right]<br>$$<br>其中$X$第一列为截距项，我们做线性回归是为了得到一个最优回归系数向量$w$使得当我们给定一个$x$能够通过$y=xw$预测$y$的值。其中</p>
+<p>$$<br>w = \left[ \begin{matrix}<br>w_1 \\<br>w_2 \\<br>: \\<br>w_n<br>\end{matrix} \right]<br>$$</p>
+<h3 id="最小二乘法获取回归系数"><a href="#最小二乘法获取回归系数" class="headerlink" title="最小二乘法获取回归系数"></a>最小二乘法获取回归系数</h3><p>那么怎样的$w$才是最优的呢？在标准线性回归中我们需要找到是误差最小的$w$, 即预测的$y$值与真实的$y$值之间的差值，为了避免简单累加造成的正负差值相互抵消，这里采用了平方误差:<br>$$<br>f(w) = \sum_{i=1}^{m} (y_i - x_{i}^{T}w)^2<br>$$</p>
+<p>对于上述式子$f(w)$可以通过梯度下降等方法得到最优解。但是使用矩阵表示将会是的求解和程序更为简单:<br>$$<br>f(w) = (y - Xw)^{T}(y - Xw)<br>$$<br>将$f(w)$对$w$求导可得:<br>$$<br>\frac{\partial f(w)}{\partial w} = -2X^{T}(y - Xw)<br>$$<br>使其等于0，便可得到:<br>$$<br>X^{T}(y - Xw) = 0 \\<br>X^{T}y = X^{T}Xw \\<br>\hat{w} = (X^{T}X)^{-1}X^{T}y \\<br>$$</p>
+<h3 id="通过投影矩阵获取回归系数"><a href="#通过投影矩阵获取回归系数" class="headerlink" title="通过投影矩阵获取回归系数"></a>通过投影矩阵获取回归系数</h3><p>除了通过最小平方差的方法推导得到$w$的表达式，我们还可以通过投影矩阵(Projection Matrix)来得到。</p>
+<p>我们知道如果我们能够求得一个$w$使得$Xw = y$肯定是最好的，但是实际情况中$y$一般并不在矩阵$X$的列空间中，也就是此方程无解，于是我们希望通过将向量$y$投影到$X$的列空间中得到投影矩阵$p$, 然后求解$Xw = p$来获取一个最接近的一个解, 矩阵$X$的投影矩阵形式为<br>$$P = X(X^{T}X)^{-1}X^{T}$$<br>于是得到$y$在$X$列空间的投影为<br>$$P\cdot y = X(X^{T}X)^{-1}X^{T}y$$<br>此时方程$Xw = p$是有解的，得到最接近$Xw = y$的解为:<br>$$<br>\hat{w} = (X^{T}X)^{-1}X^{T}y<br>$$</p>
+<h3 id="标准线性回归的Python实现"><a href="#标准线性回归的Python实现" class="headerlink" title="标准线性回归的Python实现"></a>标准线性回归的Python实现</h3><p>通过矩阵形式我么可以很方便的通过Numpy的接口进行矩阵运算获取线性回归系数向量$\hat{w}$, 实现如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">std_linreg</span><span class="params">(X, Y)</span>:</span></div><div class="line">    xTx = X.T*X</div><div class="line">    <span class="keyword">if</span> np.linalg.det(xTx) == <span class="number">0</span>:</div><div class="line">        print(<span class="string">'xTx is a singular matrix'</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="keyword">return</span> xTx.I*X.T*Y</div></pre></td></tr></table></figure></p>
+<p>通过对现有数据进行标准线性回归并绘制回归直线得到如下图(完整代码和数据见: <a href="https://github.com/PytLab/MLBox/tree/master/linear_regression" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/linear_regression</a>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">w = [<span class="number">3.00774324</span>, <span class="number">1.69532264</span>]</div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-10-24-机器学习算法实践-标准与局部加权线性回归/std_linear_regression.png" alt=""></p>
+<h3 id="相关系数-Correlation-Coefficient-计算"><a href="#相关系数-Correlation-Coefficient-计算" class="headerlink" title="相关系数(Correlation Coefficient)计算"></a>相关系数(Correlation Coefficient)计算</h3><p>如何判断获得的模型预测能力的好坏呢？我们需要计算模型计算得到的$y$的值向量与实际$y$值向量的匹配程度, 也就是计算相关系数Correlation Coefficient。</p>
+<p>相关系数的计算公式:<br>$$<br>r(X, Y) = \frac{Cov(X, Y)}{\sigma_{X}\sigma_{Y}}<br>$$<br>也就是两个数据序列的协方差并除上各自的标准差，本质上就是一种剔除了两个变量量纲影响、标准化后的特殊协方差。</p>
+<p>而协方差便是衡量两个变量变化趋势是否相似的一种方法，是同向变化(同时变大或变小)还是反向变化(一个变大一个变小), 同向或者反向的程度如何，计算公式如下:</p>
+<p>$$<br>Cov(X, Y) = E[(X - E[X])(Y - E[Y])] = E[XY] - E[X]E[Y]<br>$$ </p>
+<p>通过公式可以看出，如果对于向量中的每个$x, y$同时大于或同时小于各自的期望值，协方差为正，相反则为负。可见如果协方差越大相似程度就越高，协方差越小相似程度就越小。也可以看到如果$X, Y$相同，协方差就是方差，也就是方差是一种特殊情况下的协方差。</p>
+<p>关于协方差与相关系数的通俗解释可以参考知乎上的回答:<a href="https://www.zhihu.com/question/20852004" target="_blank" rel="external">如何通俗易懂地解释「协方差」与「相关系数」的概念？
+</a></p>
+<p>虽然Numpy中有计算协方差的接口<code>numpy.corrcoef</code>，是分别对两两向量进行比较并计算协方差，得到协方差矩阵。为了练习，我还是稍微自己计算了下协方差并只计算两列不同数据之间的相关系数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_corrcoef</span><span class="params">(X, Y)</span>:</span></div><div class="line">    <span class="comment"># X Y 的协方差</span></div><div class="line">    cov = np.mean(X*Y) - np.mean(X)*np.mean(Y)</div><div class="line">    <span class="keyword">return</span> cov/(np.var(X)*np.var(Y))**<span class="number">0.5</span></div></pre></td></tr></table></figure>
+<p>通过对上面得到的线性回归模型得到的预测的值与实际的值进行相关系数计算可以得到相关系数为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Correlation coeffient: <span class="number">0.9864735622335125</span></div></pre></td></tr></table></figure></p>
+<h2 id="局部加权线性回归-Local-Weighted-Linear-Regression"><a href="#局部加权线性回归-Local-Weighted-Linear-Regression" class="headerlink" title="局部加权线性回归(Local Weighted Linear Regression)"></a>局部加权线性回归(Local Weighted Linear Regression)</h2><p>上面的数据点是通过公式$y = 3 + 1.7x + 0.1sin(30x)$添加噪声生成的数据，而标准的线性回归是一种无偏差估计，在计算所有点的时候都是无偏差的计算误差并通过优化方法优化误差，如果针对不同的点能够对误差进行调整便可以一定程度上避免标准线性回归带来的欠拟合现象。</p>
+<p>也就是引入偏差来降低预测的均方误差，本部分总结下局部加权线性回归的方法。当我们获取某个$x$的预测值的时候，我们需要计算回归系数$w$，但是如果针对样本中的数据，距离$x$越近我们就给个越大的权重，如果距离越远就给一个小的权重，这样就会使得针对$x$的预测值$y_predict$能够更贴合样本数据。</p>
+<p>当我们需要对数据点$x$相应的目标值进行预测的时候，我们需要给样本中的每个点赋予一个权重值$w_i$(为了区分权重和回归系数，在这里用$\theta$表示回归系数，$w$表示权重), 那么平方误差的表达式就变成:</p>
+<p>$$<br>f(\theta) = \sum_{i=1}^{m}w_{i}(y_i - x_{i}^{T}\theta)^{2}<br>$$</p>
+<p>通过矩阵可以表示成:<br>$$<br>f(\theta) = (y - X\theta)^{T}W(y - X\theta)<br>$$<br>$f(\theta)$对$\theta$求导等于0得到:<br>$$<br>\frac{\partial f(w)}{\partial w} = -2X^{T}W(y - X\theta) = 0 \\<br>X^{T}Wy = X^{T}WX\theta \\<br>\theta = (X^{T}WX)^{-1}X^{T}Wy<br>$$</p>
+<p>通过上面的公式，对于任意给定的未知数据可以计算出对应的回归系数$\theta$，并得到相应的预测值$y_{predict}$, 其中$W$是一个对角矩阵，对角线上的元素$w_{ii}$对应样本点$x_i$的权重值。</p>
+<h3 id="使用高斯核来赋值权重"><a href="#使用高斯核来赋值权重" class="headerlink" title="使用高斯核来赋值权重"></a>使用高斯核来赋值权重</h3><p>那么权重的表达式又是怎样的呢，我们需要距离给定$x$的样本点的权重越高，LWRL使用核来对附近的点赋予更高的权重，最常用的是高斯核函数，对应表达式如下:<br>$$<br>w_{ii} = exp(\frac{\vert x_i - x \vert}{-2k^2})<br>$$<br>通过公式可以看到如果$x_i$距离$x$的距离越小，$w_{ii}$就会越大，其中参数$k$决定了权重的大小。k越大权重的差距就越小，k越小权重的差距就很大，仅有局部的点参与进回归系数的求取，其他距离较远的权重都趋近于零。如果k去进入无穷大，所有的权重都趋近于1，$W$也就近似等于单位矩阵，局部加权线性回归变成标准的无偏差线性回归，会造成欠拟合的现象；当k很小的时候，距离较远的样本点无法参与回归参数的求取，会造成过拟合的现象。</p>
+<h3 id="LWLR的Python实现"><a href="#LWLR的Python实现" class="headerlink" title="LWLR的Python实现"></a>LWLR的Python实现</h3><p>本部分对局部加权线性回归进行Python实现，对于给定数据求取相应回归系数:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlr</span><span class="params">(x, X, Y, k)</span>:</span></div><div class="line">    <span class="string">''' 局部加权线性回归，给定一个点，获取相应权重矩阵并返回回归系数</span></div><div class="line">    '''</div><div class="line">    m = X.shape[<span class="number">0</span>]</div><div class="line"></div><div class="line">    <span class="comment"># 创建针对x的权重矩阵</span></div><div class="line">    W = np.matrix(np.zeros((m, m)))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        xi = np.array(X[i][<span class="number">0</span>])</div><div class="line">        x = np.array(x)</div><div class="line">        W[i, i] = exp((np.linalg.norm(x - xi))/(<span class="number">-2</span>*k**<span class="number">2</span>))</div><div class="line"></div><div class="line">    <span class="comment"># 获取此点相应的回归系数</span></div><div class="line"></div><div class="line">    xWx = X.T*W*X</div><div class="line">    <span class="keyword">if</span> np.linalg.det(xWx) == <span class="number">0</span>:</div><div class="line">        print(<span class="string">'xWx is a singular matrix'</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    w = xWx.I*X.T*W*Y</div><div class="line"></div><div class="line">    <span class="keyword">return</span> w</div></pre></td></tr></table></figure></p>
+<p>我们对上部分使用的数据进行回归并绘制回归曲线:</p>
+<h4 id="当k-0-5-基本上就是无偏差的标准线性回归"><a href="#当k-0-5-基本上就是无偏差的标准线性回归" class="headerlink" title="当k = 0.5, 基本上就是无偏差的标准线性回归"></a>当k = 0.5, 基本上就是无偏差的标准线性回归</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Correlation coefficient: <span class="number">0.9869292425124014</span></div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-10-24-机器学习算法实践-标准与局部加权线性回归/lwlr_k05.png" alt=""></p>
+<h4 id="当k-0-1-可以较好的反应数据的潜在规律"><a href="#当k-0-1-可以较好的反应数据的潜在规律" class="headerlink" title="当k = 0.1, 可以较好的反应数据的潜在规律"></a>当k = 0.1, 可以较好的反应数据的潜在规律</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Correlation coefficient: <span class="number">0.997890402610583</span></div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-10-24-机器学习算法实践-标准与局部加权线性回归/lwlr_k01.png" alt=""></p>
+<h4 id="当k-0-03-拟合的曲线较多的考虑了噪声数据导致过拟合的现象"><a href="#当k-0-03-拟合的曲线较多的考虑了噪声数据导致过拟合的现象" class="headerlink" title="当k = 0.03, 拟合的曲线较多的考虑了噪声数据导致过拟合的现象"></a>当k = 0.03, 拟合的曲线较多的考虑了噪声数据导致过拟合的现象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Correlation coefficient: <span class="number">0.9995975498285312</span></div></pre></td></tr></table></figure>
+<p><img src="/assets/images/blog_img/2017-10-24-机器学习算法实践-标准与局部加权线性回归/lwlr_k003.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了标准线性回归以及局部加权线性回归的基础知识，并对两张回归方式给与了Python的实现。可见局部加权线性回归在取得适当的$k$，便可以较好的发现数据的内在潜质，但是局部加权线性回归有个缺点就是类似kNN一样，每计算一个点的预测值就需要利用所有数据样本进行计算，如果数据量很大，计算量会是一个问题。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-10-24 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">11</span></a></li> <li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#前言"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#标准线性回归"><span class="toc-article-text">标准线性回归</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#最小二乘法获取回归系数"><span class="toc-article-text">最小二乘法获取回归系数</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#通过投影矩阵获取回归系数"><span class="toc-article-text">通过投影矩阵获取回归系数</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#标准线性回归的Python实现"><span class="toc-article-text">标准线性回归的Python实现</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#相关系数-Correlation-Coefficient-计算"><span class="toc-article-text">相关系数(Correlation Coefficient)计算</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#局部加权线性回归-Local-Weighted-Linear-Regression"><span class="toc-article-text">局部加权线性回归(Local Weighted Linear Regression)</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#使用高斯核来赋值权重"><span class="toc-article-text">使用高斯核来赋值权重</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#LWLR的Python实现"><span class="toc-article-text">LWLR的Python实现</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#当k-0-5-基本上就是无偏差的标准线性回归"><span class="toc-article-text">当k = 0.5, 基本上就是无偏差的标准线性回归</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#当k-0-1-可以较好的反应数据的潜在规律"><span class="toc-article-text">当k = 0.1, 可以较好的反应数据的潜在规律</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#当k-0-03-拟合的曲线较多的考虑了噪声数据导致过拟合的现象"><span class="toc-article-text">当k = 0.03, 拟合的曲线较多的考虑了噪声数据导致过拟合的现象</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

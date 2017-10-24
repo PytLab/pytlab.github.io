@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
+              
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
-              
-              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,32 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-17 </div>
+			<div class="article-title"><a href="/2016/02/17/关于翻译单元（编译单元）/" title="在这里简单写下我对翻译单元的认识。">关于翻译单元（编译单元）</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>我的理解，翻译单元(translation unit)就是一个源代码文件，或者说是经过预处理器宏展开后得到的源码文件。在别人的博客中看到过</p>
+<blockquote>
+<p>translation unit（翻译单元）也可称为compilation unit(编译单元），translation unit是C预处理后的输出，即一个源文件经过预处理后.<br>经过translation unit后产生一个目标文件（比如.c通过编译产生.o文件）</p>
+</blockquote>
+<p>我个人的理解，一个翻译单元，至少是能够用编译器单独编译成<code>.o</code>文件的，因此有时候把函数定义或者类成员函数的定义放在单独的代码文件中时候，时候包含头文件与否要看是否能够单独将文件编译通过。例如类成员方法的文件中就应该要包含类定义的头文件，不然单独编译这些成员函数的时候，所操作的成员变量以及类名称都没告诉编译器，怎么让编译器给你编译？<br>但是有些时候例如使用关键字<code>extern</code>声明的引用声明，是可以进行编译的，我的理解就是编译器看到类似声明的变量或者函数的时候，应该会认为这个变量虽然在本单元中没有提供，但是链接器会把这个变量从其他的地方找到，因此就不报错了。估计调用在其他地方定义的函数也是类似的原因，反正有函数原型了，能不能执行函数就看连接器的了，我编译器就不管了（纯属个人意淫。</p>
+
+	
+	</div>
+  <a type="button" href="/2016/02/17/关于翻译单元（编译单元）/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -387,33 +413,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-05 </div>
-			<div class="article-title"><a href="/2016/02/05/Cpp函数模板小结/" title="由于C++函数重载和模板函数是C++对C语言的扩展部分，属于学到的新知识，在这里进行下小结。">C++函数模板小结</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>函数重载比较简单，主要就是掌握函数特征标(function signature)–函数的参数列表<br><strong>是特征标，而不是函数类型使得函数进行重载的。</strong></p>
-<p>C++编译器也是通过<strong>名称修饰(name decoration)</strong>来跟踪每一个重载函数的。</p>
-<blockquote>
-<p>名称修饰或者名称矫正， 是C++编译器根据函数原型中指定的形参类型对每一个函<strong>数名</strong>进行加密。</p>
-</blockquote>
-<div class="alert alert-info"><i class="fa fa-info"></i>  C++标准允许每个编译器设计人员以他们认为合适的方式实现名称修饰，因此由不同编译器创建的二进制模块（对象代码文件）很可无法正确的链接。也就是说，两个编译器将为同一个函数生成不同的修饰名称。名称的不同将使连接器无法将一个编译器生成的函数调用与另一个编译器生成的函数定义相匹配。在链接编译模块时，请确保所有对象文件或者库都是用同一个编译器生成的。如果有源代码，通常可以用自己的编译器重新编译源代码来相处链接错误。</div>
-<h2 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h2><p>函数模板就是使用泛型来定义函数，通过类型作为参数传给函数模板，编译器随后会生成相应类型版本的函数定义，供其他函数调用。<br>函数模板并<strong>不创建任何函数</strong>，而是告诉编译器如何定义函数。编译器检查所使用的参数类型，并生成相应的函数。最终的代码不包含任何模板，只包含了为程序生成的实际函数。<br>
-	
-	</div>
-  <a type="button" href="/2016/02/05/Cpp函数模板小结/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -463,6 +462,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
@@ -478,10 +481,6 @@
         <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
       </li>
     
-      <li>
-        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -494,7 +493,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -518,48 +517,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">98</span></a></li>
+		   <li><a href="/tags">...<span class="badge">99</span></a></li>
 		 
 		</ul>
 	</div>

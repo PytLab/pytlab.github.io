@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
+              
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
-              
-              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,40 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-09 </div>
+			<div class="article-title"><a href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/" title="本文也是通过一个实例来理解总结一下非阻塞缓冲通信模式。">MPI学习--非重复的非阻塞通信之非重复的缓冲通信</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--非重复的非阻塞通信之非重复的缓冲通信"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="对比MPI-Bsend-MPI-Isend-MPI-Ibsend"><a href="#对比MPI-Bsend-MPI-Isend-MPI-Ibsend" class="headerlink" title="对比MPI_Bsend(), MPI_Isend(), MPI_Ibsend()"></a>对比<code>MPI_Bsend()</code>, <code>MPI_Isend()</code>, <code>MPI_Ibsend()</code></h3><p>三者均不发生阻塞，执行后都会立即返回，且后台有MPI环境实施消息传输。</p>
+<ul>
+<li><p><code>MPI_Bsend()</code>之所以会立即返回，是因为用户已经定义了缓冲区，调用后会将数据复制到缓冲区中，所以不用等接收端接收便可以返回，但是在执行<code>MPI_Buffer_detach()</code>时才最终确保消息清扫干净，完成传输，也就是说消息传输完毕之前，<code>MPI_Buffer_detach()</code>不会返回。</p>
+</li>
+<li><p><code>MPI_Isend()</code>本身就是非阻塞通信，所以会立即返回，交给MPI环境后台来实施消息传递。但是标准非阻塞通信需要调用<code>MPI_Wait()</code>等机制来等待传输完成。</p>
+</li>
+<li><p><code>MPI_Ibsend()</code>更像是前两者的结合体，但是要注意的是发送完成并<strong>不代表</strong>消息传递完成。</p>
+</li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -361,36 +395,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-06 </div>
-			<div class="article-title"><a href="/2016/07/06/MPI学习-并行系统和并行模式/" title="这里主要总结并行系统的分类和几种并行编程模式，都是些概念。">MPI学习--并行系统和并行模式</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/06/MPI学习-并行系统和并行模式/"><img src="/assets/images/features/parallel_computing.png" alt="MPI学习--并行系统和并行模式"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>当然现在的目的还是为了学习MPI，不过事实上MPI并不能完全的算作是理想意义上的并行编程模型，它只是提供了一种<strong>粗粒度</strong>的并行机制，而在进程的粒度上看，MPI程序仍是并行的。</p>
-<h2 id="并行系统"><a href="#并行系统" class="headerlink" title="并行系统"></a>并行系统</h2><h3 id="Flynn分类法-–-按指令-数据模式的分类"><a href="#Flynn分类法-–-按指令-数据模式的分类" class="headerlink" title="Flynn分类法 – 按指令/数据模式的分类"></a>Flynn分类法 – 按指令/数据模式的分类</h3><p>从处理器指令级别的并行来考察的话，Flynn依据指令和数据流的不同给出计算机的分类，例如SIMD和MIMD。<br>关于什么是单指令多数据流和多指令多数据流，我在<a href="https://www.quora.com/Parallel-Computing-What-is-the-difference-between-SIMD-and-MIMD">quora</a>上面搜到了个不错的解释：</p>
-<p><p></p>
-<blockquote>
-<p>SIMD and MIMD are types of parallel architectures identified in Flynn’s taxonomy, which basically says that computers have single (S) or multiple (M) streams of instructions (I) and data (D), leading to four types of computers: SISD, SIMD, MISD, and MIMD. Let’s skip SISD and MISD, since the question doesn’t ask about them, and neither is spectacularly interesting.<br>
-	
-	</div>
-  <a type="button" href="/2016/07/06/MPI学习-并行系统和并行模式/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +444,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
@@ -455,10 +463,6 @@
         <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
       </li>
     
-      <li>
-        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -471,7 +475,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -495,48 +499,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
 		
 			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">98</span></a></li>
+		   <li><a href="/tags">...<span class="badge">99</span></a></li>
 		 
 		</ul>
 	</div>

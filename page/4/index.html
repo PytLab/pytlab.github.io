@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
+              
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
-              
-              <li><a href="/2017/08/30/机器学习算法实践-SVM核函数和软间隔/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM核函数和软间隔<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,39 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-07-04 </div>
+			<div class="article-title"><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/" >KinLab - 基于Flask+Bootstrap实现的用于微观动力学计算的web应用</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/"><img src="/assets/images/blog_img/2017-07-04-使用Flask实现微观动力学计算的web应用/feature.png" alt="KinLab - 基于Flask+Bootstrap实现的用于微观动力学计算的web应用"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>前两周花了些时间给自己的动力学程序Kynetix和KMCLibX写了个web界面方便别人使用，目前程序完成了计算微观动力学的部分，并部署在了腾讯云上<a href="http://123.206.225.154:5000/">http://123.206.225.154:5000/</a>, 程序命名为KinLab (<a href="https://github.com/PytLab/kynetix-webapp">https://github.com/PytLab/kynetix-webapp</a>).</p>
+<p>目前KinLab主要包含四个部分:</p>
+<ol>
+<li>文件系统</li>
+<li>模型定义</li>
+<li>模型计算<br>生成结果报告</li>
+</ol>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>文件系统这里我模仿jupyternotebook写的，因为着急实现主要的计算过程，这里一些常用的文件操作还没实现(后续有时间会加上)，正常可以在任何路径下创建或者打开一个作业设置界面。<br>
+	
+	</div>
+  <a type="button" href="/2017/07/04/KinLab-基于Flask-Bootstrap实现微观动力学计算的web应用/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -362,32 +395,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-02-16 </div>
-			<div class="article-title"><a href="/2017/02/16/一本不错的MPI教程/" >推荐一本不错的MPI教程</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/02/16/一本不错的MPI教程/"><img src="/assets/images/features/MPIlogo.gif" alt="推荐一本不错的MPI教程"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>今天看到一本很不错的MPI教程，内容并不是很多，但是讲的非常清晰，并且图示画得非常通俗易懂，比我第一次学习MPI时候看的那本清华大学出版社的《MPI并行程序设计实例教程》好很多，不知道是不是自己已经熟悉MPI的原因，反正我对这本书颇有好感，虽然代码是C和Fortran都有，但是默认以Fortran为主，推荐想学习MPI并行编程的童鞋参考这本书。</p>
-	
-	</div>
-  <a type="button" href="/2017/02/16/一本不错的MPI教程/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -437,6 +444,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
@@ -452,10 +463,6 @@
         <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
       </li>
     
-      <li>
-        <a href="/2017/09/10/递归式求解-主方法/" ><i class="fa fa-file-o"></i>递归式求解-主方法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -468,7 +475,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">90</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -492,48 +499,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
 			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">10</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">98</span></a></li>
+		   <li><a href="/tags">...<span class="badge">99</span></a></li>
 		 
 		</ul>
 	</div>
