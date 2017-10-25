@@ -11,7 +11,7 @@
 <a id="more"></a>
 <p>给定一组数据其中包括特征矩阵$X$, 目标变量向量$y$:<br>$$<br>y = \left[ \begin{matrix}<br>y_1 \\<br>y_2 \\<br>: \\<br>y_m<br>\end{matrix} \right]<br>$$</p>
 <p>$$<br>X = \left[ \begin{matrix}<br>1 &amp; x_{11} &amp; x_{12} &amp; … &amp; x_{1n} \\<br>1 &amp; x_{21} &amp; x_{22} &amp; … &amp; x_{2n} \\<br>: &amp; : &amp; : &amp; … &amp; : &amp; \\<br>1 &amp; x_{n1} &amp; x_{n2} &amp; … &amp; x_{nn} \\<br>\end{matrix} \right]<br>$$<br>其中$X$第一列为截距项，我们做线性回归是为了得到一个最优回归系数向量$w$使得当我们给定一个$x$能够通过$y=xw$预测$y$的值。其中</p>
-<p>$$<br>w = \left[ \begin{matrix}<br>w_1 \\<br>w_2 \\<br>: \\<br>w_n<br>\end{matrix} \right]<br>$$</p>
+<p>$$<br>w = \left[ \begin{matrix}<br>w_0 \\<br>w_1 \\<br>w_2 \\<br>: \\<br>w_n<br>\end{matrix} \right]<br>$$</p>
 <h3 id="最小二乘法获取回归系数"><a href="#最小二乘法获取回归系数" class="headerlink" title="最小二乘法获取回归系数"></a>最小二乘法获取回归系数</h3><p>那么怎样的$w$才是最优的呢？在标准线性回归中我们需要找到是误差最小的$w$, 即预测的$y$值与真实的$y$值之间的差值，为了避免简单累加造成的正负差值相互抵消，这里采用了平方误差:<br>$$<br>f(w) = \sum_{i=1}^{m} (y_i - x_{i}^{T}w)^2<br>$$</p>
 <p>对于上述式子$f(w)$可以通过梯度下降等方法得到最优解。但是使用矩阵表示将会是的求解和程序更为简单:<br>$$<br>f(w) = (y - Xw)^{T}(y - Xw)<br>$$<br>将$f(w)$对$w$求导可得:<br>$$<br>\frac{\partial f(w)}{\partial w} = -2X^{T}(y - Xw)<br>$$<br>使其等于0，便可得到:<br>$$<br>X^{T}(y - Xw) = 0 \\<br>X^{T}y = X^{T}Xw \\<br>\hat{w} = (X^{T}X)^{-1}X^{T}y \\<br>$$</p>
 <h3 id="通过投影矩阵获取回归系数"><a href="#通过投影矩阵获取回归系数" class="headerlink" title="通过投影矩阵获取回归系数"></a>通过投影矩阵获取回归系数</h3><p>除了通过最小平方差的方法推导得到$w$的表达式，我们还可以通过投影矩阵(Projection Matrix)来得到。</p>
