@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-岭回归和LASSO<span></span></a></li>
+              
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
-              
-              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,39 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-08-02 </div>
+			<div class="article-title"><a href="/2017/08/02/使用MPI并行化遗传算法/" >使用MPI并行化遗传算法框架GAFT</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/08/02/使用MPI并行化遗传算法/"><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/feature.png" alt="使用MPI并行化遗传算法框架GAFT"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文中作者使用MPI的Python接口mpi4py来将自己的遗传算法框架GAFT进行多进程并行加速。并对加速效果进行了简单测试。</p>
+<p>项目链接:</p>
+<ul>
+<li>GitHub: <a href="https://github.com/PytLab/gaft">https://github.com/PytLab/gaft</a></li>
+<li>PyPI: <a href="https://pypi.python.org/pypi/gaft">https://pypi.python.org/pypi/gaft</a></li>
+</ul>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>我们在用遗传算法优化目标函数的时候，函数通常都是高维函数，其导数一般比较难求取。这样我们的适应度函数计算通常都是比较费时的计算。</p>
+<p>例如在使用遗传算法寻找最优结构时候通常需要调用量化软件进行第一性原理计算结构的total energy，这是非常费时的过程; 例如我们优化力场参数的时候，以力场计算出的能量同基准能量之前的误差作为适应度，也需要调用相应的力场程序获取总能量来求取，同样这个过程也是相对耗时的。</p>
+	
+	</div>
+  <a type="button" href="/2017/08/02/使用MPI并行化遗传算法/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -349,33 +382,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-07-09 </div>
-			<div class="article-title"><a href="/2017/07/09/机器学习算法实践-决策树/" >机器学习算法实践-决策树(Decision Tree)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/07/09/机器学习算法实践-决策树/"><img src="/assets/images/blog_img/2017-07-09-机器学习算法实践-决策树/lenses.gif" alt="机器学习算法实践-决策树(Decision Tree)"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox">https://github.com/PytLab/MLBox</a>).</p>
-<p>本文中我将一步步通过MLiA的隐形眼镜处方数集构建决策树并使用Graphviz将决策树可视化。</p>
-	
-	</div>
-  <a type="button" href="/2017/07/09/机器学习算法实践-决策树/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -425,6 +431,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习实践-岭回归和LASSO</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
       </li>
     
@@ -440,10 +450,6 @@
         <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -456,7 +462,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -480,48 +486,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+		
 			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">99</span></a></li>
+		   <li><a href="/tags">...<span class="badge">102</span></a></li>
 		 
 		</ul>
 	</div>

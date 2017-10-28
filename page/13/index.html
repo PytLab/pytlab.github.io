@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-岭回归和LASSO<span></span></a></li>
+              
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
-              
-              <li><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-SVM中的SMO算法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-04-03 </div>
+			<div class="article-title"><a href="/2016/04/03/SWIG给C结构增加成员函数/" title="以前一直以为C不支持面向对象，为python写扩展真是太憋屈了，但是今天看了SWIG的文档，原来人家早就解决了这个问题。">SWIG给C结构增加‘成员函数’</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/03/SWIG给C结构增加成员函数/"><img src="/assets/images/features/swig.png" alt="SWIG给C结构增加‘成员函数’"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>由于之前看的是《Python科学计算》上面关于swig的简单介绍，上面说了如何在python中如何像类一样的使用C结构，但是也只是停留在如何使用结构的成员数据上，但是没有讲如何将C的函数封装成python的类方法的方法。相反由于C++有原生OOP的支持，固然swig直接可以将C++的类封装成python的类。所以我以前一直认为这时候只能用C++了。<br>但其实，还是读书读的少啊。swig这么强大的封装工具，这早就想到了。毕竟OO是一种思想，C照样能写出OO的代码来（多重继承和多态这种行么？）。</p>
+<p>所以今天看到swig文档中关于<code>%extend</code>指令的介绍才感觉相见恨晚啊。<br>
+	
+	</div>
+  <a type="button" href="/2016/04/03/SWIG给C结构增加成员函数/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -361,33 +388,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-27 </div>
-			<div class="article-title"><a href="/2016/03/27/关于CMake中添加共享库/" >关于CMake中添加共享库</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/27/关于CMake中添加共享库/"><img src="/assets/images/features/cmake_logo.jpg" alt="关于CMake中添加共享库"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>这两天学习一下CMake的一点语法，为了以后能使用CMake跨平台构建项目。但是在为target添加共享库的时候，即使我在CMakeLists.txt中使用了<code>LINK_DIRECTORIES()</code>和<code>TARGET_LINK_LIBRARIES()</code>，<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">ADD_EXECUTABLE</span><span class="params">(hellomain main.c)</span></span></div><div class="line"><span class="function"><span class="title">SET</span><span class="params">(EXECUTABLE_OUTPUT_PATH $&#123;HELLOMAIN_BINARY_DIR&#125;/bin)</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="title">INCLUDE_DIRECTORIES</span><span class="params">(BEFORE /mnt/hgfs/CentOS_code/cmake_practice/t4/zjshao/include/hello)</span></span></div><div class="line"><span class="function"><span class="title">LINK_DIRECTORIES</span><span class="params">(/mnt/hgfs/CentOS_code/cmake_practice/t4/zjshao/lib)</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="title">TARGET_LINK_LIBRARIES</span><span class="params">(hellomain libhello.so)</span></span></div></pre></td></tr></table></figure></p>
-<p>但是在make的时候还是很出现了<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/usr/</span>bin/<span class="string">ld:</span> cannot find -lhello</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/03/27/关于CMake中添加共享库/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -437,6 +437,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习实践-岭回归和LASSO</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
       </li>
     
@@ -452,10 +456,6 @@
         <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
       </li>
     
-      <li>
-        <a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" ><i class="fa fa-file-o"></i>遗传算法中几种不同选择算子</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -468,7 +468,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">91</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -492,48 +492,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">99</span></a></li>
+		   <li><a href="/tags">...<span class="badge">102</span></a></li>
 		 
 		</ul>
 	</div>

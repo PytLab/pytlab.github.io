@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>机器学习实践-岭回归和LASSO | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="机器学习实践-岭回归和LASSO"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-bank"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习实践-岭回归和LASSO<span></span></a></li>
+              
+              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
+              
+              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
+              
+              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
+              
+              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
+              
+              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
+              
+              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 机器学习实践-岭回归和LASSO</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>继续线性回归的总结, 本文主要介绍两种线性回归的缩减(shrinkage)方法的基础知识: 岭回归(Ridge Regression)和LASSO(Least Absolute Shrinkage and Selection Operator)并对其进行了Python实现。同时也对一种更为简单的向前逐步回归计算回归系数的方法进行了相应的实现。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>通过上一篇中标准线性回归的公式$w = (X^{T}X)^{-1}X^{T}y$中可以看出在计算回归系数的时候我们需要计算矩阵$X^TX$的逆，但是如果该矩阵是个奇异矩阵，则无法对其进行求解。那么什么情况下该矩阵会有奇异性呢?</p>
+<a id="more"></a>
+<ol>
+<li>X本身存在线性相关关系(多重共线性), 即非满秩矩阵。如果数据的特征中存在两个相关的变量，即使并不是完全线性相关，但是也会造成矩阵求逆的时候造成求解不稳定。</li>
+<li>当数据特征比数据量还要多的时候, 即$m &lt; n$, 这时候矩阵$X$是一个矮胖型的矩阵，非满秩。</li>
+</ol>
+<p>对于上面的两种情况，我们需要对最初的标准线性回归做一定的变化使原先无法求逆的矩阵变得非奇异，使得问题可以稳定求解。我们可以通过缩减的方式来处理这些问题例如岭回归和LASSO. </p>
+<h3 id="中心化和标准化"><a href="#中心化和标准化" class="headerlink" title="中心化和标准化"></a>中心化和标准化</h3><p>这里先介绍下数据的中心化和标准化，在回归问题和一些机器学习算法中通常要对原始数据进行中心化和标准化处理，也就是需要将数据的均值调整到0，标准差调整为1, 计算过程很简单就是将所有数据减去平均值后再除以标准差:<br>$$<br>x_i^{‘} = \frac{x_i - \mu}{\sigma}<br>$$</p>
+<p>这样调整后的均值:<br>$$\mu^{‘} = \frac{(\sum_{i=1}^{n}x_i)/n - \mu}{\sigma} = 0$$</p>
+<p>调整后的标准差:<br>$$<br>\sigma^{‘} = \frac{(x_i - \mu)^2/n}{\sigma^2} = \frac{\sigma^2}{\sigma^2} = 1<br>$$</p>
+<p>之所以需要进行中心化其实就是个平移过程，将所有数据的中心平移到原点。而标准化则是使得所有数据的不同特征都有相同的尺度Scale, 这样在使用梯度下降法以及其他方法优化的时候不同特征参数的影响程度就会一致了。</p>
+<p>如下图所示，可以看出得到的标准化数据在每个维度上的尺度是一致的(图片来自网络，侵删)<br><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/standarize.jpg" alt=""></p>
+<h3 id="岭回归-Ridge-Regression"><a href="#岭回归-Ridge-Regression" class="headerlink" title="岭回归(Ridge Regression)"></a>岭回归(Ridge Regression)</h3><p>标准最小二乘法优化问题:<br>$$<br>f(w) = \sum_{i=1}^{m} (y_i - x_{i}^{T}w)^2<br>$$<br>也可以通过矩阵表示:<br>$$<br>f(w) = (y - Xw)^{T}(y - Xw)<br>$$<br>得到的回归系数为:<br>$$<br>\hat{w} = (X^{T}X)^{-1}X^{T}y<br>$$</p>
+<p>这个问题解存在且唯一的条件就是$X$列满秩:$rank(X) = dim(X)$.</p>
+<p>即使$X$列满秩，但是当数据特征中存在共线性，即相关性比较大的时候，会使得标准最小二乘求解不稳定, $X^TX$的行列式接近零，计算$X^TX$的时候误差会很大。这个时候我们需要在cost function上添加一个惩罚项$\lambda\sum_{i=1}^{n}w_{i}^2$，称为L2正则化。</p>
+<p>这个时候的cost function的形式就为:<br>$$<br>f(w) = \sum_{i=1}^{m} (y_i - x_{i}^{T}w)^2 + \lambda\sum_{i=1}^{n}w_{i}^{2}<br>$$</p>
+<p>通过加入此惩罚项进行优化后，限制了回归系数$w_i$的绝对值，数学上可以证明上式的等价形式如下:<br>$$<br>f(w) = \sum_{i=1}^{m} (y_i - x_{i}^{T}w)^2 \\<br>s.t. \sum_{i=1}^{n}w_{j}^2 \le t<br>$$<br>其中t为某个阈值。</p>
+<p>将岭回归系数用矩阵的形式表示:<br>$$<br>\hat{w} = (X^{T}X + \lambda I)^{-1}X^{T}y<br>$$</p>
+<p>可以看到，就是通过将$X^TX$加上一个单位矩阵是的矩阵变成非奇异矩阵并可以进行求你运算。</p>
+<h4 id="岭回归的几何意义"><a href="#岭回归的几何意义" class="headerlink" title="岭回归的几何意义"></a>岭回归的几何意义</h4><p>以两个变量为例, 残差平方和可以表示为$w_1, w_2$的一个二次函数，是一个在三维空间中的抛物面，可以用等值线来表示。而限制条件$w_1^2 + w_2^2 &lt; t$， 相当于在二维平面的一个圆。这个时候等值线与圆相切的点便是在约束条件下的最优点，如下图所示，</p>
+<p><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/ridge_opt.png" alt=""></p>
+<h4 id="岭回归的一些性质"><a href="#岭回归的一些性质" class="headerlink" title="岭回归的一些性质"></a>岭回归的一些性质</h4><ol>
+<li>当岭参数$\lambda = 0$时，得到的解是最小二乘解</li>
+<li>当岭参数$\lambda$趋向更大时，岭回归系数$w_i$趋向于0，约束项$t$很小</li>
+</ol>
+<h4 id="岭回归的Python实现"><a href="#岭回归的Python实现" class="headerlink" title="岭回归的Python实现"></a>岭回归的Python实现</h4><p>通过矩阵的形式计算$\hat{w}$, 可以很简单的实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ridge_regression</span><span class="params">(X, y, lambd=<span class="number">0.2</span>)</span>:</span></div><div class="line">    <span class="string">''' 获取岭回归系数</span></div><div class="line">    '''</div><div class="line">    XTX = X.T*X</div><div class="line">    m, _ = XTX.shape</div><div class="line">    I = np.matrix(np.eye(m))</div><div class="line">    w = (XTX + lambd*I).I*X.T*y</div><div class="line">    <span class="keyword">return</span> w</div></pre></td></tr></table></figure></p>
+<h4 id="岭迹图"><a href="#岭迹图" class="headerlink" title="岭迹图"></a>岭迹图</h4><p>可以知道求得的岭系数$w_i$是岭参数$\lambda$的函数，不同的$\lambda$得到不同的岭参数$w_i$, 因此我们可以增大$\lambda$的值来得到岭回归系数的变化，以及岭参数的变化轨迹图(岭迹图), 不存在奇异性时，岭迹图应稳定的逐渐趋向于0。</p>
+<p>通过岭迹图我们可以:</p>
+<ol>
+<li>观察较佳的$\lambda$取值</li>
+<li>观察变量是否有多重共线性</li>
+</ol>
+<h4 id="绘制岭迹图"><a href="#绘制岭迹图" class="headerlink" title="绘制岭迹图"></a>绘制岭迹图</h4><p>上面我们通过函数<code>ridge_regression</code>实现了计算岭回归系数的计算，我们使用《机器学习实战》中的鲍鱼年龄的数据来进行计算并绘制不同$\lambda$的岭参数变化的轨迹图。数据以及完整代码详见 <a href="https://github.com/PytLab/MLBox/tree/master/linear_regression" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/linear_regression</a></p>
+<p>选取30组不同的$\lambda$来获取岭系数矩阵包含30个不同的岭系数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ridge_traj</span><span class="params">(X, y, ntest=<span class="number">30</span>)</span>:</span></div><div class="line">    <span class="string">''' 获取岭轨迹矩阵</span></div><div class="line">    '''</div><div class="line">    _, n = X.shape</div><div class="line">    ws = np.zeros((ntest, n))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(ntest):</div><div class="line">        w = ridge_regression(X, y, lambd=exp(i<span class="number">-10</span>))</div><div class="line">        ws[i, :] = w.T</div><div class="line">    <span class="keyword">return</span> ws</div></pre></td></tr></table></figure>
+<p>绘制岭轨迹图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="string">'__main__'</span> == __name__:</div><div class="line">    ntest = <span class="number">30</span></div><div class="line">    <span class="comment"># 加载数据</span></div><div class="line">    X, y = load_data(<span class="string">'abalone.txt'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 中心化 &amp; 标准化</span></div><div class="line">    X, y = standarize(X), standarize(y)</div><div class="line"></div><div class="line">    <span class="comment"># 绘制岭轨迹</span></div><div class="line">    ws = ridge_traj(X, y, ntest)</div><div class="line">    fig = plt.figure()</div><div class="line">    ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line"></div><div class="line">    lambdas = [i<span class="number">-10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(ntest)]</div><div class="line">    ax.plot(lambdas, ws)</div><div class="line"></div><div class="line">    plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/ridge_traj.png" alt=""></p>
+<p>上图绘制了回归系数$w_i$与$log(\lambda)$的关系，在最左边$\lambda$系数最小时，可以得到所有系数的原始值(与标准线性回归相同); 而在右边，系数全部缩减为0, 从不稳定趋于稳定；为了定量的找到最佳参数值，还需要进行交叉验证。要判断哪些变量对结果的预测最具影响力，可以观察他们的系数大小即可。</p>
+<h3 id="LASSO"><a href="#LASSO" class="headerlink" title="LASSO"></a>LASSO</h3><p>岭回归限定了所有回归系数的平方和不大于$t$, 在使用普通最小二乘法回归的时候当两个变量具有相关性的时候，可能会使得其中一个系数是个很大正数，另一个系数是很大的负数。通过岭回归的$\sum_{i=1}^{n} w_i \le t$的限制，可以避免这个问题。</p>
+<p>LASSO(The Least Absolute Shrinkage and Selection Operator)是另一种缩减方法，将回归系数收缩在一定的区域内。LASSO的主要思想是构造一个一阶惩罚函数获得一个精炼的模型, 通过最终确定一些变量的系数为0进行特征筛选。</p>
+<p>LASSO的惩罚项为:<br>$$<br>\sum_{i=1}^{n} \vert w_i \vert \le t<br>$$</p>
+<p>与岭回归的不同在于，此约束条件使用了绝对值的一阶惩罚函数代替了平方和的二阶函数。虽然只是形式稍有不同，但是得到的结果却又很大差别。在LASSO中，当$\lambda$很小的时候，一些系数会随着变为0而岭回归却很难使得某个系数<strong>恰好</strong>缩减为0. 我们可以通过几何解释看到LASSO与岭回归之间的不同。</p>
+<h4 id="LASSO的几何解释"><a href="#LASSO的几何解释" class="headerlink" title="LASSO的几何解释"></a>LASSO的几何解释</h4><p>同样以两个变量为例，标准线性回归的cost function还是可以用二维平面的等值线表示，而约束条件则与岭回归的圆不同，LASSO的约束条件可以用方形表示，如下图:</p>
+<p><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/lasso_opt.png" alt=""></p>
+<p>相比圆，方形的顶点更容易与抛物面相交，顶点就意味着对应的很多系数为0，而岭回归中的圆上的任意一点都很容易与抛物面相交很难得到正好等于0的系数。这也就意味着，lasso起到了很好的筛选变量的作用。</p>
+<h4 id="LASSO回归系数的计算"><a href="#LASSO回归系数的计算" class="headerlink" title="LASSO回归系数的计算"></a>LASSO回归系数的计算</h4><p>虽然惩罚函数只是做了细微的变化，但是相比岭回归可以直接通过矩阵运算得到回归系数相比，LASSO的计算变得相对复杂。由于惩罚项中含有绝对值，此函数的导数是连续不光滑的，所以无法进行求导并使用梯度下降优化。本部分使用坐标下降发对LASSO回归系数进行计算。</p>
+<p>坐标下降法是每次选择一个维度的参数进行一维优化，然后不断的迭代对多个维度进行更新直到函数收敛。SVM对偶问题的优化算法SMO也是类似的原理，这部分的详细介绍我在之前的一篇博客中进行了整理，参考《<a href="http://pytlab.github.io/2017/09/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-SVM%E4%B8%AD%E7%9A%84SMO%E7%AE%97%E6%B3%95/">机器学习算法实践-SVM中的SMO算法</a>》。</p>
+<p>下面我们分别对LASSO的cost function的两部分求解：</p>
+<ol>
+<li>RSS部分</li>
+</ol>
+<p>$$<br>RSS(w) = \sum_{i=1}^{m}(y_i - \sum_{j=1}^{n}x_{ij}w_j)^2<br>$$</p>
+<p>求导:<br>$$<br>\frac{\partial RSS(w)}{\partial w_k} = -2\sum_{i=1}^{m}x_{ik}(y_i - \sum_{j=1}^{n}x_{ij}w_j) \\<br>= -2\sum_{i=1}^{m}(x_{ik}y_i - x_{ik}\sum_{j=1, j \ne k}^{n}x_{ij}w_j - x_{ik}^2w_k) \\<br>= -2\sum_{i=1}^{m}x_{ik}(y_i - \sum_{j=1, j \ne k}^{n}x_{ij}w_{j}) + 2w_k\sum_{i=1}^{m}x_{ik}^2<br>$$</p>
+<p>令$p_k = \sum_{i=1}^{m}x_{ik}(y_i - \sum_{j=1, j \ne k}^{n}x_{ij}w_{j})$, $z_k = \sum_{i=1}{m}x_{ik}^2$ 得到:</p>
+<p>$$<br>\frac{\partial RSS(w)}{\partial w_j} = -2p_k + 2z_kw_k<br>$$</p>
+<ol>
+<li>正则项</li>
+</ol>
+<p>关于惩罚项的求导我们需要使用subgradient，可以参考<a href="https://www.zhihu.com/question/22332436/answer/21068494" target="_blank" rel="external">LASSO（least absolute shrinkage and selection operator） 回归中 如何用梯度下降法求解？</a></p>
+<p>$$<br>\lambda \frac{\partial \sum_{i=1}^{n}\vert w_j \vert}{\partial w_k} = \begin{cases}<br>-\lambda &amp; w_k &lt; 0 \\<br>[-\lambda, \lambda] &amp; w_k = 0 \\<br>\lambda &amp; w_k &gt; 0<br>\end{cases}<br>$$</p>
+<p>这样整体的偏导数:<br>$$<br>\frac{\partial f(w)}{\partial w_k} = 2z_kw_k - 2p_k + \begin{cases}<br>-\lambda &amp; w_k &lt; 0 \\<br>[-\lambda, \lambda] &amp; w_k = 0 \\<br>\lambda &amp; w_k &gt; 0<br>\end{cases} \\<br>= \begin{cases}<br>2z_kw_k - 2p_k - \lambda &amp; w_k &lt; 0 \\<br>[-2p_k - \lambda, -2p_k + \lambda] &amp; w_j = 0 \\<br>2z_kw_k - 2p_k + \lambda &amp; w_k &gt; 0<br>\end{cases}<br>$$</p>
+<p>令$\frac{\partial f(w)}{\partial w_k} = 0$ 得到</p>
+<p>$$<br>\hat{w_k} = \begin{cases}<br>(p_k + \lambda/2)/z_k &amp; p_k &lt; -\lambda/2 \\<br>0 &amp; -\lambda/2 \le p_k \le \lambda/2 \\<br>(p_k - \lambda/2)/z_k &amp; p_k &gt; \lambda/2<br>\end{cases}<br>$$</p>
+<p>通过上面的公式我们便可以每次选取一维进行优化并不断跌打得到最优回归系数。</p>
+<h4 id="LASSO的Python实现"><a href="#LASSO的Python实现" class="headerlink" title="LASSO的Python实现"></a>LASSO的Python实现</h4><p>根据上面代码我们实现梯度下降法并使用其获取LASSO回归系数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lasso_regression</span><span class="params">(X, y, lambd=<span class="number">0.2</span>, threshold=<span class="number">0.1</span>)</span>:</span></div><div class="line">    <span class="string">''' 通过坐标下降(coordinate descent)法获取LASSO回归系数</span></div><div class="line">    '''</div><div class="line">    <span class="comment"># 计算残差平方和</span></div><div class="line">    rss = <span class="keyword">lambda</span> X, y, w: (y - X*w).T*(y - X*w)</div><div class="line"></div><div class="line">    <span class="comment"># 初始化回归系数w.</span></div><div class="line">    m, n = X.shape</div><div class="line">    w = np.matrix(np.zeros((n, <span class="number">1</span>)))</div><div class="line">    r = rss(X, y, w)</div><div class="line"></div><div class="line">    <span class="comment"># 使用坐标下降法优化回归系数w</span></div><div class="line">    niter = itertools.count(<span class="number">1</span>)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> niter:</div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(n):</div><div class="line">            <span class="comment"># 计算常量值z_k和p_k</span></div><div class="line">            z_k = (X[:, k].T*X[:, k])[<span class="number">0</span>, <span class="number">0</span>]</div><div class="line">            p_k = <span class="number">0</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">                p_k += X[i, k]*(y[i, <span class="number">0</span>] - sum([X[i, j]*w[j, <span class="number">0</span>] <span class="keyword">for</span> j <span class="keyword">in</span> range(n) <span class="keyword">if</span> j != k]))</div><div class="line"></div><div class="line">            <span class="keyword">if</span> p_k &lt; -lambd/<span class="number">2</span>:</div><div class="line">                w_k = (p_k + lambd/<span class="number">2</span>)/z_k</div><div class="line">            <span class="keyword">elif</span> p_k &gt; lambd/<span class="number">2</span>:</div><div class="line">                w_k = (p_k - lambd/<span class="number">2</span>)/z_k</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                w_k = <span class="number">0</span></div><div class="line"></div><div class="line">            w[k, <span class="number">0</span>] = w_k</div><div class="line"></div><div class="line">        r_prime = rss(X, y, w)</div><div class="line">        delta = abs(r_prime - r)[<span class="number">0</span>, <span class="number">0</span>]</div><div class="line">        r = r_prime</div><div class="line">        print(<span class="string">'Iteration: &#123;&#125;, delta = &#123;&#125;'</span>.format(it, delta))</div><div class="line"></div><div class="line">        <span class="keyword">if</span> delta &lt; threshold:</div><div class="line">            <span class="keyword">break</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> w</div></pre></td></tr></table></figure>
+<p>我们选取$\lambda = 10$, 收敛阈值为0.1来获取回归系数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="string">'__main__'</span> == __name__:</div><div class="line">    X, y = load_data(<span class="string">'abalone.txt'</span>)</div><div class="line">    X, y = standarize(X), standarize(y)</div><div class="line">    w = lasso_regression(X, y, lambd=<span class="number">10</span>)</div><div class="line"></div><div class="line">    y_prime = X*w</div><div class="line">    <span class="comment"># 计算相关系数</span></div><div class="line">    corrcoef = get_corrcoef(np.array(y.reshape(<span class="number">1</span>, <span class="number">-1</span>)),</div><div class="line">                            np.array(y_prime.reshape(<span class="number">1</span>, <span class="number">-1</span>)))</div><div class="line">    print(<span class="string">'Correlation coefficient: &#123;&#125;'</span>.format(corrcoef))</div></pre></td></tr></table></figure>
+<p>迭代了150步收敛到0.1，计算相对比较耗时:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Iteration: <span class="number">146</span>, delta = <span class="number">0.1081124857935265</span></div><div class="line">Iteration: <span class="number">147</span>, delta = <span class="number">0.10565615985365184</span></div><div class="line">Iteration: <span class="number">148</span>, delta = <span class="number">0.10326058648411163</span></div><div class="line">Iteration: <span class="number">149</span>, delta = <span class="number">0.10092418256476776</span></div><div class="line">Iteration: <span class="number">150</span>, delta = <span class="number">0.09864540659987142</span></div><div class="line">Correlation coefficient: <span class="number">0.7255254877587117</span></div></pre></td></tr></table></figure></p>
+<h4 id="LASSO回归系数轨迹"><a href="#LASSO回归系数轨迹" class="headerlink" title="LASSO回归系数轨迹"></a>LASSO回归系数轨迹</h4><p>类似岭轨迹，我们也可以改变$\lambda$的值得到不同的回归系数，通过作图可以看到回归系数的轨迹</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ntest = <span class="number">30</span></div><div class="line"></div><div class="line"><span class="comment"># 绘制轨迹</span></div><div class="line">ws = lasso_traj(X, y, ntest)</div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line"></div><div class="line">lambdas = [i<span class="number">-10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(ntest)]</div><div class="line">ax.plot(lambdas, ws)</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p>得到的轨迹图如下:</p>
+<p><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/lasso_traj.png" alt=""></p>
+<p>通过与岭轨迹图进行对比发现，随着$\lambda$的增大，系数逐渐趋近于0，但是岭回归没有系数真正为0，而lasso中不断有系数变为0.</p>
+<h3 id="逐步向前回归"><a href="#逐步向前回归" class="headerlink" title="逐步向前回归"></a>逐步向前回归</h3><p>LASSO计算复杂度相对较高，本部分稍微介绍一下逐步向前回归，他属于一种贪心算法，给定初始系数向量，然后不断迭代遍历每个系数，增加或减小一个很小的数，看看代价函数是否变小，如果变小就保留，如果变大就舍弃，然后不断迭代直到回归系数达到稳定。</p>
+<p>下面给出实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stagewise_regression</span><span class="params">(X, y, eps=<span class="number">0.01</span>, niter=<span class="number">100</span>)</span>:</span></div><div class="line">    <span class="string">''' 通过向前逐步回归获取回归系数</span></div><div class="line">    '''</div><div class="line">    m, n = X.shape</div><div class="line">    w = np.matrix(np.zeros((n, <span class="number">1</span>)))</div><div class="line">    min_error = float(<span class="string">'inf'</span>)</div><div class="line">    all_ws = np.matrix(np.zeros((niter, n)))</div><div class="line"></div><div class="line">    <span class="comment"># 计算残差平方和</span></div><div class="line">    rss = <span class="keyword">lambda</span> X, y, w: (y - X*w).T*(y - X*w)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(niter):</div><div class="line">        print(<span class="string">'&#123;&#125;: w = &#123;&#125;'</span>.format(i, w.T[<span class="number">0</span>, :]))</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</div><div class="line">            <span class="keyword">for</span> sign <span class="keyword">in</span> [<span class="number">-1</span>, <span class="number">1</span>]:</div><div class="line">                w_test = w.copy()</div><div class="line">                w_test[j, <span class="number">0</span>] += eps*sign</div><div class="line">                test_error = rss(X, y, w_test)</div><div class="line">                <span class="keyword">if</span> test_error &lt; min_error:</div><div class="line">                    min_error = test_error</div><div class="line">                    w = w_test</div><div class="line">        all_ws[i, :] = w.T</div><div class="line"></div><div class="line">    <span class="keyword">return</span> all_ws</div></pre></td></tr></table></figure></p>
+<p>我们去变化量为0.005，迭代步数为1000次，得到回归系数随着迭代次数的变化曲线:</p>
+<p><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/stage_traj.png" alt=""></p>
+<p>逐步回归算法的主要有点在于他可以帮助人们理解现有的模型并作出改进。当构建了一个模型后，可以运行逐步回归算法找出重要的特征，即使停止那些不重要特征的收集。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/assets/images/blog_img/2017-10-27-机器学习实践-岭回归和LASSO回归/bias_var.png" alt=""></p>
+<p>本文介绍了两种回归中的缩减方法，岭回归和LASSO。两种回归均是在标准线性回归的基础上加上正则项来减小模型的方差。这里其实便涉及到了权衡偏差(Bias)和方差(Variance)的问题。方差针对的是模型之间的差异，即不同的训练数据得到模型的区别越大说明模型的方差越大。而偏差指的是模型预测值与样本数据之间的差异。所以为了在过拟合和欠拟合之前进行权衡，我们需要确定适当的模型复杂度来使得总误差最小。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>《Machine Learning in Action》</li>
+<li><a href="https://www.zhihu.com/question/27068705" target="_blank" rel="external">机器学习中的Bias(偏差)，Error(误差)，和Variance(方差)有什么区别和联系？</a></li>
+<li><a href="http://blog.csdn.net/u012151283/article/details/77487729" target="_blank" rel="external">Lasso回归的坐标下降法推导</a></li>
+<li><a href="https://www.zhihu.com/question/37069477" target="_blank" rel="external">数据什么时候需要做中心化和标准化处理？</a></li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-10-27 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">12</span></a></li> <li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">2</span></a></li> <li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li> <li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li> <li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#前言"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#正文"><span class="toc-article-text">正文</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#中心化和标准化"><span class="toc-article-text">中心化和标准化</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#岭回归-Ridge-Regression"><span class="toc-article-text">岭回归(Ridge Regression)</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#岭回归的几何意义"><span class="toc-article-text">岭回归的几何意义</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#岭回归的一些性质"><span class="toc-article-text">岭回归的一些性质</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#岭回归的Python实现"><span class="toc-article-text">岭回归的Python实现</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#岭迹图"><span class="toc-article-text">岭迹图</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#绘制岭迹图"><span class="toc-article-text">绘制岭迹图</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#LASSO"><span class="toc-article-text">LASSO</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#LASSO的几何解释"><span class="toc-article-text">LASSO的几何解释</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#LASSO回归系数的计算"><span class="toc-article-text">LASSO回归系数的计算</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#LASSO的Python实现"><span class="toc-article-text">LASSO的Python实现</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#LASSO回归系数轨迹"><span class="toc-article-text">LASSO回归系数轨迹</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#逐步向前回归"><span class="toc-article-text">逐步向前回归</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#参考"><span class="toc-article-text">参考</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2017 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>
