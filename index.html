@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
-              
-              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-11-03 </div>
+			<div class="article-title"><a href="/2017/11/03/机器学习算法实践-树回归/" >机器学习算法实践-树回归</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/11/03/机器学习算法实践-树回归/"><img src="/assets/images/blog_img/2017-11-03-机器学习算法实践-树回归/feature.png" alt="机器学习算法实践-树回归"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近由于开始要把精力集中在课题的应用上面了，这篇总结之后算法原理的学习先告一段落。本文主要介绍决策树用于回归问题的相关算法实现，其中包括回归树(regression tree)和模型树(model tree)的实现，并介绍了预剪枝(preprune)和后剪枝(postprune)的防止树过拟合的技术以及实现。最后对回归树和标准线性回归进行了对比。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>在之前的文章中我总结了通过使用构建决策树来进行类型预测。直观来看树结构最容易对分类问题进行处理，通过递归我们在数据中选取最佳分割特征对训练数据进行分割并进行树分裂最终到达触底条件获得训练出来决策树，可以通过可视化的方式直观的查看训练模型并对数据进行分类。</p>
+	
+	</div>
+  <a type="button" href="/2017/11/03/机器学习算法实践-树回归/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -357,44 +384,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-09-19 </div>
-			<div class="article-title"><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" >遗传算法中几种不同选择算子</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/"><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/feature.png" alt="遗传算法中几种不同选择算子"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文对遗传算法中的几种选择策略进行了总结, 其中包括:</p>
-<ol>
-<li>Proportionate Roulette Wheel Selection</li>
-<li>Linear Ranking Selection</li>
-<li>Exponential Ranking Selection</li>
-<li>Tournament Selection</li>
-</ol>
-<p>对于每种选择策略我都使用Python进行了相应的实现并以内置插件的形式整合进了本人所写的遗传算法框架GAFT中。对需要使用遗传算法优化问题以及学习遗传算法的童鞋可以作为参考.</p>
-<p>项目链接:</p>
-<ul>
-<li>GitHub: <a href="https://github.com/PytLab/gaft">https://github.com/PytLab/gaft</a></li>
-<li>PyPI: <a href="https://pypi.python.org/pypi/gaft">https://pypi.python.org/pypi/gaft</a></li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2017/09/19/遗传算法中几种不同选择算子的比较/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -444,6 +433,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
@@ -459,10 +452,6 @@
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
-      <li>
-        <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -475,7 +464,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -499,48 +488,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
-		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">102</span></a></li>
+		   <li><a href="/tags">...<span class="badge">103</span></a></li>
 		 
 		</ul>
 	</div>

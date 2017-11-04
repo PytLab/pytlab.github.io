@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
-              
-              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-21 </div>
+			<div class="article-title"><a href="/2016/03/21/KMCLib中的LatticeMap/" title="KMCLib中的LatticeMap类&lt;br&gt;主要用于描述整个3维网格，其中包括网格格点的各种操作，如移动，寻找NN等等">KMCLib中的LatticeMap</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/21/KMCLib中的LatticeMap/"><img src="/assets/images/features/kmclib.png" alt="KMCLib中的LatticeMap"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这里的成员数据全部<code>protected</code></p>
+<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> n_basis_;                   <span class="comment">// 基点个数</span></div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; repetitions_;  <span class="comment">// site各个方向上重复次数</span></div><div class="line"></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; periodic_;    <span class="comment">// 周期性边界条件</span></div></pre></td></tr></table></figure>
+<p>这个类的成员数据相对比较少，就三个，就可以描述整个三维网格的所有性质了。<br>其中后两个好理解，但是第一个我看了许久代码都不知道是个啥东西，还好曹老师给的指点，终于弄明白了所谓基点数目和基点到底是什么东西。<br>
+	
+	</div>
+  <a type="button" href="/2016/03/21/KMCLib中的LatticeMap/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -365,30 +393,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/C-中输出的格式控制/" title="由于C++的格式控制对我来说完全是个新的东西，我在这里总结下">C++中输出的格式控制</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在上一篇总结里也提到过，<code>ostream</code>是从<code>ios</code>类派生出来的，而<code>ios</code>类是从<code>ios_base</code>类派生出来的。<br>对于输出的格式控制，<code>ios_base</code>类起到了至关重要的作用，因为他提供了控制格式的成员方法和成员数据。</p>
-<h3 id="字段宽度和精度"><a href="#字段宽度和精度" class="headerlink" title="字段宽度和精度"></a>字段宽度和精度</h3><p>先介绍这两个，因为控制这两个格式的成员数据是单独存储在ios_base类中的。</p>
-<h4 id="控制字段宽度"><a href="#控制字段宽度" class="headerlink" title="控制字段宽度"></a>控制字段宽度</h4><p>函数原型：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">width</span><span class="params">()</span></span>;  <span class="comment">// 返回字段宽度的当前设置</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">width</span><span class="params">(<span class="keyword">int</span> i)</span></span>;  <span class="comment">// 将字段宽度设置为i个空格，并返回以前的字符宽度值</span></div></pre></td></tr></table></figure></p>
-<p><strong>width()方法只影响接下来显示的一个项目</strong><br>
-	
-	</div>
-  <a type="button" href="/2016/03/16/C-中输出的格式控制/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -438,6 +442,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
@@ -453,10 +461,6 @@
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
-      <li>
-        <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -469,7 +473,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -493,48 +497,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
 			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">102</span></a></li>
+		   <li><a href="/tags">...<span class="badge">103</span></a></li>
 		 
 		</ul>
 	</div>

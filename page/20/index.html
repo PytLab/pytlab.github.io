@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
-              
-              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-22 </div>
+			<div class="article-title"><a href="/2016/02/22/Kynetix可以直接使用相对能量进行微观动力学求解/" title="Kynetix现在终于可以直接拿相对能量做计算了，来者起码不会很快就拒啦~">Kynetix可以直接使用相对能量进行微观动力学求解</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>这算是Kynetix能量读取部分的第三次比较大的更新了，之前有提到过，模型已经兼容相对能量的输入文件（<a href="/2015/06/14/动力学模型已兼容相对能量的输入文件/"><span class="fa fa-file"></span> 详情</a>）。<br>虽然读取的是相对能量，但是程序内部我还是使用矩阵进行了线性方程组的求解来将求出每个物种相对于参考态的能量来作为generalized formation energy。<br>可是这就遇到了一个问题，<br><div class="alert alert-danger"><i class="fa fa-bug"></i>  有很多情况，程序根据用户自定义的参考态物种获取的参数矩阵很多情况是奇异矩阵，一旦矩阵奇异，就无法求出解，也就无法将模型的求解进行下去。</div><br>这个问题一直困扰我很久了，但是我一直没有花时间去解决。<br>现在想想其实我通过矩阵获取generalized formation energy的目的是什么？<br>其实作用也不过是在进行初始猜测的时候按照formation energy来进行Boltzmann分布而已。为了这个而无法将整个求解过程继续下去真的是得不偿失啊。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/22/Kynetix可以直接使用相对能量进行微观动力学求解/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,28 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-18 </div>
-			<div class="article-title"><a href="/2016/02/18/动力学模拟程序更名为Kynetix/" >动力学模拟程序更名为Kynetix</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>决定把催化动力学模拟程序名称更改为<strong>Kynetix</strong><br>项目GitHub地址: <a href="https://github.com/PytLab/Kynetix" target="_blank" rel="external">https://github.com/PytLab/Kynetix</a><br><img src="/assets/images/blog_img/2016-02-18-动力学模拟程序更名为Kynetix/kynetix.png" alt=""><br><img src="/assets/images/blog_img/2016-02-18-动力学模拟程序更名为Kynetix/kynetix_lang.png" alt=""></p>
-
-	
-	</div>
-  <a type="button" href="/2016/02/18/动力学模拟程序更名为Kynetix/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -405,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
@@ -420,10 +423,6 @@
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
-      <li>
-        <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -436,7 +435,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -460,48 +459,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
 			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">102</span></a></li>
+		   <li><a href="/tags">...<span class="badge">103</span></a></li>
 		 
 		</ul>
 	</div>

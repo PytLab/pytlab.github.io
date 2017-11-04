@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
-              
-              <li><a href="/2017/09/10/递归式求解-主方法/" style="font-size: 15px; font-family: 微软雅黑">递归式求解-主方法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-16 </div>
+			<div class="article-title"><a href="/2016/07/16/记一次自己坑了自己的Python编译过程/" >记一次自己坑了自己的Python编译过程</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/16/记一次自己坑了自己的Python编译过程/"><img src="/assets/images/features/rihe.png" alt="记一次自己坑了自己的Python编译过程"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这两天把VASPy代码兼容了Python3，于是打算在IBM上用python3跑，结果发现IBM上没有python3，于是我就打算编译一下，本以为就几分钟的事，结果发生了奇怪的错误。。。最终找到原因，竟是自己坑了自己。</p>
+<p>就第一步编译<code>python.c</code>就直接报错了，我也是崩溃的</p>
+<p>　　　パ..パ<br>　　（　°Д°）・・・<br>＿＿（＿っ /￣￣￣￣￣/＿<br>　　　　＼/＿＿＿＿＿/ </p>
+	
+	</div>
+  <a type="button" href="/2016/07/16/记一次自己坑了自己的Python编译过程/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -366,32 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-07 </div>
-			<div class="article-title"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/" title="本篇通过一个小例子来总结下阻塞通信中的标准通信模式">MPI学习--阻塞通信之标准通信模式</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之标准通信模式"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="阻塞通信"><a href="#阻塞通信" class="headerlink" title="阻塞通信"></a>阻塞通信</h3><p>阻塞通信是指消息发送发的<code>send</code>调用需要接收方的<code>recv</code>调用的配合才可完成。即在发送的消息信封和数据被安全的“保存”起来之前，<code>send</code>函数的调用不会返回。<br>所谓的安全保存，就是指<code>send</code>调用可再次被执行而不会对上一次发送的数据带来任何破坏。<br>不同模式下所要求的“配合”程度也不同，尤其有的MPI环境下还要结合运行时环境本身提供的缓存机制综合考虑实际效果。<br>
-	
-	</div>
-  <a type="button" href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -441,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
+      </li>
+    
+      <li>
         <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
@@ -456,10 +462,6 @@
         <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
       </li>
     
-      <li>
-        <a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" ><i class="fa fa-file-o"></i>遗传算法中适值函数的标定与大变异算法</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -472,7 +474,7 @@
 		
 			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
 		
-			<li><a href="/categories/学习小结/">学习小结<span class="badge">92</span></a></li>
+			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
 			<li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
 		
@@ -496,48 +498,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">102</span></a></li>
+		   <li><a href="/tags">...<span class="badge">103</span></a></li>
 		 
 		</ul>
 	</div>
