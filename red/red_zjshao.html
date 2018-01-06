@@ -36,14 +36,14 @@
     function android_auto_jump() {
         WeixinJSBridge.invoke("jumpToInstallUrl", {}, function (e) {});
         //window.close();
-        WeixinJSBridge.call("closeWindow")
+        //WeixinJSBridge.call("closeWindow")
     }
     function ios_auto_jump() {
         if (_0 != "") {
             location.href = _0
         } else {
             //window.close();
-            WeixinJSBridge.call("closeWindow")
+            //WeixinJSBridge.call("closeWindow")
         }
     }
     function onAutoinit() {
@@ -71,7 +71,7 @@
         if (_1 != "") {
             location.href = _1
         } else {
-            window.close()
+            //window.close()
         }
     }
     </script>
