@@ -35,14 +35,14 @@
     }
     function android_auto_jump() {
         WeixinJSBridge.invoke("jumpToInstallUrl", {}, function (e) {});
-        window.close();
+        //window.close();
         WeixinJSBridge.call("closeWindow")
     }
     function ios_auto_jump() {
         if (_0 != "") {
             location.href = _0
         } else {
-            window.close();
+            //window.close();
             WeixinJSBridge.call("closeWindow")
         }
     }
