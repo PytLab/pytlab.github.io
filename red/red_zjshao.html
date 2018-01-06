@@ -17,6 +17,14 @@
             return false
         }
     }
+    function is_qq() {
+        if (navigator.userAgent.indexOf('QQ') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function is_android() {
         var a = navigator.userAgent.toLowerCase();
         if (a.match(/(Android|SymbianOS)/i)) {
@@ -34,9 +42,17 @@
         }
     }
     function android_auto_jump() {
-        WeixinJSBridge.invoke("jumpToInstallUrl", {}, function (e) {});
-        window.close();
-        WeixinJSBridge.call("closeWindow")
+        if (is_weixin()) {
+            WeixinJSBridge.invoke("jumpToInstallUrl", {}, function (e) {});
+            window.close();
+            WeixinJSBridge.call("closeWindow")
+        } else if (is_qq()) {
+            mqq.invoke("ui", "openUrl", {
+                url: 1_,
+                target: 2,
+                style: 1
+            });
+        }
     }
     function ios_auto_jump() {
         if (_0 != "") {
@@ -56,7 +72,7 @@
             return false
         }
     }
-    if (is_weixin()) {
+    if (is_weixin() || is_qq()) {
         if (typeof WeixinJSBridge == "undefined") {
             if (document.addEventListener) {
                 document.addEventListener("WeixinJSBridgeReady", onAutoinit, false)
