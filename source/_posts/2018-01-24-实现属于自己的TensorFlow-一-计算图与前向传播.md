@@ -16,8 +16,6 @@ feature: /assets/images/blog_img/2018-01-24-实现属于自己的TensorFlow-一-
 toc: true
 ---
 
-# 前言
-
 前段时间因为课题需要使用了一段时间TensorFlow，感觉这种框架很有意思，除了可以搭建复杂的神经网络，也可以优化其他自己需要的计算模型，所以一直想自己学习一下写一个类似的图计算框架。前几天组会开完决定着手实现一个模仿TensorFlow接口的简陋版本图计算框架以学习计算图程序的编写以及前向传播和反向传播的实现。目前实现了前向传播和反向传播以及梯度下降优化器，并写了个优化线性模型的例子。
 
 代码放在了GitHub上，取名*SimpleFlow*, 仓库链接: https://github.com/PytLab/simpleflow
@@ -413,4 +411,11 @@ array([[  54.,   54.],
 本文使用Python实现了计算图以及计算图的前向传播，并模仿TensorFlow的接口创建了`Session`以及`Graph`对象。下篇中将继续总结计算图节点计算梯度的方法以及反向传播和梯度下降优化器的实现。
 
 最后再附上simpleflow项目的链接, 欢迎相互学习和交流: https://github.com/PytLab/simpleflow
+
+# 参考
+
+- [Deep Learning From Scratch](http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/)
+- https://en.wikipedia.org/wiki/Tree_traversal#Post-order
+- https://zhuanlan.zhihu.com/p/25496760
+- http://blog.csdn.net/magic_anthony/article/details/77531552#0-tsina-1-98885-397232819ff9a47a7b7e80a40613cfe1
 
