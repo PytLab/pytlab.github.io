@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[实现属于自己的TensorFlow(一) - 计算图与前向传播]]></title>
       <url>http://pytlab.github.io/2018/01/24/%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84TensorFlow-%E4%B8%80-%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD/</url>
-      <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间因为课题需要使用了一段时间TensorFlow，感觉这种框架很有意思，除了可以搭建复杂的神经网络，也可以优化其他自己需要的计算模型，所以一直想自己学习一下写一个类似的图计算框架。前几天组会开完决定着手实现一个模仿TensorFlow接口的简陋版本图计算框架以学习计算图程序的编写以及前向传播和反向传播的实现。目前实现了前向传播和反向传播以及梯度下降优化器，并写了个优化线性模型的例子。</p>
+      <content type="html"><![CDATA[<p>前段时间因为课题需要使用了一段时间TensorFlow，感觉这种框架很有意思，除了可以搭建复杂的神经网络，也可以优化其他自己需要的计算模型，所以一直想自己学习一下写一个类似的图计算框架。前几天组会开完决定着手实现一个模仿TensorFlow接口的简陋版本图计算框架以学习计算图程序的编写以及前向传播和反向传播的实现。目前实现了前向传播和反向传播以及梯度下降优化器，并写了个优化线性模型的例子。</p>
 <p>代码放在了GitHub上，取名<em>SimpleFlow</em>, 仓库链接: <a href="https://github.com/PytLab/simpleflow" target="_blank" rel="noopener">https://github.com/PytLab/simpleflow</a></p>
 <a id="more"></a>
 <p>虽然前向传播反向传播这些原理了解起来并不是很复杂，但是真正着手写起来才发现,里面还是有很多细节需要学习和处理才能对实际的模型进行优化(例如Loss函数对每个计算节点矩阵求导的处理)。其中SimpleFlow的代码并没有考虑太多的东西比如<code>dtype</code>和张量<code>size</code>的检查等，因为只是为了实现主要图计算功能并没有考虑任何的优化, 内部张量运算使用的Numpy的接口(毕竟是学习和练手的目的嘛)。好久时间没更新博客了，在接下来的几篇里面我将把实现的过程的细节总结一下，希望可以给后面学习的童鞋做个参考。</p>
@@ -67,6 +67,12 @@
 <p>输出值:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">array([[  <span class="number">54.</span>,   <span class="number">54.</span>],</div><div class="line">       [ <span class="number">106.</span>,  <span class="number">104.</span>]])</div></pre></td></tr></table></figure></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文使用Python实现了计算图以及计算图的前向传播，并模仿TensorFlow的接口创建了<code>Session</code>以及<code>Graph</code>对象。下篇中将继续总结计算图节点计算梯度的方法以及反向传播和梯度下降优化器的实现。</p>
 <p>最后再附上simpleflow项目的链接, 欢迎相互学习和交流: <a href="https://github.com/PytLab/simpleflow" target="_blank" rel="noopener">https://github.com/PytLab/simpleflow</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/" target="_blank" rel="noopener">Deep Learning From Scratch</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tree_traversal#Post-order" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Tree_traversal#Post-order</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25496760" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25496760</a></li>
+<li><a href="http://blog.csdn.net/magic_anthony/article/details/77531552#0-tsina-1-98885-397232819ff9a47a7b7e80a40613cfe1" target="_blank" rel="noopener">http://blog.csdn.net/magic_anthony/article/details/77531552#0-tsina-1-98885-397232819ff9a47a7b7e80a40613cfe1</a></li>
+</ul>
 ]]></content>
       
         <categories>
