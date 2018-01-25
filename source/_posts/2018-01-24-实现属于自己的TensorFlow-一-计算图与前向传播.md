@@ -417,5 +417,5 @@ array([[  54.,   54.],
 - [Deep Learning From Scratch](http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/)
 - https://en.wikipedia.org/wiki/Tree_traversal#Post-order
 - https://zhuanlan.zhihu.com/p/25496760
-- http://blog.csdn.net/magic_anthony/article/details/77531552#0-tsina-1-98885-397232819ff9a47a7b7e80a40613cfe1
+- http://blog.csdn.net/magic_anthony/article/details/77531552
 
