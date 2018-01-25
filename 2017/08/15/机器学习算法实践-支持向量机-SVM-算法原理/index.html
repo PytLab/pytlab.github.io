@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -277,12 +277,12 @@
 <li>$\mu_{1}g(x) + \mu_{2}g(x) = 0$</li>
 </ol>
 <p>不等式约束边界与目标函数的交接点不一定是切点了，如下图，如果两个不等式同时活跃(起作用)，则约束条件与等高线相遇的点是在顶点上。</p>
-<p><img src="/assets/images/blog_img/2017-08-15-机器学习算法实践-支持向量机-SVM-算法原理/kkt.png" alt=""><br>图片来源:<a href="https://www.zhihu.com/question/43830699/answer/129887370" target="_blank" rel="external">https://www.zhihu.com/question/43830699/answer/129887370</a> ，侵删</p>
+<p><img src="/assets/images/blog_img/2017-08-15-机器学习算法实践-支持向量机-SVM-算法原理/kkt.png" alt=""><br>图片来源:<a href="https://www.zhihu.com/question/43830699/answer/129887370" target="_blank" rel="noopener">https://www.zhihu.com/question/43830699/answer/129887370</a> ，侵删</p>
 <p>等式约束函数和目标函数在切点的梯度方向同向，而不等式约束则有目标函数的梯度是约束函数在最优点的负梯度的<strong>线性组合</strong>(上图的红线和绿线), 于是我们便有约束和目标函数梯度的关系:<br>$$<br>\nabla f(x^{*}) = -\mu_{1} g_{1}(x^{*}) -\mu_{2} g_{2}(x^{*})<br>$$<br>其中$\mu_{1} \ge 0$, $\mu_{2} \ge 0$。</p>
 <p>当然，最优点一定是在约束条件那条线上的，也就是满足<br>$$<br>g_{1}(x^{*}) = 0, g_{2}(x^{*}) = 0<br>$$</p>
 <p>但是嘞，有的时候在最优点，不是所有的约束条件都起作用的。</p>
 <p>对于有约束优化:<br>$$<br>\min \limits_{x} f(x)<br>$$<br>subject to $g_{1}(x) \le 0$, $g_{2}(x) \le 0$, $g_{3}(x) \le 0$</p>
-<p><img src="/assets/images/blog_img/2017-08-15-机器学习算法实践-支持向量机-SVM-算法原理/kkt2.png" alt=""><br>图片来源:<a href="https://www.zhihu.com/question/43830699/answer/129887370" target="_blank" rel="external">https://www.zhihu.com/question/43830699/answer/129887370</a> ，侵删</p>
+<p><img src="/assets/images/blog_img/2017-08-15-机器学习算法实践-支持向量机-SVM-算法原理/kkt2.png" alt=""><br>图片来源:<a href="https://www.zhihu.com/question/43830699/answer/129887370" target="_blank" rel="noopener">https://www.zhihu.com/question/43830699/answer/129887370</a> ，侵删</p>
 <p>如上图所示，$g_{3}(x) \le 0$约束条件并没有起作用，因此对于有三个约束条件的问题我们的另一个必要条件还可以写成:<br>$$<br>g_{1}(x^{*}) = 0, g_{2}(x^{*}) = 0<br>$$</p>
 <p>为了统一表示，我们可以写成:<br>$$<br>\mu_{1}g_{1}(x^{*}) = 0; \mu_{2}g_{2}(x^{*}) = 0; \mu_{3}g_{3}(x^{*}) = 0<br>$$</p>
 <p>由于$\mu_{i} \ge 0$，</p>
@@ -325,10 +325,10 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了SVM中的算法原理，其中包含了SVM中涉及到的拉格朗日乘子法和KKT条件的推导。并最终获取了目标函数的对偶形式，后面我将对对偶问题的求解算法进行总结。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>《Machine Learning in Action》</li>
-<li><a href="https://en.wikipedia.org/wiki/Lagrange_multiplier" target="_blank" rel="external">https://en.wikipedia.org/wiki/Lagrange_multiplier</a></li>
-<li><a href="https://www.zhihu.com/question/43830699" target="_blank" rel="external">是否所有的优化问题都可以转化成对偶问题？</a></li>
-<li><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">支持向量机(SVM)是什么意思？</a></li>
-<li><a href="https://www.zhihu.com/question/58584814" target="_blank" rel="external">如何通俗地讲解对偶问题？尤其是拉格朗日对偶lagrangian duality？</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Lagrange_multiplier" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Lagrange_multiplier</a></li>
+<li><a href="https://www.zhihu.com/question/43830699" target="_blank" rel="noopener">是否所有的优化问题都可以转化成对偶问题？</a></li>
+<li><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="noopener">支持向量机(SVM)是什么意思？</a></li>
+<li><a href="https://www.zhihu.com/question/58584814" target="_blank" rel="noopener">如何通俗地讲解对偶问题？尤其是拉格朗日对偶lagrangian duality？</a></li>
 </ul>
 	  
 	</div>
@@ -425,7 +425,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li> <li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li> <li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li> <li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li> <li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li> <li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">14</span></a></li> <li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li> <li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li> <li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li> <li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li> <li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
 
     </ul>
 	</div>

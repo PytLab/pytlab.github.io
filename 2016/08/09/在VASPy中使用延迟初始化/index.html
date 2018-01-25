@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -223,7 +223,7 @@
 
 	  <p>由于之前版本的VASPy是基于课题组修改过的VASP版本所写的，其中OUTCAR中的一些受力信息是标准VASP代码中不会输出的，但是当时为了省事我就直接拿课题组VASP输出的OUTCAR中的信息写了VASPy中的<code>OutCar</code>类。。。</p>
 <p>为了能让VASPy具有更好的通用性，今天特地重构了<code>OutCar</code>这个类使其能够操作标准VASP的OUTCAR文件。</p>
-<p>具体重构后的OutCar类代码的链接：<a href="https://github.com/PytLab/VASPy/blob/master/vaspy/iter.py" target="_blank" rel="external"><span class="fa fa-github"></span> VASPy/iter.py at master · PytLab/VASPy</a></p>
+<p>具体重构后的OutCar类代码的链接：<a href="https://github.com/PytLab/VASPy/blob/master/vaspy/iter.py" target="_blank" rel="noopener"><span class="fa fa-github"></span> VASPy/iter.py at master · PytLab/VASPy</a></p>
 <p>由于OUTCAR是VASP所有输出的文件，自然会比较大，因此要操作这个文件就要特别的处理。</p>
 <a id="more"></a>
 <h3 id="使用生成器获取迭代数据"><a href="#使用生成器获取迭代数据" class="headerlink" title="使用生成器获取迭代数据"></a>使用生成器获取迭代数据</h3><p>直接读取OUTCAR整个文件必然会占用很多内存，即使不读取整个文件，要把每步迭代的信息都保存的数组中也同样会占用很多的内存。</p>
@@ -324,7 +324,7 @@
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+    <li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
   </li>
 
     </ul>

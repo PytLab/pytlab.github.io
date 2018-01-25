@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -247,9 +247,9 @@
 <h4 id="描述符触发"><a href="#描述符触发" class="headerlink" title="描述符触发"></a>描述符触发</h4><p>当我们进行属性访问时便会触发描述符（如果这个属性具有描述符定义的时候），当我们对对象<code>obj</code>的属性<code>d</code>进行访问时候，<code>obj.d</code>，描述符的触发过程大致：先在对象obj的字典中寻找d,如果<code>d</code>是个含有<code>__get__()</code>的对象，则直接调用<code>d.__get__(obj)</code>.</p>
 <p>官方文档中对具体的触发细节进行了更详细的描述，具体的触发又分为我们访问的是类属性还是实例属性：</p>
 <ol>
-<li><p>如果是对实例属性进行访问，则属性访问转译的关键就在于基类<code>object</code>的<code>__getattribute__</code>方法，我们知道这个内置方法是在进行属性访问的时候无条件调用的，因此这个方法中将<code>obj.d</code>转译成了<code>type(obj).__dict__[&#39;d&#39;].__get__(obj, type(obj))</code><br> 其实现的C代码参见:<a href="https://docs.python.org/3/c-api/object.html#c.PyObject_GenericGetAttr" target="_blank" rel="external">https://docs.python.org/3/c-api/object.html#c.PyObject_GenericGetAttr</a></p>
+<li><p>如果是对实例属性进行访问，则属性访问转译的关键就在于基类<code>object</code>的<code>__getattribute__</code>方法，我们知道这个内置方法是在进行属性访问的时候无条件调用的，因此这个方法中将<code>obj.d</code>转译成了<code>type(obj).__dict__[&#39;d&#39;].__get__(obj, type(obj))</code><br> 其实现的C代码参见:<a href="https://docs.python.org/3/c-api/object.html#c.PyObject_GenericGetAttr" target="_blank" rel="noopener">https://docs.python.org/3/c-api/object.html#c.PyObject_GenericGetAttr</a></p>
 </li>
-<li><p>如果是对类对象的属性进行访问，则属性的访问转译关键在于元类<code>type</code>的<code>__getattribute__</code>方法，它将<code>cls.d</code>转译成<code>cls.__dict__[&#39;d&#39;].__get__(None, cls)</code>，这里<code>__get__()</code>的<code>instance</code>没有也就是相应的<code>None</code>了。<br> 其实现的C代码参见:<a href="https://hg.python.org/cpython/file/3.5/Objects/typeobject.c#l2936" target="_blank" rel="external">https://hg.python.org/cpython/file/3.5/Objects/typeobject.c#l2936</a></p>
+<li><p>如果是对类对象的属性进行访问，则属性的访问转译关键在于元类<code>type</code>的<code>__getattribute__</code>方法，它将<code>cls.d</code>转译成<code>cls.__dict__[&#39;d&#39;].__get__(None, cls)</code>，这里<code>__get__()</code>的<code>instance</code>没有也就是相应的<code>None</code>了。<br> 其实现的C代码参见:<a href="https://hg.python.org/cpython/file/3.5/Objects/typeobject.c#l2936" target="_blank" rel="noopener">https://hg.python.org/cpython/file/3.5/Objects/typeobject.c#l2936</a></p>
 </li>
 </ol>
 <h4 id="描述符优先级"><a href="#描述符优先级" class="headerlink" title="描述符优先级"></a>描述符优先级</h4><p>首先，<strong>描述符和描述符之间也是有区别的</strong>:</p>
@@ -279,9 +279,9 @@
 <p>同时也可以将相应的对象和值以字典的键值对存到描述符的字典中，但是这样会造成引用计数无法为0导致无法进行垃圾回收从而导致内存泄漏的风险，因此这个方法就不详细描述了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了Python中的描述符相关的概念和使用，描述符可以帮助我们实现强大而灵活的属性管理，通过结合使用描述符可以实现优雅的编程，但是同时也应该保持谨慎的态度，避免由于覆盖普通对象行为而产生不必要的代码复杂性。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://docs.python.org/3/howto/descriptor.html" target="_blank" rel="external">https://docs.python.org/3/howto/descriptor.html</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-pythondescriptors/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/opensource/os-pythondescriptors/</a></li>
-<li><a href="https://book.douban.com/subject/26312313/" target="_blank" rel="external">Effective Python</a></li>
+<li><a href="https://docs.python.org/3/howto/descriptor.html" target="_blank" rel="noopener">https://docs.python.org/3/howto/descriptor.html</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-pythondescriptors/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-pythondescriptors/</a></li>
+<li><a href="https://book.douban.com/subject/26312313/" target="_blank" rel="noopener">Effective Python</a></li>
 </ul>
 	  
 	</div>

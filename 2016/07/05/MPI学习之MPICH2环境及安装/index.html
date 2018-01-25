@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -222,7 +222,7 @@
 	  		
 
 	  <p>这篇主要记录使用自己用户在实验室的IBM刀片集群上搭建MPI并行环境以及简单的测试，具体什么是MPI这里就不多讲了，主要记录自己的MPI环境的搭建过程。</p>
-<h3 id="下载MPICH"><a href="#下载MPICH" class="headerlink" title="下载MPICH"></a>下载MPICH</h3><p>现在<a href="http://www.mpich.org/downloads/" target="_blank" rel="external">MPICH官网</a>上已经有MPICH3.2，但是安装了以后发现3.2的进程管理器并没有mpd而是<a href="https://wiki.mpich.org/mpich/index.php/Using_the_Hydra_Process_Manager" target="_blank" rel="external">Hydra Process Manager</a>为了用上最新的我也就直接上最新版了肯定不会有错。</p>
+<h3 id="下载MPICH"><a href="#下载MPICH" class="headerlink" title="下载MPICH"></a>下载MPICH</h3><p>现在<a href="http://www.mpich.org/downloads/" target="_blank" rel="noopener">MPICH官网</a>上已经有MPICH3.2，但是安装了以后发现3.2的进程管理器并没有mpd而是<a href="https://wiki.mpich.org/mpich/index.php/Using_the_Hydra_Process_Manager" target="_blank" rel="noopener">Hydra Process Manager</a>为了用上最新的我也就直接上最新版了肯定不会有错。</p>
 <p>下下来的压缩包为: <code>mpich-3.2.tar.gz</code><br><a id="more"></a></p>
 <h3 id="编译和安装"><a href="#编译和安装" class="headerlink" title="编译和安装"></a>编译和安装</h3><h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar zxvf mpich-3.2.tar.gz</div><div class="line">cd mpich-3.2</div></pre></td></tr></table></figure>
 <h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>MPICH提供了很多的配置选项，可以通过如下命令查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure -h</div></pre></td></tr></table></figure></p>

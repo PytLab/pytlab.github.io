@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -224,7 +224,7 @@
 <li>使用manager模块实现了简单的多机的分布式计算</li>
 </ul>
 <a id="more"></a>
-<p>本文并不是对Python的multiprocessing模块的接口进行翻译介绍，需要熟悉multiprocessing的童鞋可以参考官方文档<a href="https://docs.python.org/2/library/multiprocessing.html。" target="_blank" rel="external">https://docs.python.org/2/library/multiprocessing.html。</a></p>
+<p>本文并不是对Python的multiprocessing模块的接口进行翻译介绍，需要熟悉multiprocessing的童鞋可以参考官方文档<a href="https://docs.python.org/2/library/multiprocessing.html。" target="_blank" rel="noopener">https://docs.python.org/2/library/multiprocessing.html。</a></p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>最近想用自己的微观动力学程序进行一系列的求解并将结果绘制成二维Map图进行可视化，这样就需要对二维图上的多个点进行计算并将结果收集起来并进行绘制，由于每个点都需要进行一次ODE积分以及牛顿法求解方程组，因此要串行地绘制整张图可能会遇到极低的效率问题尤其是对参数进行测试的时候，每画一张图都需要等很久的时间。其中绘制的二维图中每个点都是独立计算的，于是很自然而然的想到了进行并行化处理。</p>
 <h3 id="串行的原始版本"><a href="#串行的原始版本" class="headerlink" title="串行的原始版本"></a>串行的原始版本</h3><p>由于脚本比较长，而且实现均为自己的程序，脚本的大致结构如下, 本质是一个二重循环，循环的变量分别为反应物气体（O2 和 CO）的分压的值:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="comment"># 省略若干...</span></div><div class="line"></div><div class="line">pCOs = np.linspace(<span class="number">1e-5</span>, <span class="number">0.5</span>, <span class="number">10</span>)</div><div class="line">pO2s = np.linspace(<span class="number">1e-5</span>, <span class="number">0.5</span>, <span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="string">"__main__"</span> == __name__:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        start = time.time()</div><div class="line">        <span class="keyword">for</span> i, pO2 <span class="keyword">in</span> enumerate(pO2s):</div><div class="line">            <span class="comment"># ...</span></div><div class="line">            <span class="keyword">for</span> j, pCO <span class="keyword">in</span> enumerate(pCOs):</div><div class="line">                <span class="comment"># 针对当前的分压值 pCO, pO2进行动力学求解</span></div><div class="line">                <span class="comment"># 具体代码略...</span></div><div class="line">        end = time.time()</div><div class="line">        t = end - start</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        <span class="comment"># 收集计算的结果并进行处理绘图</span></div></pre></td></tr></table></figure></p>
 <p>整体过程就这么简单，我需要做的就是使用multiprocessing的接口来对这个二重循环进行并行化。</p>
@@ -246,7 +246,7 @@
 <p>可见，由于我外层循环只循环了10次因此使用的核心数超过10以后核心数的增加并不能对程序进行加速，也就是多余的核心都浪费掉了。</p>
 <h3 id="使用manager实现简单的分布式计算"><a href="#使用manager实现简单的分布式计算" class="headerlink" title="使用manager实现简单的分布式计算"></a>使用manager实现简单的分布式计算</h3><p>前面使用了multiprocessing包提供的接口我们使用了再一台机器上进行多核心计算的并行处理，但是multiprocessing的用处还有更多，通过multiprocessing.managers模块，我们可以实现简单的多机分布式并行计算，将计算任务分布到不同的计算机中运行。</p>
 <p>Managers提供了另外的多进程通信工具，他提供了在多台计算机之间共享数据的接口和数据对象，这些数据对象全部都是通过代理类实现的，比如<code>ListProxy</code>和<code>DictProxy</code>等等，他们都实现了与原生<code>list</code>和<code>dict</code>相同的接口，但是他们可以通过网络在不同计算机中的进程中进行共享。</p>
-<p>关于managers模块的接口的详细使用可以参考官方文档：<a href="https://docs.python.org/2/library/multiprocessing.html#managers" target="_blank" rel="external">https://docs.python.org/2/library/multiprocessing.html#managers</a></p>
+<p>关于managers模块的接口的详细使用可以参考官方文档：<a href="https://docs.python.org/2/library/multiprocessing.html#managers" target="_blank" rel="noopener">https://docs.python.org/2/library/multiprocessing.html#managers</a></p>
 <p>好了现在我们开始尝试将绘图程序改造成可以在多台计算机中分布式并行的程序。改造的主要思想是：</p>
 <ol>
 <li>使用一台计算机作为服务端(server)，此台计算机通过一个Manager对象来管理共享对象，任务分配以及结果的接收，并再收集结果以后进行后处理（绘制二维map图）。</li>
@@ -293,8 +293,8 @@
 <p>可见运行时间为56.86s，无奈，是我的本子脱了后腿(-_-!)</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文通过python内置模块multiprocessing实现了单机内多核并行以及简单的多台计算机的分布式并行计算，multiprocessing为我们提供了封装良好并且友好的接口来使我们的Python程序更方面利用多核资源加速自己的计算程序，希望能对使用python实现并行话的童鞋有所帮助。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://docs.python.org/2/library/multiprocessing.html" target="_blank" rel="external">https://docs.python.org/2/library/multiprocessing.html</a></li>
-<li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431929340191970154d52b9d484b88a7b343708fcc60000" target="_blank" rel="external">分布式进程-廖雪峰的官方网站</a></li>
+<li><a href="https://docs.python.org/2/library/multiprocessing.html" target="_blank" rel="noopener">https://docs.python.org/2/library/multiprocessing.html</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431929340191970154d52b9d484b88a7b343708fcc60000" target="_blank" rel="noopener">分布式进程-廖雪峰的官方网站</a></li>
 </ul>
 	  
 	</div>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -227,7 +227,7 @@
 <h3 id="通过投影矩阵获取回归系数"><a href="#通过投影矩阵获取回归系数" class="headerlink" title="通过投影矩阵获取回归系数"></a>通过投影矩阵获取回归系数</h3><p>除了通过最小平方差的方法推导得到$w$的表达式，我们还可以通过投影矩阵(Projection Matrix)来得到。</p>
 <p>我们知道如果我们能够求得一个$w$使得$Xw = y$肯定是最好的，但是实际情况中$y$一般并不在矩阵$X$的列空间中，也就是此方程无解，于是我们希望通过将向量$y$投影到$X$的列空间中得到投影矩阵$p$, 然后求解$Xw = p$来获取一个最接近的一个解, 矩阵$X$的投影矩阵形式为<br>$$P = X(X^{T}X)^{-1}X^{T}$$<br>于是得到$y$在$X$列空间的投影为<br>$$P\cdot y = X(X^{T}X)^{-1}X^{T}y$$<br>此时方程$Xw = p$是有解的，得到最接近$Xw = y$的解为:<br>$$<br>\hat{w} = (X^{T}X)^{-1}X^{T}y<br>$$</p>
 <h3 id="标准线性回归的Python实现"><a href="#标准线性回归的Python实现" class="headerlink" title="标准线性回归的Python实现"></a>标准线性回归的Python实现</h3><p>通过矩阵形式我么可以很方便的通过Numpy的接口进行矩阵运算获取线性回归系数向量$\hat{w}$, 实现如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">std_linreg</span><span class="params">(X, Y)</span>:</span></div><div class="line">    xTx = X.T*X</div><div class="line">    <span class="keyword">if</span> np.linalg.det(xTx) == <span class="number">0</span>:</div><div class="line">        print(<span class="string">'xTx is a singular matrix'</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="keyword">return</span> xTx.I*X.T*Y</div></pre></td></tr></table></figure></p>
-<p>通过对现有数据进行标准线性回归并绘制回归直线得到如下图(完整代码和数据见: <a href="https://github.com/PytLab/MLBox/tree/master/linear_regression" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/linear_regression</a>)</p>
+<p>通过对现有数据进行标准线性回归并绘制回归直线得到如下图(完整代码和数据见: <a href="https://github.com/PytLab/MLBox/tree/master/linear_regression" target="_blank" rel="noopener">https://github.com/PytLab/MLBox/tree/master/linear_regression</a>)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">w = [<span class="number">3.00774324</span>, <span class="number">1.69532264</span>]</div></pre></td></tr></table></figure>
 <p><img src="/assets/images/blog_img/2017-10-24-机器学习算法实践-标准与局部加权线性回归/std_linear_regression.png" alt=""></p>
 <h3 id="相关系数-Correlation-Coefficient-计算"><a href="#相关系数-Correlation-Coefficient-计算" class="headerlink" title="相关系数(Correlation Coefficient)计算"></a>相关系数(Correlation Coefficient)计算</h3><p>如何判断获得的模型预测能力的好坏呢？我们需要计算模型计算得到的$y$的值向量与实际$y$值向量的匹配程度, 也就是计算相关系数Correlation Coefficient。</p>
@@ -235,7 +235,7 @@
 <p>而协方差便是衡量两个变量变化趋势是否相似的一种方法，是同向变化(同时变大或变小)还是反向变化(一个变大一个变小), 同向或者反向的程度如何，计算公式如下:</p>
 <p>$$<br>Cov(X, Y) = E[(X - E[X])(Y - E[Y])] = E[XY] - E[X]E[Y]<br>$$ </p>
 <p>通过公式可以看出，如果对于向量中的每个$x, y$同时大于或同时小于各自的期望值，协方差为正，相反则为负。可见如果协方差越大相似程度就越高，协方差越小相似程度就越小。也可以看到如果$X, Y$相同，协方差就是方差，也就是方差是一种特殊情况下的协方差。</p>
-<p>关于协方差与相关系数的通俗解释可以参考知乎上的回答:<a href="https://www.zhihu.com/question/20852004" target="_blank" rel="external">如何通俗易懂地解释「协方差」与「相关系数」的概念？
+<p>关于协方差与相关系数的通俗解释可以参考知乎上的回答:<a href="https://www.zhihu.com/question/20852004" target="_blank" rel="noopener">如何通俗易懂地解释「协方差」与「相关系数」的概念？
 </a></p>
 <p>虽然Numpy中有计算协方差的接口<code>numpy.corrcoef</code>，是分别对两两向量进行比较并计算协方差，得到协方差矩阵。为了练习，我还是稍微自己计算了下协方差并只计算两列不同数据之间的相关系数:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_corrcoef</span><span class="params">(X, Y)</span>:</span></div><div class="line">    <span class="comment"># X Y 的协方差</span></div><div class="line">    cov = np.mean(X*Y) - np.mean(X)*np.mean(Y)</div><div class="line">    <span class="keyword">return</span> cov/(np.var(X)*np.var(Y))**<span class="number">0.5</span></div></pre></td></tr></table></figure>
@@ -258,7 +258,7 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了标准线性回归以及局部加权线性回归的基础知识，并对两张回归方式给与了Python的实现。可见局部加权线性回归在取得适当的$k$，便可以较好的发现数据的内在潜质，但是局部加权线性回归有个缺点就是类似kNN一样，每计算一个点的预测值就需要利用所有数据样本进行计算，如果数据量很大，计算量会是一个问题。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>《Machine Learning in Action》</li>
-<li><a href="https://www.zhihu.com/question/20852004" target="_blank" rel="external">如何通俗易懂地解释「协方差」与「相关系数」的概念？</a></li>
+<li><a href="https://www.zhihu.com/question/20852004" target="_blank" rel="noopener">如何通俗易懂地解释「协方差」与「相关系数」的概念？</a></li>
 </ul>
 	  
 	</div>
@@ -355,7 +355,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li> <li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">14</span></a></li> <li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
 
     </ul>
 	</div>

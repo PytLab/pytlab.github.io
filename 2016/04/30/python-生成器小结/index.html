@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -248,7 +248,7 @@
 <p>在shell中执行：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">In</span> [<span class="number">1</span>]: from list_iter import *</div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">2</span>]: a = <span class="symbol">ListGenerator</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">3</span>]: a.<span class="symbol">__next__</span>()</div><div class="line"><span class="symbol">Out</span>[<span class="number">3</span>]: <span class="number">1</span></div><div class="line"></div><div class="line"><span class="symbol">In</span> [<span class="number">4</span>]: a.throw(<span class="symbol">ValueError</span>)</div><div class="line">receive a <span class="symbol">ValueError</span>.</div><div class="line"><span class="symbol">Out</span>[<span class="number">4</span>]: <span class="number">2</span></div></pre></td></tr></table></figure></p>
 <p>当第一次调用<code>__next__()</code>的时候，执行到<code>yield</code>返回1并暂停，第二次我传入了一个<code>VauleError</code>异常，生成器继续执行函数，由于接收到一个异常，并被下面的<code>except ValueError</code>捕获，这时便输出了<code>recieve a ValueError.</code>然后接着执行到<code>yield</code>返回2。</p>
 <h4 id="close-方法"><a href="#close-方法" class="headerlink" title="close()方法"></a><code>close()</code>方法</h4><p>当一个生成器是一个永远执行的时候（<code>while True</code>的时候），我们就用到了<code>close()</code>来终止它。</p>
-<h3 id="通过生成器，可以快速创建一个可迭代对象。"><a href="#通过生成器，可以快速创建一个可迭代对象。" class="headerlink" title="通过生成器，可以快速创建一个可迭代对象。"></a>通过生成器，可以快速创建一个可迭代对象。</h3><p>上一篇中提到过，我们可以通过将可迭代对象中的<code>__iter__()</code>方法返回一个迭代器对象来实现多次重复迭代。有了生成器，我们可以让可迭代对象的<code>__iter__()</code>方法直接返回一个生成器，也就是在<code>__iter__()</code>中使用<code>yield</code>关键字，这样创建迭代对象就很方便。我之前处理VASP文件的库VASPy中就是这样使用来从大文件中获取数据的，代码不贴上来了，直接放个链接吧： <a href="https://github.com/PytLab/VASPy/blob/master/vaspy/atomco.py#L433" target="_blank" rel="external"><span class="fa fa-github"></span> VASPy/atomco.py at master · PytLab/VASPy</a></p>
+<h3 id="通过生成器，可以快速创建一个可迭代对象。"><a href="#通过生成器，可以快速创建一个可迭代对象。" class="headerlink" title="通过生成器，可以快速创建一个可迭代对象。"></a>通过生成器，可以快速创建一个可迭代对象。</h3><p>上一篇中提到过，我们可以通过将可迭代对象中的<code>__iter__()</code>方法返回一个迭代器对象来实现多次重复迭代。有了生成器，我们可以让可迭代对象的<code>__iter__()</code>方法直接返回一个生成器，也就是在<code>__iter__()</code>中使用<code>yield</code>关键字，这样创建迭代对象就很方便。我之前处理VASP文件的库VASPy中就是这样使用来从大文件中获取数据的，代码不贴上来了，直接放个链接吧： <a href="https://github.com/PytLab/VASPy/blob/master/vaspy/atomco.py#L433" target="_blank" rel="noopener"><span class="fa fa-github"></span> VASPy/atomco.py at master · PytLab/VASPy</a></p>
 	  
 	</div>
 

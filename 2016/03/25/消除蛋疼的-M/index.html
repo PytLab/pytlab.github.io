@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -224,7 +224,7 @@
 <p></p><p><br><strong>在Windows中</strong>：使用<code>\r\n</code>来标志换行的，也就是所谓的<em>CR TF</em>，其中<em>CR</em>的全称是<em>Carriage Return</em> ,或者表示为<code>\r</code>, 意思是回车。<em>LF</em>全称是<em>Line Feed</em>，它才是真正意义上的换行表示符。<br><strong>在Linux中</strong>：使用的只有<code>\n</code>即<em>LF</em>来表示换行。</p>
 <p>这样我在Windows下修改的文件在每次换行的时候都会有一个多余的<code>\r</code>了。</p>
 <p><br></p>
-<h4 id="如何解决这个问题？"><a href="#如何解决这个问题？" class="headerlink" title="如何解决这个问题？"></a>如何解决这个问题？</h4><p>在github官网有针对这个问题的解决方案：<a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="external">https://help.github.com/articles/dealing-with-line-endings/</a><br>使Git在<code>git diff</code>的时候能够忽略操作系统之间换行符的差异。</p>
+<h4 id="如何解决这个问题？"><a href="#如何解决这个问题？" class="headerlink" title="如何解决这个问题？"></a>如何解决这个问题？</h4><p>在github官网有针对这个问题的解决方案：<a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="noopener">https://help.github.com/articles/dealing-with-line-endings/</a><br>使Git在<code>git diff</code>的时候能够忽略操作系统之间换行符的差异。</p>
 <p>总结起来就是两个方法：</p>
 <ol>
 <li><p>全局设置<br> 使用<code>git config core.autocrlf</code>来告诉Git如何处理行尾的换行符</p>

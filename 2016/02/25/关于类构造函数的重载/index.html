@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,7 +218,7 @@
 
 	  <p>昨晚写《C++ Primer Plus》第十章第六题的时候遇到了一个熟悉又陌生的error<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">call of overloaded Move::Move() is ambiguous</div></pre></td></tr></table></figure></p>
 <p>这个词应该是编译器发现在重载的时候程序中有<strong>二义性</strong>，我仔细看了下我写的程序，发现我在含有参数的构造函数的原型中添加了默认参数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Move::Move(<span class="keyword">double</span> a = <span class="number">0</span>, <span class="keyword">double</span> b = <span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">    x = a;</div><div class="line">    y = b;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Move::Move()</div><div class="line">&#123;</div><div class="line">    x = <span class="number">0.0</span>;</div><div class="line">    y = <span class="number">0.0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>当调用<code>Move::Move()</code>的时候编译器会匹配最匹配的函数，因为默认参数的存在，使得函数原型<code>Move::Move(double a = 0, double b = 0)</code>和<code>Move::Move()</code>都可以匹配，因此编译器就报错了，因为有了二义性。<br><a id="more"></a><br>另外这个例子里面也可以知道，<br><div class="alert alert-info"><i class="fa fa-info"></i>  在类的成员函数中也可以调用其他的成员函数和使用构造函数创建本类的实例的。</div><br>该题目的代码传送门：<a href="https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch10/10_6" target="_blank" rel="external"><span class="fa fa-github"></span> Cpp-Primer-Plus/ch10/10_6 at master · PytLab/Cpp-Primer-Plus</a></p>
+<p>当调用<code>Move::Move()</code>的时候编译器会匹配最匹配的函数，因为默认参数的存在，使得函数原型<code>Move::Move(double a = 0, double b = 0)</code>和<code>Move::Move()</code>都可以匹配，因此编译器就报错了，因为有了二义性。<br><a id="more"></a><br>另外这个例子里面也可以知道，<br><div class="alert alert-info"><i class="fa fa-info"></i>  在类的成员函数中也可以调用其他的成员函数和使用构造函数创建本类的实例的。</div><br>该题目的代码传送门：<a href="https://github.com/PytLab/Cpp-Primer-Plus/tree/master/ch10/10_6" target="_blank" rel="noopener"><span class="fa fa-github"></span> Cpp-Primer-Plus/ch10/10_6 at master · PytLab/Cpp-Primer-Plus</a></p>
 	  
 	</div>
 

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -221,7 +221,7 @@
 		 </div> <!-- alert -->
 	  		
 
-	  <p>目前<a href="https://github.com/PytLab/Kynetix" target="_blank" rel="external"><strong>Kynetix</strong></a>已经可以进行动力学蒙特卡洛(kMC)模拟，其中kMC核心计算部分我将<a href="https://github.com/leetmaa/KMCLib" target="_blank" rel="external"><strong>KMCLib</strong></a>整合到其中(若要使用Kynetix，请根据KMCLib的文档自行编译KMCLib)，这次更新的内容比较多，主要在以下几个地方进行了更新：</p>
+	  <p>目前<a href="https://github.com/PytLab/Kynetix" target="_blank" rel="noopener"><strong>Kynetix</strong></a>已经可以进行动力学蒙特卡洛(kMC)模拟，其中kMC核心计算部分我将<a href="https://github.com/leetmaa/KMCLib" target="_blank" rel="noopener"><strong>KMCLib</strong></a>整合到其中(若要使用Kynetix，请根据KMCLib的文档自行编译KMCLib)，这次更新的内容比较多，主要在以下几个地方进行了更新：</p>
 <ul>
 <li><code>kMC Parser</code>, 负责将输入文件中的能量以及化学方程式进行解析</li>
 <li><code>kMC Solver</code>, 这里是kMC模拟的核心，主要负责调用KMCLib的接口进行动力学蒙特卡洛计算，并对模拟进行On-the-fly分析（覆盖度，TOF等）</li>

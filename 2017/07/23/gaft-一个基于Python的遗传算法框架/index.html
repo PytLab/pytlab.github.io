@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,7 +218,7 @@
 
 	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近需要用到遗传算法来优化一些东西，最初是打算直接基于某些算法实现一个简单的函数来优化，但是感觉单纯写个非通用的函数运行后期改进算子或者别人使用起来都会带来困难，同时遗传算法基本概念和运行流程相对固定，改进也一般通过编码机制，选择策略，交叉变异算子以及参数设计等方面，对于算法的整体结构并没有大的影响。这样对于遗传算法来说，就非常适合写个相对固定的框架然后给算子、参数等留出空间以便对新算法进行测试和改进。于是就动手写了个遗传算法的小框架gaft，本文对此框架进行一些介绍并分别以一个一维搜索和二维搜索为例子对使用方法进行了介绍。</p>
 <a id="more"></a>
-<p>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a><br>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="external">https://pypi.python.org/pypi/gaft</a></p>
+<p>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="noopener">https://github.com/PytLab/gaft</a><br>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="noopener">https://pypi.python.org/pypi/gaft</a></p>
 <p>目前框架只是完成了最初的版本，比较简陋，内置了几个基本的常用算子，使用者可以根据接口规则实现自定义的算子并放入框架中运行。我自己也会根据自己的需求后续添加更多的改进算子，同时改进框架使其更加<strong>通用</strong>.</p>
 <p><img src="/assets/images/blog_img/2017-07-23-gaft-一个基于Python的遗传算法框架/title.png" alt=""></p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="遗传算法介绍"><a href="#遗传算法介绍" class="headerlink" title="遗传算法介绍"></a>遗传算法介绍</h3><p>这里我对遗传算法的基本概念进行简要的介绍，并阐述gaft的设计原则。</p>
@@ -324,7 +324,7 @@
 <p>搜索过程动画:<br><img src="/assets/images/blog_img/2017-07-23-gaft-一个基于Python的遗传算法框架/surface_animation.gif" alt=""></p>
 <p>可见目前内置的基本算子都能很好的找到例子中函数的最优点。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了本人开发的一个用于遗传算法做优化计算的Python框架，框架内置了遗传算法中常用的组件，包括不同编码方式的个体，种群，以及遗传算子等。同时框架还提供了自定义遗传算子和分析插件的接口，能够方便快速搭建遗传算法流程并用于算法测试。</p>
-<p>目前框架仅仅处于初步阶段，后续会在自己使用的过程中逐步完善更多的内置算子，是框架更加通用。本文中的两个优化例子均能在GitHub上找到源码(<a href="https://github.com/PytLab/gaft/tree/master/examples" target="_blank" rel="external">https://github.com/PytLab/gaft/tree/master/examples</a>)</p>
+<p>目前框架仅仅处于初步阶段，后续会在自己使用的过程中逐步完善更多的内置算子，是框架更加通用。本文中的两个优化例子均能在GitHub上找到源码(<a href="https://github.com/PytLab/gaft/tree/master/examples" target="_blank" rel="noopener">https://github.com/PytLab/gaft/tree/master/examples</a>)</p>
 <p>目前的计划：1. 添加更多的内置算子; 2. 给内置算子和组件添加C++ backend; 3. 并行化</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>《智能优化算法及其MATLAB实例》</li>
@@ -412,7 +412,7 @@
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+    <li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
   </li>
 
     </ul>

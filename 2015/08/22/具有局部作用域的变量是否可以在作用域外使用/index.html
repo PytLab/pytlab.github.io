@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -220,7 +220,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">current = head;</div><div class="line"><span class="keyword">while</span>(current != <span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">free</span>(current);</div><div class="line">    current = current-&gt;next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面的代码就是在释放了current指向的内存之后仍然使用了该内存的数据。感觉好奇怪，不知道是作者的原因还是什么。<br>应该这样写才对：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">current = head;</div><div class="line"><span class="keyword">while</span>(current != <span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line">    tmp = current-&gt;next;</div><div class="line">    <span class="built_in">free</span>(current);</div><div class="line">    current = tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>不然<code>free()</code>可能使当前节点的内容不再可用。<br>后面我在stackoverflow上看到一个<a href="http://stackoverflow.com/questions/6441218/can-a-local-variables-memory-be-accessed-outside-its-scope/6445794#6445794" target="_blank" rel="external">回答</a>，比喻的很好：</p>
+<p>不然<code>free()</code>可能使当前节点的内容不再可用。<br>后面我在stackoverflow上看到一个<a href="http://stackoverflow.com/questions/6441218/can-a-local-variables-memory-be-accessed-outside-its-scope/6445794#6445794" target="_blank" rel="noopener">回答</a>，比喻的很好：</p>
 <blockquote>
 <p>你在某个酒店订了一个房，你入住的时候，你放了一本书在这个酒店的抽屉里，但是你走的时候，你忘了这本书。而且，你还没有把这个房间的钥匙还回去。于是，你在未来某个时候，偷偷地回来，打开这个房间的门，你看到了你的书还在里间。当然，还还可以放回别的书。因为，这个酒店管理不会在你走的时候把你留下的书清走，而且，这个酒店的管理的安保措施不是那么严格，因为他信任每一个客人都会遵守管理条例。</p>
 <p>在这种情况下，如果你幸运的话，书还会在那里，也可能你的书已经没了。也有可能当你回去的时候，有一个人在那里正在撕你的书，或者酒店把那个抽屉都挪走并变成衣柜，或是整个酒店正在被拆除以改成了一个足球场，而你偷偷摸摸进到施工现场的时候被炸死。<br>也就是说即使我释放了当前指针指向的内存，我也可以通过同样的指针访问该部分内容，但是内容就没有保障了，所谓some random memory area。这就好像我和系统之间的一个协议，我不会偷着回来我的房间，但是我的确偷偷的这么做了，也就是没有履行协议。<br>后面有个高票的回答也很好：</p>

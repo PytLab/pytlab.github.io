@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,6 +218,36 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2017-04-25 </div>
+			<div class="article-title"><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/" >基于matplotlib的2D/3D抽象网格和能量曲线绘制程序</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/"><img src="/assets/images/blog_img/2017-04-25-基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/grid_3d.png" alt="基于matplotlib的2D/3D抽象网格和能量曲线绘制程序"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写文章需要绘制一些一维的能量曲线(energy profile)和抽象的二维和三维的网格来表示晶体用来描述自己的算法，于是自己在之前的脚本的基础上进行了整改写成了只提供接口的Python库,基本思想就是封装了matplotlib中相关接口，方便快速搭建和定制自己的能量曲线和网格结构, 代码托管在GitHub上并上传至PyPI。对于研究晶体材料的同学如果想通过python来绘制简单的晶格图像可以参考一下。</p>
+<ul>
+<li>GitHub地址: <a href="https://github.com/PytLab/catplot/" target="_blank" rel="noopener">https://github.com/PytLab/catplot/</a></li>
+<li>PyPI地址: <a href="https://pypi.python.org/pypi/catplot/" target="_blank" rel="noopener">https://pypi.python.org/pypi/catplot/</a></li>
+</ul>
+	
+	</div>
+  <a type="button" href="/2017/04/25/基于matplotlib写一个2D-3D抽象网格和能量曲线绘制程序/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2017-03-26 </div>
 			<div class="article-title"><a href="/2017/03/26/优雅的在终端中编写Python/" >优雅的在终端中编写Python</a></div>						
 		</h3>
@@ -234,7 +264,7 @@
 	
 	
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最早我也只是在服务器上编辑文件的时候用用vim来改改程序，并没有把vim当做自己的主力编辑器。但是偶然的一次机会需要改一个奇葩的输入文件的格式，用了下Vim的宏录制，尝到了甜头，于是后面就开始用Vim来写程序了，虽然使用初期有些阻力，但时间久了就会发现，双手再也不用离开键盘，即使使用sublime这样的编辑器我也要改成使用Vim模式，Vim真的能让自己一思维的速度编辑文本(对我来说就是写程序了)。</p>
-<p>正好最近换了新的电脑，需要在新电脑上配置一下，就干脆把一些配置相关的东东记录下来吧，相关的配置文件我都放在了github(<a href="https://github.com/PytLab/dotfiles">https://github.com/PytLab/dotfiles</a>) 上并写了相应的安装和卸载脚本，给有需要的同学做个参考吧。</p>
+<p>正好最近换了新的电脑，需要在新电脑上配置一下，就干脆把一些配置相关的东东记录下来吧，相关的配置文件我都放在了github(<a href="https://github.com/PytLab/dotfiles" target="_blank" rel="noopener">https://github.com/PytLab/dotfiles</a>) 上并写了相应的安装和卸载脚本，给有需要的同学做个参考吧。</p>
 <p>本文是有关配置的文章，并不对Vim的核心技巧进行说明，有需要的童鞋可以参考文档和相关书籍。这里主要配合tmux和vim可以更有优雅的帮助我们在终端中进行Python编程。</p>
 	
 	</div>
@@ -367,41 +397,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-02-06 </div>
-			<div class="article-title"><a href="/2017/02/06/ECMAScript中的OOP-创建对象/" >ECMAScript中的OOP-对象创建</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/02/06/ECMAScript中的OOP-创建对象/"><img src="/assets/images/blog_img/2017-02-06-ECMAScript中的OOP-创建对象/prototype.jpg" alt="ECMAScript中的OOP-对象创建"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>在ECMAScript中我们总不能使用<code>Object</code>构造函数或者字面量直接定义对象，这样将会产生大量的重复代码。</p>
-<p>这里将ECMAScript中几种面向对象中的创建对象的方法进行总结, 其中包括：</p>
-<ul>
-<li>工厂模式</li>
-<li>构造函数模式</li>
-<li>原型模式</li>
-<li>组合使用构造函数和原型模式</li>
-<li>动态原型模式</li>
-</ul>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>就是将对象的创建以及属性的添加等细节都封装在一个能够接受参数的函数中。</p>
-	
-	</div>
-  <a type="button" href="/2017/02/06/ECMAScript中的OOP-创建对象/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -451,6 +446,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
+      </li>
+    
+      <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
@@ -466,10 +465,6 @@
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
-      <li>
-        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -480,7 +475,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -506,48 +501,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">103</span></a></li>
+		   <li><a href="/tags">...<span class="badge">109</span></a></li>
 		 
 		</ul>
 	</div>

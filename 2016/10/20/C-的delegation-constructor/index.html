@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -216,7 +216,7 @@
 	<div class="mypage">		
 	  		
 
-	  <p>昨晚给KMCLibX的Process类添加了一个新的构造函数，目的是想快速添加slow_flag到process中。结果我想能不能在一个构造函数中调用同类中的另一个构造函数，于是我发现了C++11有了个新特性叫做<a href="https://en.wikipedia.org/wiki/C%2B%2B11#Object_construction_improvement" target="_blank" rel="external">delegation constructor</a></p>
+	  <p>昨晚给KMCLibX的Process类添加了一个新的构造函数，目的是想快速添加slow_flag到process中。结果我想能不能在一个构造函数中调用同类中的另一个构造函数，于是我发现了C++11有了个新特性叫做<a href="https://en.wikipedia.org/wiki/C%2B%2B11#Object_construction_improvement" target="_blank" rel="noopener">delegation constructor</a></p>
 <p>在C++03中是不允许在一个构造函数中调用另一个构造函数的，要实现这种效果需要写一个共有的初始化函数然后再不同的构造函数中调用，例如：<br><a id="more"></a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Foo</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Foo(<span class="keyword">char</span> x);</div><div class="line">    Foo(<span class="keyword">char</span> x, <span class="keyword">int</span> y);</div><div class="line">    ...</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">char</span> x, <span class="keyword">int</span> y)</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Foo::Foo(<span class="keyword">char</span> x)</div><div class="line">&#123;</div><div class="line">    init(x, <span class="keyword">int</span>(x) + <span class="number">7</span>);</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">Foo::Foo(<span class="keyword">char</span> x, <span class="keyword">int</span> y)</div><div class="line">&#123;</div><div class="line">    init(x, y);</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> Foo::init(<span class="keyword">char</span> x, <span class="keyword">int</span> y)</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>C++11允许了我们直接在一个构造函数中直接调用另一个构造函数。语法如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> SomeType</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> number;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    SomeType(<span class="keyword">int</span> new_number) : number(new_number) &#123;&#125;</div><div class="line">    SomeType() : SomeType(<span class="number">42</span>) &#123;&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>

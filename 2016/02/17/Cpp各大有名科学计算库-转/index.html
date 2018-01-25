@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -224,12 +224,12 @@
 	  <p>在 C++中，库的地位是非常高的。C++之父 Bjarne Stroustrup先生多次表示了设计库来扩充功能要好过设计更多的语法的言论。现实中，C++的库门类繁多，解决的问题也是极其广泛，库从轻量级到重量级的都有。不少都是让人眼界大开，亦或是望而生叹的思维杰作。由于库的数量非常庞大，而且限于笔者水平，其中很多并不了解。所以文中所提的一些库都是比较著名的大型库。 </p>
 <a id="more"></a>
 <h3 id="C-各大有名科学计算库的介绍"><a href="#C-各大有名科学计算库的介绍" class="headerlink" title="C++各大有名科学计算库的介绍"></a>C++各大有名科学计算库的介绍</h3><hr>
-<h4 id="Blitz-http-www-oonumerics-org-blitz"><a href="#Blitz-http-www-oonumerics-org-blitz" class="headerlink" title="Blitz++ (http://www.oonumerics.org/blitz)"></a>Blitz++ (<a href="http://www.oonumerics.org/blitz" target="_blank" rel="external">http://www.oonumerics.org/blitz</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Blitz++ 是一个高效率的数值计算函数库，它的设计目的是希望建立一套既具像C++ 一样方便，同时又比Fortran速度更快的数值计算环境。通常，用C++所写出的数值程序，比 Fortran慢20%左右，因此Blitz++正是要改掉这个缺点。方法是利用C++的template技术，程序执行甚至可以比Fortran更快。
+<h4 id="Blitz-http-www-oonumerics-org-blitz"><a href="#Blitz-http-www-oonumerics-org-blitz" class="headerlink" title="Blitz++ (http://www.oonumerics.org/blitz)"></a>Blitz++ (<a href="http://www.oonumerics.org/blitz" target="_blank" rel="noopener">http://www.oonumerics.org/blitz</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Blitz++ 是一个高效率的数值计算函数库，它的设计目的是希望建立一套既具像C++ 一样方便，同时又比Fortran速度更快的数值计算环境。通常，用C++所写出的数值程序，比 Fortran慢20%左右，因此Blitz++正是要改掉这个缺点。方法是利用C++的template技术，程序执行甚至可以比Fortran更快。
 <br>
 Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线性代数方法并不提供，不过使用者可以很容易地利用Blitz++所提供的函数来构建。</div>
-<h4 id="POOMA-http-www-codesourcery-com-pooma-pooma"><a href="#POOMA-http-www-codesourcery-com-pooma-pooma" class="headerlink" title="POOMA (http://www.codesourcery.com/pooma/pooma)"></a>POOMA (<a href="http://www.codesourcery.com/pooma/pooma" target="_blank" rel="external">http://www.codesourcery.com/pooma/pooma</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  POOMA是一个免费的高性能的C++库，用于处理并行式科学计算。POOMA的面向对象设计方便了快速的程序开发，对并行机器进行了优化以达到最高的效率，方便在工业和研究环境中使用。</div>
-<h4 id="MTL-http-www-osl-iu-edu-research-mtl"><a href="#MTL-http-www-osl-iu-edu-research-mtl" class="headerlink" title="MTL (http://www.osl.iu.edu/research/mtl)"></a>MTL (<a href="http://www.osl.iu.edu/research/mtl" target="_blank" rel="external">http://www.osl.iu.edu/research/mtl</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Matrix Template Library(MTL)是一个高性能的泛型组件库，提供了各种格式矩阵的大量线性代数方面的功能。在某些应用使用高性能编译器的情况下，比如Intel的编译器，从产生的汇编代码可以看出其与手写几乎没有两样的效能。</div>
-<h4 id="CGAL-http-www-cgal-org"><a href="#CGAL-http-www-cgal-org" class="headerlink" title="CGAL (http://www.cgal.org/)"></a>CGAL (<a href="http://www.cgal.org/" target="_blank" rel="external">http://www.cgal.org/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Computational Geometry Algorithms Library的目的是把在计算几何方面的大部分重要的解决方案和方法以C++库的形式提供给工业和学术界的用户。</div>
+<h4 id="POOMA-http-www-codesourcery-com-pooma-pooma"><a href="#POOMA-http-www-codesourcery-com-pooma-pooma" class="headerlink" title="POOMA (http://www.codesourcery.com/pooma/pooma)"></a>POOMA (<a href="http://www.codesourcery.com/pooma/pooma" target="_blank" rel="noopener">http://www.codesourcery.com/pooma/pooma</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  POOMA是一个免费的高性能的C++库，用于处理并行式科学计算。POOMA的面向对象设计方便了快速的程序开发，对并行机器进行了优化以达到最高的效率，方便在工业和研究环境中使用。</div>
+<h4 id="MTL-http-www-osl-iu-edu-research-mtl"><a href="#MTL-http-www-osl-iu-edu-research-mtl" class="headerlink" title="MTL (http://www.osl.iu.edu/research/mtl)"></a>MTL (<a href="http://www.osl.iu.edu/research/mtl" target="_blank" rel="noopener">http://www.osl.iu.edu/research/mtl</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Matrix Template Library(MTL)是一个高性能的泛型组件库，提供了各种格式矩阵的大量线性代数方面的功能。在某些应用使用高性能编译器的情况下，比如Intel的编译器，从产生的汇编代码可以看出其与手写几乎没有两样的效能。</div>
+<h4 id="CGAL-http-www-cgal-org"><a href="#CGAL-http-www-cgal-org" class="headerlink" title="CGAL (http://www.cgal.org/)"></a>CGAL (<a href="http://www.cgal.org/" target="_blank" rel="noopener">http://www.cgal.org/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  Computational Geometry Algorithms Library的目的是把在计算几何方面的大部分重要的解决方案和方法以C++库的形式提供给工业和学术界的用户。</div>
 <h4 id="Intel-Math-Kernel-Library"><a href="#Intel-Math-Kernel-Library" class="headerlink" title="Intel Math Kernel Library"></a>Intel Math Kernel Library</h4><div class="alert alert-info"><i class="fa fa-info"></i>  <li>基本线形代数运算(BLAS) 向量与向量、向量与矩阵、矩阵与矩阵的运算</li>
 <li>稀疏线形代数运算</li>
 <li>快速傅立叶变换(单精度/双精度)(fftw)</li>
@@ -237,22 +237,22 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
 <li>向量数学库(VML)</li>
 <li>向量统计学库(VSL)</li>
 <li>高级离散傅立叶变换</li></div>
-<h4 id="IMSL-http-www-vni-com"><a href="#IMSL-http-www-vni-com" class="headerlink" title="IMSL (http://www.vni.com/ )"></a>IMSL (<a href="http://www.vni.com/" target="_blank" rel="external">http://www.vni.com/</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 IMSL C Numerical Library(不兼容vc6编译器)
+<h4 id="IMSL-http-www-vni-com"><a href="#IMSL-http-www-vni-com" class="headerlink" title="IMSL (http://www.vni.com/ )"></a>IMSL (<a href="http://www.vni.com/" target="_blank" rel="noopener">http://www.vni.com/</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 IMSL C Numerical Library(不兼容vc6编译器)
 <br>
 程序设计语言 C, Forton, C#, Java
 <br>
 功能概述 分为统计库和数学库两部分. 数学库包含应用数学和特殊函数.IMSL 程序库 - 已成为数值分析解决方案的工业标准。 IMSL 程序库提供最完整与最值得信赖的函数库。 IMSL 数值程序库提供目前世界上最广泛被使用的 IMSL 算法，有超过 370 验证过、最正确与 thread-safe 的数学与统计程序。 IMSL FORTRAN 程序库提供新一代以 FORTRAN 90 为程序库基础的程序，能展现出最佳化的演算法能力应用于多处理器与其它高效能运算系统。</div>
-<h4 id="lapack-http-www-netlib-org-lapack"><a href="#lapack-http-www-netlib-org-lapack" class="headerlink" title="lapack (http://www.netlib.org/lapack )"></a>lapack (<a href="http://www.netlib.org/lapack" target="_blank" rel="external">http://www.netlib.org/lapack</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Linear Algebra Package 
+<h4 id="lapack-http-www-netlib-org-lapack"><a href="#lapack-http-www-netlib-org-lapack" class="headerlink" title="lapack (http://www.netlib.org/lapack )"></a>lapack (<a href="http://www.netlib.org/lapack" target="_blank" rel="noopener">http://www.netlib.org/lapack</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Linear Algebra Package 
 <br>
 程序设计语言 Fortran 77 
 <br>
 功能概述 线性代数计算子程序包</div>
-<h4 id="lapack-http-math-nist-gov-lapack"><a href="#lapack-http-math-nist-gov-lapack" class="headerlink" title="lapack++ (http://math.nist.gov/lapack++/ )"></a>lapack++ (<a href="http://math.nist.gov/lapack++/" target="_blank" rel="external">http://math.nist.gov/lapack++/</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Linear Algebra Package in c++ 
+<h4 id="lapack-http-math-nist-gov-lapack"><a href="#lapack-http-math-nist-gov-lapack" class="headerlink" title="lapack++ (http://math.nist.gov/lapack++/ )"></a>lapack++ (<a href="http://math.nist.gov/lapack++/" target="_blank" rel="noopener">http://math.nist.gov/lapack++/</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Linear Algebra Package in c++ 
 <br>
 程序设计语言 c++ 
 <br>
 功能概述 c++版的线性代数计算子程序包</div>
-<h4 id="BLAS-http-www-netlib-org-blas"><a href="#BLAS-http-www-netlib-org-blas" class="headerlink" title="BLAS (http://www.netlib.org/blas )"></a>BLAS (<a href="http://www.netlib.org/blas" target="_blank" rel="external">http://www.netlib.org/blas</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Basic Linear Algebra Subroutines 
+<h4 id="BLAS-http-www-netlib-org-blas"><a href="#BLAS-http-www-netlib-org-blas" class="headerlink" title="BLAS (http://www.netlib.org/blas )"></a>BLAS (<a href="http://www.netlib.org/blas" target="_blank" rel="noopener">http://www.netlib.org/blas</a> )</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 Basic Linear Algebra Subroutines 
 <br>
 程序设计语言 Fortran 77 
 <br>
@@ -260,15 +260,15 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
 <br>
 功能概述 Blas是执行向量和矩阵运算的子程序集合。</div>
 <h4 id="uBLAS"><a href="#uBLAS" class="headerlink" title="uBLAS"></a>uBLAS</h4><div class="alert alert-info"><i class="fa fa-info"></i>  BLAS in C++ with expression templates. 表达式模版形式的 C++中的BLAS ，</div>
-<h4 id="gsl-http-www-gnu-org-software-gsl"><a href="#gsl-http-www-gnu-org-software-gsl" class="headerlink" title="gsl (http://www.gnu.org/software/gsl/)"></a>gsl (<a href="http://www.gnu.org/software/gsl/" target="_blank" rel="external">http://www.gnu.org/software/gsl/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 GNU Scientific Library (linux)
+<h4 id="gsl-http-www-gnu-org-software-gsl"><a href="#gsl-http-www-gnu-org-software-gsl" class="headerlink" title="gsl (http://www.gnu.org/software/gsl/)"></a>gsl (<a href="http://www.gnu.org/software/gsl/" target="_blank" rel="noopener">http://www.gnu.org/software/gsl/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称 GNU Scientific Library (linux)
 <br>
 程序设计语言 C , C++ compable 
 <br>
 功能概述 范围广泛, 包括数值分析的常见内</div>
-<h4 id="Blitz-http-sourceforge-net-project-showfiles-php-group-id-63961"><a href="#Blitz-http-sourceforge-net-project-showfiles-php-group-id-63961" class="headerlink" title="Blitz++ (http://sourceforge.net/project/showfiles.php?group_id=63961)"></a>Blitz++ (<a href="http://sourceforge.net/project/showfiles.php?group_id=63961" target="_blank" rel="external">http://sourceforge.net/project/showfiles.php?group_id=63961</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称　Blitz++ (不兼容vc6编译器)
+<h4 id="Blitz-http-sourceforge-net-project-showfiles-php-group-id-63961"><a href="#Blitz-http-sourceforge-net-project-showfiles-php-group-id-63961" class="headerlink" title="Blitz++ (http://sourceforge.net/project/showfiles.php?group_id=63961)"></a>Blitz++ (<a href="http://sourceforge.net/project/showfiles.php?group_id=63961" target="_blank" rel="noopener">http://sourceforge.net/project/showfiles.php?group_id=63961</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称　Blitz++ (不兼容vc6编译器)
 <br>
 功能概述　The current versions provide dense arrays and vectors, random number generators, and small vectors and matrices.是一个高效率的数值计算函数库，它的设计目的是希望建立一套既具像 C++ 一样方便，同时又比 Fortran 速度更快的数值计算环境。通常，用 C++ 所写出的数值程序，比 Fortran 慢 20% 左右，因此Blitz++ 正是要改掉这个缺点。方法是利用 C++ 的 template 技术，程序执行甚至可以比 Fortran 更快。</div>
-<h4 id="MTL-http-www-osl-iu-edu-research-mtl-1"><a href="#MTL-http-www-osl-iu-edu-research-mtl-1" class="headerlink" title="MTL (http://www.osl.iu.edu/research/mtl/)"></a>MTL (<a href="http://www.osl.iu.edu/research/mtl/" target="_blank" rel="external">http://www.osl.iu.edu/research/mtl/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称　Matrix Template Library(兼容vc6编译器)
+<h4 id="MTL-http-www-osl-iu-edu-research-mtl-1"><a href="#MTL-http-www-osl-iu-edu-research-mtl-1" class="headerlink" title="MTL (http://www.osl.iu.edu/research/mtl/)"></a>MTL (<a href="http://www.osl.iu.edu/research/mtl/" target="_blank" rel="noopener">http://www.osl.iu.edu/research/mtl/</a>)</h4><div class="alert alert-info"><i class="fa fa-info"></i>  软件名称　Matrix Template Library(兼容vc6编译器)
 <br>
 功能概述　The Matrix Template Library (MTL) is a high-performance generic component library that provides comprehensive linear algebra functionality for a wide variety of matrix formats. MTL专注于线性代数相关的计算任务，如各种形式矩阵的生成(对角，共轭，稀疏，对称等)，相关的计算，变换，以及与一维向量的运算。</div>
 	  

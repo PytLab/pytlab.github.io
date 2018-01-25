@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -240,7 +240,7 @@
 </li>
 <li><p>编译封装代码<br> 这一步只说明生成的C/C++的封装代码是可以单独编译的，这就将封装同C/C++库分割开，我按照我的方式写C/C++代码不用管封装的事情，最后只要把wrap的目标文件链接起来就好了。</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ g++ <span class="_">-f</span>PIC -c demo_wrap.cxx</div></pre></td></tr></table></figure>
-<p> 需要注意的是<code>-fPIC</code>这个参数是一定要加的，不然就无法生成动态链接库。具体这个参数是做什么的，顾名思义就是生成一个位置独立的代码段，这样无论函数在哪都能够动态的调用这个动态库了，详见：<a href="http://stackoverflow.com/questions/5311515/gcc-fpic-option" target="_blank" rel="external">http://stackoverflow.com/questions/5311515/gcc-fpic-option</a></p>
+<p> 需要注意的是<code>-fPIC</code>这个参数是一定要加的，不然就无法生成动态链接库。具体这个参数是做什么的，顾名思义就是生成一个位置独立的代码段，这样无论函数在哪都能够动态的调用这个动态库了，详见：<a href="http://stackoverflow.com/questions/5311515/gcc-fpic-option" target="_blank" rel="noopener">http://stackoverflow.com/questions/5311515/gcc-fpic-option</a></p>
 </li>
 <li><p>链接成扩展模块<br> 将封装文件与库文件链接成为python能够调用的动态库，这一步就好像是使用wrap这个文件给C/C++库文件进行化妆，化成python认识的那种样子。当然swig也可以根据使用者的需求把C/C++的库化妆成其他语言认识的样子如java、ruby等。<br> 这样就会生成一个<code>_demo.so</code>或者<code>_demo.pyd</code>的库文件，python可以通过之前的<code>demo.py</code>或者直接<code>_demo.pyd</code>来用自己的方式调用C/C++的函数和类来为自己服务。</p>
  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ g++ -shared demo_wrap<span class="selector-class">.o</span> demo<span class="selector-class">.c</span> -o _demo.so</div></pre></td></tr></table></figure>

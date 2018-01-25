@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -216,8 +216,8 @@
 	<div class="mypage">		
 	  		
 
-	  <p>刚刚把自己买的域名<a href="http://ipytlab.com" target="_blank" rel="external">ipytlab.com</a>与GitHub Pages进行绑定，现在访问<a href="http://ipytlab.com" target="_blank" rel="external">ipytlab.com</a>以及<a href="http://pytlab.github.io">pytlab.github.io</a>均能访问我的博客啦。</p>
-<p>在github的help页面有介绍如何绑定域名 - <a href="https://help.github.com/articles/about-custom-domains-for-github-pages-sites/" target="_blank" rel="external">About custom domains for GitHub Pages sites</a></p>
+	  <p>刚刚把自己买的域名<a href="http://ipytlab.com" target="_blank" rel="noopener">ipytlab.com</a>与GitHub Pages进行绑定，现在访问<a href="http://ipytlab.com" target="_blank" rel="noopener">ipytlab.com</a>以及<a href="http://pytlab.github.io">pytlab.github.io</a>均能访问我的博客啦。</p>
+<p>在github的help页面有介绍如何绑定域名 - <a href="https://help.github.com/articles/about-custom-domains-for-github-pages-sites/" target="_blank" rel="noopener">About custom domains for GitHub Pages sites</a></p>
 <p>下面简单写一下我将Hexo + Github Pages绑定顶级域名的方法：</p>
 <ol>
 <li><p>在自己网站项目repo的根目录添加CNAME，里面的内容为域名不要http以及www等前缀，只需写入域名本身，例如</p>
@@ -226,7 +226,7 @@
 <p> 所以要把CNAME文件添加到<code>/source</code>目录下，这样<code>hexo g -d</code>之后hexo会自动把CNAME复制到<code>/puclic</code>目录下然后将<code>/public</code>路径下的内容进行复制并push到远程<code>master</code>分支的根目录下。</p>
  <a id="more"></a>
 </li>
-<li><p>添加DNS Service记录<br> 在<a href="https://www.dnspod.cn" target="_blank" rel="external">DNSPod</a>注册帐号然后添加域名设置两个A记录，分别是@和www，ip地址填</p>
+<li><p>添加DNS Service记录<br> 在<a href="https://www.dnspod.cn" target="_blank" rel="noopener">DNSPod</a>注册帐号然后添加域名设置两个A记录，分别是@和www，ip地址填</p>
  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">192<span class="selector-class">.30</span><span class="selector-class">.252</span><span class="selector-class">.153</span></div></pre></td></tr></table></figure>
 <p> 如下图：<br> <img src="/assets/images/blog_img/2016-01-23-GitHub-Pages绑定顶级域名/DNSPod.png" alt=""></p>
 </li>

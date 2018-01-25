@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -232,7 +232,7 @@
 <hr>
 <p><code>kmc_plotter.py</code>中的<code>KMCPlotter</code>类中的<code>plot_traj</code>方法，是通过读取Kynetix运行自动生成的<code>auto_trajectory.py</code>文件的数据并使用网格或者散点的方式生成一系列的静态图片，也就是相应的轨迹图。</p>
 <hr>
-<p>关于<code>images2gif.py</code>这个模块，是直接使用的现成的别人写好的模块(<a href="https://pypi.python.org/pypi/images2gif" target="_blank" rel="external">https://pypi.python.org/pypi/images2gif</a>),但是一开始用的时候不知道为什么总是在合并的时候报错，去stackoverflow上面求助才知道新版本本来就会有这个问题，某个人提供的某个版本是可以的，于是我也就将这个版本直接复制过来放到了Kynetix中，以便能够稳定的绘图。</p>
+<p>关于<code>images2gif.py</code>这个模块，是直接使用的现成的别人写好的模块(<a href="https://pypi.python.org/pypi/images2gif" target="_blank" rel="noopener">https://pypi.python.org/pypi/images2gif</a>),但是一开始用的时候不知道为什么总是在合并的时候报错，去stackoverflow上面求助才知道新版本本来就会有这个问题，某个人提供的某个版本是可以的，于是我也就将这个版本直接复制过来放到了Kynetix中，以便能够稳定的绘图。</p>
 <p>贴上绘制的效果(240x240):<br><img src="assets/images/blog_img/2016-02-18-Kynetix的kMC-plotter/traj_movie.gif" alt=""></p>
 	  
 	</div>

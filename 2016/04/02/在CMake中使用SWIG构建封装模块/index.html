@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -222,7 +222,7 @@
 	  		
 
 	  <p>由于CMake与SWIG的相互支持，使得在cmake脚本中直接定义封装模块的构建成为可能，KMCLib中也是使用这种方式直接使用swig进行自动封装。也就是在生成的Makefile中包含了使用swig命令封装库文件。</p>
-<p>在这里我主要参考了<a href="http://www.swig.org/Doc1.3/Introduction.html#Introduction_build_system" target="_blank" rel="external">swig文档中关于cmake的部分</a>和<a href="https://cmake.org/cmake/help/v3.5/module/UseSWIG.html" target="_blank" rel="external">cmake文档中使用swig的部分</a>。</p>
+<p>在这里我主要参考了<a href="http://www.swig.org/Doc1.3/Introduction.html#Introduction_build_system" target="_blank" rel="noopener">swig文档中关于cmake的部分</a>和<a href="https://cmake.org/cmake/help/v3.5/module/UseSWIG.html" target="_blank" rel="noopener">cmake文档中使用swig的部分</a>。</p>
 <a id="more"></a>
 <p>还是上例子吧</p>
 <h3 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This is a CMake example for Python</span></div><div class="line"></div><div class="line"><span class="keyword">FIND_PACKAGE</span>(SWIG REQUIRED)  </div><div class="line"><span class="keyword">INCLUDE</span>(<span class="variable">$&#123;SWIG_USE_FILE&#125;</span>)  </div><div class="line"></div><div class="line"><span class="keyword">FIND_PACKAGE</span>(PythonLibs)  </div><div class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;PYTHON_INCLUDE_PATH&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">SET</span>(CMAKE_SWIG_FLAGS <span class="string">""</span>)</div><div class="line"></div><div class="line"><span class="keyword">SET_SOURCE_FILES_PROPERTIES</span>(example.i PROPERTIES CPLUSPLUS <span class="keyword">ON</span>)</div><div class="line"><span class="keyword">SET_SOURCE_FILES_PROPERTIES</span>(example.i PROPERTIES SWIG_FLAGS <span class="string">"-includeall"</span>)</div><div class="line">SWIG_ADD_MODULE(example python example.i example.cxx)</div><div class="line">SWIG_LINK_LIBRARIES(example <span class="variable">$&#123;PYTHON_LIBRARIES&#125;</span>)</div></pre></td></tr></table></figure>

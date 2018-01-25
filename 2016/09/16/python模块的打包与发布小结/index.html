@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,8 +218,8 @@
 
 	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天把自己的VASP文件处理库进行了打包并上传到PyPI，现在可以直接通过<code>pip</code>和<code>easy_install</code>来安装VASPy啦，</p>
 <ul>
-<li>VASPy的GotHub地址：<a href="https://github.com/PytLab/VASPy" target="_blank" rel="external">https://github.com/PytLab/VASPy</a></li>
-<li>VASPy的PyPI地址：<a href="https://pypi.python.org/pypi/vaspy/" target="_blank" rel="external">https://pypi.python.org/pypi/vaspy/</a></li>
+<li>VASPy的GotHub地址：<a href="https://github.com/PytLab/VASPy" target="_blank" rel="noopener">https://github.com/PytLab/VASPy</a></li>
+<li>VASPy的PyPI地址：<a href="https://pypi.python.org/pypi/vaspy/" target="_blank" rel="noopener">https://pypi.python.org/pypi/vaspy/</a></li>
 </ul>
 <p>由于自己的记性真是不咋地，怕时间久了就忘了，于是在这里趁热打铁以自己的VASPy程序为例对python的打包和上传进行下总结。</p>
 <a id="more"></a>
@@ -237,7 +237,7 @@
   <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> <span class="built_in">get</span>-pip.<span class="keyword">py</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>具体的工具安装和介绍就不多讲了，可以请参考<a href="https://packaging.python.org/installing/#installing-requirements" target="_blank" rel="external">requirements for installing packages</a></p>
+<p>具体的工具安装和介绍就不多讲了，可以请参考<a href="https://packaging.python.org/installing/#installing-requirements" target="_blank" rel="noopener">requirements for installing packages</a></p>
 <h2 id="包中不同文件的作用"><a href="#包中不同文件的作用" class="headerlink" title="包中不同文件的作用"></a>包中不同文件的作用</h2><h3 id="setup-py"><a href="#setup-py" class="headerlink" title="setup.py"></a><code>setup.py</code></h3><p>这个文件是打包整个项目最重要的文件，它里面提供了两个主要的功能：</p>
 <ol>
 <li><code>setup()</code>函数，此函数的参数指定了如何配置自己的项目。</li>
@@ -246,13 +246,13 @@
 </ol>
 <h3 id="setup-cfg"><a href="#setup-cfg" class="headerlink" title="setup.cfg"></a><code>setup.cfg</code></h3><p>此文件包含了构建时候的一些默认参数例如构建<code>bdist_wheel</code>的时候的<code>--universal</code>参数<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="section">[bdist_wheel]</span></div><div class="line"><span class="attr">universal</span>=<span class="number">1</span></div></pre></td></tr></table></figure></p>
 <p>这样每次打包的时候就会默认使用<code>--universal</code>参数了，效果类似：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup<span class="selector-class">.py</span> bdist_wheel --universal</div></pre></td></tr></table></figure></p>
-<h3 id="README-rst"><a href="#README-rst" class="headerlink" title="README.rst"></a><code>README.rst</code></h3><p>这个最初我是用markdown写的，打包发布到PyPI之后发现PyPI不支持markdown的渲染，页面上真是一片混乱，于是就用reStrutruedText的语法重新写了一遍。毕竟标记语言语法基本上可以秒上手，实在不行找个模板比葫芦画瓢就行。<br>reStructureText的语法规则可参考官方文档:<a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html" target="_blank" rel="external">Quick <em>re</em>Structured<em>Text</em></a></p>
-<p>其实还有一种方法就是使用pandoc将markdown转换成rst格式，一种省事的方式就是使用<code>pyandoc</code>模块在发布的时候自动转换。<br>具体方法可以参考：<a href="https://coderwall.com/p/qawuyq/use-markdown-readme-s-in-python-modules" target="_blank" rel="external">Use Markdown README’s in Python modules</a></p>
+<h3 id="README-rst"><a href="#README-rst" class="headerlink" title="README.rst"></a><code>README.rst</code></h3><p>这个最初我是用markdown写的，打包发布到PyPI之后发现PyPI不支持markdown的渲染，页面上真是一片混乱，于是就用reStrutruedText的语法重新写了一遍。毕竟标记语言语法基本上可以秒上手，实在不行找个模板比葫芦画瓢就行。<br>reStructureText的语法规则可参考官方文档:<a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html" target="_blank" rel="noopener">Quick <em>re</em>Structured<em>Text</em></a></p>
+<p>其实还有一种方法就是使用pandoc将markdown转换成rst格式，一种省事的方式就是使用<code>pyandoc</code>模块在发布的时候自动转换。<br>具体方法可以参考：<a href="https://coderwall.com/p/qawuyq/use-markdown-readme-s-in-python-modules" target="_blank" rel="noopener">Use Markdown README’s in Python modules</a></p>
 <h3 id="MANIFEST-in"><a href="#MANIFEST-in" class="headerlink" title="MANIFEST.in"></a><code>MANIFEST.in</code></h3><p>此文件在打包的时候告诉setuptools还需要额外打包那些文件，例如我VASPy中的单元测试的测试数据文件我就使用这个文件将其包含进来。当然README，LICENSE这些也可以通过它来一起打包进来。<br>下面是我自己的<code>MANIFEST.in</code>的内容：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> README.rst</div><div class="line"><span class="keyword">include</span> requirements.txt</div><div class="line"><span class="keyword">include</span> LICENSE</div><div class="line"><span class="keyword">recursive</span>-<span class="keyword">include</span> scripts *</div><div class="line"><span class="keyword">recursive</span>-<span class="keyword">include</span> tests *</div></pre></td></tr></table></figure></p>
-<p>具体的语法规则可以参考：<a href="https://docs.python.org/2/distutils/sourcedist.html#the-manifest-in-template" target="_blank" rel="external">The MANIFEST.in template</a></p>
+<p>具体的语法规则可以参考：<a href="https://docs.python.org/2/distutils/sourcedist.html#the-manifest-in-template" target="_blank" rel="noopener">The MANIFEST.in template</a></p>
 <h3 id="vaspy"><a href="#vaspy" class="headerlink" title="vaspy/"></a><code>vaspy/</code></h3><p>此文件夹就是vaspy源代码所在的包。</p>
 <h3 id="tests"><a href="#tests" class="headerlink" title="tests/"></a><code>tests/</code></h3><p>此文件夹也是一个子包，包含了单元测试脚本，为了能使用<code>python setup.py test</code>进行单元测试，特地添加了<code>__init__.py</code>s使其成为一个包。</p>
-<h2 id="setup-的参数"><a href="#setup-的参数" class="headerlink" title="setup()的参数"></a><code>setup()</code>的参数</h2><p>这里只介绍我使用的几个参数，其他参数的具体使用可以参考：<a href="https://docs.python.org/3/distutils/setupscript.html" target="_blank" rel="external">https://docs.python.org/3/distutils/setupscript.html</a></p>
+<h2 id="setup-的参数"><a href="#setup-的参数" class="headerlink" title="setup()的参数"></a><code>setup()</code>的参数</h2><p>这里只介绍我使用的几个参数，其他参数的具体使用可以参考：<a href="https://docs.python.org/3/distutils/setupscript.html" target="_blank" rel="noopener">https://docs.python.org/3/distutils/setupscript.html</a></p>
 <h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">versions</span> = <span class="string">"vaspy"</span></div></pre></td></tr></table></figure>
 <p>是整个项目的名字，打包后会使用此名字和版本号。</p>
 <h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> vaspy import <span class="variable">__version__</span></div><div class="line">version = <span class="variable">__version__</span></div></pre></td></tr></table></figure>
@@ -260,8 +260,8 @@
 <h3 id="long-description"><a href="#long-description" class="headerlink" title="long_description"></a>long_description</h3><p>是一个长的描述，相当于对项目的一个简洁，如果此字符串是<code>rst</code>格式的，PyPI会自动渲染成HTML显示。这里可以直接读取<code>README.rst</code>中的内容。</p>
 <h3 id="url"><a href="#url" class="headerlink" title="url"></a>url</h3><p>包的连接，通常为GitHub上的链接或者readthedocs的链接。</p>
 <h3 id="packages"><a href="#packages" class="headerlink" title="packages"></a>packages</h3><p>需要包含的子包列表，setuptools提供了<code>find_packages()</code>帮助我们在根路径下寻找包，这个函数distutil是没有的。</p>
-<h3 id="setup-requires"><a href="#setup-requires" class="headerlink" title="setup_requires"></a>setup_requires</h3><p>这个参数定义了VASPy安装和顺利运行所需要的其他依赖项（最基本的），使用pip安装的时候会对这些依赖项进行安装。<br>关于这个参数与requirements.txt的区别可以参考：<a href="https://packaging.python.org/requirements/#install-requires-vs-requirements-files" target="_blank" rel="external">install_requires vs Requirements files</a></p>
-<h3 id="classifier"><a href="#classifier" class="headerlink" title="classifier"></a>classifier</h3><p>这个参数提供了一系列的分类，在PyPI上会将其放入不同的目录中讲项目进行归类。<br>具体的categories的名称和规则参考：<a href="https://pypi.python.org/pypi?%3Aaction=list_classifiers" target="_blank" rel="external">https://pypi.python.org/pypi?%3Aaction=list_classifiers</a></p>
+<h3 id="setup-requires"><a href="#setup-requires" class="headerlink" title="setup_requires"></a>setup_requires</h3><p>这个参数定义了VASPy安装和顺利运行所需要的其他依赖项（最基本的），使用pip安装的时候会对这些依赖项进行安装。<br>关于这个参数与requirements.txt的区别可以参考：<a href="https://packaging.python.org/requirements/#install-requires-vs-requirements-files" target="_blank" rel="noopener">install_requires vs Requirements files</a></p>
+<h3 id="classifier"><a href="#classifier" class="headerlink" title="classifier"></a>classifier</h3><p>这个参数提供了一系列的分类，在PyPI上会将其放入不同的目录中讲项目进行归类。<br>具体的categories的名称和规则参考：<a href="https://pypi.python.org/pypi?%3Aaction=list_classifiers" target="_blank" rel="noopener">https://pypi.python.org/pypi?%3Aaction=list_classifiers</a></p>
 <h3 id="test-suite"><a href="#test-suite" class="headerlink" title="test_suite"></a>test_suite</h3><p>这个参数可以帮助我们使用<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup<span class="selector-class">.py</span> test</div></pre></td></tr></table></figure></p>
 <p>来跑单元测试，再也不需要单独再写一个脚本例如<code>run_tests.py</code>这样来跑单元测试了。<br>此参数的官方解释：</p>
 <blockquote>
@@ -291,13 +291,13 @@
  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup<span class="selector-class">.py</span> sdist upload -r pypi</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>Ok,之后我们就可以在PyPI上看到我们自己的包了。(<a href="https://pypi.python.org/pypi/vaspy/" target="_blank" rel="external">https://pypi.python.org/pypi/vaspy/</a>)</p>
+<p>Ok,之后我们就可以在PyPI上看到我们自己的包了。(<a href="https://pypi.python.org/pypi/vaspy/" target="_blank" rel="noopener">https://pypi.python.org/pypi/vaspy/</a>)</p>
 <p><img src="/assets/images/blog_img/2016-09-16-python模块的打包与发布小结/vaspy_pypi.png" alt=""></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://coderwall.com/p/qawuyq/use-markdown-readme-s-in-python-modules" target="_blank" rel="external">Use Markdown README’s in Python modules</a></li>
-<li><a href="https://packaging.python.org/distributing/#package-data" target="_blank" rel="external">Packaging and Distributing Projects</a></li>
-<li><a href="http://stackoverflow.com/questions/50499/how-do-i-get-the-path-and-name-of-the-file-that-is-currently-executing" target="_blank" rel="external">How do I get the path and name of the file that is currently executing?</a></li>
-<li><a href="http://peterdowns.com/posts/first-time-with-pypi.html" target="_blank" rel="external">How to submit a package to PyPI</a></li>
+<li><a href="https://coderwall.com/p/qawuyq/use-markdown-readme-s-in-python-modules" target="_blank" rel="noopener">Use Markdown README’s in Python modules</a></li>
+<li><a href="https://packaging.python.org/distributing/#package-data" target="_blank" rel="noopener">Packaging and Distributing Projects</a></li>
+<li><a href="http://stackoverflow.com/questions/50499/how-do-i-get-the-path-and-name-of-the-file-that-is-currently-executing" target="_blank" rel="noopener">How do I get the path and name of the file that is currently executing?</a></li>
+<li><a href="http://peterdowns.com/posts/first-time-with-pypi.html" target="_blank" rel="noopener">How to submit a package to PyPI</a></li>
 </ul>
 	  
 	</div>

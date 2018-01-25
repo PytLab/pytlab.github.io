@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -224,7 +224,7 @@
 <p>为什么之前的<code>std::vector&lt;int&gt;</code>和<code>std::vector&lt;double&gt;</code>都不会出现这种问题？</p>
 <p>于是还是要求助与万能的谷歌。。。</p>
 <p>原来这个问题在Scott Meyers的Effective系列的条例里面都有，他说<code>std::vector&lt;bool&gt;</code>并不是一个STL容器，他里面存放的也不是真正的<code>bool</code>变量。</p>
-<p>在cppreference里面也专门对这个进行了<a href="http://www.cplusplus.com/reference/vector/vector-bool/" target="_blank" rel="external">描述</a>：</p>
+<p>在cppreference里面也专门对这个进行了<a href="http://www.cplusplus.com/reference/vector/vector-bool/" target="_blank" rel="noopener">描述</a>：</p>
 <blockquote>
 <p>Vector of bool<br>This is a specialized version of vector, which is used for elements of type bool and optimizes for space.</p>
 <p>It behaves like the unspecialized version of vector, with the following changes:</p>

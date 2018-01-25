@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -219,6 +219,33 @@
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2016-03-29 </div>
+			<div class="article-title"><a href="/2016/03/29/发现了KMCLib中的数组内存越界隐患/" >发现了KMCLib中的数组内存越界隐患</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/29/发现了KMCLib中的数组内存越界隐患/"><img src="/assets/images/features/github_logo.png" alt="发现了KMCLib中的数组内存越界隐患"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>之前在看代码的时候就发现了这个问题，就是在初始化configuration的match_lists的时候，最后一步是为configuration分配内存空间，但是作者使用的是match_lists中的第一个minimal_match_list的长度来分配内存，这样就留下了数组越界的隐患，我写了个单元测试，测试了下，果然！<br><strong>因为由于周期性边界条件的原因，第一个minimal_match_list可能并不是长度最长的</strong><br><br><br>于是我就向leetmaa/KMCLib的主分支提交了自己的代码，今天他接受了我的pull requests。具体的pull request信息以及我做的bug修复就不多扯了，贴上github上的链接来好了：<br><a href="https://github.com/leetmaa/KMCLib/pull/5" target="_blank" rel="noopener"><span class="fa fa-github"></span> Fix the out-of-bound bug by PytLab · Pull Request #5 · leetmaa/KMCLib</a></p>
+
+	
+	</div>
+  <a type="button" href="/2016/03/29/发现了KMCLib中的数组内存越界隐患/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-29 </div>
 			<div class="article-title"><a href="/2016/03/29/KMCLib中的Interactions/" title="Interactions类用于描述KMC过程中所有能够发生的process并对其进行操作，&lt;br&gt;其中包括process的抽取，更新process的match list等。">KMCLib中的Interactions</a></div>						
 		</h3>
 	
@@ -300,8 +327,8 @@
 	
 	
 		<p>在github上面向别人的项目代码pull request的时候遇到了一个蛋疼的问题，问题都在一个字符上面就是<code>^M</code>，我的代码虽然只修改了几行代码，但是使用<code>git diff</code>的时候发现整个文件全部修改了。</p>
-<p><p><br>原因就是我修改的文件在每一行末尾都新增了一个<code>^M</code>字符，这样就导致每一行都和以前不同diff的时候自然就全部不同了，这样就非常的蛋疼，向别人项目中pull request的时候一整片红色和一整片绿色，别人包括我自己都不知道我到底是修改的哪一部分，感觉像是在捣乱的。。。像这样的pull request人家才不会给我merge呢。</p>
-<p><p><br>真是太不好意思了，诶…效果就是这蛋疼的下图：<br>
+<p></p><p><br>原因就是我修改的文件在每一行末尾都新增了一个<code>^M</code>字符，这样就导致每一行都和以前不同diff的时候自然就全部不同了，这样就非常的蛋疼，向别人项目中pull request的时候一整片红色和一整片绿色，别人包括我自己都不知道我到底是修改的哪一部分，感觉像是在捣乱的。。。像这样的pull request人家才不会给我merge呢。</p>
+<p></p><p><br>真是太不好意思了，诶…效果就是这蛋疼的下图：<br>
 	
 	</div>
   <a type="button" href="/2016/03/25/消除蛋疼的-M/#more" class="btn btn-default more">Read More</a>
@@ -364,38 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-24 </div>
-			<div class="article-title"><a href="/2016/03/24/KMCLib中的match-list/" title="match_lists以及minimal_match_list是KMCLib中链接configuration和process的桥梁，&lt;br&gt;同时还包含了元素类型、序号、坐标等信息，非常重要">KMCLib中的match_list</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>match_list是由MinimalMatchList类对象组成的vector。</p>
-<h3 id="MinimalMatchListEntry类"><a href="#MinimalMatchListEntry类" class="headerlink" title="MinimalMatchListEntry类"></a>MinimalMatchListEntry类</h3><p>这其实是一个结构，用于存储每个位点相关的信息，或者说每个minimal_match_list中的元素。</p>
-<ul>
-<li><p><code>bool has_move_coordinate;</code><br>  用于标记这个元素是否移动，<br>  通常在创建process对象时候提供了move_origin和move_vector时会将此值设为true;</p>
-</li>
-<li><p><code>Coordinate move_coordinate;</code><br>  这个元素如果有移动，他的移动向量，<br>  通常在创建process对象时候提供了move_origin和move_vector时会将此值设为move_vector中的值。</p>
-</li>
-<li><p><code>int match_type;</code><br>  主要用于process中，存储process之<strong>前</strong>的元素类型int</p>
-</li>
-<li><p><code>int update_type;</code><br>  主要用于process中，存储process之<strong>后</strong>的元素类型int</p>
-</li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2016/03/24/KMCLib中的match-list/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -445,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
+      </li>
+    
+      <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
@@ -460,10 +459,6 @@
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
-      <li>
-        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -474,7 +469,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -500,48 +495,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">103</span></a></li>
+		   <li><a href="/tags">...<span class="badge">109</span></a></li>
 		 
 		</ul>
 	</div>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,6 +218,34 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2016-04-05 </div>
+			<div class="article-title"><a href="/2016/04/05/SWIG对结构和类的封装/" title="主要总结下swig封装类的方法。">SWIG对结构和类的封装</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/04/05/SWIG对结构和类的封装/"><img src="/assets/images/features/swig.png" alt="SWIG对结构和类的封装"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>为了能够将C++的类映射到目标语言，swig使用目标语言自动生成一个代理类（Proxy Class）来讲真正的C++类封装在里面，并通过使用一些accessor函数来使其看起来和用C++类一样的效果。</p>
+<p>举个例子：<br>我有如下C++的类：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Foo</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Foo();</div><div class="line">    ~Foo();</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">bar</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</div><div class="line">    <span class="keyword">int</span> x;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>代理类只是一种思想，可以用C++本身来实现一个代理类封装自己的类：<br>
+	
+	</div>
+  <a type="button" href="/2016/04/05/SWIG对结构和类的封装/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-04-04 </div>
 			<div class="article-title"><a href="/2016/04/04/SWIG中的指针/" title="由于C/C++大量的使用指针，因此如何处理指针是swig的一项重要的工作。">SWIG中的指针</a></div>						
 		</h3>
@@ -291,7 +319,7 @@
 	
 	
 		<p>由于CMake与SWIG的相互支持，使得在cmake脚本中直接定义封装模块的构建成为可能，KMCLib中也是使用这种方式直接使用swig进行自动封装。也就是在生成的Makefile中包含了使用swig命令封装库文件。</p>
-<p>在这里我主要参考了<a href="http://www.swig.org/Doc1.3/Introduction.html#Introduction_build_system">swig文档中关于cmake的部分</a>和<a href="https://cmake.org/cmake/help/v3.5/module/UseSWIG.html">cmake文档中使用swig的部分</a>。</p>
+<p>在这里我主要参考了<a href="http://www.swig.org/Doc1.3/Introduction.html#Introduction_build_system" target="_blank" rel="noopener">swig文档中关于cmake的部分</a>和<a href="https://cmake.org/cmake/help/v3.5/module/UseSWIG.html" target="_blank" rel="noopener">cmake文档中使用swig的部分</a>。</p>
 	
 	</div>
   <a type="button" href="/2016/04/02/在CMake中使用SWIG构建封装模块/#more" class="btn btn-default more">Read More</a>
@@ -352,33 +380,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-29 </div>
-			<div class="article-title"><a href="/2016/03/29/发现了KMCLib中的数组内存越界隐患/" >发现了KMCLib中的数组内存越界隐患</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/29/发现了KMCLib中的数组内存越界隐患/"><img src="/assets/images/features/github_logo.png" alt="发现了KMCLib中的数组内存越界隐患"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>之前在看代码的时候就发现了这个问题，就是在初始化configuration的match_lists的时候，最后一步是为configuration分配内存空间，但是作者使用的是match_lists中的第一个minimal_match_list的长度来分配内存，这样就留下了数组越界的隐患，我写了个单元测试，测试了下，果然！<br><strong>因为由于周期性边界条件的原因，第一个minimal_match_list可能并不是长度最长的</strong><br><br><br>于是我就向leetmaa/KMCLib的主分支提交了自己的代码，今天他接受了我的pull requests。具体的pull request信息以及我做的bug修复就不多扯了，贴上github上的链接来好了：<br><a href="https://github.com/leetmaa/KMCLib/pull/5" target="_blank" rel="external"><span class="fa fa-github"></span> Fix the out-of-bound bug by PytLab · Pull Request #5 · leetmaa/KMCLib</a></p>
-
-	
-	</div>
-  <a type="button" href="/2016/03/29/发现了KMCLib中的数组内存越界隐患/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -428,6 +429,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
+      </li>
+    
+      <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
@@ -443,10 +448,6 @@
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
-      <li>
-        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -457,7 +458,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -483,48 +484,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">103</span></a></li>
+		   <li><a href="/tags">...<span class="badge">109</span></a></li>
 		 
 		</ul>
 	</div>

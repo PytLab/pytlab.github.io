@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -219,8 +219,8 @@
 	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文尝试对遗传算法中不同适值函数的标定(Scaling)方法进行下总结，并针对常用的线性标定和动态线性标定进行了Python实现，以装饰器的形式添加到遗传算法框架GAFT中，这样在使用GAFT运行遗传算法迭代的时候可以更加Pythonic的给自定义的适值函数进行标定。最后针对能够防止早熟情况的大变异算法进行了相应的实现。</p>
 <p>目前(动态)线性标定装饰器以及大变异算子均已添加到GAFT中，gaft项目链接:</p>
 <ul>
-<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a></li>
-<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="external">https://pypi.python.org/pypi/gaft</a></li>
+<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="noopener">https://github.com/PytLab/gaft</a></li>
+<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="noopener">https://pypi.python.org/pypi/gaft</a></li>
 </ul>
 <a id="more"></a>
 <h2 id="适值函数的标定"><a href="#适值函数的标定" class="headerlink" title="适值函数的标定"></a>适值函数的标定</h2><h3 id="选择压力"><a href="#选择压力" class="headerlink" title="选择压力"></a>选择压力</h3><blockquote>
@@ -281,7 +281,7 @@
 <li>密集因子$\alpha$: 决定大变异操作在整个过程中所占的比重，其数值约接近$0.5$，大变异操作越频繁</li>
 <li>大变异概率: 概率越大，大变异算法的稳定性就越好，但是收敛速度可能会降低，当大变异概率的数值为0.5的时候，大变异操作就近似退化为随机搜索</li>
 </ol>
-<h3 id="GAFT中的大变异算子"><a href="#GAFT中的大变异算子" class="headerlink" title="GAFT中的大变异算子"></a>GAFT中的大变异算子</h3><p>大变异操作与具体的变异算子实现无关，这里我还是依据内置的<code>FlipBitMutation</code>算子为基础, 具体的代码实现参见<a href="https://github.com/PytLab/gaft/blob/master/gaft/operators/mutation/flip_bit_mutation.py。" target="_blank" rel="external">https://github.com/PytLab/gaft/blob/master/gaft/operators/mutation/flip_bit_mutation.py。</a></p>
+<h3 id="GAFT中的大变异算子"><a href="#GAFT中的大变异算子" class="headerlink" title="GAFT中的大变异算子"></a>GAFT中的大变异算子</h3><p>大变异操作与具体的变异算子实现无关，这里我还是依据内置的<code>FlipBitMutation</code>算子为基础, 具体的代码实现参见<a href="https://github.com/PytLab/gaft/blob/master/gaft/operators/mutation/flip_bit_mutation.py。" target="_blank" rel="noopener">https://github.com/PytLab/gaft/blob/master/gaft/operators/mutation/flip_bit_mutation.py。</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlipBitBigMutation</span><span class="params">(FlipBitMutation)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, pm, pbm, alpha)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        Mutation operator using Flip Bit mutation implementation with adaptive</div><div class="line">        big mutation rate to overcome premature or local-best solution.</div><div class="line"></div><div class="line">        :param pm: The probability of mutation (usually between 0.001 ~ 0.1)</div><div class="line">        :type pm: float in (0.0, 1.0]</div><div class="line"></div><div class="line">        :param pbm: The probability of big mutation, usually more than 5 times</div><div class="line">                    bigger than pm.</div><div class="line">        :type pbm: float</div><div class="line"></div><div class="line">        :param alpha: intensive factor</div><div class="line">        :type alpha: float, in range (0.5, 1)</div><div class="line">        '''</div><div class="line">        super(self.__class__, self).__init__(pm)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0.0</span> &lt; pbm &lt; <span class="number">1.0</span>):</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'Invalid big mutation probability'</span>)</div><div class="line">        <span class="keyword">if</span> pbm &lt; <span class="number">5</span>*pm:</div><div class="line">            self.logger.warning(<span class="string">'Relative low probability for big mutation'</span>)</div><div class="line">        self.pbm = pbm</div><div class="line"></div><div class="line">        <span class="comment"># Intensive factor.</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0.5</span> &lt; alpha &lt; <span class="number">1.0</span>):</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'Invalid intensive factor, should be in (0.5, 1.0)'</span>)</div><div class="line">        self.alpha = alpha</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span><span class="params">(self, individual, engine)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        Mutate the individual with adaptive big mutation rate.</div><div class="line">        '''</div><div class="line">        pm = self.pm</div><div class="line"></div><div class="line">        <span class="keyword">if</span> engine.fmax*self.alpha &lt; engine.fmean:</div><div class="line">            self.pm = self.pbm</div><div class="line">            self.logger.info(<span class="string">'Big mutation probabilty: &#123;&#125; -&gt; &#123;&#125;'</span>.format(pm, self.pm))</div><div class="line"></div><div class="line">        <span class="comment"># Mutate with big probability.</span></div><div class="line">        individual = super(self.__class__, self).mutate(individual, engine)</div><div class="line"></div><div class="line">        <span class="comment"># Recover probability.</span></div><div class="line">        self.pm = pm</div><div class="line"></div><div class="line">        <span class="keyword">return</span> individual</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文尝试对遗传算法中不同适值函数的标定(Scaling)方法进行下总结，并针对常用的线性标定和动态线性标定进行了Python实现，以装饰器的形式添加到遗传算法框架GAFT中，这样在使用GAFT运行遗传算法迭代的时候可以更加Pythonic的给自定义的适值函数进行标定。最后针对能够防止早熟情况的大变异算法进行了相应的实现。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
@@ -370,7 +370,7 @@
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+    <li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
   </li>
 
     </ul>

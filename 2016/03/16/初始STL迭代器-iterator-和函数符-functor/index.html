@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -234,7 +234,7 @@
 <h4 id="STL中的函数符"><a href="#STL中的函数符" class="headerlink" title="STL中的函数符"></a>STL中的函数符</h4><p>函数符可以看成是广义的函数，但他其实是重载了<code>()</code>运算符的一个类，这是理解函数符的关键。<br>例如一个类：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Functor</div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">double</span> a;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Functor(<span class="keyword">double</span> a_ = <span class="number">1.0</span>) : a(a_) &#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">operator</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; <span class="keyword">return</span> a*x; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这样就能够将Functor类的对象当作函数来用，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">Functo <span class="title">f1</span><span class="params">(<span class="number">2.0</span>)</span></span>;</div><div class="line"><span class="keyword">double</span> y = f1(<span class="number">9.0</span>);  <span class="comment">// y = 18.0</span></div></pre></td></tr></table></figure></p>
 <hr>
-<p>这里就写这么点吧，以后在使用的时候有新的理解我会在写总结的。<br>另外附上一个可以方便查询的网站，我一般有些函数的原型忘记了会到这里来查:<a href="http://www.cplusplus.com/" target="_blank" rel="external">http://www.cplusplus.com/</a></p>
+<p>这里就写这么点吧，以后在使用的时候有新的理解我会在写总结的。<br>另外附上一个可以方便查询的网站，我一般有些函数的原型忘记了会到这里来查:<a href="http://www.cplusplus.com/" target="_blank" rel="noopener">http://www.cplusplus.com/</a></p>
 	  
 	</div>
 

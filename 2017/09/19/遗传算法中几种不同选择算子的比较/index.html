@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -226,19 +226,19 @@
 <p>对于每种选择策略我都使用Python进行了相应的实现并以内置插件的形式整合进了本人所写的遗传算法框架GAFT中。对需要使用遗传算法优化问题以及学习遗传算法的童鞋可以作为参考.</p>
 <p>项目链接:</p>
 <ul>
-<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="external">https://github.com/PytLab/gaft</a></li>
-<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="external">https://pypi.python.org/pypi/gaft</a></li>
+<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="noopener">https://github.com/PytLab/gaft</a></li>
+<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="noopener">https://pypi.python.org/pypi/gaft</a></li>
 </ul>
 <a id="more"></a>
 <h2 id="遗传算法中的选择算子"><a href="#遗传算法中的选择算子" class="headerlink" title="遗传算法中的选择算子"></a>遗传算法中的选择算子</h2><p>遗传算法(genetic algorithms, GAs)是一种自适应的启发式搜索算法, 它模仿达尔文进化论中的“适者生存”的原则, 最终获取优化目标的最优解。下图描述了一个简单的遗传算法流程:</p>
 <p><img src="/assets/images/blog_img/2017-09-19-遗传算法中几种不同选择算子的比较/flowchart.png" alt=""></p>
 <p>对于种群中需要进行杂交的物种选择方法有很多，而且选择一种合适的选择策略对于遗传算法整体性能的影响将是很大的。如果一个选择算法选择多样性降低，便会导致种群过早的收敛到局部最优点而不是我们想要的全局最优点，也就是所谓的”早熟”。而选择策略过于发散则会导致算法难以收敛到最优点。因此在这两点中我们需要进行平衡才能使遗传算法以一种高效的方式收敛到全局最优点。</p>
-<h2 id="GAFT框架中的算子插件"><a href="#GAFT框架中的算子插件" class="headerlink" title="GAFT框架中的算子插件"></a>GAFT框架中的算子插件</h2><p>GAFT是我根据自己需求开发的一个遗传算法框架，相关介绍的博客可以参见《<a href="http://pytlab.org/2017/07/23/gaft-%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/" target="_blank" rel="external">GAFT-一个使用Python实现的遗传算法框架</a>》,《<a href="http://pytlab.org/2017/08/02/%E4%BD%BF%E7%94%A8MPI%E5%B9%B6%E8%A1%8C%E5%8C%96%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" target="_blank" rel="external">使用MPI并行化遗传算法框架GAFT</a>》。该框架提供了插件接口，用户可以通过自定义算子以及on-the-fly分析插件来放到gaft框架中运行遗传算法流程对目标问题进行优化。</p>
+<h2 id="GAFT框架中的算子插件"><a href="#GAFT框架中的算子插件" class="headerlink" title="GAFT框架中的算子插件"></a>GAFT框架中的算子插件</h2><p>GAFT是我根据自己需求开发的一个遗传算法框架，相关介绍的博客可以参见《<a href="http://pytlab.org/2017/07/23/gaft-%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/" target="_blank" rel="noopener">GAFT-一个使用Python实现的遗传算法框架</a>》,《<a href="http://pytlab.org/2017/08/02/%E4%BD%BF%E7%94%A8MPI%E5%B9%B6%E8%A1%8C%E5%8C%96%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" target="_blank" rel="noopener">使用MPI并行化遗传算法框架GAFT</a>》。该框架提供了插件接口，用户可以通过自定义算子以及on-the-fly分析插件来放到gaft框架中运行遗传算法流程对目标问题进行优化。</p>
 <p>本部分我稍微介绍下gaft关于遗传算子相关接口规范，以及编写能用于gaft的算子的编写方法。</p>
-<p>在gaft中遗传算子的编写都是需要继承框架内置的基类，然后根据基类提供的接口，实现自己的算子。其中基类的定义都在<a href="https://github.com/PytLab/gaft/tree/master/gaft/plugin_interfaces/operators" target="_blank" rel="external"><code>/gaft/plugin_interfaces/operators/</code></a>目录下，下面我以选择算子为例，介绍下接口。</p>
+<p>在gaft中遗传算子的编写都是需要继承框架内置的基类，然后根据基类提供的接口，实现自己的算子。其中基类的定义都在<a href="https://github.com/PytLab/gaft/tree/master/gaft/plugin_interfaces/operators" target="_blank" rel="noopener"><code>/gaft/plugin_interfaces/operators/</code></a>目录下，下面我以选择算子为例，介绍下接口。</p>
 <p>gaft中选择算子的基类为<code>GASelection</code>，其中在遗传算法流程中会调用该类实例的<code>select</code>方法，进而根据算子中的相关选择策略完成从种群中选取一对物种作为父亲和母亲产生子代。基类的定义为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GASelection</span><span class="params">(metaclass=SelectionMeta)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Class for providing an interface to easily extend the behavior of selection</div><div class="line">    operation.</div><div class="line">    '''</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, population, fitness)</span>:</span></div><div class="line">        <span class="string">'''</span></div><div class="line">        Called when we need to select parents from a population to later breeding.</div><div class="line"></div><div class="line">        :param population: The current population.</div><div class="line">        :type population: GAPopulation</div><div class="line"></div><div class="line">        :return parents: Two selected individuals for crossover.</div><div class="line">        :type parents: Tuple of tow GAIndividual objects.</div><div class="line">        '''</div><div class="line">        <span class="keyword">raise</span> NotImplementedError</div></pre></td></tr></table></figure></p>
 <p><code>select</code>的方法的参数为当前种群<code>population</code>以及相应的适应度函数<code>fitness</code>，其中<code>population</code>需要是<code>GAPopulation</code>对象，<code>fitness</code>也必须是callable的对象。</p>
-<p>当然，这些在Python这种动态类型语言中貌似看起来有些鸡肋，但是为了能够更加规范使用者，我<strong>利用Python的元类在实例化类对象的时候对接口的实现以及接口的参数类型加以限制</strong>。具体的实现都在<a href="https://github.com/PytLab/gaft/blob/master/gaft/plugin_interfaces/metaclasses.py" target="_blank" rel="external"><code>/gaft/plugin_interfaces/metaclasses.py</code></a>中，有兴趣的童鞋可以看看实现方法。</p>
+<p>当然，这些在Python这种动态类型语言中貌似看起来有些鸡肋，但是为了能够更加规范使用者，我<strong>利用Python的元类在实例化类对象的时候对接口的实现以及接口的参数类型加以限制</strong>。具体的实现都在<a href="https://github.com/PytLab/gaft/blob/master/gaft/plugin_interfaces/metaclasses.py" target="_blank" rel="noopener"><code>/gaft/plugin_interfaces/metaclasses.py</code></a>中，有兴趣的童鞋可以看看实现方法。</p>
 <p>具体自定义算子的编写方法我将在下一部分同选择策略一起贴出来。</p>
 <h2 id="不同的选择策略"><a href="#不同的选择策略" class="headerlink" title="不同的选择策略"></a>不同的选择策略</h2><p>本部分我主要对四种不同的选择策略进行总结并加以gaft插件形式的Python实现。</p>
 <p>选择算子决定了哪些个体将会从种群中被选择出来用于繁衍下一代种群中的新个体。其主要的原则就是:</p>
@@ -360,7 +360,7 @@
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+    <li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
   </li>
 
     </ul>

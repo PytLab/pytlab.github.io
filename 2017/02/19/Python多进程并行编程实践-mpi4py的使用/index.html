@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -229,7 +229,7 @@
 <a id="more"></a>
 <p>MPI的工作方式很好理解，我们可以同时启动一组进程，在同一个通信域中不同的进程都有不同的编号，程序员可以利用MPI提供的接口来给不同编号的进程分配不同的任务和帮助进程相互交流最终完成同一个任务。就好比包工头给工人们编上了工号然后指定一个方案来给不同编号的工人分配任务并让工人相互沟通完成任务。</p>
 <h2 id="Python中的并行"><a href="#Python中的并行" class="headerlink" title="Python中的并行"></a>Python中的并行</h2><p>由于CPython中的GIL的存在我们可以暂时不奢望能在CPython中使用多线程利用多核资源进行并行计算了，因此我们在Python中可以利用多进程的方式充分利用多核资源。</p>
-<p>Python中我们可以使用很多方式进行多进程编程，例如<code>os.fork()</code>来创建进程或者通过<code>multiprocessing</code>模块来更方便的创建进程和进程池等。在上一篇<a href="http://pytlab.org/2017/01/19/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-multiprocessing%E6%A8%A1%E5%9D%97/" target="_blank" rel="external">《Python多进程并行编程实践-multiprocessing模块》</a>中我们使用进程池来方便的管理Python进程并且通过multiprocessing模块中的<code>Manager</code>管理分布式进程实现了计算的多机分布式计算。</p>
+<p>Python中我们可以使用很多方式进行多进程编程，例如<code>os.fork()</code>来创建进程或者通过<code>multiprocessing</code>模块来更方便的创建进程和进程池等。在上一篇<a href="http://pytlab.org/2017/01/19/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-multiprocessing%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener">《Python多进程并行编程实践-multiprocessing模块》</a>中我们使用进程池来方便的管理Python进程并且通过multiprocessing模块中的<code>Manager</code>管理分布式进程实现了计算的多机分布式计算。</p>
 <p>与多线程的共享式内存不同，由于各个进程都是相互独立的，因此进程间通信再多进程中扮演这非常重要的角色，Python中我们可以使用multiprocessing模块中的<code>pipe</code>、<code>queue</code>、<code>Array</code>、<code>Value</code>等等工具来实现进程间通讯和数据共享，但是在编写起来仍然具有很大的不灵活性。而这一方面正是MPI所擅长的领域，因此如果能够在Python中调用MPI的接口那真是太完美了不是么。</p>
 <h2 id="MPI与mpi4py"><a href="#MPI与mpi4py" class="headerlink" title="MPI与mpi4py"></a>MPI与mpi4py</h2><p>mpi4py是一个构建在MPI之上的Python库，主要使用Cython编写。mpi4py使得Python的数据结构可以方便的在多进程中传递。</p>
 <p>mpi4py是一个很强大的库，它实现了很多MPI标准中的接口，包括点对点通信，组内集合通信、非阻塞通信、重复非阻塞通信、组间通信等，基本上我能想到用到的MPI接口mpi4py中都有相应的实现。不仅是Python对象，mpi4py对numpy也有很好的支持并且传递效率很高。同时它还提供了SWIG和F2PY的接口能够让我们将自己的Fortran或者C/C++程序在封装成Python后仍然能够使用mpi4py的对象和接口来进行并行处理。可见mpi4py的作者的功力的确是非常了得。</p>
@@ -246,7 +246,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI                  </div><div class="line">                                                </div><div class="line">In [<span class="number">2</span>]: MPI.COMM_SELF                           </div><div class="line">Out[<span class="number">2</span>]: &lt;mpi4py.MPI.Intracomm at <span class="number">0x7f2fa2fd59d0</span>&gt;</div><div class="line">                                                </div><div class="line">In [<span class="number">3</span>]: MPI.COMM_WORLD                          </div><div class="line">Out[<span class="number">3</span>]: &lt;mpi4py.MPI.Intracomm at <span class="number">0x7f2fa2fd59f0</span>&gt;</div></pre></td></tr></table></figure>
 <p>通信域对象则提供了与通信域相关的接口，例如获取当前进程号、获取通信域内的进程数、获取进程组、对进程组进行集合运算、分割合并等等。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">4</span>]: comm = MPI.COMM_WORLD                   </div><div class="line">                                                </div><div class="line">In [<span class="number">5</span>]: comm.Get_rank()                         </div><div class="line">Out[<span class="number">5</span>]: <span class="number">0</span>                                       </div><div class="line">                                                </div><div class="line">In [<span class="number">6</span>]: comm.Get_size()                         </div><div class="line">Out[<span class="number">6</span>]: <span class="number">1</span>                                       </div><div class="line">                                                </div><div class="line">In [<span class="number">7</span>]: comm.Get_group()                        </div><div class="line">Out[<span class="number">7</span>]: &lt;mpi4py.MPI.Group at <span class="number">0x7f2fa40fec30</span>&gt;    </div><div class="line">                                                </div><div class="line">In [<span class="number">9</span>]: comm.Split(<span class="number">0</span>, <span class="number">0</span>)                        </div><div class="line">Out[<span class="number">9</span>]: &lt;mpi4py.MPI.Intracomm at <span class="number">0x7f2fa2fd5bd0</span>&gt;</div></pre></td></tr></table></figure>
-<p>关于通信域与进程组的操作这里就不细讲了，可以参考<a href="http://mpitutorial.com/tutorials/introduction-to-groups-and-communicators/" target="_blank" rel="external">Introduction to Groups and Communicators</a></p>
+<p>关于通信域与进程组的操作这里就不细讲了，可以参考<a href="http://mpitutorial.com/tutorials/introduction-to-groups-and-communicators/" target="_blank" rel="noopener">Introduction to Groups and Communicators</a></p>
 <h3 id="点对点通信"><a href="#点对点通信" class="headerlink" title="点对点通信"></a>点对点通信</h3><p>mpi4py提供了点对点通信的接口使得多个进程间能够互相传递Python的内置对象（基于pickle序列化），同时也提供了直接的数组传递（numpy数组，接近C语言的效率）。</p>
 <p>如果我们需要传递通用的Python对象，则需要使用通信域对象的方法中小写的接口，例如<code>send()</code>,<code>recv()</code>,<code>isend()</code>等。</p>
 <p>如果需要直接传递数据对象，则需要调用大写的接口，例如<code>Send()</code>,<code>Recv()</code>,<code>Isend()</code>等，这与C++接口中的拼写是一样的。</p>
@@ -295,11 +295,11 @@
 <p>效率提升了10倍左右。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文简单介绍了mpi4py的接口在python中进行多进程编程的方法，MPI的接口非常庞大，相应的mpi4py也非常庞大，mpi4py还有实现了相应的SWIG和F2PY的封装文件和类型映射，能够帮助我们将Python同真正的C/C++以及Fortran程序在消息传递上实现统一。有兴趣的同学可以进一步研究一下，欢迎交流。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="http://pythonhosted.org/mpi4py/usrman/index.html" target="_blank" rel="external">MPI for Python 2.0.0 documentation</a></li>
-<li><a href="http://mpitutorial.com/tutorials/" target="_blank" rel="external">MPI Tutorial</a></li>
-<li><a href="http://materials.jeremybejarano.com/MPIwithPython/index.html" target="_blank" rel="external">A Python Introduction to Parallel Programming with MPI</a></li>
-<li><a href="https://book.douban.com/subject/1244566/" target="_blank" rel="external">《高性能计算并行编程技术-MPI并行程序设计》</a></li>
-<li><a href="https://book.douban.com/subject/3544630/" target="_blank" rel="external">《MPI并行程序设计实例教程》</a></li>
+<li><a href="http://pythonhosted.org/mpi4py/usrman/index.html" target="_blank" rel="noopener">MPI for Python 2.0.0 documentation</a></li>
+<li><a href="http://mpitutorial.com/tutorials/" target="_blank" rel="noopener">MPI Tutorial</a></li>
+<li><a href="http://materials.jeremybejarano.com/MPIwithPython/index.html" target="_blank" rel="noopener">A Python Introduction to Parallel Programming with MPI</a></li>
+<li><a href="https://book.douban.com/subject/1244566/" target="_blank" rel="noopener">《高性能计算并行编程技术-MPI并行程序设计》</a></li>
+<li><a href="https://book.douban.com/subject/3544630/" target="_blank" rel="noopener">《MPI并行程序设计实例教程》</a></li>
 </ul>
 	  
 	</div>

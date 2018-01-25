@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -226,7 +226,7 @@
 <li>左值是一个表示数据的表达式（如变量名或者解除引用的指针），<strong>程序可以获取它的地址</strong>。</li>
 <li>右值是可以出现在表达式的右边的，<strong>但不能对其应用取址运算符的值</strong>。</li>
 </ol>
-<p>在 <a href="http://stackoverflow.com/questions/3106110/what-are-move-semantics" target="_blank" rel="external">StackOverflow上面看到一个回答</a> 里面使用了个例子：</p>
+<p>在 <a href="http://stackoverflow.com/questions/3106110/what-are-move-semantics" target="_blank" rel="noopener">StackOverflow上面看到一个回答</a> 里面使用了个例子：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">std::string a(x);                                    // Line 1</div><div class="line">std::string b(x + y);                                // Line 2</div><div class="line">std::string c(some_function_returning_a_string());   // Line 3</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>上面的这些都是进行字符串的复制。但是只有第一个是真正需要深复制的，因为我们在复制之后还是<strong>需要使用变量<code>x</code>的</strong>（我们会使用<code>x</code>进行运算或者进行取址等），所以如果我们在进行复制到<code>a</code>的时候将<code>x</code>的值进行了改变，这显然不是我们想要的！<br>第二行和第三行的函数中的参数则不是左值，这些参数并没有名字，我们也不可能在后面的程序中在对这个值进行进一步的操作（连名字都没了让我怎么找）。<br><div class="alert alert-info"><i class="fa fa-info"></i>  因此右值是一种临时的数据对象，这个临时数据对象没有绑定到任何对象/变量，在<strong>遇到下一个分号的时候已经销毁掉了！</strong></div></p>
@@ -392,7 +392,7 @@
 	
 	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
 	   <div id="toc" class="toc collapse in">
-			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#左值-amp-右值"><span class="toc-article-text">左值 & 右值</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#lvalue-左值"><span class="toc-article-text">lvalue(左值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#xvalue-eXpiring-value-临终值"><span class="toc-article-text">xvalue(eXpiring value, 临终值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#glvalue-generalized-lvalue-泛左值"><span class="toc-article-text">glvalue(generalized lvalue, 泛左值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#rvalue"><span class="toc-article-text">rvalue</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#prvalue-pure-rvalue-纯右值"><span class="toc-article-text">prvalue (pure rvalue, 纯右值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#右值引用"><span class="toc-article-text">右值引用</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#移动语义"><span class="toc-article-text">移动语义</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#移动构造函数"><span class="toc-article-text">移动构造函数</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#强制移动"><span class="toc-article-text">强制移动</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li></ol>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#左值-amp-右值"><span class="toc-article-text">左值 &amp; 右值</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#lvalue-左值"><span class="toc-article-text">lvalue(左值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#xvalue-eXpiring-value-临终值"><span class="toc-article-text">xvalue(eXpiring value, 临终值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#glvalue-generalized-lvalue-泛左值"><span class="toc-article-text">glvalue(generalized lvalue, 泛左值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#rvalue"><span class="toc-article-text">rvalue</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#prvalue-pure-rvalue-纯右值"><span class="toc-article-text">prvalue (pure rvalue, 纯右值)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#右值引用"><span class="toc-article-text">右值引用</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#移动语义"><span class="toc-article-text">移动语义</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#移动构造函数"><span class="toc-article-text">移动构造函数</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#强制移动"><span class="toc-article-text">强制移动</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#总结"><span class="toc-article-text">总结</span></a></li></ol>
 		</div>
 	
 	</div>

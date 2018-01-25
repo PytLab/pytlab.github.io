@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -256,7 +256,7 @@
 <p>现在在这里简单推导下核函数有效的必要条件:</p>
 <p>若$K(x, z)$有效，则矩阵元素可写成(矩阵为对称矩阵)<br>$$<br>K_{i, j} = \phi(x_{i})^{T}\phi(x_{j}) = \phi(x_{j})^{T}\phi(x_{i}) = K_{i, j}<br>$$</p>
 <p>对于向量$z$, 我们有:<br>$$<br>z^{T}Kz = \sum_{i} \sum_{j} z_{i}K_{i, j}z_{j} = \sum_{i} \sum_{j}z_{i}\phi(x_{i})^{T}\phi(x_{j})z_{j} = \sum_{i} \sum_{j} z_{i} (\sum_{k}\phi(x_{i})_{k} \phi(x_{j})_{k}) z_{j}<br>$$<br>$$<br>= \sum_{k} \sum_{i} \sum_{j} z_{i} \phi(x_{i})_{k} \phi(x_{j})_{k} z_{j} = \sum_{k}(\sum_{i} z_{i}\phi(x_{i})_{k})^{2} \ge 0<br>$$</p>
-<p>此为矩阵$K$为半正定矩阵的必要条件。这就证明了，矩阵$K \ge 0$是对应核函数$K$有效的必要条件。当然他也是充分条件(参考<a href="https://en.wikipedia.org/wiki/Mercer&#39;s_theorem" target="_blank" rel="external">Mercer’s theorem</a>)</p>
+<p>此为矩阵$K$为半正定矩阵的必要条件。这就证明了，矩阵$K \ge 0$是对应核函数$K$有效的必要条件。当然他也是充分条件(参考<a href="https://en.wikipedia.org/wiki/Mercer&#39;s_theorem" target="_blank" rel="noopener">Mercer’s theorem</a>)</p>
 <p>因此通过mercer定理我们可以不需要显式的去寻找核函数对应的$\phi(x)$而是构造核函数矩阵$K$，进而判断$K$是否半正定来判断核函数的有效性。</p>
 <h2 id="L1软间隔SVM-L1-soft-margin-SVM"><a href="#L1软间隔SVM-L1-soft-margin-SVM" class="headerlink" title="L1软间隔SVM(L1 soft margin SVM)"></a>L1软间隔SVM(L1 soft margin SVM)</h2><p>通过核函数将数据映射到高维空间能够增加数据线性可分的可能性，但是对于含有噪声的数据，优化出来的SVM可能不是我们最想要的，我们并不希望SVM会被噪声影响，因此我们可以通过引入松弛变量来使我们优化SVM时忽略掉噪声的影响，仅仅考虑那些真正有效的数据。</p>
 <p>对于原始SVM标砖形式的约束条件:<br>$$<br>y_{i}(w^{T}x_{i} + b) \ge 1<br>$$<br>意味着所有数据点距离分割平面的距离都大于1.</p>
@@ -366,7 +366,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li> <li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li> <li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li> <li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">14</span></a></li> <li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li> <li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li> <li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
 
     </ul>
 	</div>

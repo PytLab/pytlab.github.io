@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-28 </div>
+			<div class="article-title"><a href="/2016/02/28/kMC中的Markov-Chain-马尔可夫链/" title="在这里总结下kMC中的数学原理，均为本人的理解和原创，如有错误欢迎指正。">kMC中的Markov Chain(马尔可夫链)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在动力学蒙特卡洛kMC模拟中，因为组态变化的时间间隔很长，体系完成的连续两次演化是独立的，无记忆的，所以这个过程是一种典型的马尔可夫过程(Markov process)。<br>下面先定义下符号：<br><div class="alert alert-info"><i class="fa fa-info"></i>  <br>
+configuration: $u, v, ... $
+<br>
+event: $ \alpha, \beta , ... $
+<br>
+transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
+<h3 id="Master-Equation"><a href="#Master-Equation" class="headerlink" title="Master Equation"></a>Master Equation</h3><p>体系的时间演变通过<strong>Markov master equation</strong>来描述<br>$$ \bar{p}_{u}(t) = \sum_{v}^{}{\omega_{u v}p_{v}(t) - \omega_{v u}p_{u}(t)} $$<br>其中${p}_{u}(t)$是体系在时间$t$处在$u$的概率。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/28/kMC中的Markov-Chain-马尔可夫链/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -335,28 +362,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-23 </div>
-			<div class="article-title"><a href="/2016/02/23/Kynetix支持KMC连续计算/" title="由于KMC的计算经常会需要在已经算完的作业的基础上继续跑作业以达到TOF或者覆盖度稳定,因此使程序能够进行连续的作业计算。">Kynetix支持KMC连续计算</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>关于连续计算这里其实是很早以前就加进来的功能，但是由于这里也算是一个比较重要而且比较复杂的更新，在这里记一下以免自己忘记。</p>
-<p>这部分比较难处理的是关于连续作业的起始时间<code>start_time</code>和起始步数<code>start_step</code>的设定。然后再<code>KMCAnalysisPlugin</code>类（或者子类）中将新的KMC循环的time和step进行相应的<strong>“平移处理”</strong>。<br>这里我写了个装饰器来处理，对<code>KMCAnalysisPlugin</code>的<code>setup()</code>方法进行装饰，使其能够在进行on-the-fly分析的时候能够先把time和step处理完毕。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset_step_and_time</span><span class="params">(func)</span>:</span></div><div class="line">    <span class="string">'''</div><div class="line">    Decorator function to decorate analysis plugin methods.</div><div class="line">    '''</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapped_func</span><span class="params">(self, step, time, configuration)</span>:</span></div><div class="line">        step = step + self.step_base</div><div class="line">        time = time + self.time_base</div><div class="line">        func(self, step, time, configuration)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> wrapped_func</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">KynetixPlugin</span><span class="params">(KMCAnalysisPlugin)</span>:</span></div><div class="line">    ...</div><div class="line"></div><div class="line"><span class="meta">    @reset_step_and_time</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setup</span><span class="params">(self, step, time, configuration)</span>:</span></div><div class="line">        ...</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/02/23/Kynetix支持KMC连续计算/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -406,6 +411,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
+      </li>
+    
+      <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
@@ -421,10 +430,6 @@
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
-      <li>
-        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -435,7 +440,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -461,48 +466,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">103</span></a></li>
+		   <li><a href="/tags">...<span class="badge">109</span></a></li>
 		 
 		</ul>
 	</div>

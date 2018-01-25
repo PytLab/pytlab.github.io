@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -216,7 +216,7 @@
 	<div class="mypage">		
 	  		
 
-	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox" target="_blank" rel="external">https://github.com/PytLab/MLBox</a>).</p>
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox" target="_blank" rel="noopener">https://github.com/PytLab/MLBox</a>).</p>
 <p>本文中我将一步步通过MLiA的隐形眼镜处方数集构建决策树并使用Graphviz将决策树可视化。</p>
 <a id="more"></a>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h3><p>决策树学习是根据数据的属性采用树状结构建立的一种决策模型，可以用此模型解决分类和回归问题。常见的算法包括 CART(Classification And Regression Tree), ID3, C4.5等。我们往往根据数据集来构建一棵决策树，他的一个重要任务就是为了数据中所蕴含的知识信息，并提取出一系列的规则，这些规则也就是树结构的创建过程就是机器学习的过程。</p>
@@ -230,7 +230,7 @@
 <li>增益比率(gain ratio)</li>
 <li>基尼不纯度(Gini impurity)</li>
 </ol>
-<h4 id="信息增益-Information-gain"><a href="#信息增益-Information-gain" class="headerlink" title="信息增益 (Information gain)"></a>信息增益 (Information gain)</h4><p>这里涉及到了信息论中的一些概念：某个事件的信息量，信息熵，信息增益等, 关于事件信息的通俗解释可以看知乎上的一个<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">回答</a></p>
+<h4 id="信息增益-Information-gain"><a href="#信息增益-Information-gain" class="headerlink" title="信息增益 (Information gain)"></a>信息增益 (Information gain)</h4><p>这里涉及到了信息论中的一些概念：某个事件的信息量，信息熵，信息增益等, 关于事件信息的通俗解释可以看知乎上的一个<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="noopener">回答</a></p>
 <ul>
 <li><p>某个事件$i$的信息量: 这个事件发生的概率的负对数<br>  $$TI = -log(P(x_{i}))$$</p>
 </li>
@@ -282,10 +282,10 @@
 <h3 id="使用生成的决策树进行分类"><a href="#使用生成的决策树进行分类" class="headerlink" title="使用生成的决策树进行分类"></a>使用生成的决策树进行分类</h3><p>对未知数据进行预测，主要是根据树中的节点递归的找到叶子节点即可。z这里可以通过为递归进行优化，代码实现如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(self, data_vect, feat_names=None, tree=None)</span>:</span></div><div class="line">    <span class="string">''' 根据构建的决策树对数据进行分类</span></div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        tree = self.tree</div><div class="line"></div><div class="line">    <span class="keyword">if</span> feat_names <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        feat_names = self.feat_names</div><div class="line"></div><div class="line">    <span class="comment"># Recursive base case.</span></div><div class="line">    <span class="keyword">if</span> type(tree) <span class="keyword">is</span> <span class="keyword">not</span> dict:</div><div class="line">        <span class="keyword">return</span> tree</div><div class="line"></div><div class="line">    feature = list(tree.keys())[<span class="number">0</span>]</div><div class="line">    value = data_vect[feat_names.index(feature)]</div><div class="line">    sub_tree = tree[feature][value]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> self.classify(feat_names, data_vect, sub_tree)</div></pre></td></tr></table></figure></p>
 <h3 id="决策树的存储"><a href="#决策树的存储" class="headerlink" title="决策树的存储"></a>决策树的存储</h3><p>通过字典表示决策树，这样我们可以通过内置的pickle或者json模块将其存储到硬盘上，同时也可以从硬盘中读取树结构，这样在数据集很大的时候可以节省构建决策树的时间.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dump_tree</span><span class="params">(self, filename, tree=None)</span>:</span></div><div class="line">    <span class="string">''' 存储决策树</span></div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        tree = self.tree</div><div class="line"></div><div class="line">    <span class="keyword">with</span> open(filename, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">        pickle.dump(tree, f)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_tree</span><span class="params">(self, filename)</span>:</span></div><div class="line">    <span class="string">''' 加载树结构</span></div><div class="line">    '''</div><div class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">        tree = pickle.load(f)</div><div class="line">        self.tree = tree</div><div class="line">    <span class="keyword">return</span> tree</div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文一步步实现了决策树的实现, 其中使用了ID3算法确定最佳划分属性，并通过Graphviz可视化了构建的决策树。本文相关的代码链接: <a href="https://github.com/PytLab/MLBox/tree/master/decision_tree" target="_blank" rel="external">https://github.com/PytLab/MLBox/tree/master/decision_tree</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文一步步实现了决策树的实现, 其中使用了ID3算法确定最佳划分属性，并通过Graphviz可视化了构建的决策树。本文相关的代码链接: <a href="https://github.com/PytLab/MLBox/tree/master/decision_tree" target="_blank" rel="noopener">https://github.com/PytLab/MLBox/tree/master/decision_tree</a></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h2><ul>
 <li>《Machine Learning in Action》</li>
-<li><a href="http://www.cnblogs.com/fengfenggirl/p/classsify_decision_tree.html" target="_blank" rel="external">数据挖掘系列（6）决策树分类算法</a></li>
+<li><a href="http://www.cnblogs.com/fengfenggirl/p/classsify_decision_tree.html" target="_blank" rel="noopener">数据挖掘系列（6）决策树分类算法</a></li>
 </ul>
 	  
 	</div>
@@ -382,7 +382,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/python/">python<span class="badge">56</span></a></li> <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">13</span></a></li> <li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+  <li><a href="/tags/python/">python<span class="badge">56</span></a></li> <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">14</span></a></li> <li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
 
     </ul>
 	</div>

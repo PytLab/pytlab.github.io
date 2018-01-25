@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -222,7 +222,7 @@
 	  		
 
 	  <p>当然现在的目的还是为了学习MPI，不过事实上MPI并不能完全的算作是理想意义上的并行编程模型，它只是提供了一种<strong>粗粒度</strong>的并行机制，而在进程的粒度上看，MPI程序仍是并行的。</p>
-<h2 id="并行系统"><a href="#并行系统" class="headerlink" title="并行系统"></a>并行系统</h2><h3 id="Flynn分类法-–-按指令-数据模式的分类"><a href="#Flynn分类法-–-按指令-数据模式的分类" class="headerlink" title="Flynn分类法 – 按指令/数据模式的分类"></a>Flynn分类法 – 按指令/数据模式的分类</h3><p>从处理器指令级别的并行来考察的话，Flynn依据指令和数据流的不同给出计算机的分类，例如SIMD和MIMD。<br>关于什么是单指令多数据流和多指令多数据流，我在<a href="https://www.quora.com/Parallel-Computing-What-is-the-difference-between-SIMD-and-MIMD" target="_blank" rel="external">quora</a>上面搜到了个不错的解释：</p>
+<h2 id="并行系统"><a href="#并行系统" class="headerlink" title="并行系统"></a>并行系统</h2><h3 id="Flynn分类法-–-按指令-数据模式的分类"><a href="#Flynn分类法-–-按指令-数据模式的分类" class="headerlink" title="Flynn分类法 – 按指令/数据模式的分类"></a>Flynn分类法 – 按指令/数据模式的分类</h3><p>从处理器指令级别的并行来考察的话，Flynn依据指令和数据流的不同给出计算机的分类，例如SIMD和MIMD。<br>关于什么是单指令多数据流和多指令多数据流，我在<a href="https://www.quora.com/Parallel-Computing-What-is-the-difference-between-SIMD-and-MIMD" target="_blank" rel="noopener">quora</a>上面搜到了个不错的解释：</p>
 <p></p><p></p>
 <blockquote>
 <p>SIMD and MIMD are types of parallel architectures identified in Flynn’s taxonomy, which basically says that computers have single (S) or multiple (M) streams of instructions (I) and data (D), leading to four types of computers: SISD, SIMD, MISD, and MIMD. Let’s skip SISD and MISD, since the question doesn’t ask about them, and neither is spectacularly interesting.<br><a id="more"></a></p>

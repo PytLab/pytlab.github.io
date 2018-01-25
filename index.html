@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,6 +218,33 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2018-01-24 </div>
+			<div class="article-title"><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" >实现属于自己的TensorFlow(一) - 计算图与前向传播</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/"><img src="/assets/images/blog_img/2018-01-24-实现属于自己的TensorFlow-一-计算图与前向传播/feature.png" alt="实现属于自己的TensorFlow(一) - 计算图与前向传播"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间因为课题需要使用了一段时间TensorFlow，感觉这种框架很有意思，除了可以搭建复杂的神经网络，也可以优化其他自己需要的计算模型，所以一直想自己学习一下写一个类似的图计算框架。前几天组会开完决定着手实现一个模仿TensorFlow接口的简陋版本图计算框架以学习计算图程序的编写以及前向传播和反向传播的实现。目前实现了前向传播和反向传播以及梯度下降优化器，并写了个优化线性模型的例子。</p>
+<p>代码放在了GitHub上，取名<em>SimpleFlow</em>, 仓库链接: <a href="https://github.com/PytLab/simpleflow" target="_blank" rel="noopener">https://github.com/PytLab/simpleflow</a></p>
+	
+	</div>
+  <a type="button" href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2017-11-03 </div>
 			<div class="article-title"><a href="/2017/11/03/机器学习算法实践-树回归/" >机器学习算法实践-树回归</a></div>						
 		</h3>
@@ -315,10 +342,10 @@
 	
 	
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前实现了简单的SMO算法来优化SVM的对偶问题，其中在选取$\alpha$的时候使用的是两重循环通过完全随机的方式选取，具体的实现参考《<a href="http://pytlab.github.io/2017/09/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-SVM%E4%B8%AD%E7%9A%84SMO%E7%AE%97%E6%B3%95/">机器学习算法实践-SVM中的SMO算法</a>》。</p>
-<p>本文在之前简化版SMO算法的基础上实现了使用启发式选取$\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个<a href="https://github.com/PytLab/gaft">遗传算法框架GAFT</a>，便也尝试使用遗传算法对于SVM的原始形式进行了优化。</p>
+<p>本文在之前简化版SMO算法的基础上实现了使用启发式选取$\alpha$对的方式的Platt SMO算法来优化SVM。另外由于最近自己也实现了一个<a href="https://github.com/PytLab/gaft" target="_blank" rel="noopener">遗传算法框架GAFT</a>，便也尝试使用遗传算法对于SVM的原始形式进行了优化。</p>
 <ul>
-<li>对于本文算法的相应实现，参考:<a href="https://github.com/PytLab/MLBox/tree/master/svm">https://github.com/PytLab/MLBox/tree/master/svm</a></li>
-<li>遗传算法框架GAFT项目地址: <a href="https://github.com/PytLab/gaft">https://github.com/PytLab/gaft</a></li>
+<li>对于本文算法的相应实现，参考:<a href="https://github.com/PytLab/MLBox/tree/master/svm" target="_blank" rel="noopener">https://github.com/PytLab/MLBox/tree/master/svm</a></li>
+<li>遗传算法框架GAFT项目地址: <a href="https://github.com/PytLab/gaft" target="_blank" rel="noopener">https://github.com/PytLab/gaft</a></li>
 </ul>
 	
 	</div>
@@ -345,42 +372,11 @@
 		</div>
 	
 	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间一直在用自己写的遗传算法框架测试算法在优化力场参数的效果，但是跑起来效率很慢，因为适应度函数需要调用多次力场程序计算能量，但是还是比我预想中的慢我也没有及时对程序进行profiling和优化。直到放假前在github有个使用gaft做SVM参数优化的童鞋开了个<a href="https://github.com/PytLab/gaft/issues/2">issue</a>中说道在gaft优化的过程中会大量调用适应度函数，这才使我在国庆放假期间对gaft进行了profiling找到程序瓶颈并针对性的优化。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间一直在用自己写的遗传算法框架测试算法在优化力场参数的效果，但是跑起来效率很慢，因为适应度函数需要调用多次力场程序计算能量，但是还是比我预想中的慢我也没有及时对程序进行profiling和优化。直到放假前在github有个使用gaft做SVM参数优化的童鞋开了个<a href="https://github.com/PytLab/gaft/issues/2" target="_blank" rel="noopener">issue</a>中说道在gaft优化的过程中会大量调用适应度函数，这才使我在国庆放假期间对gaft进行了profiling找到程序瓶颈并针对性的优化。</p>
 <p>本文就记录下自己gaft做profiling并优化的过程以及优化的效果。</p>
 	
 	</div>
   <a type="button" href="/2017/10/08/遗传算法框架GAFT优化小记/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-09-23 </div>
-			<div class="article-title"><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" >遗传算法中适值函数的标定与大变异算法</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/"><img src="/assets/images/blog_img/2017-09-23-遗传算法中适值函数的标定与大变异算法/feature.png" alt="遗传算法中适值函数的标定与大变异算法"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文尝试对遗传算法中不同适值函数的标定(Scaling)方法进行下总结，并针对常用的线性标定和动态线性标定进行了Python实现，以装饰器的形式添加到遗传算法框架GAFT中，这样在使用GAFT运行遗传算法迭代的时候可以更加Pythonic的给自定义的适值函数进行标定。最后针对能够防止早熟情况的大变异算法进行了相应的实现。</p>
-<p>目前(动态)线性标定装饰器以及大变异算子均已添加到GAFT中，gaft项目链接:</p>
-<ul>
-<li>GitHub: <a href="https://github.com/PytLab/gaft">https://github.com/PytLab/gaft</a></li>
-<li>PyPI: <a href="https://pypi.python.org/pypi/gaft">https://pypi.python.org/pypi/gaft</a></li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -433,6 +429,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
+      </li>
+    
+      <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
@@ -448,10 +448,6 @@
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
-      <li>
-        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -462,7 +458,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -488,48 +484,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
 			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">103</span></a></li>
+		   <li><a href="/tags">...<span class="badge">109</span></a></li>
 		 
 		</ul>
 	</div>

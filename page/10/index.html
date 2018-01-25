@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
-              
-              <li><a href="/2017/09/19/遗传算法中几种不同选择算子的比较/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中几种不同选择算子<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,6 +218,35 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2016-07-08 </div>
+			<div class="article-title"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/" title="通过一个缓冲通信的例子来简单总结下缓冲通信模式。">MPI学习--阻塞通信之缓冲通信模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之缓冲通信模式"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>缓冲通信模式主要用于解开阻塞通信的发送和接受之间的耦合。有了缓冲机制，即使在接收端没有启动相应的接收情况下，在<strong>完成消息数据到缓冲区的转移后</strong>发送端的阻塞发送函数也可以返回。</p>
+<p>但缓冲方式带来了额外的内存到内存的复制开销，会导致一定的性能损失和资源占用。的确，每个进程都要在堆里分配内存然后注册成为缓冲区。</p>
+<p>缓冲区的使用并不能改变发送和接受之间的语义关系，及不能改变程序的正确性。</p>
+<p>与标准模式由于以来MPI环境提供的缓冲机制而受到远端进程状态左右不同，缓冲发送完成与否不会受远端匹配进程状态的影响。但当消息大小超过缓冲区容量时，会报错。</p>
+	
+	</div>
+  <a type="button" href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-07-07 </div>
 			<div class="article-title"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/" title="本篇通过一个小例子来总结下阻塞通信中的标准通信模式">MPI学习--阻塞通信之标准通信模式</a></div>						
 		</h3>
@@ -291,8 +320,8 @@
 	
 	
 		<p>当然现在的目的还是为了学习MPI，不过事实上MPI并不能完全的算作是理想意义上的并行编程模型，它只是提供了一种<strong>粗粒度</strong>的并行机制，而在进程的粒度上看，MPI程序仍是并行的。</p>
-<h2 id="并行系统"><a href="#并行系统" class="headerlink" title="并行系统"></a>并行系统</h2><h3 id="Flynn分类法-–-按指令-数据模式的分类"><a href="#Flynn分类法-–-按指令-数据模式的分类" class="headerlink" title="Flynn分类法 – 按指令/数据模式的分类"></a>Flynn分类法 – 按指令/数据模式的分类</h3><p>从处理器指令级别的并行来考察的话，Flynn依据指令和数据流的不同给出计算机的分类，例如SIMD和MIMD。<br>关于什么是单指令多数据流和多指令多数据流，我在<a href="https://www.quora.com/Parallel-Computing-What-is-the-difference-between-SIMD-and-MIMD">quora</a>上面搜到了个不错的解释：</p>
-<p><p></p>
+<h2 id="并行系统"><a href="#并行系统" class="headerlink" title="并行系统"></a>并行系统</h2><h3 id="Flynn分类法-–-按指令-数据模式的分类"><a href="#Flynn分类法-–-按指令-数据模式的分类" class="headerlink" title="Flynn分类法 – 按指令/数据模式的分类"></a>Flynn分类法 – 按指令/数据模式的分类</h3><p>从处理器指令级别的并行来考察的话，Flynn依据指令和数据流的不同给出计算机的分类，例如SIMD和MIMD。<br>关于什么是单指令多数据流和多指令多数据流，我在<a href="https://www.quora.com/Parallel-Computing-What-is-the-difference-between-SIMD-and-MIMD" target="_blank" rel="noopener">quora</a>上面搜到了个不错的解释：</p>
+<p></p><p></p>
 <blockquote>
 <p>SIMD and MIMD are types of parallel architectures identified in Flynn’s taxonomy, which basically says that computers have single (S) or multiple (M) streams of instructions (I) and data (D), leading to four types of computers: SISD, SIMD, MISD, and MIMD. Let’s skip SISD and MISD, since the question doesn’t ask about them, and neither is spectacularly interesting.<br>
 	
@@ -321,7 +350,7 @@
 	
 	
 		<p>这篇主要记录使用自己用户在实验室的IBM刀片集群上搭建MPI并行环境以及简单的测试，具体什么是MPI这里就不多讲了，主要记录自己的MPI环境的搭建过程。</p>
-<h3 id="下载MPICH"><a href="#下载MPICH" class="headerlink" title="下载MPICH"></a>下载MPICH</h3><p>现在<a href="http://www.mpich.org/downloads/">MPICH官网</a>上已经有MPICH3.2，但是安装了以后发现3.2的进程管理器并没有mpd而是<a href="https://wiki.mpich.org/mpich/index.php/Using_the_Hydra_Process_Manager">Hydra Process Manager</a>为了用上最新的我也就直接上最新版了肯定不会有错。</p>
+<h3 id="下载MPICH"><a href="#下载MPICH" class="headerlink" title="下载MPICH"></a>下载MPICH</h3><p>现在<a href="http://www.mpich.org/downloads/" target="_blank" rel="noopener">MPICH官网</a>上已经有MPICH3.2，但是安装了以后发现3.2的进程管理器并没有mpd而是<a href="https://wiki.mpich.org/mpich/index.php/Using_the_Hydra_Process_Manager" target="_blank" rel="noopener">Hydra Process Manager</a>为了用上最新的我也就直接上最新版了肯定不会有错。</p>
 <p>下下来的压缩包为: <code>mpich-3.2.tar.gz</code><br>
 	
 	</div>
@@ -352,34 +381,6 @@
 	
 	</div>
   <a type="button" href="/2016/07/05/发现KMCLib中一个隐藏bug/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-02 </div>
-			<div class="article-title"><a href="/2016/07/02/决定给KMCLibX添加分子取向识别/" >决定给KMCLibX添加分子取向识别</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/02/决定给KMCLibX添加分子取向识别/"><img src="/assets/images/features/kmclib.png" alt="决定给KMCLibX添加分子取向识别"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>之前以为做CO Oxidation不需要进行分子取向的匹配，但是以为实际开始运行程序之后观察点阵图发现，图中出现了异常的局部configuration，导致出现某个区域的反应物像中毒一样固定在表面无法参与反应，仔细想了想，是因为没有添加分子取向的匹配导致发生脱附的时候破坏了分子在表面的完整性。<br>于是本来要给程序添加MPI的计划泡汤了，要将KMCLibX从头到尾大改以支持分子取向的匹配，希望一周能搞定。</p>
-<p>PS. 暂时把KMCLibX在GitHub上变成了私有仓库，等文章搞定前后会再次开放源代码。</p>
-
-	
-	</div>
-  <a type="button" href="/2016/07/02/决定给KMCLibX添加分子取向识别/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -432,6 +433,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
+      </li>
+    
+      <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
@@ -447,10 +452,6 @@
         <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
       </li>
     
-      <li>
-        <a href="/2017/10/08/遗传算法框架GAFT优化小记/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT优化小记</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -461,7 +462,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">16</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -487,48 +488,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
 			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
-		   <li><a href="/tags">...<span class="badge">103</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+		
+		   <li><a href="/tags">...<span class="badge">109</span></a></li>
 		 
 		</ul>
 	</div>
