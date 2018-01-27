@@ -41,7 +41,7 @@ $$Loss(x, y, z) = z(x+y)$$
 可以写成
 $$Loss(x, y, z) = g(z, f(x, y))$$
 
-那么根据链式法则我们可以得到$h$对$x$的导数为:
+那么根据链式法则我们可以得到$Loss$对$x$的导数为:
 $$
 \\frac{\\partial Loss}{\\partial x} = \\frac{\\partial Loss}{\\partial g}\\frac{\\partial g}{\\partial f} \\frac{\\partial f}{\\partial x}
 $$
