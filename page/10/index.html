@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
               <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
               
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
-              
-              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-07-08 </div>
+			<div class="article-title"><a href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/" title="本篇对阻塞通信中的就绪通信模式和同步通信模式进行小结。">MPI学习--阻塞通信之就绪通信模式和同步通信模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--阻塞通信之就绪通信模式和同步通信模式"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="就绪通信模式"><a href="#就绪通信模式" class="headerlink" title="就绪通信模式"></a>就绪通信模式</h2><p>就绪模式的发送方式与同步和标准发送完全一致，不一样的是就绪通信模式是：</p>
+<p>仅当对方的接收操作启动并且准备就绪时，才可发生数据，并不是MPI会自动判断是否就绪（他没那么智能？）而是<strong>告诉MPI对方以准备就绪接收你发的消息，如果你骗了MPI，MPI会不爽，然后报错</strong>。</p>
+<p>基于你告诉MPI的这个信息，就可以避免一些列的缓冲操作以及收发双方的握手操作，是的MPI环境可对通信做更细致的优化以提高通信效率。</p>
+<p>需要注意的是：<br><div class="alert alert-warning"><i class="fa fa-bell"></i>  就绪通信并不意味着发送方的发送动作是否结束取决于接收端的状态，对发送方而言，这仅仅意味着发送缓冲区在发送函数返回之后即可被安全的用于其它操作，因为你告诉MPI，接收方早已就绪了，所以MPI也就信任了你。</div></p>
+	
+	</div>
+  <a type="button" href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -358,32 +387,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-05 </div>
-			<div class="article-title"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/" title="发现了一个很难发现的KMCLib中的bug，只需要修改以个参数就可以修复，但是很难发现。">发现KMCLib中一个隐藏bug</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/"><img src="/assets/images/features/kmclib.png" alt="发现KMCLib中一个隐藏bug"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>由于为了看自己的KMCLibX是不是能跑出正确的结果，我将每一个蒙特卡洛步的configuration进行了散点图，来观察每一步事件的选取和configuration发生的变化，把事件全部定义好以后，跑了500步做了下图就发现，吸附在top位的O有落单的现象，明明我没有在事件中定义过有破坏平躺吸附在表面的氧原子的事件啊，这就奇怪了。于是我就将做图的范围缩窄，逐渐定位到了是哪一步开始出现单个top位上的氧原子。<br>如下图，是发生在第27步的时候，直接会有一个氧分子直接变成吸附在bridge site上的CO：<br>
-	
-	</div>
-  <a type="button" href="/2016/07/05/发现KMCLib中一个隐藏bug/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -433,6 +436,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(二) - 梯度计算...</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
       </li>
     
@@ -448,10 +455,6 @@
         <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
       </li>
     
-      <li>
-        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -462,7 +465,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">18</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -488,48 +491,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+		
 			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">109</span></a></li>
+		   <li><a href="/tags">...<span class="badge">110</span></a></li>
 		 
 		</ul>
 	</div>

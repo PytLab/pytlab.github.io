@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
               <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
               
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
-              
-              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,38 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-01-25 </div>
+			<div class="article-title"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/"><img src="/assets/images/blog_img/2018-01-24-实现属于自己的TensorFlow-一-计算图与前向传播/feature.png" alt="实现属于自己的TensorFlow(二) - 梯度计算与反向传播"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇中介绍了计算图以及前向传播的实现，本文中将主要介绍对于模型优化非常重要的反向传播算法以及反向传播算法中梯度计算的实现。因为在计算梯度的时候需要涉及到矩阵梯度的计算，本文针对几种常用操作的梯度计算和实现进行了较为详细的介绍。如有错误欢迎指出。</p>
+<p>首先先简单总结一下, 实现反向传播过程主要就是完成两个任务:</p>
+<ol>
+<li>实现不同操作输出对输入的梯度计算</li>
+<li>实现根据链式法则计算损失函数对不同节点的梯度计算</li>
+</ol>
+<p>再附上SimpleFlow的代码地址: <a href="https://github.com/PytLab/simpleflow" target="_blank" rel="noopener">https://github.com/PytLab/simpleflow</a></p>
+	
+	</div>
+  <a type="button" href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -353,33 +385,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-10-08 </div>
-			<div class="article-title"><a href="/2017/10/08/遗传算法框架GAFT优化小记/" >遗传算法框架GAFT优化小记</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/10/08/遗传算法框架GAFT优化小记/"><img src="/assets/images/blog_img/2017-10-08-遗传算法框架GAFT优化小记/feature.png" alt="遗传算法框架GAFT优化小记"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间一直在用自己写的遗传算法框架测试算法在优化力场参数的效果，但是跑起来效率很慢，因为适应度函数需要调用多次力场程序计算能量，但是还是比我预想中的慢我也没有及时对程序进行profiling和优化。直到放假前在github有个使用gaft做SVM参数优化的童鞋开了个<a href="https://github.com/PytLab/gaft/issues/2" target="_blank" rel="noopener">issue</a>中说道在gaft优化的过程中会大量调用适应度函数，这才使我在国庆放假期间对gaft进行了profiling找到程序瓶颈并针对性的优化。</p>
-<p>本文就记录下自己gaft做profiling并优化的过程以及优化的效果。</p>
-	
-	</div>
-  <a type="button" href="/2017/10/08/遗传算法框架GAFT优化小记/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -429,6 +434,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(二) - 梯度计算...</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
       </li>
     
@@ -444,10 +453,6 @@
         <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
       </li>
     
-      <li>
-        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -458,7 +463,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">18</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -484,48 +489,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
-		
-			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">15</span></a></li>
+		
+			<li><a href="/tags/python/">python<span class="badge">56</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+		
+			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">109</span></a></li>
+		   <li><a href="/tags">...<span class="badge">110</span></a></li>
 		 
 		</ul>
 	</div>

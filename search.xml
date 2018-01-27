@@ -4,6 +4,115 @@
   
     
     <entry>
+      <title><![CDATA[实现属于自己的TensorFlow(二) - 梯度计算与反向传播]]></title>
+      <url>http://pytlab.github.io/2018/01/25/%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84TensorFlow-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇中介绍了计算图以及前向传播的实现，本文中将主要介绍对于模型优化非常重要的反向传播算法以及反向传播算法中梯度计算的实现。因为在计算梯度的时候需要涉及到矩阵梯度的计算，本文针对几种常用操作的梯度计算和实现进行了较为详细的介绍。如有错误欢迎指出。</p>
+<p>首先先简单总结一下, 实现反向传播过程主要就是完成两个任务:</p>
+<ol>
+<li>实现不同操作输出对输入的梯度计算</li>
+<li>实现根据链式法则计算损失函数对不同节点的梯度计算</li>
+</ol>
+<p>再附上SimpleFlow的代码地址: <a href="https://github.com/PytLab/simpleflow" target="_blank" rel="noopener">https://github.com/PytLab/simpleflow</a></p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h3><p>对于我们构建的模型进行优化通常需要两步：1.求损失函数针对变量的梯度；2.根据梯度信息进行参数优化(例如梯度下降). 那么该如何使用我们构建的计算图来计算损失函数对于图中其他节点的梯度呢？通过<strong>链式法则</strong>。我们还是通过上篇中的表达式$Loss(x, y, z) = z(x + y)$对应的计算图来说明:</p>
+<p><img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/forward.png" alt=""></p>
+<p>我们把上面的操作节点使用字母进行标记，可以将每个操作看成一个函数，接受一个或两个输入有一个或者多个输出, 则上面的表达式<br>$$Loss(x, y, z) = z(x+y)$$<br>可以写成<br>$$Loss(x, y, z) = g(z, f(x, y))$$</p>
+<p>那么根据链式法则我们可以得到$h$对$x$的导数为:<br>$$<br>\frac{\partial Loss}{\partial x} = \frac{\partial Loss}{\partial g}\frac{\partial g}{\partial f} \frac{\partial f}{\partial x}<br>$$</p>
+<p>假设图中的节点已经计算出了自己的输出值，我们把节点的输出值放到节点里面如下:</p>
+<p><img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/forward_with_values.png" alt=""></p>
+<p>然后再把链式法则的式子每一项一次计算，在图中也就是从后向前进行计算:</p>
+<ol>
+<li><p>$\frac{\partial Loss}{\partial g} = 1$<br> <img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/bp_0.png" alt=""></p>
+</li>
+<li><p>$\frac{\partial g}{\partial f} = z = 6$ (当然也可以计算出$\frac{\partial g}{\partial z} = x + y = 5$). 进而求出$\frac{\partial Loss}{\partial f} = \frac{\partial Loss}{\partial g}\frac{\partial g}{\partial f} = 1 \times z = 6$<br> <img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/bp_1.png" alt=""></p>
+</li>
+<li><p>$\frac{\partial f}{\partial x} = 1$ (同时也可以算出$\frac{\partial f}{\partial y} = 1$). 进而求出$\frac{\partial Loss}{\partial x} = \frac{\partial Loss}{\partial g}\frac{\partial g}{\partial f}\frac{\partial f}{\partial x} = 1 \times z \times 1 = 6$<br> <img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/bp_2.png" alt=""></p>
+</li>
+</ol>
+<p>这样从后向前逐级计算通过链式法则就可以计算出与损失值对其相关节点的梯度了。因此我们下一步要做的就是给定某个<strong>损失函数</strong>节点并计算它对于<strong>某一节点</strong>的<strong>梯度</strong>计算。</p>
+<p>下面在看一个不同的计算图:</p>
+<p><img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/bp_multiout.png" alt=""></p>
+<p>这里的$x$节点有将输出到两个不同的节点中，此时我们需要计算所有从$g$到$x$的路径然后按照上面单挑路径的链式法则计算方法计算每条路径的梯度值，最终再将不同路径的梯度求和即可。因此$Loss$对$x$的梯度为:<br>$$<br>\frac{\partial Loss}{\partial x} = \frac{\partial g}{\partial f}\frac{\partial f}{\partial h}\frac{\partial h}{\partial x} + \frac{\partial g}{\partial f}\frac{\partial f}{\partial l}\frac{\partial l}{\partial x}<br>$$</p>
+<h3 id="梯度计算"><a href="#梯度计算" class="headerlink" title="梯度计算"></a>梯度计算</h3><p>通过上面对反向传播的介绍我们已经知道损失值对某个节点的梯度是怎么求的(具体的实现方法在下一部分说明)，下面就是如何求取针对某个节点上的梯度了，只要每个节点上的梯度计算出来沿着路径反方向不断乘下去就会得到你想要的节点的梯度了。本部分就介绍如何求损失值对具体某个节点的梯度值。</p>
+<p>本部分我们就是干这么一个事，首先我们先画个节点:</p>
+<p><img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/single_node.png" alt=""></p>
+<p>$f$节点可以看成一个函数$z = f(x, y)$， 我们需要做的就是求$\frac{\partial f(x, y)}{\partial x}$和$\frac{\partial f(x, y)}{\partial y}$.</p>
+<h4 id="平方运算的梯度计算"><a href="#平方运算的梯度计算" class="headerlink" title="平方运算的梯度计算"></a>平方运算的梯度计算</h4><p>我们先用一个平方运算（之所以不用求和和乘积/矩阵乘积来做例子，因为这里面涉及到矩阵求导维度的处理，会在稍后进行总结, 而平方运算并不会涉及到维度的变化比较简单):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span><span class="params">(Operation)</span>:</span></div><div class="line">    <span class="string">''' Square operation. '''</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute_gradient</span><span class="params">(self, grad=None)</span>:</span></div><div class="line">        <span class="string">''' Compute the gradient for square operation wrt input value.</span></div><div class="line"></div><div class="line">        :param grad: The gradient of other operation wrt the square output.</div><div class="line">        :type grad: ndarray.</div><div class="line">        '''</div><div class="line">        input_value = self.input_nodes[<span class="number">0</span>].output_value</div><div class="line"></div><div class="line">        <span class="keyword">if</span> grad <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            grad = np.ones_like(self.output_value)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> grad*np.multiply(<span class="number">2.0</span>, input_value)</div></pre></td></tr></table></figure>
+<p>其中<code>grad</code>为损失值对<code>Square</code>输出的梯度值，也就是上图中的$\frac{\partial Loss}{\partial z}$的值, 它的<code>shape</code>一定与<code>Square</code>的输出值的<code>shape</code><strong>一致</strong>。</p>
+<h4 id="神经网络反向传播的矩阵梯度计算"><a href="#神经网络反向传播的矩阵梯度计算" class="headerlink" title="神经网络反向传播的矩阵梯度计算"></a>神经网络反向传播的矩阵梯度计算</h4><p>矩阵梯度的计算是实现反向传播算法重要的一部分, 但是在实现神经网络反向传播的矩阵求导与许多公式列表上罗列出来的还是有差别的。</p>
+<p><strong>矩阵/向量求导</strong></p>
+<p>首先先看下矩阵的求导，其实矩阵的求导本质上就是目标矩阵中的元素对变量矩阵中的元素求偏导，至于求导后的导数矩阵的形状大都也都是为了形式上的美观方便求导之后的继续使用。所以不必被那些复杂的矩阵求导形式迷惑了双眼。这里上传了一份<a href="http://pytlab.org/2016/assets/files/matrix_rules.pdf" target="_blank" rel="noopener">矩阵求导公式法则的列表PDF版本</a>，可以一步一步通过（行/列）向量对标量求导再到（行/列）向量对（行/列）向量求导再到矩阵对矩阵的求导逐渐扩展。</p>
+<p>例如标量$y$对矩阵$X = \left[ \begin{matrix}x_{11} &amp; x_{12} \\ x_{21} &amp; x_{22} \end{matrix} \right]$求导, 我们就对标量$y$对于$X$的所有元素求偏导，最终得到一个导数矩阵，矩阵形状同$X$相同:</p>
+<p>$$<br>\frac{\mathrm{d}y}{\mathrm{d}X} = \left[ \begin{matrix}<br>\frac{\partial y}{\partial x_{11}} &amp; \frac{\partial y}{\partial x_{12}} \\<br>\frac{\partial y}{\partial x_{21}} &amp; \frac{\partial y}{\partial x_{22}}<br>\end{matrix} \right]<br>$$</p>
+<p><strong>神经网络反向传播中的矩阵求导</strong></p>
+<p>之所以把矩阵求导分成两部分，是因为在实现矩阵求导的时候发现做反向传播的时候的矩阵求导与矩阵求导公式的形式上还是有区别的。所谓的<strong>区别</strong>就是，<strong><em>我们在神经网络进行矩阵求导的时候其实是Loss(损失)函数对节点中的矩阵进行求导，而损失函数是标量，那每次我们对计算图中的每个节点计算梯度的时候其实是计算的标量(损失值)对矩阵(节点输出值)的求导</em></strong>. 也就是说在进行反向传播的时候我们用的只是矩阵求导中的一种，即<strong>标量对矩阵的求导</strong>, 也就是上面举的例子的形式。再进一步其实就是损失函数对矩阵中每个元素进行求偏导的过程，通俗的讲就是计算图中矩阵中的每个元素对损失值的一个影响程度。因此这样计算出来的导数矩阵的形状与变量的形状一定是<strong>一致</strong>的。</p>
+<p>直观上理解就是<strong>计算图中对向量/矩阵求导的时候计算的是矩阵中的元素对损失值影响程度的大小，其形状与矩阵形状相同。</strong></p>
+<h4 id="求和操作的梯度计算"><a href="#求和操作的梯度计算" class="headerlink" title="求和操作的梯度计算"></a>求和操作的梯度计算</h4><p>现在我们以求和操作的梯度计算为例说明反向传播过程中矩阵求导的实现方法。</p>
+<p>对于求和操作: $C = A + b$, 其中$A = \left[ \begin{matrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \end{matrix} \right]$, $b = b_{0}$, 则$C = \left[ \begin{matrix}  a_{11} + b_0 &amp; a_{12} + b_0 \\ a_{21} + b_0 &amp; a_{22} + b_0 \end{matrix} \right]$, 损失值$L$对$C$梯度矩阵为 $G = \left[ \begin{matrix} \frac{\partial L}{\partial c_{11}} &amp; \frac{\partial L}{\partial c_{12}} \\ \frac{\partial L}{\partial c_{21}} &amp; \frac{\partial L}{\partial c_{22}} \end{matrix} \right]$</p>
+<p>下面我们计算$\frac{\partial L}{\partial b}$, 根据我们之前说的这个梯度的维度(形状)应该与$b$相同，也就是一个标量,那么具体要怎么计算呢？我们分成两部分来处理：</p>
+<ol>
+<li><p>先计算对于$C = A + B$， $\frac{\partial L}{\partial B}$的梯度值，其中$B = \left[ \begin{matrix} b_0 &amp; b_0 \\ b_0 &amp; b_0 \end{matrix} \right]$是通过对$b$进行广播操作得到的<br>$$<br>\frac{\partial L}{\partial B} =<br>\left[ \begin{matrix}<br>\frac{\partial L}{c_{11}} \frac{\partial c_{11}}{\partial b_0} &amp;<br>\frac{\partial L}{c_{12}} \frac{\partial c_{12}}{\partial b_0} \\<br>\frac{\partial L}{c_{21}} \frac{\partial c_{21}}{\partial b_0} &amp;<br>\frac{\partial L}{c_{22}} \frac{\partial c_{22}}{\partial b_0} \\<br>\end{matrix} \right] =<br>\left[ \begin{matrix}<br>\frac{\partial L}{c_{11}} \times 1 &amp;<br>\frac{\partial L}{c_{12}} \times 1 \\<br>\frac{\partial L}{c_{21}} \times 1 &amp;<br>\frac{\partial L}{c_{22}} \times 1 \\<br>\end{matrix} \right] = \frac{\partial L}{\partial C} = G<br>$$</p>
+</li>
+<li><p>计算$L$对$b$的梯度$\frac{\partial L}{\partial b}$。因为$B$是对$b$的一次广播操作，虽然是用的是矩阵的形式，本质上是将$b$复制了4份然后再进行操作的，因此将$\frac{\partial L}{\partial B}$中的每个元素进行累加就是$\frac{\partial L}{\partial b}$的值了。</p>
+<p> 则梯度的值为:<br>$$<br>\frac{\partial L}{\partial b} = \sum_{i=1}^{2} \sum_{j=1}^{2} \frac{\partial L}{\partial c_{ij}}<br>$$<br> 针对此例$b$是一个标量，使用矩阵表示的话可以表示成:<br>$$<br>\frac{\partial L}{\partial b} =<br>\left[ \begin{matrix} 1 &amp; 1 \end{matrix} \right]<br>G<br>\left[ \begin{matrix} 1 \\ 1 \end{matrix} \right]<br>$$</p>
+<p> 若$b$是一个长度为2的列向量，型如$\left[ \begin{matrix} b_0 \\ b_0\end{matrix} \right]$ 则需要将$G$中的每一列进行相加得到与$b$形状相同的梯度向量:<br>$$<br>\frac{\partial L}{\partial b} =<br>\left[ \begin{matrix}<br>\frac{\partial L}{\partial c_{11}} + \frac{\partial L}{\partial c_{12}} \\<br>\frac{\partial L}{\partial c_{21}} + \frac{\partial L}{\partial c_{22}}<br>\end{matrix} \right]<br>$$</p>
+</li>
+</ol>
+<p>下面是求和操作梯度计算的Python实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Add</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute_gradient</span><span class="params">(self, grad=None)</span>:</span></div><div class="line">        <span class="string">''' Compute the gradients for this operation wrt input values.</span></div><div class="line"></div><div class="line">        :param grad: The gradient of other operation wrt the addition output.</div><div class="line">        :type grad: number or a ndarray, default value is 1.0.</div><div class="line">        '''</div><div class="line">        x, y = [node.output_value <span class="keyword">for</span> node <span class="keyword">in</span> self.input_nodes]</div><div class="line"></div><div class="line">        <span class="keyword">if</span> grad <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            grad = np.ones_like(self.output_value)</div><div class="line"></div><div class="line">        grad_wrt_x = grad</div><div class="line">        <span class="keyword">while</span> np.ndim(grad_wrt_x) &gt; len(np.shape(x)):</div><div class="line">            grad_wrt_x = np.sum(grad_wrt_x, axis=<span class="number">0</span>)</div><div class="line">        <span class="keyword">for</span> axis, size <span class="keyword">in</span> enumerate(np.shape(x)):</div><div class="line">            <span class="keyword">if</span> size == <span class="number">1</span>:</div><div class="line">                grad_wrt_x = np.sum(grad_wrt_x, axis=axis, keepdims=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">        grad_wrt_y = grad</div><div class="line">        <span class="keyword">while</span> np.ndim(grad_wrt_y) &gt; len(np.shape(y)):</div><div class="line">            grad_wrt_y = np.sum(grad_wrt_y, axis=<span class="number">0</span>)</div><div class="line">        <span class="keyword">for</span> axis, size <span class="keyword">in</span> enumerate(np.shape(y)):</div><div class="line">            <span class="keyword">if</span> size == <span class="number">1</span>:</div><div class="line">                grad_wrt_y = np.sum(grad_wrt_y, axis=axis, keepdims=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> [grad_wrt_x, grad_wrt_y]</div></pre></td></tr></table></figure></p>
+<p>其中<code>grad</code>参数就是上面公式中的$G$它的shape应该与该节点的输出值(<code>output_value</code>的形状一直)。</p>
+<h4 id="矩阵乘梯度的计算"><a href="#矩阵乘梯度的计算" class="headerlink" title="矩阵乘梯度的计算"></a>矩阵乘梯度的计算</h4><p>这部分主要介绍如何在反向传播求梯度中运用<strong>维度分析</strong>来帮助我们快速获取梯度。先上一个矩阵乘操作的例子:</p>
+<p>$$ C = AB $$</p>
+<p>其中， $C$是$M \times K$的矩阵, $A$是$M \times N$的矩阵, $B$是$N \times K$的矩阵。</p>
+<p>损失值$L$对$C$的梯度为</p>
+<p>$$G = \frac{\partial L}{\partial C}$$</p>
+<p>其形状与矩阵$C$相同同为$M \times K$</p>
+<p>通过维度分析可以通过我们标量求导的知识再稍微对矩阵的形状进行处理(左乘，右乘，转置)来<strong>凑</strong>出正确的梯度。当然如果需要分析每个元素的导数也是可以的，可以参考这篇<a href="https://zhuanlan.zhihu.com/p/25496760" target="_blank" rel="noopener">神经网络中利用矩阵进行反向传播运算的实质</a>, 下面我们主要使用维度分析来快速计算反向传播中矩阵乘节点中矩阵对矩阵的导数。</p>
+<p>若我们想求$\frac{\partial L}{\partial B}$, 根据标量计算的链式法则应该有:</p>
+<p>$$<br>\frac{\partial L}{\partial B} = \frac{\partial L}{\partial C} \frac{\partial C}{\partial A}<br>$$</p>
+<p>根据向量已知的$\frac{\partial L}{\partial C}$的形状为$M \times K$（与$C$形状相同）, $\frac{\partial L}{\partial B}$的形状为$N \times K$(与$B$形状相同), 因此$\frac{\partial C}{\partial B}$ 应该是一个$N \times M$的矩阵，而且我们上面乘积的式子写反了，把顺序调换一下就是</p>
+<p>$$<br>\frac{\partial L}{\partial B} = \frac{\partial C}{\partial B} \frac{\partial L}{\partial C}<br>$$</p>
+<p>根据我们在标量求导的规则里，$C$对于$B$求导应该是$A$, 但是$A$是一个$M \times N$的矩阵而我们现在需要一个$N \times M$的矩阵，那么就将$A$转置一下呗，于是就得到:</p>
+<p>$$<br>\frac{\partial L}{\partial B} = \frac{\partial C}{\partial B} \frac{\partial L}{\partial C} = A^{T}G<br>$$</p>
+<p>同理也可以通过维度分析得到$L$对$A$的梯度为$GB^{T}$</p>
+<p>下面是矩阵乘操作梯度计算的Python实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MatMul</span><span class="params">(Operation)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compute_gradient</span><span class="params">(self, grad=None)</span>:</span></div><div class="line">        <span class="string">''' Compute and return the gradient for matrix multiplication.</span></div><div class="line"></div><div class="line">        :param grad: The gradient of other operation wrt the matmul output.</div><div class="line">        :type grad: number or a ndarray, default value is 1.0.</div><div class="line">        '''</div><div class="line">        <span class="comment"># Get input values.</span></div><div class="line">        x, y = [node.output_value <span class="keyword">for</span> node <span class="keyword">in</span> self.input_nodes]</div><div class="line"></div><div class="line">        <span class="comment"># Default gradient wrt the matmul output.</span></div><div class="line">        <span class="keyword">if</span> grad <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            grad = np.ones_like(self.output_value)</div><div class="line"></div><div class="line">        <span class="comment"># Gradients wrt inputs.</span></div><div class="line">        dfdx = np.dot(grad, np.transpose(y))</div><div class="line">        dfdy = np.dot(np.transpose(x), grad)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> [dfdx, dfdy]</div></pre></td></tr></table></figure></p>
+<h4 id="其他操作的梯度计算"><a href="#其他操作的梯度计算" class="headerlink" title="其他操作的梯度计算"></a>其他操作的梯度计算</h4><p>这里就不一一介绍了其他操作的梯度计算了，类似的我们根据维度分析以及理解反向传播里矩阵梯度其实就是标量求梯度放到了矩阵的规则里的一种变形的本质，其他梯度也可以推导并实现出来了。</p>
+<p>在simpleflow里目前实现了求和，乘法，矩阵乘法，平方，Sigmoid，Reduce Sum以及Log等操作的梯度实现，可以参考:<a href="https://github.com/PytLab/simpleflow/blob/master/simpleflow/operations.py" target="_blank" rel="noopener">https://github.com/PytLab/simpleflow/blob/master/simpleflow/operations.py</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了通过计算图的反向传播快速计算梯度的原理以及每个节点相应梯度的计算和实现，有了每个节点的梯度计算我们就可以通过实现反向传播算法来实现损失函数对所有节点的梯度计算了，下一篇中将会总结通过广度优先搜索实现图中节点梯度的计算以及梯度下降优化器的实现。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/" target="_blank" rel="noopener">http://www.deepideas.net/deep-learning-from-scratch-iv-gradient-descent-and-backpropagation/</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25496760" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25496760</a></li>
+<li><a href="http://blog.csdn.net/magic_anthony/article/details/77531552" target="_blank" rel="noopener">http://blog.csdn.net/magic_anthony/article/details/77531552</a></li>
+<li><a href="https://www.zhihu.com/question/47024992/answer/103962301" target="_blank" rel="noopener">https://www.zhihu.com/question/47024992/answer/103962301</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 代码作品 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MachineLearning </tag>
+            
+            <tag> TensorFlow </tag>
+            
+            <tag> SimpleFlow </tag>
+            
+            <tag> NeuralNetwork </tag>
+            
+            <tag> DeepLearning </tag>
+            
+            <tag> Backpropagation </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[实现属于自己的TensorFlow(一) - 计算图与前向传播]]></title>
       <url>http://pytlab.github.io/2018/01/24/%E5%AE%9E%E7%8E%B0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84TensorFlow-%E4%B8%80-%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD/</url>
       <content type="html"><![CDATA[<p>前段时间因为课题需要使用了一段时间TensorFlow，感觉这种框架很有意思，除了可以搭建复杂的神经网络，也可以优化其他自己需要的计算模型，所以一直想自己学习一下写一个类似的图计算框架。前几天组会开完决定着手实现一个模仿TensorFlow接口的简陋版本图计算框架以学习计算图程序的编写以及前向传播和反向传播的实现。目前实现了前向传播和反向传播以及梯度下降优化器，并写了个优化线性模型的例子。</p>
@@ -71,7 +180,7 @@
 <li><a href="http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/" target="_blank" rel="noopener">Deep Learning From Scratch</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Tree_traversal#Post-order" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Tree_traversal#Post-order</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/25496760" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25496760</a></li>
-<li><a href="http://blog.csdn.net/magic_anthony/article/details/77531552#0-tsina-1-98885-397232819ff9a47a7b7e80a40613cfe1" target="_blank" rel="noopener">http://blog.csdn.net/magic_anthony/article/details/77531552#0-tsina-1-98885-397232819ff9a47a7b7e80a40613cfe1</a></li>
+<li><a href="http://blog.csdn.net/magic_anthony/article/details/77531552" target="_blank" rel="noopener">http://blog.csdn.net/magic_anthony/article/details/77531552</a></li>
 </ul>
 ]]></content>
       
@@ -1583,9 +1692,9 @@
             
             <tag> python </tag>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
             <tag> mpi4py </tag>
             
@@ -2637,9 +2746,9 @@
             
             <tag> python </tag>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
             <tag> mpi4py </tag>
             
@@ -2665,9 +2774,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -3706,9 +3815,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -3753,9 +3862,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -3787,9 +3896,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -3840,9 +3949,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -3937,9 +4046,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -3968,9 +4077,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -4086,9 +4195,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -4135,9 +4244,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
             <tag> 非阻塞通信 </tag>
             
@@ -4180,9 +4289,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -4239,9 +4348,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -4279,9 +4388,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -4323,9 +4432,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -4420,9 +4529,9 @@
         
         <tags>
             
-            <tag> MPI </tag>
-            
             <tag> Parallel Computing </tag>
+            
+            <tag> MPI </tag>
             
         </tags>
         
@@ -5296,9 +5405,9 @@
             
             <tag> Cpp </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
             <tag> KMCLib </tag>
             
@@ -6582,11 +6691,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> LinearAlgebra </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6814,9 +6923,9 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -6963,13 +7072,13 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
             
             <tag> matplotlib </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -7022,11 +7131,11 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
             
             <tag> catalysis </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         
@@ -7074,11 +7183,11 @@ $$p(t) = k_{tot} exp(-k_{tot}t)$$</div>
             
             <tag> chemistry </tag>
             
-            <tag> 学术 </tag>
-            
             <tag> kMC </tag>
             
             <tag> Monte Carlo </tag>
+            
+            <tag> 学术 </tag>
             
         </tags>
         

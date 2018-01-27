@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
               <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
               
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
-              
-              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,37 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-08-15 </div>
+			<div class="article-title"><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" >机器学习算法实践-支持向量机(SVM)算法原理</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/"><img src="/assets/images/blog_img/2017-08-15-机器学习算法实践-支持向量机-SVM-算法原理/Lagrange_multiplier.png" alt="机器学习算法实践-支持向量机(SVM)算法原理"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于SVM的算法实践我打算分成多个部分进行总结。本文为第一部分主要介绍SVM的原理以及相关算法的简单推导，其中包括SVM原理，最初表达式，标准形式以及对偶形式(二次规划问题)，形式变化过程中涉及到求解有约束优化问题的拉格朗日乘子法以及KKT条件等。</p>
+<h2 id="什么是支持向量机"><a href="#什么是支持向量机" class="headerlink" title="什么是支持向量机"></a>什么是支持向量机</h2><p>对于线性可分两类数据，支持向量机就是条<strong>直线</strong>(对于高维数据点就是一个<strong>超平面</strong>), 两类数据点中的的分割线有无数条，SVM就是这无数条中最完美的一条，怎么样才算最完美呢？就是这条线距离两类数据点越远，则当有新的数据点的时候我们使用这条线将其分类的结果也就越可信。例如下图中的三条直线都可以将A中的数据分类，那条可以有最优的分类能力呢？</p>
+<ol>
+<li>我们需要线找到数据点中距离分割超平面距离<strong>最近的点</strong>(找最小)</li>
+<li>然后尽量使得距离超平面最近的点的距离的绝对值尽量的<strong>大</strong>(求最大)</li>
+</ol>
+	
+	</div>
+  <a type="button" href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -363,32 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-07-15 </div>
-			<div class="article-title"><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" >机器学习算法实践-Logistic回归与梯度上升算法(下)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/"><img src="/assets/images/blog_img/2017-07-15-机器学习算法实践-Logistic回归与梯度上升算法-下/grad_ascent_animation.gif" alt="机器学习算法实践-Logistic回归与梯度上升算法(下)"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇主要总结了Logistic回归模型建立的理论基础，主要包含模型似然函数的建立以及梯度上升算法的优化推导。本文在上文的基础上使用Python一步步实现一个Logistic回归分类器，并分别使用梯度上升和随机梯度上升算法实现，对二维数据点分类进行可视化，最后使用之前使用过的<a href="http://www.esp.uem.es/jmgomez/smsspamcorpus/" target="_blank" rel="noopener">SMS垃圾短信语料库</a>中的短信数据进行模型训练并对短信数据进行分类。</p>
-	
-	</div>
-  <a type="button" href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -438,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(二) - 梯度计算...</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
       </li>
     
@@ -453,10 +462,6 @@
         <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
       </li>
     
-      <li>
-        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -467,7 +472,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">18</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -493,48 +498,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li>
+		
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">109</span></a></li>
+		   <li><a href="/tags">...<span class="badge">110</span></a></li>
 		 
 		</ul>
 	</div>

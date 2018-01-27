@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
               <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
               
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
-              
-              <li><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" style="font-size: 15px; font-family: 微软雅黑">遗传算法中适值函数的标定与大变异算法<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -215,6 +215,8 @@
 		
 			<li><a href="#Algorithms">Algorithms<span class="badge">1</span></a></li>
 		
+			<li><a href="#Backpropagation">Backpropagation<span class="badge">1</span></a></li>
+		
 			<li><a href="#Bootstrap">Bootstrap<span class="badge">1</span></a></li>
 		
 			<li><a href="#C">C<span class="badge">26</span></a></li>
@@ -239,7 +241,7 @@
 		
 			<li><a href="#DecisionTree">DecisionTree<span class="badge">1</span></a></li>
 		
-			<li><a href="#DeepLearning">DeepLearning<span class="badge">1</span></a></li>
+			<li><a href="#DeepLearning">DeepLearning<span class="badge">2</span></a></li>
 		
 			<li><a href="#DualProblem">DualProblem<span class="badge">1</span></a></li>
 		
@@ -297,7 +299,7 @@
 		
 			<li><a href="#MPI">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="#MachineLearning">MachineLearning<span class="badge">14</span></a></li>
+			<li><a href="#MachineLearning">MachineLearning<span class="badge">15</span></a></li>
 		
 			<li><a href="#Math">Math<span class="badge">1</span></a></li>
 		
@@ -307,7 +309,7 @@
 		
 			<li><a href="#NaiveBayes">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="#NeuralNetwork">NeuralNetwork<span class="badge">1</span></a></li>
+			<li><a href="#NeuralNetwork">NeuralNetwork<span class="badge">2</span></a></li>
 		
 			<li><a href="#Notes">Notes<span class="badge">4</span></a></li>
 		
@@ -327,7 +329,7 @@
 		
 			<li><a href="#SVM">SVM<span class="badge">4</span></a></li>
 		
-			<li><a href="#SimpleFlow">SimpleFlow<span class="badge">1</span></a></li>
+			<li><a href="#SimpleFlow">SimpleFlow<span class="badge">2</span></a></li>
 		
 			<li><a href="#SoftMargin">SoftMargin<span class="badge">1</span></a></li>
 		
@@ -335,7 +337,7 @@
 		
 			<li><a href="#StochasticGradientAscent">StochasticGradientAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="#TensorFlow">TensorFlow<span class="badge">1</span></a></li>
+			<li><a href="#TensorFlow">TensorFlow<span class="badge">2</span></a></li>
 		
 			<li><a href="#Typing Master">Typing Master<span class="badge">1</span></a></li>
 		
@@ -437,6 +439,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Algorithm" data-target="#modal-Algorithm"> Algorithm <b class="caret"></b></h4>
 	   <ul id="modal-Algorithm" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -2131,6 +2149,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -3791,8 +3825,1717 @@
 	   </ul>
 	
 
+	<h4 class="archive-ul show" data-toggle="collapse" id="Backpropagation" data-target="#modal-Backpropagation"> Backpropagation <b class="caret"></b></h4>
+	   <ul id="modal-Backpropagation" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+   	   	   	       <li class="listing-item"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></li>
+				
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+	   
+	   
+	   </ul>
+	
+
 	<h4 class="archive-ul show" data-toggle="collapse" id="Bootstrap" data-target="#modal-Bootstrap"> Bootstrap <b class="caret"></b></h4>
 	   <ul id="modal-Bootstrap" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -5470,6 +7213,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="C" data-target="#modal-C"> C <b class="caret"></b></h4>
 	   <ul id="modal-C" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -7212,6 +8971,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -8889,6 +10664,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -10551,6 +12342,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="CMake" data-target="#modal-CMake"> CMake <b class="caret"></b></h4>
 	   <ul id="modal-CMake" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -12245,6 +14052,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -13924,6 +15747,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -15586,6 +17425,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="ComputationGraph" data-target="#modal-ComputationGraph"> ComputationGraph <b class="caret"></b></h4>
 	   <ul id="modal-ComputationGraph" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -17278,6 +19133,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -18955,6 +20826,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -20617,6 +22504,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Cpp" data-target="#modal-Cpp"> Cpp <b class="caret"></b></h4>
 	   <ul id="modal-Cpp" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -22415,6 +24318,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -24077,6 +25996,24 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="DeepLearning" data-target="#modal-DeepLearning"> DeepLearning <b class="caret"></b></h4>
 	   <ul id="modal-DeepLearning" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+   	   	   	       <li class="listing-item"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></li>
+				
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -25769,6 +27706,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -27431,6 +29384,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="ECMAScript" data-target="#modal-ECMAScript"> ECMAScript <b class="caret"></b></h4>
 	   <ul id="modal-ECMAScript" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -29129,6 +31098,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -30791,6 +32776,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Effective Python" data-target="#modal-Effective Python"> Effective Python <b class="caret"></b></h4>
 	   <ul id="modal-Effective Python" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -32478,6 +34479,22 @@
 			    
 		      
 			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
    	   	   	       <li class="listing-item"><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" >实现属于自己的TensorFlow(一) - 计算图与前向传播</a></li>
 				
 		      
@@ -34147,6 +36164,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Fortran" data-target="#modal-Fortran"> Fortran <b class="caret"></b></h4>
 	   <ul id="modal-Fortran" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -35845,6 +37878,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -37511,6 +39560,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="GeneticAlgorithm" data-target="#modal-GeneticAlgorithm"> GeneticAlgorithm <b class="caret"></b></h4>
 	   <ul id="modal-GeneticAlgorithm" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -39213,6 +41278,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -40875,6 +42956,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Git" data-target="#modal-Git"> Git <b class="caret"></b></h4>
 	   <ul id="modal-Git" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -42558,6 +44655,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="GitHub" data-target="#modal-GitHub"> GitHub <b class="caret"></b></h4>
 	   <ul id="modal-GitHub" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -44264,6 +46377,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -45941,6 +48070,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -47603,6 +49748,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="GradientAscent" data-target="#modal-GradientAscent"> GradientAscent <b class="caret"></b></h4>
 	   <ul id="modal-GradientAscent" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -49297,6 +51458,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -50959,6 +53136,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Hexo" data-target="#modal-Hexo"> Hexo <b class="caret"></b></h4>
 	   <ul id="modal-Hexo" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -52659,6 +54852,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -54344,6 +56553,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -56006,6 +58231,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="KMCLib" data-target="#modal-KMCLib"> KMCLib <b class="caret"></b></h4>
 	   <ul id="modal-KMCLib" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -57720,6 +59961,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -59397,6 +61654,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -61059,6 +63332,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Kynetix" data-target="#modal-Kynetix"> Kynetix <b class="caret"></b></h4>
 	   <ul id="modal-Kynetix" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -62779,6 +65068,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -64456,6 +66761,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -66118,6 +68439,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="LinearAlgebra" data-target="#modal-LinearAlgebra"> LinearAlgebra <b class="caret"></b></h4>
 	   <ul id="modal-LinearAlgebra" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -67814,6 +70151,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -69480,6 +71833,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="LogisticRegression" data-target="#modal-LogisticRegression"> LogisticRegression <b class="caret"></b></h4>
 	   <ul id="modal-LogisticRegression" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -71174,6 +73543,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -71315,6 +73700,8 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
 		      
@@ -71328,8 +73715,6 @@
 		      
 			    
 		      
-			    
-		      
 		  
 	   
 	      
@@ -71471,6 +73856,8 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
 		      
@@ -71480,18 +73867,16 @@
 		      
 			    
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2017/02/16/一本不错的MPI教程/" >推荐一本不错的MPI教程</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
@@ -71615,43 +74000,43 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/21/MPI集合通信：N-N/" >MPI集合通信：N → N</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/19/MPI集合通信：N-1/" >MPI集合通信：N → 1</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/18/MPI集合通信：1-N/" >MPI集合通信：1 → N</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/18/点到点通信总结/"  title="MPI的点到点通信学习告一段落，这里对点到点通信进行总结。" >点到点通信总结</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
@@ -71665,23 +74050,23 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/04/MPI学习-可重复的非阻塞标准通信/" >MPI学习--可重复的非阻塞标准通信</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/"  title="本文也是通过实例来理解总结一下非阻塞通信中的非重复的就绪通信和同步通信模式。" >MPI学习-非阻塞通信之非重复的就绪通信和同步通信</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
@@ -71699,16 +74084,18 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/"  title="本文也是通过一个实例来理解总结一下非阻塞缓冲通信模式。" >MPI学习--非重复的非阻塞通信之非重复的缓冲通信</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/09/MPI学习-初识非阻塞通信/"  title="对MPI非阻塞通信的初印象。" >MPI学习--初识非阻塞通信</a></li>
@@ -71716,48 +74103,46 @@
 		      
 			    
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/"  title="本篇对阻塞通信中的就绪通信模式和同步通信模式进行小结。" >MPI学习--阻塞通信之就绪通信模式和同步通信模式</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/"  title="通过一个缓冲通信的例子来简单总结下缓冲通信模式。" >MPI学习--阻塞通信之缓冲通信模式</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/"  title="本篇通过一个小例子来总结下阻塞通信中的标准通信模式" >MPI学习--阻塞通信之标准通信模式</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/06/MPI学习--消息传递通信/"  title="本文主要总结MPI消息传递的一些基本概念" >MPI学习--消息传递通信</a></li>
 				
 		      
-			    
-		      
 		  
 	   
 	      
@@ -71767,12 +74152,12 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/05/MPI学习之MPICH2环境及安装/"  title="打算这几天上手MPI，开始学习MPI并行编程，目前的主要目的是能够快速使用MPI的API将现有程序并行化，例子代码均用C语言实现。" >MPI学习--MPICH并行环境搭建与配置</a></li>
 				
-		      
-			    
 		      
 		  
 	   
@@ -72866,6 +75251,24 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="MachineLearning" data-target="#modal-MachineLearning"> MachineLearning <b class="caret"></b></h4>
 	   <ul id="modal-MachineLearning" class="collapse in">
+	   
+	      
+		      
+			    
+   	   	   	       <li class="listing-item"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></li>
+				
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -74584,6 +76987,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -76261,6 +78680,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -77014,10 +79449,10 @@
 			    
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/03/31/KMCLib中的Matcher/"  title="KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，&lt;br&gt;并更新process中相关的信息，例如能发生反应的sites、总速率等" >KMCLib中的Matcher</a></li>
 				
+		      
+			    
 		      
 			    
 		      
@@ -77314,15 +79749,9 @@
 			    
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/02/28/kMC中的Markov-Chain-马尔可夫链/"  title="在这里总结下kMC中的数学原理，均为本人的理解和原创，如有错误欢迎指正。" >kMC中的Markov Chain(马尔可夫链)</a></li>
 				
 		      
-		  
-	   
-	      
-		      
 			    
 		      
 		  
@@ -77355,14 +79784,6 @@
 		      
 			    
 		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
 		  
 	   
 	      
@@ -77383,6 +79804,20 @@
 		      
 			    
 		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
 		  
 	   
 	      
@@ -77404,8 +79839,6 @@
 		  
 	   
 	      
-		      
-			    
 		      
 			    
 		      
@@ -77423,11 +79856,11 @@
 		      
 			    
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
 		      
@@ -77445,6 +79878,8 @@
    	   	   	       <li class="listing-item"><a href="/2016/02/18/Kynetix新增动力学蒙特卡洛-kMC-计算模块/"  title="给Kynetix新增了kMC模拟模块" >Kynetix新增动力学蒙特卡洛(kMC)计算模块</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
@@ -77458,10 +79893,10 @@
 			    
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/"  title="在这里对动力学蒙特卡洛(kMC)的基本原理进行下简单总结。&lt;br&gt;转载请注明出处。" >动力学蒙特卡洛(kinetic Mont Carlo)基本原理小结</a></li>
 				
+		      
+			    
 		      
 		  
 	   
@@ -77939,6 +80374,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="NLP" data-target="#modal-NLP"> NLP <b class="caret"></b></h4>
 	   <ul id="modal-NLP" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -79631,6 +82082,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -81293,6 +83760,24 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="NeuralNetwork" data-target="#modal-NeuralNetwork"> NeuralNetwork <b class="caret"></b></h4>
 	   <ul id="modal-NeuralNetwork" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+   	   	   	       <li class="listing-item"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></li>
+				
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -82970,6 +85455,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Notes" data-target="#modal-Notes"> Notes <b class="caret"></b></h4>
 	   <ul id="modal-Notes" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -84668,6 +87169,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -86334,6 +88851,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Optimization" data-target="#modal-Optimization"> Optimization <b class="caret"></b></h4>
 	   <ul id="modal-Optimization" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -88028,6 +90561,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -88169,8 +90718,6 @@
 		  
 	   
 	      
-		      
-			    
 		      
 			    
 		      
@@ -88184,54 +90731,6 @@
 		      
 			    
 		      
-		  
-	   
-	      
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-		  
-	   
-	      
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-		  
-	   
-	      
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-		  
-	   
-	      
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
 			    
 		      
 		  
@@ -88270,6 +90769,56 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 			    
@@ -88325,8 +90874,6 @@
 		  
 	   
 	      
-		      
-			    
 		      
 			    
 		      
@@ -88336,15 +90883,17 @@
 		      
 			    
 		      
+			    
+		      
 		  
 	   
 	      
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2017/02/16/一本不错的MPI教程/" >推荐一本不错的MPI教程</a></li>
 				
+		      
+			    
 		      
 		  
 	   
@@ -88473,49 +91022,39 @@
 	      
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/08/21/MPI集合通信：N-N/" >MPI集合通信：N → N</a></li>
 				
+		      
+			    
 		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/19/MPI集合通信：N-1/" >MPI集合通信：N → 1</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/18/MPI集合通信：1-N/" >MPI集合通信：1 → N</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/18/点到点通信总结/"  title="MPI的点到点通信学习告一段落，这里对点到点通信进行总结。" >点到点通信总结</a></li>
 				
 		      
-		  
-	   
-	      
-		      
-			    
-		      
-			    
-		      
 			    
 		      
 		  
@@ -88523,25 +91062,29 @@
 	      
 		      
 			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/04/MPI学习-可重复的非阻塞标准通信/" >MPI学习--可重复的非阻塞标准通信</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/08/02/MPI学习-非阻塞通信之非重复的就绪通信和同步通信/"  title="本文也是通过实例来理解总结一下非阻塞通信中的非重复的就绪通信和同步通信模式。" >MPI学习-非阻塞通信之非重复的就绪通信和同步通信</a></li>
 				
 		      
-		  
-	   
-	      
-		      
 			    
 		      
 		  
@@ -88550,23 +91093,27 @@
 		      
 			    
 		      
-			    
-		      
 		  
 	   
 	      
 		      
 			    
+		      
+			    
+		      
+		  
+	   
+	      
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/"  title="本文也是通过一个实例来理解总结一下非阻塞缓冲通信模式。" >MPI学习--非重复的非阻塞通信之非重复的缓冲通信</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/09/MPI学习-初识非阻塞通信/"  title="对MPI非阻塞通信的初印象。" >MPI学习--初识非阻塞通信</a></li>
@@ -88574,45 +91121,47 @@
 		      
 			    
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/08/MPI学习-阻塞通信之就绪通信模式和同步通信模式/"  title="本篇对阻塞通信中的就绪通信模式和同步通信模式进行小结。" >MPI学习--阻塞通信之就绪通信模式和同步通信模式</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/08/MPI学习-阻塞通信之缓冲通信模式/"  title="通过一个缓冲通信的例子来简单总结下缓冲通信模式。" >MPI学习--阻塞通信之缓冲通信模式</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
    	   	   	       <li class="listing-item"><a href="/2016/07/07/MPI学习-阻塞通信之标准通信模式/"  title="本篇通过一个小例子来总结下阻塞通信中的标准通信模式" >MPI学习--阻塞通信之标准通信模式</a></li>
 				
 		      
+			    
+		      
 		  
 	   
 	      
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/07/06/MPI学习--消息传递通信/"  title="本文主要总结MPI消息传递的一些基本概念" >MPI学习--消息传递通信</a></li>
 				
+		      
+			    
 		      
 		  
 	   
@@ -88627,10 +91176,10 @@
 	      
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/07/05/MPI学习之MPICH2环境及安装/"  title="打算这几天上手MPI，开始学习MPI并行编程，目前的主要目的是能够快速使用MPI的API将现有程序并行化，例子代码均用C语言实现。" >MPI学习--MPICH并行环境搭建与配置</a></li>
 				
+		      
+			    
 		      
 		  
 	   
@@ -89724,6 +92273,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="PyCon China" data-target="#modal-PyCon China"> PyCon China <b class="caret"></b></h4>
 	   <ul id="modal-PyCon China" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -91416,6 +93981,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -93078,6 +95659,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="SMO" data-target="#modal-SMO"> SMO <b class="caret"></b></h4>
 	   <ul id="modal-SMO" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -94772,6 +97369,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -96434,6 +99047,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="SVM" data-target="#modal-SVM"> SVM <b class="caret"></b></h4>
 	   <ul id="modal-SVM" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -98117,6 +100746,24 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="SimpleFlow" data-target="#modal-SimpleFlow"> SimpleFlow <b class="caret"></b></h4>
 	   <ul id="modal-SimpleFlow" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+   	   	   	       <li class="listing-item"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></li>
+				
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -99809,6 +102456,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -101471,6 +104134,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="StageWiseRegression" data-target="#modal-StageWiseRegression"> StageWiseRegression <b class="caret"></b></h4>
 	   <ul id="modal-StageWiseRegression" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -103163,6 +105842,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -104825,6 +107520,24 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="TensorFlow" data-target="#modal-TensorFlow"> TensorFlow <b class="caret"></b></h4>
 	   <ul id="modal-TensorFlow" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+   	   	   	       <li class="listing-item"><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" >实现属于自己的TensorFlow(二) - 梯度计算与反向传播</a></li>
+				
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -106517,6 +109230,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -108179,6 +110908,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="VASP" data-target="#modal-VASP"> VASP <b class="caret"></b></h4>
 	   <ul id="modal-VASP" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -109875,6 +112620,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -111556,6 +114317,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -113218,6 +115995,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="Vim" data-target="#modal-Vim"> Vim <b class="caret"></b></h4>
 	   <ul id="modal-Vim" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -114916,6 +117709,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -116593,6 +119402,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -118255,6 +121080,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="catalysis" data-target="#modal-catalysis"> catalysis <b class="caret"></b></h4>
 	   <ul id="modal-catalysis" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -120001,6 +122842,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -121665,6 +124522,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="chemistry" data-target="#modal-chemistry"> chemistry <b class="caret"></b></h4>
 	   <ul id="modal-chemistry" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -123405,6 +126278,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -125067,6 +127956,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="descriptor" data-target="#modal-descriptor"> descriptor <b class="caret"></b></h4>
 	   <ul id="modal-descriptor" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -126759,6 +129664,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -128421,6 +131342,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="emuch" data-target="#modal-emuch"> emuch <b class="caret"></b></h4>
 	   <ul id="modal-emuch" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -130113,6 +133050,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -131790,6 +134743,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -133452,6 +136421,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="gaft" data-target="#modal-gaft"> gaft <b class="caret"></b></h4>
 	   <ul id="modal-gaft" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -135152,6 +138137,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -136814,6 +139815,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="jQuery" data-target="#modal-jQuery"> jQuery <b class="caret"></b></h4>
 	   <ul id="modal-jQuery" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -138508,6 +141525,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -140185,6 +143218,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -141232,17 +144281,11 @@
 			    
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/02/28/kMC中的Markov-Chain-马尔可夫链/"  title="在这里总结下kMC中的数学原理，均为本人的理解和原创，如有错误欢迎指正。" >kMC中的Markov Chain(马尔可夫链)</a></li>
 				
 		      
 			    
 		      
-		  
-	   
-	      
-		      
 			    
 		      
 		  
@@ -141274,6 +144317,10 @@
 	      
 		      
 			    
+		      
+		  
+	   
+	      
 		      
 			    
 		      
@@ -141285,24 +144332,6 @@
    	   	   	       <li class="listing-item"><a href="/2016/02/23/Kynetix支持KMC连续计算/"  title="由于KMC的计算经常会需要在已经算完的作业的基础上继续跑作业以达到TOF或者覆盖度稳定,因此使程序能够进行连续的作业计算。" >Kynetix支持KMC连续计算</a></li>
 				
 		      
-		  
-	   
-	      
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-			    
-		      
-		  
-	   
-	      
-		      
 			    
 		      
 		  
@@ -141319,7 +144348,9 @@
 		      
 			    
 		      
-			    
+		  
+	   
+	      
 		      
 			    
 		      
@@ -141328,6 +144359,22 @@
 	      
 		      
 			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
+	   
+	      
 		      
 			    
 		      
@@ -141345,11 +144392,11 @@
 		      
 			    
 		      
+			    
+		      
 		  
 	   
 	      
-		      
-			    
 		      
 			    
 		      
@@ -141367,6 +144414,8 @@
 		      
 			    
 		      
+			    
+		      
 		  
 	   
 	      
@@ -141378,10 +144427,10 @@
 			    
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/"  title="在这里对动力学蒙特卡洛(kMC)的基本原理进行下简单总结。&lt;br&gt;转载请注明出处。" >动力学蒙特卡洛(kinetic Mont Carlo)基本原理小结</a></li>
 				
+		      
+			    
 		      
 			    
 		      
@@ -141859,6 +144908,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="kinetic model" data-target="#modal-kinetic model"> kinetic model <b class="caret"></b></h4>
 	   <ul id="modal-kinetic model" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -143569,6 +146634,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -145262,6 +148343,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -146924,6 +150021,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="lazy property" data-target="#modal-lazy property"> lazy property <b class="caret"></b></h4>
 	   <ul id="modal-lazy property" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -148616,6 +151729,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -150278,6 +153407,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="loggers" data-target="#modal-loggers"> loggers <b class="caret"></b></h4>
 	   <ul id="modal-loggers" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -151972,6 +155117,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -153649,6 +156810,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -154800,10 +157977,10 @@
 			    
 		      
 			    
-		      
-			    
    	   	   	       <li class="listing-item"><a href="/2016/02/18/Kynetix的kMC-plotter/"  title="简单介绍下用来绘制kMC模拟表面演化过程的绘图程序." >Kynetix的kmc_plotter</a></li>
 				
+		      
+			    
 		      
 		  
 	   
@@ -155315,6 +158492,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="mpi4py" data-target="#modal-mpi4py"> mpi4py <b class="caret"></b></h4>
 	   <ul id="modal-mpi4py" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -157009,6 +160202,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -158671,6 +161880,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="python" data-target="#modal-python"> python <b class="caret"></b></h4>
 	   <ul id="modal-python" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -160473,6 +163698,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -162135,6 +165376,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="swig" data-target="#modal-swig"> swig <b class="caret"></b></h4>
 	   <ul id="modal-swig" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -163839,6 +167096,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -165501,6 +168774,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="unittest" data-target="#modal-unittest"> unittest <b class="caret"></b></h4>
 	   <ul id="modal-unittest" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -167193,6 +170482,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -168855,6 +172160,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="windows" data-target="#modal-windows"> windows <b class="caret"></b></h4>
 	   <ul id="modal-windows" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -170547,6 +173868,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -172224,6 +175561,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -172977,10 +176330,10 @@
 			    
 		      
 			    
-   	   	   	       <li class="listing-item"><a href="/2016/03/31/KMCLib中的Matcher/"  title="KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，&lt;br&gt;并更新process中相关的信息，例如能发生反应的sites、总速率等" >KMCLib中的Matcher</a></li>
-				
 		      
 			    
+   	   	   	       <li class="listing-item"><a href="/2016/03/31/KMCLib中的Matcher/"  title="KMCLib中的Matcher类主要用于将所有process与configuration进行匹配，&lt;br&gt;并更新process中相关的信息，例如能发生反应的sites、总速率等" >KMCLib中的Matcher</a></li>
+				
 		      
 			    
 		      
@@ -173283,13 +176636,13 @@
 			    
 		      
 			    
+		      
+			    
+		      
+			    
    	   	   	       <li class="listing-item"><a href="/2016/02/28/kMC中的Markov-Chain-马尔可夫链/"  title="在这里总结下kMC中的数学原理，均为本人的理解和原创，如有错误欢迎指正。" >kMC中的Markov Chain(马尔可夫链)</a></li>
 				
 		      
-			    
-		      
-			    
-		      
 		  
 	   
 	      
@@ -173323,6 +176676,8 @@
 		  
 	   
 	      
+		      
+			    
 		      
 			    
 		      
@@ -173333,8 +176688,6 @@
 			    
    	   	   	       <li class="listing-item"><a href="/2016/02/23/Kynetix支持KMC连续计算/"  title="由于KMC的计算经常会需要在已经算完的作业的基础上继续跑作业以达到TOF或者覆盖度稳定,因此使程序能够进行连续的作业计算。" >Kynetix支持KMC连续计算</a></li>
 				
-		      
-			    
 		      
 		  
 	   
@@ -173391,18 +176744,22 @@
 			    
 		      
 			    
+		      
+			    
+		      
+			    
+		      
+			    
    	   	   	       <li class="listing-item"><a href="/2016/02/18/Kynetix的kMC-plotter/"  title="简单介绍下用来绘制kMC模拟表面演化过程的绘图程序." >Kynetix的kmc_plotter</a></li>
 				
-		      
-			    
-		      
-			    
-		      
-			    
 		      
 		  
 	   
 	      
+		      
+			    
+		      
+			    
 		      
 			    
 		      
@@ -173418,10 +176775,6 @@
    	   	   	       <li class="listing-item"><a href="/2016/02/18/Kynetix新增动力学蒙特卡洛-kMC-计算模块/"  title="给Kynetix新增了kMC模拟模块" >Kynetix新增动力学蒙特卡洛(kMC)计算模块</a></li>
 				
 		      
-			    
-		      
-			    
-		      
 		  
 	   
 	      
@@ -173433,12 +176786,12 @@
 			    
 		      
 			    
+		      
+			    
+		      
+			    
    	   	   	       <li class="listing-item"><a href="/2016/02/18/动力学蒙特卡洛-kinetic-Mont-Carlo基本原理小结/"  title="在这里对动力学蒙特卡洛(kMC)的基本原理进行下简单总结。&lt;br&gt;转载请注明出处。" >动力学蒙特卡洛(kinetic Mont Carlo)基本原理小结</a></li>
 				
-		      
-			    
-		      
-			    
 		      
 		  
 	   
@@ -173916,6 +177269,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="指针" data-target="#modal-指针"> 指针 <b class="caret"></b></h4>
 	   <ul id="modal-指针" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -175612,6 +178981,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -177289,6 +180674,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -178951,6 +182352,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="随笔" data-target="#modal-随笔"> 随笔 <b class="caret"></b></h4>
 	   <ul id="modal-随笔" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -180667,6 +184084,22 @@
 		      
 			    
 		      
+		  
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
 			    
 		      
 		  
@@ -182329,6 +185762,22 @@
 
 	<h4 class="archive-ul show" data-toggle="collapse" id="非阻塞通信" data-target="#modal-非阻塞通信"> 非阻塞通信 <b class="caret"></b></h4>
 	   <ul id="modal-非阻塞通信" class="collapse in">
+	   
+	      
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+			    
+		      
+		  
 	   
 	      
 		      
@@ -184030,6 +187479,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(二) - 梯度计算...</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
       </li>
     
@@ -184045,10 +187498,6 @@
         <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
       </li>
     
-      <li>
-        <a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" ><i class="fa fa-file-o"></i>机器学习算法实践-Platt SMO和遗传算法优化SVM</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -184059,7 +187508,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">17</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">18</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -184085,48 +187534,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">109</span></a></li>
+		   <li><a href="/tags">...<span class="badge">110</span></a></li>
 		 
 		</ul>
 	</div>
