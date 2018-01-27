@@ -17,7 +17,7 @@
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h3><p>对于我们构建的模型进行优化通常需要两步：1.求损失函数针对变量的梯度；2.根据梯度信息进行参数优化(例如梯度下降). 那么该如何使用我们构建的计算图来计算损失函数对于图中其他节点的梯度呢？通过<strong>链式法则</strong>。我们还是通过上篇中的表达式$Loss(x, y, z) = z(x + y)$对应的计算图来说明:</p>
 <p><img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/forward.png" alt=""></p>
 <p>我们把上面的操作节点使用字母进行标记，可以将每个操作看成一个函数，接受一个或两个输入有一个或者多个输出, 则上面的表达式<br>$$Loss(x, y, z) = z(x+y)$$<br>可以写成<br>$$Loss(x, y, z) = g(z, f(x, y))$$</p>
-<p>那么根据链式法则我们可以得到$h$对$x$的导数为:<br>$$<br>\frac{\partial Loss}{\partial x} = \frac{\partial Loss}{\partial g}\frac{\partial g}{\partial f} \frac{\partial f}{\partial x}<br>$$</p>
+<p>那么根据链式法则我们可以得到$Loss$对$x$的导数为:<br>$$<br>\frac{\partial Loss}{\partial x} = \frac{\partial Loss}{\partial g}\frac{\partial g}{\partial f} \frac{\partial f}{\partial x}<br>$$</p>
 <p>假设图中的节点已经计算出了自己的输出值，我们把节点的输出值放到节点里面如下:</p>
 <p><img src="/assets/images/blog_img/2018-01-25-实现属于自己的TensorFlow-二-梯度计算与反向传播/forward_with_values.png" alt=""></p>
 <p>然后再把链式法则的式子每一项一次计算，在图中也就是从后向前进行计算:</p>
@@ -42,7 +42,7 @@
 <p>其中<code>grad</code>为损失值对<code>Square</code>输出的梯度值，也就是上图中的$\frac{\partial Loss}{\partial z}$的值, 它的<code>shape</code>一定与<code>Square</code>的输出值的<code>shape</code><strong>一致</strong>。</p>
 <h4 id="神经网络反向传播的矩阵梯度计算"><a href="#神经网络反向传播的矩阵梯度计算" class="headerlink" title="神经网络反向传播的矩阵梯度计算"></a>神经网络反向传播的矩阵梯度计算</h4><p>矩阵梯度的计算是实现反向传播算法重要的一部分, 但是在实现神经网络反向传播的矩阵求导与许多公式列表上罗列出来的还是有差别的。</p>
 <p><strong>矩阵/向量求导</strong></p>
-<p>首先先看下矩阵的求导，其实矩阵的求导本质上就是目标矩阵中的元素对变量矩阵中的元素求偏导，至于求导后的导数矩阵的形状大都也都是为了形式上的美观方便求导之后的继续使用。所以不必被那些复杂的矩阵求导形式迷惑了双眼。这里上传了一份<a href="http://pytlab.github.io/2016/assets/files/matrix_rules.pdf">矩阵求导公式法则的列表PDF版本</a>，可以一步一步通过（行/列）向量对标量求导再到（行/列）向量对（行/列）向量求导再到矩阵对矩阵的求导逐渐扩展。</p>
+<p>首先先看下矩阵的求导，其实矩阵的求导本质上就是目标矩阵中的元素对变量矩阵中的元素求偏导，至于求导后的导数矩阵的形状大都也都是为了形式上的美观方便求导之后的继续使用。所以不必被那些复杂的矩阵求导形式迷惑了双眼。这里上传了一份<a href="../../../../assets/files/matrix_rules.pdf">矩阵求导公式法则的列表PDF版本</a>，可以一步一步通过（行/列）向量对标量求导再到（行/列）向量对（行/列）向量求导再到矩阵对矩阵的求导逐渐扩展。</p>
 <p>例如标量$y$对矩阵$X = \left[ \begin{matrix}x_{11} &amp; x_{12} \\ x_{21} &amp; x_{22} \end{matrix} \right]$求导, 我们就对标量$y$对于$X$的所有元素求偏导，最终得到一个导数矩阵，矩阵形状同$X$相同:</p>
 <p>$$<br>\frac{\mathrm{d}y}{\mathrm{d}X} = \left[ \begin{matrix}<br>\frac{\partial y}{\partial x_{11}} &amp; \frac{\partial y}{\partial x_{12}} \\<br>\frac{\partial y}{\partial x_{21}} &amp; \frac{\partial y}{\partial x_{22}}<br>\end{matrix} \right]<br>$$</p>
 <p><strong>神经网络反向传播中的矩阵求导</strong></p>
@@ -6352,9 +6352,9 @@
 <p>创新工场董事长兼 CEO 李开复曾经对 Google C++ 编码规范给予了极高的评价：“我认为这是地球上最好的一份 C++ 编程规范，没有之一，建议广大国内外 IT 研究使用。”</p>
 <a id="more"></a>
 <hr>
-<p>Google C++ 编码规范（英文）在线地址：<a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml" target="_blank" rel="noopener">http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml</a><br>中文版下载：<a href="../../../assets/files/Google_Cpp_Style_guide_CN.pdf">Google C++ 编码规范(PDF)</a></p>
+<p>Google C++ 编码规范（英文）在线地址：<a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml" target="_blank" rel="noopener">http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml</a><br>中文版下载：<a href="../../../../assets/files/Google_Cpp_Style_guide_CN.pdf">Google C++ 编码规范(PDF)</a></p>
 <hr>
-<p>附上腾讯的规范：<a href="../../../assets/files/腾讯C++编码规范.pdf">腾讯C++编码规范(PDF)</a></p>
+<p>附上腾讯的规范：<a href="../../../../assets/files/腾讯C++编码规范.pdf">腾讯C++编码规范(PDF)</a></p>
 ]]></content>
       
         
