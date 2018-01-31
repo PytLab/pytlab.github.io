@@ -9,6 +9,7 @@ tags:
  - NeuralNetwork
  - DeepLearning
  - Backpropagation
+ - ComputationalGraph
 categories:
  - 代码作品
 feature: /assets/images/blog_img/2018-01-24-实现属于自己的TensorFlow-一-计算图与前向传播/feature.png
