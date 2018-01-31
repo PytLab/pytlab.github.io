@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
               
               <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
-              
-              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,35 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-04 </div>
+			<div class="article-title"><a href="/2016/03/04/关于C-返回对象/" title="总结一下C++返回对象的几种方式">关于C++的返回对象</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/04/关于C-返回对象/"><img src="../../../../assets/images/features/c_cpp_logo.jpg" alt="关于C++的返回对象"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这里主要总结两种: </p>
+<ol>
+<li>返回指向<code>const</code>/非<code>const</code>对象的引用</li>
+<li>返回<code>const</code>/非<code>const</code>对象
+	
+	</div>
+  <a type="button" href="/2016/03/04/关于C-返回对象/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -339,27 +368,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-25 </div>
-			<div class="article-title"><a href="/2016/02/25/关于错误passing-as-this-argument-of-discard-qualifiers/" >关于错误passing &#39;...&#39; as &#39;this&#39; argument of &#39;...&#39; discard qualifiers</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>今天又碰到了个新问题，先上代码：<br>vect.cpp<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="comment">// private methods</span></div><div class="line">    <span class="comment">// calculates magnitude from x and y</span></div><div class="line">    <span class="keyword">double</span> Vector::get_mag(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">sqrt</span>(a * a + b * b);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">double</span> Vector::get_ang(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (a == <span class="number">0.0</span> &amp;&amp; b == <span class="number">0.0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0.0</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">return</span> <span class="built_in">atan2</span>(b, a);</div><div class="line">    &#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/02/25/关于错误passing-as-this-argument-of-discard-qualifiers/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +417,10 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(二) - 梯度计算...</a>
       </li>
     
@@ -424,10 +436,6 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
         <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
-      <li>
-        <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -438,7 +446,7 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">18</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">19</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -464,48 +472,48 @@ transition rate($v \rightarrow u$) : $ \omega_{u v} $</div></p>
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
 			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">2</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">110</span></a></li>
+		   <li><a href="/tags">...<span class="badge">112</span></a></li>
 		 
 		</ul>
 	</div>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
               
               <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
-              
-              <li><a href="/2017/10/08/遗传算法框架GAFT优化小记/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT优化小记<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,32 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-07-23 </div>
+			<div class="article-title"><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/" >GAFT-一个使用Python实现的遗传算法框架</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/07/23/gaft-一个基于Python的遗传算法框架/"><img src="/assets/images/blog_img/2017-07-23-gaft-一个基于Python的遗传算法框架/surface.png" alt="GAFT-一个使用Python实现的遗传算法框架"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近需要用到遗传算法来优化一些东西，最初是打算直接基于某些算法实现一个简单的函数来优化，但是感觉单纯写个非通用的函数运行后期改进算子或者别人使用起来都会带来困难，同时遗传算法基本概念和运行流程相对固定，改进也一般通过编码机制，选择策略，交叉变异算子以及参数设计等方面，对于算法的整体结构并没有大的影响。这样对于遗传算法来说，就非常适合写个相对固定的框架然后给算子、参数等留出空间以便对新算法进行测试和改进。于是就动手写了个遗传算法的小框架gaft，本文对此框架进行一些介绍并分别以一个一维搜索和二维搜索为例子对使用方法进行了介绍。</p>
+	
+	</div>
+  <a type="button" href="/2017/07/23/gaft-一个基于Python的遗传算法框架/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -354,33 +380,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-06-18 </div>
-			<div class="article-title"><a href="/2017/06/18/实现一个Bootstrap的JS插件/" >编写Bootstrap插件的步骤</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/06/18/实现一个Bootstrap的JS插件/"><img src="/assets/images/features/bootstrap-logo.jpeg" alt="编写Bootstrap插件的步骤"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>最近在给自己的动力学模拟程序写个web界面，目前采用了bootstrap + flask的组合, 看了下bootstrap的一些组件样式和内置的插件的使用，在实现自己的网站的时候肯定会有自己的需求，于是需要开发或者扩展Bootstrap插件，这里就总结下开发Bootstrap插件的步骤。</p>
-<p>Bootstrap插件本质上就是一个jQuery插件,除了将插件函数绑定到jQuery的原型对象上以外，Bootstrap还需要遵守一些其他的额外的步骤方便维护和学习等。</p>
-	
-	</div>
-  <a type="button" href="/2017/06/18/实现一个Bootstrap的JS插件/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -430,6 +429,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(二) - 梯度计算...</a>
       </li>
     
@@ -445,10 +448,6 @@
         <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
-      <li>
-        <a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-标准与局部加权线性回归</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -459,7 +458,7 @@
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/代码作品/">代码作品<span class="badge">18</span></a></li>
+			<li><a href="/categories/代码作品/">代码作品<span class="badge">19</span></a></li>
 		
 			<li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
 		
@@ -485,48 +484,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">2</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
 		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
-		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">110</span></a></li>
+		   <li><a href="/tags">...<span class="badge">112</span></a></li>
 		 
 		</ul>
 	</div>
