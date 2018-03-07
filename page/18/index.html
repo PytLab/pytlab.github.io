@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义个体编码方式<span></span></a></li>
+              
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
               
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
-              
-              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/MachineLearning/" style="font-size: 15px; font-family: 微软雅黑">MachineLearning<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,28 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-11 </div>
+			<div class="article-title"><a href="/2016/03/11/Cpp类模板小结/" title="在这里就只总结下关于类模板具体化">C++类模板小结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之前有总结过C++的<a href="../../../2016/02/05/Cpp函数模板小结/"><strong>函数模板具体化</strong></a>，里面按照隐式实例化、显式实例化和显式具体化来总结的。<br>类似函数模板的具体化，类模板具体化除了上面三种具体化方式还有一种叫部分具体化，下面简单总结下：</p>
+<h3 id="隐式实例化"><a href="#隐式实例化" class="headerlink" title="隐式实例化"></a>隐式实例化</h3><p>这是最常使用的类模板实例化的方式，在<code>&lt;&gt;</code>中指出对象所需的类型，编译器使用通用模板提供的方式生成具体的类定义，编译器在程序需要对象之前不会隐式实例化生成类的具体定义的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ArrayTP&lt;<span class="keyword">int</span>, <span class="number">10</span>&gt; stuff;  <span class="comment">// 编译器使用参数int和10生成类定义然后生成对象并命名为stuff</span></div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/03/11/Cpp类模板小结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -333,31 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-04 </div>
-			<div class="article-title"><a href="/2016/03/04/Cpp类构造函数的特殊初始化成员函数的语法/" title="C++为类构造函数提供了一种可以用来初始化数据成员的特殊方法">C++类构造函数的特殊初始化成员函数的语法</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>先上个例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Quene &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> items;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> qsize;  <span class="comment">// 私有数据成员是常量</span></div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 构造函数</span></div><div class="line">Quene::Quene(<span class="keyword">int</span> qs)</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    qsize = qs;  <span class="comment">// !! NOT ALLOWED !!</span></div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>为什么不允许?</strong><br>首先类声明是不分配内存的,也就是说不能在类定义中进行变量初始化（静态常量除外,当然C++11已经支持在类声明中进行变量初始化了）。<br>程序接着执行，进行对象的创建：</p>
-<ol>
-<li>先分配内存创建对象，这个时候还没有执行构造函数函数体（也就是<code>{}</code>中的代码），还未对数据进行初始化</li>
-<li>然后执行构造函数的函数体，这是执行到赋值qs的时候就会报错，因为这是个常量，创建以后是无法修改常量的值的。
-	
-	</div>
-  <a type="button" href="/2016/03/04/Cpp类构造函数的特殊初始化成员函数的语法/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -407,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义个体编码方式</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
       </li>
     
@@ -420,10 +421,6 @@
     
       <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
-      </li>
-    
-      <li>
-        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
   </ul>
@@ -462,45 +459,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/DualProblem/">DualProblem<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ComputationalGraph/">ComputationalGraph<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">112</span></a></li>

@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义个体编码方式<span></span></a></li>
+              
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
               
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
-              
-              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/MachineLearning/" style="font-size: 15px; font-family: 微软雅黑">MachineLearning<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-19 </div>
+			<div class="article-title"><a href="/2016/02/19/使用C扩展为Kynetix提速/" title="使用C语言和swig为Kynetix统计部分代码写了C扩展，提升计算效率&lt;strong&gt;20多&lt;/strong&gt;倍！">使用C语言编写extension为Kynetix大幅提速</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之前Kynetix代码几乎全部是使用Python写的，使用了KMCLib(Python + C++)之后，在进行主体KMC循环的时候效率得到了明显的提升，但是在刚刚完成on-the-fly分析部分代码以后开始跑程序，明显感觉程序异常的慢，因为kmc写到现在真心感受到kMC程序真心是个compute intense的活，其中没有用到矩阵运算，没有用到什么传统的优化算法，<br><div class="alert alert-danger"><i class="fa fa-bug"></i>  所以尝试只用一种解释性语言如matlab和python去完成整个kMC程序的最终肯定会使程序慢得一塌糊涂！跑蒙特卡洛程序慢成狗，那这程序也几乎没啥用了感觉。</div><br>于是我也想学习KMCLib那样使用静态语言为我的python程序编写扩展模块，虽然我也知道针对Fortran有<a href="https://sysbio.ioc.ee/projects/f2py2e/" target="_blank" rel="noopener"><strong>f2py</strong></a>这种工具存在，但是由于我个人的喜好，不是历史原因必须使用fortran的话，我还是选择C或者C++。<br>至于python的C扩展，我选择使用<a href="http://www.swig.org/" target="_blank" rel="noopener"><strong>SWIG</strong></a>。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/19/使用C扩展为Kynetix提速/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,32 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-17 </div>
-			<div class="article-title"><a href="/2016/02/17/关于翻译单元（编译单元）/" title="在这里简单写下我对翻译单元的认识。">关于翻译单元（编译单元）</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>我的理解，翻译单元(translation unit)就是一个源代码文件，或者说是经过预处理器宏展开后得到的源码文件。在别人的博客中看到过</p>
-<blockquote>
-<p>translation unit（翻译单元）也可称为compilation unit(编译单元），translation unit是C预处理后的输出，即一个源文件经过预处理后.<br>经过translation unit后产生一个目标文件（比如.c通过编译产生.o文件）</p>
-</blockquote>
-<p>我个人的理解，一个翻译单元，至少是能够用编译器单独编译成<code>.o</code>文件的，因此有时候把函数定义或者类成员函数的定义放在单独的代码文件中时候，时候包含头文件与否要看是否能够单独将文件编译通过。例如类成员方法的文件中就应该要包含类定义的头文件，不然单独编译这些成员函数的时候，所操作的成员变量以及类名称都没告诉编译器，怎么让编译器给你编译？<br>但是有些时候例如使用关键字<code>extern</code>声明的引用声明，是可以进行编译的，我的理解就是编译器看到类似声明的变量或者函数的时候，应该会认为这个变量虽然在本单元中没有提供，但是链接器会把这个变量从其他的地方找到，因此就不报错了。估计调用在其他地方定义的函数也是类似的原因，反正有函数原型了，能不能执行函数就看连接器的了，我编译器就不管了（纯属个人意淫。</p>
-
-	
-	</div>
-  <a type="button" href="/2016/02/17/关于翻译单元（编译单元）/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义个体编码方式</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
       </li>
     
@@ -422,10 +421,6 @@
     
       <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
-      </li>
-    
-      <li>
-        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
   </ul>
@@ -464,45 +459,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
-		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
+		
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+		
+			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">112</span></a></li>

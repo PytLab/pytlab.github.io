@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义个体编码方式<span></span></a></li>
+              
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
               
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
-              
-              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/MachineLearning/" style="font-size: 15px; font-family: 微软雅黑">MachineLearning<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-03-07 </div>
+			<div class="article-title"><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" >遗传算法框架GAFT已支持自定义个体编码方式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/"><img src="/assets/images/blog_img/2017-09-23-遗传算法中适值函数的标定与大变异算法/feature.png" alt="遗传算法框架GAFT已支持自定义个体编码方式"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>遗传算法中个体的编码方式有很多比如二进制编码，实数编码，格雷编码，符号编码等等。之前我写的遗传算法框架提供了两种固定的编码方式: 二进制编码和实数编码。但是这些编码方式都是写死在<code>GAIndividual</code>类的<code>encode</code>和<code>decode</code>方法里的。为了使得gaft能够灵活的支持更多的编码方式，我对个体的定义进行了更新，目前可以通过实现接口自定义编码方式了。目前仍然内置二进制编码和实数编码方式，不过实现的方式已经与以前不同。</p>
+<p>可以参考v0.5.0的<a href="https://github.com/PytLab/gaft/blob/master/CHANGELOG.md#version-050" target="_blank" rel="noopener">CHANGELOG</a></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>在这里我就介绍一下接口的更新和使用方法。</p>
+	
+	</div>
+  <a type="button" href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -354,33 +382,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-10-24 </div>
-			<div class="article-title"><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" >机器学习算法实践-标准与局部加权线性回归</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/"><img src="/assets/images/blog_img/2017-10-24-机器学习算法实践-标准与局部加权线性回归/feature.png" alt="机器学习算法实践-标准与局部加权线性回归"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近开始总结学习回归相关的东东了，与分类的目标变量是标称型不同，回归是对连续型数据进预测。当然还是从最简单的线性回归开始，本文主要介绍无偏差的标准线性回归和有偏局部加权线性回归的理论基础以及相应的Python实现。</p>
-<h2 id="标准线性回归"><a href="#标准线性回归" class="headerlink" title="标准线性回归"></a>标准线性回归</h2><p>标准线性回归的理论知识很简单，我们既可以写出它的标量表达式也可以写成矩阵的形式，其中矩阵的形式也可以通过投影矩阵进行推到得到。本部分就对标准线性回归的表达式进行下简单的推导。</p>
-	
-	</div>
-  <a type="button" href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -430,6 +431,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义个体编码方式</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
       </li>
     
@@ -443,10 +448,6 @@
     
       <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
-      </li>
-    
-      <li>
-        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
   </ul>
@@ -485,45 +486,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
 		
-			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">3</span></a></li>
+			<li><a href="/tags/Backpropagation/">Backpropagation<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
+			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">3</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">112</span></a></li>

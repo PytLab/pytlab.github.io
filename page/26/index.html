@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义个体编码方式<span></span></a></li>
+              
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
               
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
-              
-              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/MachineLearning/" style="font-size: 15px; font-family: 微软雅黑">MachineLearning<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,29 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-08-22 </div>
+			<div class="article-title"><a href="/2015/08/22/具有局部作用域的变量是否可以在作用域外使用/" >具有局部作用域的变量是否可以在作用域外使用?</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>昨天在操作链表的时候看到书上写了一段释放链表内存的代码，感觉奇奇怪怪的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">current = head;</div><div class="line"><span class="keyword">while</span>(current != <span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">free</span>(current);</div><div class="line">    current = current-&gt;next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码就是在释放了current指向的内存之后仍然使用了该内存的数据。感觉好奇怪，不知道是作者的原因还是什么。<br>应该这样写才对：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">current = head;</div><div class="line"><span class="keyword">while</span>(current != <span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line">    tmp = current-&gt;next;</div><div class="line">    <span class="built_in">free</span>(current);</div><div class="line">    current = tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2015/08/22/具有局部作用域的变量是否可以在作用域外使用/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -332,38 +355,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-05-17 </div>
-			<div class="article-title"><a href="/2015/05/17/c-primer-plus-5th-answers/" >C-Primer-Plus 5th Answers</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<div class="alert alert-info"><i class="fa fa-info"></i>  C Primer Plus第五版课后习题答案</div>
-<p>决定空闲的时候把第五版《C-Primer-Plus》的编程练习敲一边来复习下C，在<a href="https://github.com/PytLab/C-Primer-Plus" target="_blank" rel="noopener">GitHub</a>(<a href="https://github.com/PytLab/C-Primer-Plus" target="_blank" rel="noopener">https://github.com/PytLab/C-Primer-Plus</a>)上同步更新。</p>
-<hr>
-<div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  -----------------  更新 已完成 ------------------</div>
-<h4 id="Table-of-Content"><a href="#Table-of-Content" class="headerlink" title="Table of Content"></a>Table of Content</h4><ul>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch03" target="_blank" rel="noopener">第三章 数据和C</a></li>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch04" target="_blank" rel="noopener">第四章 字符串和格式化输入/输出</a></li>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch05" target="_blank" rel="noopener">第五章 运算符、表达式和语句</a></li>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch06" target="_blank" rel="noopener">第六章 C控制语句: 循环</a></li>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch07" target="_blank" rel="noopener">第七章 C控制语句: 分支和跳转</a></li>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch08" target="_blank" rel="noopener">第八章 字符输入/输出和输入确认</a></li>
-<li><a href="https://github.com/PytLab/C-Primer-Plus/tree/master/ch09" target="_blank" rel="noopener">第九章 函数</a>
-	
-	</div>
-  <a type="button" href="/2015/05/17/c-primer-plus-5th-answers/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -413,6 +404,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义个体编码方式</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
       </li>
     
@@ -426,10 +421,6 @@
     
       <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
-      </li>
-    
-      <li>
-        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
   </ul>
@@ -468,45 +459,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
-		
 			<li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li>
 		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Effective-Python/">Effective Python<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/ComputationalGraph/">ComputationalGraph<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">6</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">112</span></a></li>

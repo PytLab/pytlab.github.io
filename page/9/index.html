@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义个体编码方式<span></span></a></li>
+              
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
               
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
-              
-              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/MachineLearning/" style="font-size: 15px; font-family: 微软雅黑">MachineLearning<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,39 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-08-18 </div>
+			<div class="article-title"><a href="/2016/08/18/点到点通信总结/" title="MPI的点到点通信学习告一段落，这里对点到点通信进行总结。">点到点通信总结</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/08/18/点到点通信总结/"><img src="/assets/images/features/MPIlogo.gif" alt="点到点通信总结"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h3 id="通信模式总结"><a href="#通信模式总结" class="headerlink" title="通信模式总结"></a>通信模式总结</h3><p>理解各种通信过程的行为，关键是弄清楚各个模式<strong>对缓冲</strong>使用的方式。各个模式使用缓冲的特点总结：</p>
+<ol>
+<li>标准<code>MPI_Send</code>实际利用了MPI环境提供的默认缓冲区。</li>
+<li>缓冲通信<code>MPI_Bsend</code>相当于将MPI环境提供的buffer放在用户空间进行管理，相当于用户手动开辟空间作为通信的缓冲区。</li>
+<li>就绪通信<code>MPI_Rsend</code>不需要缓冲区，但是发送动作默认接受早已就绪，发送不能提前等待，否则报错。</li>
+<li>同步通信<code>MPI_Ssend</code>与就绪通信类似，同样不需要缓冲区，但是发送动作是可以等待的，接受没有就绪就继续等待，不会报错。</li>
+</ol>
+<p>异步（非阻塞）通信的工作原理类似，只不过可以将其理解为MPI又单独启动了一个线程在后台进行真正的通信操作，通过<code>MPI_Waitxxx</code>和<code>MPI_Testxxx</code>等来进行检测是否通信的线程完成通信。</p>
+	
+	</div>
+  <a type="button" href="/2016/08/18/点到点通信总结/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -361,40 +394,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-07-09 </div>
-			<div class="article-title"><a href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/" title="本文也是通过一个实例来理解总结一下非阻塞缓冲通信模式。">MPI学习--非重复的非阻塞通信之非重复的缓冲通信</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/"><img src="/assets/images/features/MPIlogo.gif" alt="MPI学习--非重复的非阻塞通信之非重复的缓冲通信"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="对比MPI-Bsend-MPI-Isend-MPI-Ibsend"><a href="#对比MPI-Bsend-MPI-Isend-MPI-Ibsend" class="headerlink" title="对比MPI_Bsend(), MPI_Isend(), MPI_Ibsend()"></a>对比<code>MPI_Bsend()</code>, <code>MPI_Isend()</code>, <code>MPI_Ibsend()</code></h3><p>三者均不发生阻塞，执行后都会立即返回，且后台有MPI环境实施消息传输。</p>
-<ul>
-<li><p><code>MPI_Bsend()</code>之所以会立即返回，是因为用户已经定义了缓冲区，调用后会将数据复制到缓冲区中，所以不用等接收端接收便可以返回，但是在执行<code>MPI_Buffer_detach()</code>时才最终确保消息清扫干净，完成传输，也就是说消息传输完毕之前，<code>MPI_Buffer_detach()</code>不会返回。</p>
-</li>
-<li><p><code>MPI_Isend()</code>本身就是非阻塞通信，所以会立即返回，交给MPI环境后台来实施消息传递。但是标准非阻塞通信需要调用<code>MPI_Wait()</code>等机制来等待传输完成。</p>
-</li>
-<li><p><code>MPI_Ibsend()</code>更像是前两者的结合体，但是要注意的是发送完成并<strong>不代表</strong>消息传递完成。</p>
-</li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2016/07/09/MPI学习-非重复的非阻塞通信之非重复的缓冲通信/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -444,6 +443,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义个体编码方式</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
       </li>
     
@@ -457,10 +460,6 @@
     
       <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
-      </li>
-    
-      <li>
-        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
   </ul>
@@ -499,45 +498,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/gaft/">gaft<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Backpropagation/">Backpropagation<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">112</span></a></li>

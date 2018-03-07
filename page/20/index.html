@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义个体编码方式<span></span></a></li>
+              
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
               
               <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
               
               <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
-              
-              <li><a href="/2017/10/15/机器学习算法实践-Platt-SMO和遗传算法优化SVM/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-Platt SMO和遗传算法优化SVM<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -168,7 +168,7 @@
               
               <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
               
-              <li><a href="/tags/MPI/" style="font-size: 15px; font-family: 微软雅黑">MPI<span></span></a></li>
+              <li><a href="/tags/MachineLearning/" style="font-size: 15px; font-family: 微软雅黑">MachineLearning<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,32 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-26 </div>
+			<div class="article-title"><a href="/2016/02/26/关于友元函数的访问权限/" >关于C++友元函数的访问权限</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>友元函数与普通的非成员函数不同，它可以访问类的私有成员。</p>
+<ul>
+<li>友元函数不是成员函数，因此不能使用成员运算符<code>.</code>来调用</li>
+<li>但它与成员函数的访问权限相同</li>
+</ul>
+<p>看到上面第二条我天真的理解成了，在友元函数定义中也可以向成员函数那样直接使用类中的变量呢，结果编译器就啪啪啪的打了我的脸。<br>我在一个<code>&lt;&lt;</code>运算符重载友元函数中这样使用的类变量：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// friend functions</span></div><div class="line"><span class="built_in">std</span>::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp; os, <span class="keyword">const</span> Stonewt &amp; st)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(st.status == STN)</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; st.stone &lt;&lt; <span class="string">" stone, "</span> &lt;&lt; st.pds_left &lt;&lt; <span class="string">"pounds"</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(st.status == PDS)</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; st.pounds &lt;&lt; <span class="string">" pounds"</span>;     </div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Incorrect status"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2016/02/26/关于友元函数的访问权限/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -323,27 +349,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-02-19 </div>
-			<div class="article-title"><a href="/2016/02/19/使用C扩展为Kynetix提速/" title="使用C语言和swig为Kynetix统计部分代码写了C扩展，提升计算效率&lt;strong&gt;20多&lt;/strong&gt;倍！">使用C语言编写extension为Kynetix大幅提速</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>之前Kynetix代码几乎全部是使用Python写的，使用了KMCLib(Python + C++)之后，在进行主体KMC循环的时候效率得到了明显的提升，但是在刚刚完成on-the-fly分析部分代码以后开始跑程序，明显感觉程序异常的慢，因为kmc写到现在真心感受到kMC程序真心是个compute intense的活，其中没有用到矩阵运算，没有用到什么传统的优化算法，<br><div class="alert alert-danger"><i class="fa fa-bug"></i>  所以尝试只用一种解释性语言如matlab和python去完成整个kMC程序的最终肯定会使程序慢得一塌糊涂！跑蒙特卡洛程序慢成狗，那这程序也几乎没啥用了感觉。</div><br>于是我也想学习KMCLib那样使用静态语言为我的python程序编写扩展模块，虽然我也知道针对Fortran有<a href="https://sysbio.ioc.ee/projects/f2py2e/" target="_blank" rel="noopener"><strong>f2py</strong></a>这种工具存在，但是由于我个人的喜好，不是历史原因必须使用fortran的话，我还是选择C或者C++。<br>至于python的C扩展，我选择使用<a href="http://www.swig.org/" target="_blank" rel="noopener"><strong>SWIG</strong></a>。<br>
-	
-	</div>
-  <a type="button" href="/2016/02/19/使用C扩展为Kynetix提速/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -393,6 +398,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义个体编码方式</a>
+      </li>
+    
+      <li>
         <a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(三) - 反向传播...</a>
       </li>
     
@@ -406,10 +415,6 @@
     
       <li>
         <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
-      </li>
-    
-      <li>
-        <a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-岭回归和LASSO</a>
       </li>
     
   </ul>
@@ -448,45 +453,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">3</span></a></li>
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
+			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/flask/">flask<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
 		
 			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+		
 			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Monte-Carlo/">Monte Carlo<span class="badge">9</span></a></li>
+			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li>
+			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
 		
-			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">16</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span class="badge">112</span></a></li>
