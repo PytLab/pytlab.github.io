@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[遗传算法框架GAFT已支持自定义个体编码方式]]></title>
+      <title><![CDATA[遗传算法框架GAFT已支持自定义编码方式]]></title>
       <url>http://pytlab.github.io/2018/03/07/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6GAFT%E6%94%AF%E6%8C%81%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%AA%E4%BD%93%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>遗传算法中个体的编码方式有很多比如二进制编码，实数编码，格雷编码，符号编码等等。之前我写的遗传算法框架提供了两种固定的编码方式: 二进制编码和实数编码。但是这些编码方式都是写死在<code>GAIndividual</code>类的<code>encode</code>和<code>decode</code>方法里的。为了使得gaft能够灵活的支持更多的编码方式，我对个体的定义进行了更新，目前可以通过实现接口自定义编码方式了。目前仍然内置二进制编码和实数编码方式，不过实现的方式已经与以前不同。</p>
 <p>可以参考v0.5.0的<a href="https://github.com/PytLab/gaft/blob/master/CHANGELOG.md#version-050" target="_blank" rel="noopener">CHANGELOG</a></p>
