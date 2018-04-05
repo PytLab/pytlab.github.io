@@ -331,6 +331,10 @@
             
             <tag> MachineLearning </tag>
             
+            <tag> ComputationGraph </tag>
+            
+            <tag> Feedfoward </tag>
+            
             <tag> TensorFlow </tag>
             
             <tag> SimpleFlow </tag>
@@ -338,10 +342,6 @@
             <tag> NeuralNetwork </tag>
             
             <tag> DeepLearning </tag>
-            
-            <tag> ComputationGraph </tag>
-            
-            <tag> Feedfoward </tag>
             
         </tags>
         
@@ -2433,6 +2433,8 @@
             
             <tag> catalyst </tag>
             
+            <tag> jQuery </tag>
+            
             <tag> webapp </tag>
             
             <tag> javascript </tag>
@@ -2444,8 +2446,6 @@
             <tag> bootstrap </tag>
             
             <tag> flask </tag>
-            
-            <tag> jQuery </tag>
             
         </tags>
         
@@ -2499,9 +2499,9 @@
             
             <tag> JavaScript </tag>
             
-            <tag> jQuery </tag>
-            
             <tag> Bootstrap </tag>
+            
+            <tag> jQuery </tag>
             
         </tags>
         
@@ -9017,9 +9017,9 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> loggers </tag>
+            
+            <tag> python </tag>
             
             <tag> emuch </tag>
             
@@ -9167,11 +9167,11 @@ Blitz++目前仍在发展中，对于常见的SVD，FFTs，QMRES等常见的线�
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> ecust </tag>
             
             <tag> loggers </tag>
+            
+            <tag> python </tag>
             
             <tag> 校园网 </tag>
             
