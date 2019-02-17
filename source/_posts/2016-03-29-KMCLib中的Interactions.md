@@ -109,7 +109,7 @@ $$
     ```
     在执行此函数之后,程序会向process的match_list中插入相应的通配符,这样能够与configuration中minimal_match_list的顺序匹配上,当然直到process或者configuration的minimal_match_list的迭代器到达超尾位置,这种插入操作就终止了,然后更新process中的move_id相关信息.
     操作之后按照下图的顺序:
-    ![](assets/images/blog_img/2016-03-29-KMCLib中的Interactions/lattice.png)
+    ![](/assets/images/blog_img/2016-03-29-KMCLib中的Interactions/lattice.png)
     则process的minimal_match_list元素顺序就更新为:
     ```
     A, V, *, *, *, B
