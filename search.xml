@@ -4,15 +4,26 @@
   
     
     <entry>
-      <title><![CDATA[A new home]]></title>
-      <url>http://pytlab.github.io/2020/03/08/A-new-home/</url>
-      <content type="html"><![CDATA[<p>毕业了，开始在NVIDIA的新的征程，这里的博客作为学生时期的记忆吧，将开启一个新的博客，host在gitlab上: <a href="http://pytlab.gitlab.io" target="_blank" rel="noopener">http://pytlab.gitlab.io</a></p>
+      <title><![CDATA[I'm back]]></title>
+      <url>http://pytlab.github.io/2020/03/08/A-new-start/</url>
+      <content type="html"><![CDATA[<p>2020年1月16日拿到了对我来说最重要的博士学位证，也终于在1月20号办理好了入职手续正式成为NVIDIA大家庭中的一员。</p>
+<p>2019年对我来说是充实且压力极大的一年，实习，修改和发表文章,写毕业大论文，毕业答辩等等，在公司和学校之间来回奔波着。在拿到学位证的一瞬间，心里终于踏实了。感谢一路走来陪伴在我身边帮助我的可爱的人们。</p>
+<p>看看自己已经将近两年没有更新博客了。虽然没有更新，但是这两年收获的很多。新的征程开始了，我的博客也将恢复更新了.</p>
+<p>I’m back</p>
 ]]></content>
       
+        <categories>
+            
+            <category> 我的日常 </category>
+            
+        </categories>
+        
         
         <tags>
             
-            <tag> common </tag>
+            <tag> 随记 </tag>
+            
+            <tag> NVIDIA </tag>
             
         </tags>
         
@@ -2988,9 +2999,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
         </tags>
         
@@ -3064,9 +3075,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -3153,9 +3164,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
@@ -3213,9 +3224,9 @@
         
         <tags>
             
-            <tag> ECMAScript </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> ECMAScript </tag>
             
             <tag> OOP </tag>
             
