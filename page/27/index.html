@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,27 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-06-14 </div>
+			<div class="article-title"><a href="/2015/06/14/动力学模型已兼容相对能量的输入文件/" >动力学模型已兼容相对能量的输入文件</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之前的动力学代码的数据文件我是在catmap的基础上进行改进，写了个tablemaker来生成一个csv文件，然后让要计算动力学的人把每个需要的物种的绝对能量输入到表格中，模型会在处理数据的时候自动计算其所有基元反应的能垒以及反应能量变化。之所有这样进行能量输入，是方便在后面能够基于每个物种的能量进行计算，比如在做出是猜测的时候进行Boltzmann分布，在进行敏感度分析时候能够针对每个中间态和过渡态进行分析。<br>但是之前有一次帮师姐计算它的反应，他只有相对能量。如下，</p>
+	
+	</div>
+  <a type="button" href="/2015/06/14/动力学模型已兼容相对能量的输入文件/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -335,36 +356,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2015-04-09 </div>
-			<div class="article-title"><a href="/2015/04/09/C-Notes--保护数组内容/" >C Notes -- 保护数组内容</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>在C语言中，函数处理数组的时候，传递的是指向数组的指针。被调用函数接受数组指针后通过指针对数组进行操作，但是这样很容易不小心修改了数组本身的数值。这时候，利用const修饰符可以做到保护数组内容的效果。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ar[], <span class="keyword">int</span> n)</span> <span class="comment">/*函数原型*/</span></span></div></pre></td></tr></table></figure></p>
-<p>这个原型声明是告诉编译器，函数应当吧ar所指向的数组作为一个包含常量数据的数组对待，也就是指针ar是一个常量指针(指向常量的指针)。</p>
-<p>之所以在这里记录下这个是用来区分下普通指针和常量指针。<br><code>const</code>关键字可以创建数组常量，指针常量，指向常量的指针。<br>指针：</p>
-<ul>
-<li><p>普通指针，指向变量的指针</p>
-</li>
-<li><p>常量指针，指向常量的指针</p>
-</li>
-</ul>
-<p><strong>常量指针可以指向常量和变量，而且被指向的变量的值不能修改；<br>变量指针只能指向变量。</strong></p>
-	
-	</div>
-  <a type="button" href="/2015/04/09/C-Notes--保护数组内容/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -414,6 +405,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -427,10 +422,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -469,48 +460,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">7</span></a></li>
+			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Google/">Google<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/LASSORegression/">LASSORegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
+			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
+			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/gaft/">gaft<span class="badge">6</span></a></li>
+			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
 		
 			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
-		
-		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>

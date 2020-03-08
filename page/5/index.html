@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-07-09 </div>
+			<div class="article-title"><a href="/2017/07/09/机器学习算法实践-决策树/" >机器学习算法实践-决策树(Decision Tree)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/07/09/机器学习算法实践-决策树/"><img src="/assets/images/blog_img/2017-07-09-机器学习算法实践-决策树/lenses.gif" alt="机器学习算法实践-决策树(Decision Tree)"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近打算系统学习下机器学习的基础算法，避免眼高手低，决定把常用的机器学习基础算法都实现一遍以便加深印象。本文为这系列博客的第一篇，关于决策树(Decision Tree)的算法实现，文中我将对决策树种涉及到的算法进行总结并附上自己相关的实现代码。所有算法代码以及用于相应模型的训练的数据都会放到GitHub上(<a href="https://github.com/PytLab/MLBox" target="_blank" rel="noopener">https://github.com/PytLab/MLBox</a>).</p>
+<p>本文中我将一步步通过MLiA的隐形眼镜处方数集构建决策树并使用Graphviz将决策树可视化。</p>
+	
+	</div>
+  <a type="button" href="/2017/07/09/机器学习算法实践-决策树/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -360,41 +387,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-02-19 </div>
-			<div class="article-title"><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/" >Python多进程并行编程实践-mpi4py的使用</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/"><img src="/assets/images/features/python_logo.jpg" alt="Python多进程并行编程实践-mpi4py的使用"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在高性能计算的项目中我们通常都会使用效率更高的编译型的语言例如C、C++、Fortran等，但是由于Python的灵活性和易用性使得它在发展和验证算法方面备受人们的青睐于是在高性能计算领域也经常能看到Python的身影了。本文简单介绍在Python环境下使用MPI接口在集群上进行多进程并行计算的方法。</p>
-<h2 id="MPI-Message-Passing-Interface"><a href="#MPI-Message-Passing-Interface" class="headerlink" title="MPI(Message Passing Interface)"></a>MPI(Message Passing Interface)</h2><p>这里我先对MPI进行一下简单的介绍，MPI的全称是Message Passing Interface，即消息传递接口。</p>
-<ul>
-<li><p>它并不是一门语言，而是一个库，我们可以用Fortran、C、C++结合MPI提供的接口来将串行的程序进行并行化处理，也可以认为Fortran+MPI或者C+MPI是一种再原来串行语言的基础上扩展出来的并行语言。</p>
-</li>
-<li><p>它是一种标准而不是特定的实现，具体的可以有很多不同的实现，例如MPICH、OpenMPI等。</p>
-</li>
-<li><p>它是一种消息传递编程模型，顾名思义，它就是专门服务于进程间通信的。</p>
-</li>
-</ul>
-	
-	</div>
-  <a type="button" href="/2017/02/19/Python多进程并行编程实践-mpi4py的使用/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -444,6 +436,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -457,10 +453,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -499,48 +491,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/Hexo/">Hexo<span class="badge">5</span></a></li>
+			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/实习/">实习<span class="badge">0</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
+			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
+			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
+			<li><a href="/tags/NaiveBayes/">NaiveBayes<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DeepLearning/">DeepLearning<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Algorithms/">Algorithms<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/非阻塞通信/">非阻塞通信<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/英伟达/">英伟达<span class="badge">0</span></a></li>
-		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ComputationalGraph/">ComputationalGraph<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/python/">python<span class="badge">57</span></a></li>
-		
-		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>

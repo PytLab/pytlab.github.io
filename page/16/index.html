@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,33 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-03-21 </div>
+			<div class="article-title"><a href="/2016/03/21/KMCLib中的CustomRateProcess/" title="CustomRateProcess是Process的派生类，&lt;br&gt;主要表示不同位置上速率不同的反应">KMCLib中的CustomRateProcess</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/21/KMCLib中的CustomRateProcess/"><img src="/assets/images/features/rate_table.png" alt="KMCLib中的CustomRateProcess"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>此类是<code>Process</code>的派生类，所以在<code>Process</code>类中的成员变量为<code>protected</code>，而且很多成员函数都为虚函数。</p>
+<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 由于不同site上面的速率不同，因此此vector存放对应sites_的速率</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; site_rates_;</div><div class="line"></div><div class="line"><span class="comment">// 递增的速率列表</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; incremental_rate_table_;</div></pre></td></tr></table></figure>
+	
+	</div>
+  <a type="button" href="/2016/03/21/KMCLib中的CustomRateProcess/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -362,35 +389,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-16 </div>
-			<div class="article-title"><a href="/2016/03/16/C-Cpp中的IO/" title="我发现我非常容易忘记C和C++中有关IO的东西诶，估计是被python惯坏了，决定趁热把C和C++中IO相关的东西总结下，如果以后忘了还可以回来看看。">C和C++中的I/O</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/03/16/C-Cpp中的IO/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="C和C++中的I/O"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h3 id="流"><a href="#流" class="headerlink" title="流"></a>流</h3><p>C和C++程序都把输入和输出看作是字节流。即输入的时候从输入流中抽取字节；输出的时候将字节放入到流中。输入流中的字节可能来自键盘，也可能来自存储设备（如硬盘）或其他程序。同样，输出流中的字节可以流向屏幕、打印机、存储设备或者其他程序。<br>这里<strong>流充当了程序和流源或者流目标之间的桥梁</strong>。<br>C/C++程序只是检查字节流就好了，这使得程序可以以相同方式处理来自不同的输入源，程序不需要知道这字节流是最初是来自哪里的，输出流也是如此。<br>因此要管理输入和输出需要两步：</p>
-<ol>
-<li>将流域输入和输出去向的程序关联起来</li>
-<li>将流与文件关联起来
-	
-	</div>
-  <a type="button" href="/2016/03/16/C-Cpp中的IO/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -440,6 +438,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -453,10 +455,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -495,48 +493,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
+			<li><a href="/tags/emuch/">emuch<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/SimpleFlow/">SimpleFlow<span class="badge">3</span></a></li>
+			<li><a href="/tags/gaft/">gaft<span class="badge">6</span></a></li>
 		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/CoordianteAscent/">CoordianteAscent<span class="badge">1</span></a></li>
+			<li><a href="/tags/ecust/">ecust<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
+			<li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li>
+		
+			<li><a href="/tags/CART/">CART<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
 			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/ComputationalGraph/">ComputationalGraph<span class="badge">2</span></a></li>
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Bootstrap/">Bootstrap<span class="badge">1</span></a></li>
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
 		
 			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
-		
-			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/windows/">windows<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Freemind/">Freemind<span class="badge">3</span></a></li>
+			<li><a href="/tags/RidgeRegression/">RidgeRegression<span class="badge">1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>

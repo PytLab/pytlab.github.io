@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -218,6 +218,34 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2016-03-12 </div>
+			<div class="article-title"><a href="/2016/03/12/Cpp编码规范/" >Google的C++编码规范</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/03/12/Cpp编码规范/"><img src="/assets/images/features/c_cpp_logo.jpg" alt="Google的C++编码规范"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>C++ 是 Google 大部分开源项目的主要编程语言。正如每个 C++ 程序员都知道的，C++ 有很多强大的特性，但这种强大不可避免的导致它走向复杂，使代码更容易产生 bug，难以阅读和维护。</p>
+<p>Google 经常会发布一些开源项目，意味着会接受来自其他代码贡献者的代码。但是如果代码贡献者的编程风格与 Google 的不一致，会给代码阅读者和其他代码提交这造成不小的困扰。Google 因此发布了这份自己的编程风格，使所有提交代码的人都能获知 Google 的编程风格。</p>
+<p>创新工场董事长兼 CEO 李开复曾经对 Google C++ 编码规范给予了极高的评价：“我认为这是地球上最好的一份 C++ 编程规范，没有之一，建议广大国内外 IT 研究使用。”</p>
+	
+	</div>
+  <a type="button" href="/2016/03/12/Cpp编码规范/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-03-11 </div>
 			<div class="article-title"><a href="/2016/03/11/Cpp类模板小结/" title="在这里就只总结下关于类模板具体化">C++类模板小结</a></div>						
 		</h3>
@@ -326,35 +354,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-03-07 </div>
-			<div class="article-title"><a href="/2016/03/07/Cpp类继承中需要注意的那点东西-一/" title="在这里总结下C++类继承的一些东西（针对于我自己，也是我自己的理解）">C++类继承中需要注意的那点东西(一)</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>关于C++中的派生类和基类的关系就总结下来就是：</p>
-<ol>
-<li>派生类继承了基类的部分方法</li>
-<li>有些方法是不能被继承的，例如构造函数、析构函数、赋值运算符</li>
-<li>基类的数据成员也会继承下来，但是<code>private</code>成员是不能够被派生类直接访问的，需要通过基类的共有方法来访问，<code>protected</code>数据是可以向public数据一样被派生类通过名称空间解析运算符<code>::</code>来访问。</li>
-</ol>
-<div class="alert alert-info"><i class="fa fa-info"></i>  我就把派生类想象成了一个包含基类的类，基类的小秘密不对外公开，想要改变小秘密的内容要使用基类自己的方法（比如基类的构造函数，基类的赋值运算符函数等），总之代码写下来感觉，其实基类在派生类中还是很<strong>独立的</strong>。
-<br>
-在派生类构造派生类之前先调用基类的构造函数初始化基类组件，在调用派生类析构函数时会在析构派生类对象之后调用基类的析构函数释放基类组件。顺序保持一致。</div>
-	
-	</div>
-  <a type="button" href="/2016/03/07/Cpp类继承中需要注意的那点东西-一/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -404,6 +403,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -417,10 +420,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -459,48 +458,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/javascript/">javascript<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
+			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/LagrangeMultiplier/">LagrangeMultiplier<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/GitHub/">GitHub<span class="badge">8</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
+			<li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+			<li><a href="/tags/CMake/">CMake<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/ConvexOptimization/">ConvexOptimization<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/setuptools/">setuptools<span class="badge">1</span></a></li>
+			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
 		
-			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+			<li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>

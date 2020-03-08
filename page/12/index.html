@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-26 </div>
+			<div class="article-title"><a href="/2016/05/26/Cluster-Expansion中Projection-Matrix的应用/" title="以前一直知道投影矩阵可以用来进行最小二乘拟合，但是始终没有在真实情况中遇到，这次看到了进行表面相互作用矫正的Cluster Expansion，其中要用到最小二乘算法对要求解的系数进行拟合，正好这都是些线性方程，投影矩阵终于可以派上用场了！">Cluster Expansion中Projection Matrix的应用</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2016/05/26/Cluster-Expansion中Projection-Matrix的应用/"><img src="/assets/images/features/linear_transformation.png" alt="Cluster Expansion中Projection Matrix的应用"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>这里只是记录下我对Cluster Expansion的理解，不一定正确。</p>
+<p>首先对于直接使用DFT计算所有configuration表面上发生反应（如吸附，基元反应等）的能量是不现实的，耗资源耗时间。那么通过统一的公式对能量进行矫正可以将DFT算得能量进行延伸，得到不同configuration表面的相关能量的近似值，便是一种很方便的方法。</p>
+<p><strong>Cluster Expansion</strong>便是一种通过展开的方式将相互作用矫正项表达出来的一种方法。这种方法有点类似线性代数中的使用一组基向量展开，也就类似泰勒展开和傅立叶展开。</p>
+	
+	</div>
+  <a type="button" href="/2016/05/26/Cluster-Expansion中Projection-Matrix的应用/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -363,39 +391,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-04-22 </div>
-			<div class="article-title"><a href="/2016/04/22/python中的私有变量和私有成员函数/" title="前段时间写了很久C++，回来再重新审视下python中的面向对象，又有了新的理解。">python中的私有变量和私有成员函数</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2016/04/22/python中的私有变量和私有成员函数/"><img src="/assets/images/features/python_logo.png" alt="python中的私有变量和私有成员函数"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<p>python中类中并没有像C++中的public、private等关键字来定义类成员的访问权限（也就是所谓的访问控制符），但是python中也是有私有和公有变量的，他们使用特殊的变量名称来实现隐藏效果的。</p>
-<p>python通过下划线作为变量的前缀来指定特殊变量：</p>
-<ul>
-<li><code>_xxx</code>：不能通过<code>from import *</code>导入到当前空间中</li>
-<li><code>__xxx__</code>：python 内定的名称</li>
-<li><code>__xxx</code>：私有变量名 相当于C++中的<code>private</code>关键字的作用。</li>
-</ul>
-<p>于是我自己写了个小例子理解了一下python的私有变量的大概机制，先上例子：</p>
-	
-	</div>
-  <a type="button" href="/2016/04/22/python中的私有变量和私有成员函数/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -445,6 +440,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -458,10 +457,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -500,48 +495,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+			<li><a href="/tags/macOS/">macOS<span class="badge">1</span></a></li>
 		
 			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
 		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
-		
-			<li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">7</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">3</span></a></li>
-		
-			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
+			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/C/">C++<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Typing-Master/">Typing Master<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/unittest/">unittest<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/TensorFlow/">TensorFlow<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
+		
+			<li><a href="/tags/StochasticGradientAscent/">StochasticGradientAscent<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
 			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
+			<li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>

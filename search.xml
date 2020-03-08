@@ -4,6 +4,21 @@
   
     
     <entry>
+      <title><![CDATA[A new home]]></title>
+      <url>http://pytlab.github.io/2020/03/08/A-new-home/</url>
+      <content type="html"><![CDATA[<p>毕业了，开始在NVIDIA的新的征程，这里的博客作为学生时期的记忆吧，将开启一个新的博客，host在gitlab上: <a href="http://pytlab.gitlab.io" target="_blank" rel="noopener">http://pytlab.gitlab.io</a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> common </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[遗传算法框架GAFT已支持自定义编码方式]]></title>
       <url>http://pytlab.github.io/2018/03/07/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6GAFT%E6%94%AF%E6%8C%81%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%AA%E4%BD%93%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>遗传算法中个体的编码方式有很多比如二进制编码，实数编码，格雷编码，符号编码等等。之前我写的遗传算法框架提供了两种固定的编码方式: 二进制编码和实数编码。但是这些编码方式都是写死在<code>GAIndividual</code>类的<code>encode</code>和<code>decode</code>方法里的。为了使得gaft能够灵活的支持更多的编码方式，我对个体的定义进行了更新，目前可以通过实现接口自定义编码方式了。目前仍然内置二进制编码和实数编码方式，不过实现的方式已经与以前不同。</p>
@@ -331,10 +346,6 @@
             
             <tag> MachineLearning </tag>
             
-            <tag> ComputationGraph </tag>
-            
-            <tag> Feedfoward </tag>
-            
             <tag> TensorFlow </tag>
             
             <tag> SimpleFlow </tag>
@@ -342,6 +353,10 @@
             <tag> NeuralNetwork </tag>
             
             <tag> DeepLearning </tag>
+            
+            <tag> ComputationGraph </tag>
+            
+            <tag> Feedfoward </tag>
             
         </tags>
         
@@ -5616,7 +5631,7 @@
 <p>  其中的坐标分别为:</p>
   <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">( (0<span class="selector-class">.0</span>, 0<span class="selector-class">.0</span>, 0<span class="selector-class">.0</span>), (0<span class="selector-class">.3</span>, 0<span class="selector-class">.3</span>, 0<span class="selector-class">.3</span>) ), (1<span class="selector-class">.0</span>, 1<span class="selector-class">.0</span>, 1<span class="selector-class">.0</span>), (1<span class="selector-class">.3</span>, 1<span class="selector-class">.3</span>, 1<span class="selector-class">.3</span>) ), ( (...), (...) ), ...</div></pre></td></tr></table></figure>
 <p>  可能的所有元素类型映射:</p>
-  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"*"</span>: <span class="number">0</span>, <span class="string">"A"</span>: <span class="number">1</span>, <span class="string">"B"</span>:<span class="number">2</span>, <span class="string">"C"</span>: <span class="number">3</span></div></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"*"</span>: <span class="number">0</span>, <span class="string">"A"</span>: <span class="number">1</span>, <span class="string">"B"</span>:<span class="number">2</span>, <span class="string">"C"</span>: <span class="number">3</span></div></pre></td></tr></table></figure>
 <p>  在创建一个process,其中包含三个元素,<br>  元素类型为：</p>
   <figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">A</span>, B, V --&gt; B, <span class="keyword">A</span>, <span class="keyword">A</span></div></pre></td></tr></table></figure>
 <p>  在执行此函数之后,程序会向process的match_list中插入相应的通配符,这样能够与configuration中minimal_match_list的顺序匹配上,当然直到process或者configuration的minimal_match_list的迭代器到达超尾位置,这种插入操作就终止了,然后更新process中的move_id相关信息.<br>  操作之后按照下图的顺序:<br>  <img src="/assets/images/blog_img/2016-03-29-KMCLib中的Interactions/lattice.png" alt=""><br>  则process的minimal_match_list元素顺序就更新为:</p>

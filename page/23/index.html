@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,30 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-02-07 </div>
+			<div class="article-title"><a href="/2016/02/07/Vim-范式/" >Vim的&#39;.&#39;范式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>虽然平时在服务器上使用的就是Vim，但是真的只是Vim的皮毛中的皮毛，决定好好学学Vim争取早日成为一个Vimer，哈哈。 上个学期就买了《Practical Vim–Edit Text at the Speed of Thought》,一直没集中时间看，趁着寒假集中看看吧。</p>
+<hr>
+<p>‘<code>.</code>范式’是我最开始接触Vim印象最深的了。</p>
+<p><code>.</code>命令是重复命令，配合上一个操作以及光标移动快捷键就可以迅速完成重复的工作<br>例如在每行行尾添加<code>;</code>就可以通过<br><code>A</code> + <code>;</code> + <code>&lt;Esc&gt;</code>命令在第一行尾添加一个<code>;</code>，如果可以重复添加的话就可以使用<code>j</code> + <code>.</code>以上一个操作为单位进行重复操作。<br>
+	
+	</div>
+  <a type="button" href="/2016/02/07/Vim-范式/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -334,32 +358,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-01-26 </div>
-			<div class="article-title"><a href="/2016/01/26/指针的两级间接关系与const-非const混合赋值的理解/" title=" 对于指针的两级间接关系同`const`关键字赋值这部分，无论在看《C Primer Plus》还是《C++ Primer Plus》都是比较绕的地方，在这里我尝试简单梳理下关系。">指针的两级间接关系与`const`/非`const`混合赋值的理解</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p class="text-danger">为什么进入两级间接关系与一级间接关系不同, `const`与非`const`混合指针赋值方式将不再安全?</p>
-<p><br></p>
-<h4 id="首先要明确一件事"><a href="#首先要明确一件事" class="headerlink" title="首先要明确一件事:"></a>首先要明确一件事:</h4><div class="alert alert-warning"><i class="fa fa-bell"></i>  非`const`指针是不能指向`const`值的。</div>
-<p>原因很简单,非<code>const</code>指针可以改变指向的值,所以非<code>const</code>指针若指向<code>const</code>值,故可以改变<code>const</code>值,前后就矛盾了,因此这种赋值时禁止的。</p>
-<p><br></p>
-<h4 id="那再来看两级关系，"><a href="#那再来看两级关系，" class="headerlink" title="那再来看两级关系，"></a>那再来看两级关系，</h4><p>先声明两级关系的变量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> ** pp;</div><div class="line"><span class="keyword">int</span> * p;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">13</span>;</div></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2016/01/26/指针的两级间接关系与const-非const混合赋值的理解/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -409,6 +407,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -422,10 +424,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -464,48 +462,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/linux/">linux<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
-		
-			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
 			<li><a href="/tags/GitHub-Pages/">GitHub Pages<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
+			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+		
+			<li><a href="/tags/学术/">学术<span class="badge">16</span></a></li>
+		
+			<li><a href="/tags/GilbertStrang/">GilbertStrang<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
 		
 			<li><a href="/tags/kMC/">kMC<span class="badge">7</span></a></li>
 		
-			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
+			<li><a href="/tags/EJS/">EJS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VASP/">VASP<span class="badge">3</span></a></li>
+			<li><a href="/tags/随笔/">随笔<span class="badge">13</span></a></li>
 		
 			<li><a href="/tags/HTML/">HTML<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/VMWare/">VMWare<span class="badge">1</span></a></li>
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+			<li><a href="/tags/VASPy/">VASPy<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/LinearAlgebra/">LinearAlgebra<span class="badge">3</span></a></li>
+			<li><a href="/tags/bootstrap/">bootstrap<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/loggers/">loggers<span class="badge">2</span></a></li>
+			<li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
 		
-			<li><a href="/tags/KKT/">KKT<span class="badge">1</span></a></li>
+			<li><a href="/tags/PyCon-China/">PyCon China<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/catalyst/">catalyst<span class="badge">2</span></a></li>
+			<li><a href="/tags/Feedfoward/">Feedfoward<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/tmux/">tmux<span class="badge">1</span></a></li>
+			<li><a href="/tags/LinearRegression/">LinearRegression<span class="badge">3</span></a></li>
 		
-			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
-		
-			<li><a href="/tags/随记/">随记<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+			<li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>

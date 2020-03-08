@@ -89,6 +89,8 @@
               <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
               <li class="divider"></li>
               
+              <li><a href="/2020/03/08/A-new-home/" style="font-size: 15px; font-family: 微软雅黑">A new home<span></span></a></li>
+              
               <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
               
               <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
@@ -100,8 +102,6 @@
               <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
               
               <li><a href="/2017/10/27/机器学习实践-岭回归和LASSO回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-岭回归和LASSO<span></span></a></li>
-              
-              <li><a href="/2017/10/24/机器学习算法实践-标准与局部加权线性回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-标准与局部加权线性回归<span></span></a></li>
               
               <li class="divider"></li>
             </ul>
@@ -213,6 +213,34 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017-09-10 </div>
+			<div class="article-title"><a href="/2017/09/10/递归式求解-主方法/" >递归式求解-主方法</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+           
+              <div class="thumbnail"><a href="/2017/09/10/递归式求解-主方法/"><img src="/assets/images/features/algo.jpg" alt="递归式求解-主方法"  class="nofancybox"></a>
+           
+		</div>
+	
+	
+		<p>本文对递归式求解中很重要的主方法进行介绍总结。</p>
+<h3 id="主方法"><a href="#主方法" class="headerlink" title="主方法"></a>主方法</h3><p>主方法为如下形式的递归式提供了一种”菜谱式”的求解方法:<br>$$T(n) = aT(n/b) + f(n)$$<br>其中$a \ge 1, b \gt 1$是常数，$f(n)$是渐进正数。</p>
+<p>上式描述了这样的一个算法运行时间: 他将原问题的规模为$n$的问题划分为$a$个小的子问题，每个子问题的规模为原来的$\frac{1}{b}$. $a$个子问题递归的进行求解，每个花费时间为$T(n/b)$。子问题合并的代价为$f(n)$</p>
+	
+	</div>
+  <a type="button" href="/2017/09/10/递归式求解-主方法/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -365,39 +393,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-08-02 </div>
-			<div class="article-title"><a href="/2017/08/02/使用MPI并行化遗传算法/" >使用MPI并行化遗传算法框架GAFT</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-           
-              <div class="thumbnail"><a href="/2017/08/02/使用MPI并行化遗传算法/"><img src="/assets/images/blog_img/2017-08-02-使用MPI并行化遗传算法/feature.png" alt="使用MPI并行化遗传算法框架GAFT"  class="nofancybox"></a>
-           
-		</div>
-	
-	
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文中作者使用MPI的Python接口mpi4py来将自己的遗传算法框架GAFT进行多进程并行加速。并对加速效果进行了简单测试。</p>
-<p>项目链接:</p>
-<ul>
-<li>GitHub: <a href="https://github.com/PytLab/gaft" target="_blank" rel="noopener">https://github.com/PytLab/gaft</a></li>
-<li>PyPI: <a href="https://pypi.python.org/pypi/gaft" target="_blank" rel="noopener">https://pypi.python.org/pypi/gaft</a></li>
-</ul>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>我们在用遗传算法优化目标函数的时候，函数通常都是高维函数，其导数一般比较难求取。这样我们的适应度函数计算通常都是比较费时的计算。</p>
-<p>例如在使用遗传算法寻找最优结构时候通常需要调用量化软件进行第一性原理计算结构的total energy，这是非常费时的过程; 例如我们优化力场参数的时候，以力场计算出的能量同基准能量之前的误差作为适应度，也需要调用相应的力场程序获取总能量来求取，同样这个过程也是相对耗时的。</p>
-	
-	</div>
-  <a type="button" href="/2017/08/02/使用MPI并行化遗传算法/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -447,6 +442,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2020/03/08/A-new-home/" ><i class="fa fa-file-o"></i>A new home</a>
+      </li>
+    
+      <li>
         <a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" ><i class="fa fa-file-o"></i>遗传算法框架GAFT已支持自定义编码方式</a>
       </li>
     
@@ -460,10 +459,6 @@
     
       <li>
         <a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" ><i class="fa fa-file-o"></i>实现属于自己的TensorFlow(一) - 计算图与...</a>
-      </li>
-    
-      <li>
-        <a href="/2017/11/03/机器学习算法实践-树回归/" ><i class="fa fa-file-o"></i>机器学习算法实践-树回归</a>
       </li>
     
   </ul>
@@ -502,48 +497,48 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/NeuralNetwork/">NeuralNetwork<span class="badge">3</span></a></li>
+			<li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li>
 		
-			<li><a href="/tags/指针/">指针<span class="badge">3</span></a></li>
+			<li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li>
 		
-			<li><a href="/tags/渐近记号/">渐近记号<span class="badge">1</span></a></li>
+			<li><a href="/tags/域名/">域名<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/Fortran/">Fortran<span class="badge">4</span></a></li>
+			<li><a href="/tags/CentOS/">CentOS<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li>
+			<li><a href="/tags/kynetix/">kynetix<span class="badge">1</span></a></li>
 		
-			<li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li>
-		
-			<li><a href="/tags/jQuery/">jQuery<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/profiling/">profiling<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/Algorithm/">Algorithm<span class="badge">2</span></a></li>
-		
-			<li><a href="/tags/delegation-constructor/">delegation constructor<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/C/">C<span class="badge">26</span></a></li>
-		
-			<li><a href="/tags/GradientDescent/">GradientDescent<span class="badge">1</span></a></li>
-		
-			<li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li>
-		
-			<li><a href="/tags/Vim/">Vim<span class="badge">4</span></a></li>
+			<li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">16</span></a></li>
 		
 			<li><a href="/tags/StageWiseRegression/">StageWiseRegression<span class="badge">1</span></a></li>
 		
+			<li><a href="/tags/webapp/">webapp<span class="badge">1</span></a></li>
 		
-		   <li><a href="/tags">...<span class="badge">116</span></a></li>
+			<li><a href="/tags/lazy-property/">lazy property<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/graph/">graph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/DecisionTree/">DecisionTree<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/STL/">STL<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/校园网/">校园网<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/Notes/">Notes<span class="badge">4</span></a></li>
+		
+			<li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li>
+		
+			<li><a href="/tags/SMO/">SMO<span class="badge">2</span></a></li>
+		
+			<li><a href="/tags/ComputationGraph/">ComputationGraph<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/KinLab/">KinLab<span class="badge">1</span></a></li>
+		
+			<li><a href="/tags/gaft/">gaft<span class="badge">6</span></a></li>
+		
+			<li><a href="/tags/energy-profile/">energy profile<span class="badge">1</span></a></li>
+		
+		
+		   <li><a href="/tags">...<span class="badge">113</span></a></li>
 		 
 		</ul>
 	</div>
