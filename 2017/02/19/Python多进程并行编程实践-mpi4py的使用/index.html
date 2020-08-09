@@ -1,0 +1,500 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python多进程并行编程实践-mpi4py的使用 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python多进程并行编程实践-mpi4py的使用"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Python多进程并行编程实践-mpi4py的使用</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在高性能计算的项目中我们通常都会使用效率更高的编译型的语言例如C、C++、Fortran等，但是由于Python的灵活性和易用性使得它在发展和验证算法方面备受人们的青睐于是在高性能计算领域也经常能看到Python的身影了。本文简单介绍在Python环境下使用MPI接口在集群上进行多进程并行计算的方法。</p>
+<h2 id="MPI-Message-Passing-Interface"><a href="#MPI-Message-Passing-Interface" class="headerlink" title="MPI(Message Passing Interface)"></a>MPI(Message Passing Interface)</h2><p>这里我先对MPI进行一下简单的介绍，MPI的全称是Message Passing Interface，即消息传递接口。</p>
+<ul>
+<li><p>它并不是一门语言，而是一个库，我们可以用Fortran、C、C++结合MPI提供的接口来将串行的程序进行并行化处理，也可以认为Fortran+MPI或者C+MPI是一种再原来串行语言的基础上扩展出来的并行语言。</p>
+</li>
+<li><p>它是一种标准而不是特定的实现，具体的可以有很多不同的实现，例如MPICH、OpenMPI等。</p>
+</li>
+<li><p>它是一种消息传递编程模型，顾名思义，它就是专门服务于进程间通信的。</p>
+</li>
+</ul>
+<a id="more"></a>
+<p>MPI的工作方式很好理解，我们可以同时启动一组进程，在同一个通信域中不同的进程都有不同的编号，程序员可以利用MPI提供的接口来给不同编号的进程分配不同的任务和帮助进程相互交流最终完成同一个任务。就好比包工头给工人们编上了工号然后指定一个方案来给不同编号的工人分配任务并让工人相互沟通完成任务。</p>
+<h2 id="Python中的并行"><a href="#Python中的并行" class="headerlink" title="Python中的并行"></a>Python中的并行</h2><p>由于CPython中的GIL的存在我们可以暂时不奢望能在CPython中使用多线程利用多核资源进行并行计算了，因此我们在Python中可以利用多进程的方式充分利用多核资源。</p>
+<p>Python中我们可以使用很多方式进行多进程编程，例如<code>os.fork()</code>来创建进程或者通过<code>multiprocessing</code>模块来更方便的创建进程和进程池等。在上一篇<a target="_blank" rel="noopener" href="http://pytlab.org/2017/01/19/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-multiprocessing%E6%A8%A1%E5%9D%97/">《Python多进程并行编程实践-multiprocessing模块》</a>中我们使用进程池来方便的管理Python进程并且通过multiprocessing模块中的<code>Manager</code>管理分布式进程实现了计算的多机分布式计算。</p>
+<p>与多线程的共享式内存不同，由于各个进程都是相互独立的，因此进程间通信再多进程中扮演这非常重要的角色，Python中我们可以使用multiprocessing模块中的<code>pipe</code>、<code>queue</code>、<code>Array</code>、<code>Value</code>等等工具来实现进程间通讯和数据共享，但是在编写起来仍然具有很大的不灵活性。而这一方面正是MPI所擅长的领域，因此如果能够在Python中调用MPI的接口那真是太完美了不是么。</p>
+<h2 id="MPI与mpi4py"><a href="#MPI与mpi4py" class="headerlink" title="MPI与mpi4py"></a>MPI与mpi4py</h2><p>mpi4py是一个构建在MPI之上的Python库，主要使用Cython编写。mpi4py使得Python的数据结构可以方便的在多进程中传递。</p>
+<p>mpi4py是一个很强大的库，它实现了很多MPI标准中的接口，包括点对点通信，组内集合通信、非阻塞通信、重复非阻塞通信、组间通信等，基本上我能想到用到的MPI接口mpi4py中都有相应的实现。不仅是Python对象，mpi4py对numpy也有很好的支持并且传递效率很高。同时它还提供了SWIG和F2PY的接口能够让我们将自己的Fortran或者C/C++程序在封装成Python后仍然能够使用mpi4py的对象和接口来进行并行处理。可见mpi4py的作者的功力的确是非常了得。</p>
+<h2 id="mpi4py"><a href="#mpi4py" class="headerlink" title="mpi4py"></a>mpi4py</h2><p>这里我开始对在Python环境中使用mpi4py的接口进行并行编程进行介绍。</p>
+<h3 id="MPI环境管理"><a href="#MPI环境管理" class="headerlink" title="MPI环境管理"></a>MPI环境管理</h3><p>mpi4py提供了相应的接口<code>Init()</code>和<code>Finalize()</code>来初始化和结束mpi环境。但是mpi4py通过在<code>__init__.py</code>中写入了初始化的操作，因此在我们<code>from mpi4py import MPI</code>的时候就已经自动初始化mpi环境。</p>
+<p><code>MPI_Finalize()</code>被注册到了Python的C接口<code>Py_AtExit()</code>，这样在Python进程结束时候就会自动调用<code>MPI_Finalize()</code>， 因此不再需要我们显式的去掉用<code>Finalize()</code>。</p>
+<h3 id="通信域-Communicator"><a href="#通信域-Communicator" class="headerlink" title="通信域(Communicator)"></a>通信域(Communicator)</h3><p>mpi4py直接提供了相应的通信域的Python类，其中<code>Comm</code>是通信域的基类，<code>Intracomm</code>和<code>Intercomm</code>是其派生类，这根MPI的C++实现中是相同的。</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/commHier.png" alt=""></p>
+<p>同时它也提供了两个预定义的通信域对象:</p>
+<ol>
+<li>包含所有进程的<code>COMM_WORLD</code></li>
+<li>只包含调用进程本身的<code>COMM_SELF</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI                  </span><br><span class="line">                                                </span><br><span class="line">In [<span class="number">2</span>]: MPI.COMM_SELF                           </span><br><span class="line">Out[<span class="number">2</span>]: &lt;mpi4py.MPI.Intracomm at <span class="number">0x7f2fa2fd59d0</span>&gt;</span><br><span class="line">                                                </span><br><span class="line">In [<span class="number">3</span>]: MPI.COMM_WORLD                          </span><br><span class="line">Out[<span class="number">3</span>]: &lt;mpi4py.MPI.Intracomm at <span class="number">0x7f2fa2fd59f0</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>通信域对象则提供了与通信域相关的接口，例如获取当前进程号、获取通信域内的进程数、获取进程组、对进程组进行集合运算、分割合并等等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">4</span>]: comm = MPI.COMM_WORLD                   </span><br><span class="line">                                                </span><br><span class="line">In [<span class="number">5</span>]: comm.Get_rank()                         </span><br><span class="line">Out[<span class="number">5</span>]: <span class="number">0</span>                                       </span><br><span class="line">                                                </span><br><span class="line">In [<span class="number">6</span>]: comm.Get_size()                         </span><br><span class="line">Out[<span class="number">6</span>]: <span class="number">1</span>                                       </span><br><span class="line">                                                </span><br><span class="line">In [<span class="number">7</span>]: comm.Get_group()                        </span><br><span class="line">Out[<span class="number">7</span>]: &lt;mpi4py.MPI.Group at <span class="number">0x7f2fa40fec30</span>&gt;    </span><br><span class="line">                                                </span><br><span class="line">In [<span class="number">9</span>]: comm.Split(<span class="number">0</span>, <span class="number">0</span>)                        </span><br><span class="line">Out[<span class="number">9</span>]: &lt;mpi4py.MPI.Intracomm at <span class="number">0x7f2fa2fd5bd0</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>关于通信域与进程组的操作这里就不细讲了，可以参考<a target="_blank" rel="noopener" href="http://mpitutorial.com/tutorials/introduction-to-groups-and-communicators/">Introduction to Groups and Communicators</a></p>
+<h3 id="点对点通信"><a href="#点对点通信" class="headerlink" title="点对点通信"></a>点对点通信</h3><p>mpi4py提供了点对点通信的接口使得多个进程间能够互相传递Python的内置对象（基于pickle序列化），同时也提供了直接的数组传递（numpy数组，接近C语言的效率）。</p>
+<p>如果我们需要传递通用的Python对象，则需要使用通信域对象的方法中小写的接口，例如<code>send()</code>,<code>recv()</code>,<code>isend()</code>等。</p>
+<p>如果需要直接传递数据对象，则需要调用大写的接口，例如<code>Send()</code>,<code>Recv()</code>,<code>Isend()</code>等，这与C++接口中的拼写是一样的。</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/message_passing.png" alt=""></p>
+<p>MPI中的点到点通信有很多中，其中包括标准通信，缓存通信，同步通信和就绪通信，同时上面这些通信又有非阻塞的异步版本等等。这些在mpi4py中都有相应的Python版本的接口来让我们更灵活的处理进程间通信。这里我只用标准通信的阻塞和非阻塞版本来做个举例：</p>
+<h4 id="阻塞标准通信"><a href="#阻塞标准通信" class="headerlink" title="阻塞标准通信"></a>阻塞标准通信</h4><p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/send_recv_mode.png" alt=""><br>这里我尝试使用mpi4py的接口在两个进程中传递Python list对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">comm = MPI.COMM_WORLD</span><br><span class="line">rank = comm.Get_rank()</span><br><span class="line">size = comm.Get_size()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:</span><br><span class="line">    data = range(<span class="number">10</span>)</span><br><span class="line">    comm.send(data, dest=<span class="number">1</span>, tag=<span class="number">11</span>)</span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; send &#123;&#125;...&quot;</span>.format(rank, data))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    data = comm.recv(source=<span class="number">0</span>, tag=<span class="number">11</span>)</span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; recv &#123;&#125;...&quot;</span>.format(rank, data))</span><br></pre></td></tr></table></figure>
+<p>执行效果：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">zjshao@</span>vaio:~/temp_codes/mpipy$ mpiexec -np <span class="number">2</span> python temp.py</span><br><span class="line">process <span class="number">0</span> send [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br><span class="line">process <span class="number">1</span> recv [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br></pre></td></tr></table></figure></p>
+<h4 id="非阻塞标准通信"><a href="#非阻塞标准通信" class="headerlink" title="非阻塞标准通信"></a>非阻塞标准通信</h4><p>所有的阻塞通信mpi都提供了一个非阻塞的版本，类似与我们编写异步程序不阻塞在耗时的IO上是一样的，MPI的非阻塞通信也不会阻塞消息的传递过程中，这样能够充分利用处理器资源提升整个程序的效率。</p>
+<p>来张图看看阻塞通信与非阻塞通信的对比：</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/blocked_unblocked.png" alt=""></p>
+<p>非阻塞通信的消息发送和接受：</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/unblocked.png" alt=""></p>
+<p>同样的，我们也可以写一个上面例子的非阻塞版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI                                         </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np                                             </span><br><span class="line">                                                               </span><br><span class="line">comm = MPI.COMM_WORLD                                          </span><br><span class="line">rank = comm.Get_rank()                                         </span><br><span class="line">size = comm.Get_size()                                         </span><br><span class="line">                                                               </span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:                                                  </span><br><span class="line">    data = range(<span class="number">10</span>)                                           </span><br><span class="line">    comm.isend(data, dest=<span class="number">1</span>, tag=<span class="number">11</span>)                           </span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; immediate send &#123;&#125;...&quot;</span>.format(rank, data))</span><br><span class="line"><span class="keyword">else</span>:                                                          </span><br><span class="line">    data = comm.recv(source=<span class="number">0</span>, tag=<span class="number">11</span>)                         </span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; recv &#123;&#125;...&quot;</span>.format(rank, data))          </span><br></pre></td></tr></table></figure>
+<p>执行结果,注意非阻塞发送也可以用阻塞接收来接收消息：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">zjshao@</span>vaio:~/temp_codes/mpipy$ mpiexec -np <span class="number">2</span> python temp.py</span><br><span class="line">process <span class="number">0</span> immediate send [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br><span class="line">process <span class="number">1</span> recv [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br></pre></td></tr></table></figure></p>
+<h4 id="支持Numpy数组"><a href="#支持Numpy数组" class="headerlink" title="支持Numpy数组"></a>支持Numpy数组</h4><p>mpi4py的一个很好的特点就是他对Numpy数组有很好的支持，我们可以通过其提供的接口来直接传递数据对象，这种方式具有很高的效率，基本上和C/Fortran直接调用MPI接口差不多（方式和效果）</p>
+<p>例如我想传递长度为10的int数组，MPI的C++接口是：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Comm::Send</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> * buf, <span class="keyword">int</span> count, <span class="keyword">const</span> Datatype &amp; datatype, <span class="keyword">int</span> dest, <span class="keyword">int</span> tag)</span> <span class="keyword">const</span></span></span><br></pre></td></tr></table></figure><br>在mpi4py的接口中也及其类似, Comm.Send()中需要接收一个Python list作为参数，其中包含所传数据的地址，长度和类型。</p>
+<p>来个阻塞标准通信的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI                                                 </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np                                                     </span><br><span class="line">                                                                       </span><br><span class="line">comm = MPI.COMM_WORLD                                                  </span><br><span class="line">rank = comm.Get_rank()                                                 </span><br><span class="line">size = comm.Get_size()                                                 </span><br><span class="line">                                                                       </span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:                                                          </span><br><span class="line">    data = np.arange(<span class="number">10</span>, dtype=<span class="string">&#x27;i&#x27;</span>)                                    </span><br><span class="line">    comm.Send([data, MPI.INT], dest=<span class="number">1</span>, tag=<span class="number">11</span>)                         </span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; Send buffer-like array &#123;&#125;...&quot;</span>.format(rank, data))</span><br><span class="line"><span class="keyword">else</span>:                                                                  </span><br><span class="line">    data = np.empty(<span class="number">10</span>, dtype=<span class="string">&#x27;i&#x27;</span>)                                     </span><br><span class="line">    comm.Recv([data, MPI.INT], source=<span class="number">0</span>, tag=<span class="number">11</span>)                       </span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; recv buffer-like array &#123;&#125;...&quot;</span>.format(rank, data))</span><br></pre></td></tr></table></figure>
+<p>执行效果：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">zjshao@</span>vaio:~/temp_codes/mpipy$ /usr/bin/mpiexec -np <span class="number">2</span> python temp.py</span><br><span class="line">process <span class="number">0</span> Send buffer-like <span class="built_in">array</span> [<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>]...</span><br><span class="line">process <span class="number">1</span> recv buffer-like <span class="built_in">array</span> [<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>]...</span><br></pre></td></tr></table></figure></p>
+<h3 id="组通信"><a href="#组通信" class="headerlink" title="组通信"></a>组通信</h3><p>MPI组通信和点到点通信的一个重要区别就是，在某个进程组内所有的进程同时参加通信，mpi4py提供了方便的接口让我们完成Python中的组内集合通信，方便编程同时提高程序的可读性和可移植性。</p>
+<p>下面就几个常用的集合通信来小试牛刀吧。</p>
+<h4 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h4><p>广播操作是典型的一对多通信，将跟进程的数据复制到同组内其他所有进程中。<br><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/bcast.png" alt=""></p>
+<p>在Python中我想将一个列表广播到其他进程中：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI                                                     </span><br><span class="line">                                                                           </span><br><span class="line">comm = MPI.COMM_WORLD                                                      </span><br><span class="line">rank = comm.Get_rank()                                                     </span><br><span class="line">size = comm.Get_size()                                                     </span><br><span class="line">                                                                           </span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:                                                              </span><br><span class="line">    data = range(<span class="number">10</span>)                                                       </span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; bcast data &#123;&#125; to other processes&quot;</span>.format(rank, data))</span><br><span class="line"><span class="keyword">else</span>:                                                                      </span><br><span class="line">    data = <span class="literal">None</span>                                                            </span><br><span class="line">    data = comm.bcast(data, root=<span class="number">0</span>)                                            </span><br><span class="line">print(<span class="string">&quot;process &#123;&#125; recv data &#123;&#125;...&quot;</span>.format(rank, data))                     </span><br></pre></td></tr></table></figure><br>执行结果：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">zjshao@</span>vaio:~/temp_codes/mpipy$ /usr/bin/mpiexec -np <span class="number">5</span> python temp.py </span><br><span class="line">process <span class="number">0</span> bcast data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>] to other processes</span><br><span class="line">process <span class="number">0</span> recv data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br><span class="line">process <span class="number">1</span> recv data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br><span class="line">process <span class="number">3</span> recv data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br><span class="line">process <span class="number">2</span> recv data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br><span class="line">process <span class="number">4</span> recv data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]...</span><br></pre></td></tr></table></figure></p>
+<h4 id="发散"><a href="#发散" class="headerlink" title="发散"></a>发散</h4><p>与广播不同，发散可以向不同的进程发送不同的数据，而不是完全复制。</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/scatter.png" alt=""></p>
+<p>例如我想将0-9发送到不同的进程中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">m mpi4py <span class="keyword">import</span> MPI                                                            </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np                                                                </span><br><span class="line">                                                                                  </span><br><span class="line">comm = MPI.COMM_WORLD                                                             </span><br><span class="line">rank = comm.Get_rank()                                                            </span><br><span class="line">size = comm.Get_size()                                                            </span><br><span class="line">                                                                                  </span><br><span class="line">recv_data = <span class="literal">None</span>                                                                  </span><br><span class="line">                                                                                  </span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:                                                                     </span><br><span class="line">    send_data = range(<span class="number">10</span>)                                                         </span><br><span class="line">    print(<span class="string">&quot;process &#123;&#125; scatter data &#123;&#125; to other processes&quot;</span>.format(rank, send_data))</span><br><span class="line"><span class="keyword">else</span>:                                                                             </span><br><span class="line">    send_data = <span class="literal">None</span>                                                              </span><br><span class="line">recv_data = comm.scatter(send_data, root=<span class="number">0</span>)                                       </span><br><span class="line">print(<span class="string">&quot;process &#123;&#125; recv data &#123;&#125;...&quot;</span>.format(rank, recv_data))                       </span><br></pre></td></tr></table></figure>
+<p>发散结果：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">zjshao@</span>vaio:~/temp_codes/mpipy$ /usr/bin/mpiexec -np <span class="number">10</span> python temp.py </span><br><span class="line">process <span class="number">0</span> scatter data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>] to other processes</span><br><span class="line">process <span class="number">0</span> recv data <span class="number">0.</span>..</span><br><span class="line">process <span class="number">3</span> recv data <span class="number">3.</span>..</span><br><span class="line">process <span class="number">5</span> recv data <span class="number">5.</span>..</span><br><span class="line">process <span class="number">8</span> recv data <span class="number">8.</span>..</span><br><span class="line">process <span class="number">2</span> recv data <span class="number">2.</span>..</span><br><span class="line">process <span class="number">7</span> recv data <span class="number">7.</span>..</span><br><span class="line">process <span class="number">4</span> recv data <span class="number">4.</span>..</span><br><span class="line">process <span class="number">1</span> recv data <span class="number">1.</span>..</span><br><span class="line">process <span class="number">9</span> recv data <span class="number">9.</span>..</span><br><span class="line">process <span class="number">6</span> recv data <span class="number">6.</span>..</span><br></pre></td></tr></table></figure></p>
+<h4 id="收集"><a href="#收集" class="headerlink" title="收集"></a>收集</h4><p>收集过程是发散过程的逆过程，每个进程将发送缓冲区的消息发送给根进程，根进程根据发送进程的进程号将各自的消息存放到自己的消息缓冲区中。</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/gather.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mpi4py <span class="keyword">import</span> MPI                                              </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np                                                  </span><br><span class="line">                                                                    </span><br><span class="line">comm = MPI.COMM_WORLD                                               </span><br><span class="line">rank = comm.Get_rank()                                              </span><br><span class="line">size = comm.Get_size()                                              </span><br><span class="line">                                                                    </span><br><span class="line">send_data = rank                                                    </span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;process &#123;&#125; send data &#123;&#125; to root...&quot;</span>.format(rank, send_data)  </span><br><span class="line">recv_data = comm.gather(send_data, root=<span class="number">0</span>)                          </span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:                                                       </span><br><span class="line">    <span class="keyword">print</span> <span class="string">&quot;process &#123;&#125; gather all data &#123;&#125;...&quot;</span>.format(rank, recv_data)</span><br></pre></td></tr></table></figure>
+<p>收集结果：<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">zjshao@</span>vaio:~/temp_codes/mpipy$ /usr/bin/mpiexec -np <span class="number">5</span> python temp.py</span><br><span class="line">process <span class="number">2</span> send data <span class="number">2</span> to root...</span><br><span class="line">process <span class="number">3</span> send data <span class="number">3</span> to root...</span><br><span class="line">process <span class="number">0</span> send data <span class="number">0</span> to root...</span><br><span class="line">process <span class="number">4</span> send data <span class="number">4</span> to root...</span><br><span class="line">process <span class="number">1</span> send data <span class="number">1</span> to root...</span><br><span class="line">process <span class="number">0</span> gather all data [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]...</span><br></pre></td></tr></table></figure></p>
+<p>其他的组内通信还有归约操作等等由于篇幅限制就不多讲了，有兴趣的可以去看看MPI的官方文档和相应的教材。</p>
+<h2 id="mpi4py并行编程实践"><a href="#mpi4py并行编程实践" class="headerlink" title="mpi4py并行编程实践"></a>mpi4py并行编程实践</h2><p>这里我就上篇中的二重循环绘制map的例子来使用mpi4py进行并行加速处理。</p>
+<p>我打算同时启动10个进程来将每个0轴需要计算和绘制的数据发送到不同的进程进行并行计算。<br>因此我需要将<code>pO2s</code>数组发散到10个进程中:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">comm = MPI.COMM_WORLD                </span><br><span class="line">rank = comm.Get_rank()               </span><br><span class="line">size = comm.Get_size()               </span><br><span class="line">                                     </span><br><span class="line"><span class="keyword">if</span> rank == <span class="number">0</span>:                        </span><br><span class="line">    pO2 = np.linspace(<span class="number">1e-5</span>, <span class="number">0.5</span>, <span class="number">10</span>) </span><br><span class="line"><span class="keyword">else</span>:                                </span><br><span class="line">    pO2 = <span class="literal">None</span>                       </span><br><span class="line">    pO2 = comm.scatter(pO2, root=<span class="number">0</span>)      </span><br><span class="line">                                     </span><br><span class="line">pCOs = np.linspace(<span class="number">1e-5</span>, <span class="number">0.5</span>, <span class="number">10</span>)    </span><br></pre></td></tr></table></figure>
+<p>之后我需要在每个进程中根据接受到的<code>pO2s</code>的数据再进行一次<code>pCOs</code>循环来进行计算。</p>
+<p>最终将每个进程计算的结果(TOF)进行收集操作:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comm.gather(tofs_1d, root=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>由于代码都是涉及的专业相关的东西我就不全列出来了，将mpi4py改过的并行版本放到10个进程中执行可见：</p>
+<p><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/after.png" alt=""><br><img src="/assets/images/blog_img/2017-02-19-Python多进程并行编程实践-mpi4py的使用/before.png" alt=""></p>
+<p>效率提升了10倍左右。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文简单介绍了mpi4py的接口在python中进行多进程编程的方法，MPI的接口非常庞大，相应的mpi4py也非常庞大，mpi4py还有实现了相应的SWIG和F2PY的封装文件和类型映射，能够帮助我们将Python同真正的C/C++以及Fortran程序在消息传递上实现统一。有兴趣的同学可以进一步研究一下，欢迎交流。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://pythonhosted.org/mpi4py/usrman/index.html">MPI for Python 2.0.0 documentation</a></li>
+<li><a target="_blank" rel="noopener" href="http://mpitutorial.com/tutorials/">MPI Tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="http://materials.jeremybejarano.com/MPIwithPython/index.html">A Python Introduction to Parallel Programming with MPI</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1244566/">《高性能计算并行编程技术-MPI并行程序设计》</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3544630/">《MPI并行程序设计实例教程》</a></li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/03/26/优雅的在终端中编写Python/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/02/16/一本不错的MPI教程/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-02-19 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li> <li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li> <li><a href="/tags/mpi4py/">mpi4py<span class="badge">2</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#MPI-Message-Passing-Interface"><span class="toc-article-text">MPI(Message Passing Interface)</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Python%E4%B8%AD%E7%9A%84%E5%B9%B6%E8%A1%8C"><span class="toc-article-text">Python中的并行</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#MPI%E4%B8%8Empi4py"><span class="toc-article-text">MPI与mpi4py</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#mpi4py"><span class="toc-article-text">mpi4py</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#MPI%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86"><span class="toc-article-text">MPI环境管理</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E9%80%9A%E4%BF%A1%E5%9F%9F-Communicator"><span class="toc-article-text">通信域(Communicator)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%9A%E4%BF%A1"><span class="toc-article-text">点对点通信</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E9%98%BB%E5%A1%9E%E6%A0%87%E5%87%86%E9%80%9A%E4%BF%A1"><span class="toc-article-text">阻塞标准通信</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9E%E6%A0%87%E5%87%86%E9%80%9A%E4%BF%A1"><span class="toc-article-text">非阻塞标准通信</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%AF%E6%8C%81Numpy%E6%95%B0%E7%BB%84"><span class="toc-article-text">支持Numpy数组</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BB%84%E9%80%9A%E4%BF%A1"><span class="toc-article-text">组通信</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%B9%BF%E6%92%AD"><span class="toc-article-text">广播</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%8F%91%E6%95%A3"><span class="toc-article-text">发散</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%B6%E9%9B%86"><span class="toc-article-text">收集</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#mpi4py%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5"><span class="toc-article-text">mpi4py并行编程实践</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%8F%82%E8%80%83"><span class="toc-article-text">参考</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

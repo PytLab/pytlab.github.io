@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>ECMAScript中的OOP-对象创建 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="ECMAScript中的OOP-对象创建"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> ECMAScript中的OOP-对象创建</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>在ECMAScript中我们总不能使用<code>Object</code>构造函数或者字面量直接定义对象，这样将会产生大量的重复代码。</p>
+<p>这里将ECMAScript中几种面向对象中的创建对象的方法进行总结, 其中包括：</p>
+<ul>
+<li>工厂模式</li>
+<li>构造函数模式</li>
+<li>原型模式</li>
+<li>组合使用构造函数和原型模式</li>
+<li>动态原型模式</li>
+</ul>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>就是将对象的创建以及属性的添加等细节都封装在一个能够接受参数的函数中。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">... var person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">... person.name = name;</span><br><span class="line">... person.age = age;</span><br><span class="line">... person.job = job;</span><br><span class="line">... person.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">..... console.log(<span class="built_in">this</span>.name);</span><br><span class="line">..... &#125;</span><br><span class="line">... return person;</span><br><span class="line">... &#125;</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; p1 = createPerson(<span class="string">&#x27;shao&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;student&#x27;</span>)</span><br><span class="line">&#123; <span class="attr">name</span>: <span class="string">&#x27;shao&#x27;</span>, <span class="attr">age</span>: <span class="number">24</span>, <span class="attr">job</span>: <span class="string">&#x27;student&#x27;</span>, <span class="attr">sayName</span>: [<span class="built_in">Function</span>] &#125;</span><br><span class="line">&gt; p2 = createPerson(<span class="string">&#x27;zhao&#x27;</span>, <span class="number">25</span>, <span class="string">&#x27;saler&#x27;</span>)</span><br><span class="line">&#123; <span class="attr">name</span>: <span class="string">&#x27;zhao&#x27;</span>, <span class="attr">age</span>: <span class="number">25</span>, <span class="attr">job</span>: <span class="string">&#x27;saler&#x27;</span>, <span class="attr">sayName</span>: [<span class="built_in">Function</span>] &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>仅仅通过一个普通的工厂函数无法解决对象识别的问题，即无法知道一个对象的类型。</p>
+<h2 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h2><p>像<code>Object</code>，<code>Array</code>这些都有原生的构造函数并且运行是会自动加载到执行环境中，我们可以用来创建相应的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure><br>我们也可以自己创建自定义的构造函数，定义自定义的对象属性和方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.job = job;</span><br><span class="line">    <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><div class="alert alert-info"><i class="fa fa-info"></i>  与普通工厂相比，构造函数有如下不同：
+<li>没有显式的创建对象</li>
+<li>直接将属性和方法赋给<code>this</code></li>
+<li>没有<code>return</code>语句</li></div></p>
+<p>创建该对象使用<code>new</code>操作符:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;shao&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;student&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
+<div class="alert alert-warning"><i class="fa fa-bell"></i>  使用<code>new</code>操作符调用构造函数创建对象经历了如下的步骤：
+<li>创建新<code>Object</code>对象</li>
+<li>将构造函数的作用于赋给新的对象，也就是将<code>this</code>指向该对象</li>
+<li>执行中括号中的函数体代码</li>
+<li>返回该对象</li></div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">typeof</span> person</span><br><span class="line"><span class="string">&#x27;object&#x27;</span></span><br><span class="line">&gt; person <span class="keyword">instanceof</span> Person</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; person <span class="keyword">instanceof</span> <span class="built_in">Object</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; person.constructor</span><br><span class="line">[<span class="built_in">Function</span>: Person]</span><br></pre></td></tr></table></figure>
+<p>可见<code>person</code>对象仍是<code>Object</code>实例，当然也是<code>Person</code>实例。</p>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>如果方法的绑定在构造函数中则不同的实例的同名函数是不同的函数对象，使其无法在不同实例中共享。</li>
+<li>若将函数定义为全局函数，但如果对象需要定义很多方法，就要定义很多全局函数，便也没有什么<strong>封装性</strong>可言了。</li>
+</ul>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p><img src="/assets/images/blog_img/2017-02-06-ECMAScript中的OOP-创建对象/prototype.jpg" alt=""></p>
+<p>我先总结一下原型对象与构造函数以及实例之间的关系：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">... this.name = name;</span><br><span class="line">... this.age = age;</span><br><span class="line">... this.job = job;</span><br><span class="line">... &#125;</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">... console.log(<span class="built_in">this</span>.name);</span><br><span class="line">... &#125;</span><br><span class="line">[<span class="built_in">Function</span>]</span><br><span class="line">&gt; <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">&#x27;shao&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;student&#x27;</span>)</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">&#x27;zhao&#x27;</span>, <span class="number">25</span>, <span class="string">&#x27;saler&#x27;</span>)</span><br><span class="line"><span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><strong>原型对象</strong>与<strong>构造函数</strong></p>
+<ul>
+<li>无论什么时候创建了一个新函数，就会根据一定的规则为这个函数创建一个原型对象，这个函数对象中有一个属性<code>prototype</code>指向这个原型对象。</li>
+<li><p>原型对象中也有一个<code>constructor</code>属性指向构造函数</p>
+<p>这样原型对象与构造函数都可以互相访问。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Person.prototype</span><br><span class="line">Person &#123; <span class="attr">sayName</span>: [<span class="built_in">Function</span>] &#125;</span><br><span class="line">&gt; Person.prototype.constructor</span><br><span class="line">[<span class="built_in">Function</span>: Person]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>原型对象</strong>与<strong>实例</strong><br> 实例内部将包含一个指针（内部属性）<code>[[prototype]]</code>指向原型对象<br> 虽然是内部属性我们无法直接访问，但是我们可以借助<code>Object.getPrototypeOf()</code>函数来获取实例的原型对象。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Object</span>.getPrototypeOf(p1)</span><br><span class="line">Person &#123; <span class="attr">sayName</span>: [<span class="built_in">Function</span>] &#125;</span><br><span class="line">&gt; <span class="built_in">Object</span>.getPrototypeOf(p1) === <span class="built_in">Object</span>.getPrototypeOf(p2)</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; Person.prototype.isPrototypeOf(p1)</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>构造函数</strong>与<strong>实例</strong><br> 实例访问<code>constructor</code>的时候会进行一次搜索，从实例 -&gt; 原型对象然后将<code>constructor</code>返回，实例也就能够通过<code>constructor</code>访问构造函数本身了。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; p1.constructor</span><br><span class="line">[<span class="built_in">Function</span>: Person]</span><br><span class="line">&gt; p1.constructor === p2.constructor</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="原型与in操作符"><a href="#原型与in操作符" class="headerlink" title="原型与in操作符"></a>原型与<code>in</code>操作符</h3><p>只要是实例能够访问到相应的属性，无论该属性是原型对象中还是对象本身的，<code>in</code>操作符就会返回<code>true</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; Person.prototype.name = <span class="string">&#x27;shao&#x27;</span></span><br><span class="line"><span class="string">&#x27;shao&#x27;</span></span><br><span class="line">&gt; Person.prototype.age = <span class="number">24</span></span><br><span class="line"><span class="number">24</span></span><br><span class="line">&gt; <span class="keyword">var</span> person = <span class="keyword">new</span> Person()</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; person.job = <span class="string">&#x27;student&#x27;</span></span><br><span class="line"><span class="string">&#x27;student&#x27;</span></span><br><span class="line">&gt; <span class="string">&#x27;job&#x27;</span> <span class="keyword">in</span> person</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="string">&#x27;name&#x27;</span> <span class="keyword">in</span> person</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Object-keys-和-Object-getOwnPropertyNames"><a href="#Object-keys-和-Object-getOwnPropertyNames" class="headerlink" title="Object.keys() 和 Object.getOwnPropertyNames()"></a><code>Object.keys()</code> 和 <code>Object.getOwnPropertyNames()</code></h3><p>这两个方法都是返回属于实例本身的属性，不向上到原型中继续查找。区别在于是否能返回不可枚举的属性。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Object</span>.getOwnPropertyNames(person)</span><br><span class="line">[ <span class="string">&#x27;job&#x27;</span> ]</span><br><span class="line">&gt; <span class="built_in">Object</span>.keys(person)</span><br><span class="line">[ <span class="string">&#x27;job&#x27;</span> ]</span><br><span class="line">&gt; <span class="built_in">Object</span>.getOwnPropertyNames(Person.prototype)</span><br><span class="line">[ <span class="string">&#x27;constructor&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;age&#x27;</span> ]</span><br><span class="line">&gt; <span class="built_in">Object</span>.keys(Person.prototype)</span><br><span class="line">[ <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;age&#x27;</span> ]</span><br></pre></td></tr></table></figure></p>
+<h3 id="更简单的原型模式写法"><a href="#更简单的原型模式写法" class="headerlink" title="更简单的原型模式写法"></a>更简单的原型模式写法</h3><p>可以通过直接将构造函数的原型对象替换成新的对象来简化写法，不需要再写一堆<code>.prototype</code>了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; Person.prototype = &#123;</span><br><span class="line">... name: <span class="string">&#x27;shao&#x27;</span>,</span><br><span class="line">... age: <span class="number">24</span></span><br><span class="line">... &#125;</span><br><span class="line">&#123; <span class="attr">name</span>: <span class="string">&#x27;shao&#x27;</span>, <span class="attr">age</span>: <span class="number">24</span> &#125;</span><br><span class="line">&gt; <span class="built_in">Object</span>.defineProperty(Person.prototype, <span class="string">&#x27;constructor&#x27;</span>, &#123;</span><br><span class="line">... enumerable: <span class="literal">false</span>,</span><br><span class="line">... value: Person&#125;)</span><br><span class="line">Person &#123; <span class="attr">name</span>: <span class="string">&#x27;shao&#x27;</span>, <span class="attr">age</span>: <span class="number">24</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>忽略了构造函数初始化参数的传递</li>
+<li>所有属性都是共享的</li>
+</ul>
+<h2 id="组合使用构造函数和原型模式"><a href="#组合使用构造函数和原型模式" class="headerlink" title="组合使用构造函数和原型模式"></a>组合使用构造函数和原型模式</h2><p>这样使得实例都有自己的属性副本，共享方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">... this.name = name;</span><br><span class="line">... this.age = age;</span><br><span class="line">... &#125;</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">... console.log(<span class="built_in">this</span>.name);</span><br><span class="line">... &#125;</span><br><span class="line">[<span class="built_in">Function</span>]</span><br><span class="line">&gt; <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">&#x27;shao&#x27;</span>, <span class="number">24</span>)</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">&#x27;zhao&#x27;</span>, <span class="number">25</span>)</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; p1.sayName()</span><br><span class="line">shao</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; p2.sayName()</span><br><span class="line">zhao</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; p1.sayName === p2.sayName</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>这种混合模式是目前使用最广泛的一种创建自定义类型的方法。</p>
+<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><p>构造函数和原型是相互独立的（算是缺点么？</p>
+<h3 id="动态原型模式"><a href="#动态原型模式" class="headerlink" title="动态原型模式"></a>动态原型模式</h3><p>这种模式就将属性添加和原型的操作都封装到了构造函数中,之所以叫动态原型，我们在构造函数中需要动态的判断是否要给原型对象添加属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> Person.prototype.sayName != <span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说只有在第一次调用构造函数创建实例的时候条件才满足，才会给原型对象添加属性，这也就是多个实例共享一个方法。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/02/08/ECMAScript中的OOP-继承/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/02/05/ECMAScript对象属性小结/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-02-06 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/JavaScript/">JavaScript<span class="badge">5</span></a></li> <li><a href="/tags/ECMAScript/">ECMAScript<span class="badge">4</span></a></li> <li><a href="/tags/OOP/">OOP<span class="badge">3</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-article-text">工厂模式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-article-text">缺点</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F"><span class="toc-article-text">构造函数模式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-article-text">缺点</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-article-text">原型模式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%8E%9F%E5%9E%8B%E4%B8%8Ein%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-article-text">原型与in操作符</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Object-keys-%E5%92%8C-Object-getOwnPropertyNames"><span class="toc-article-text">Object.keys() 和 Object.getOwnPropertyNames()</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F%E5%86%99%E6%B3%95"><span class="toc-article-text">更简单的原型模式写法</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="toc-article-text">缺点</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-article-text">组合使用构造函数和原型模式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BC%BA%E7%82%B9-3"><span class="toc-article-text">缺点</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%8A%A8%E6%80%81%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-article-text">动态原型模式</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

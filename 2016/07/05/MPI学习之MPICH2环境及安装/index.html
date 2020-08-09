@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>MPI学习--MPICH并行环境搭建与配置 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="打算这几天上手MPI，开始学习MPI并行编程，目前的主要目的是能够快速使用MPI的API将现有程序并行化，例子代码均用C语言实现。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MPI学习--MPICH并行环境搭建与配置"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> MPI学习--MPICH并行环境搭建与配置</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>打算这几天上手MPI，开始学习MPI并行编程，目前的主要目的是能够快速使用MPI的API将现有程序并行化，例子代码均用C语言实现。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>这篇主要记录使用自己用户在实验室的IBM刀片集群上搭建MPI并行环境以及简单的测试，具体什么是MPI这里就不多讲了，主要记录自己的MPI环境的搭建过程。</p>
+<h3 id="下载MPICH"><a href="#下载MPICH" class="headerlink" title="下载MPICH"></a>下载MPICH</h3><p>现在<a target="_blank" rel="noopener" href="http://www.mpich.org/downloads/">MPICH官网</a>上已经有MPICH3.2，但是安装了以后发现3.2的进程管理器并没有mpd而是<a target="_blank" rel="noopener" href="https://wiki.mpich.org/mpich/index.php/Using_the_Hydra_Process_Manager">Hydra Process Manager</a>为了用上最新的我也就直接上最新版了肯定不会有错。</p>
+<p>下下来的压缩包为: <code>mpich-3.2.tar.gz</code><br><a id="more"></a></p>
+<h3 id="编译和安装"><a href="#编译和安装" class="headerlink" title="编译和安装"></a>编译和安装</h3><h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mpich-3.2.tar.gz</span><br><span class="line">cd mpich-3.2</span><br></pre></td></tr></table></figure>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>MPICH提供了很多的配置选项，可以通过如下命令查看：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure -h</span><br></pre></td></tr></table></figure><br>使用默认的进程管理器以及支持调式，参数设置为：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure CC=gcc CXX=g++ --prefix=/data/home/zjshao/hpc/mpich-install --enable-debuginfo --enable-fast=all 2&gt;&amp;1 | tee c.txt</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure><br>然后就要经过漫长的编译过程 - -！。</p>
+<p>设置环境变量：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=<span class="regexp">/data/</span>home<span class="regexp">/zjshao/</span>hpc/mpich-install:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="配置和验证"><a href="#配置和验证" class="headerlink" title="配置和验证"></a>配置和验证</h3><p>MPI进程的创建、启动和管理需要借助进程管理器来完成，直观的讲PM就是MPI环境与操作系统的接口。<br>正常MPI会在多个主机上启动进程管理器进程，形成MPI运行时的环境，这样目标主机就需要配置集群环境支持节点间无密码登录，这里的原理主要是通过密钥进行身份验证的方式，由于实验室的集群上已经对这里进行了配置，我就不再进行配置了。</p>
+<p>在安装目录下面的<code>/example</code>中有一个数值求pi的程序<code>cpi</code>可以帮助我们来运行验证MPI环境是否正确的安装和运行。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zjshao@master examples]$ which mpiexec</span><br><span class="line">~/hpc/mpich-install/bin/mpiexec</span><br></pre></td></tr></table></figure></p>
+<p>测试在主节点进行并行<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">zjshao@</span>master examples]$ mpiexec -n <span class="number">4</span> ./cpi</span><br><span class="line">Process <span class="number">0</span> of <span class="number">4</span> <span class="keyword">is</span> on master.cluster</span><br><span class="line">Process <span class="number">1</span> of <span class="number">4</span> <span class="keyword">is</span> on master.cluster</span><br><span class="line">Process <span class="number">2</span> of <span class="number">4</span> <span class="keyword">is</span> on master.cluster</span><br><span class="line">Process <span class="number">3</span> of <span class="number">4</span> <span class="keyword">is</span> on master.cluster</span><br><span class="line">pi <span class="keyword">is</span> approximately <span class="number">3.1415926544231239</span>, Error <span class="keyword">is</span> <span class="number">0.0000000008333307</span></span><br><span class="line">wall clock time = <span class="number">0.000315</span></span><br></pre></td></tr></table></figure></p>
+<p>在计算节点node01上运行6个进程<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">zjshao@</span>master examples]$ mpiexec -host node01 -n <span class="number">4</span> ./cpi</span><br><span class="line">Process <span class="number">0</span> of <span class="number">4</span> <span class="keyword">is</span> on node01</span><br><span class="line">Process <span class="number">2</span> of <span class="number">4</span> <span class="keyword">is</span> on node01</span><br><span class="line">Process <span class="number">3</span> of <span class="number">4</span> <span class="keyword">is</span> on node01</span><br><span class="line">Process <span class="number">1</span> of <span class="number">4</span> <span class="keyword">is</span> on node01</span><br><span class="line">pi <span class="keyword">is</span> approximately <span class="number">3.1415926544231239</span>, Error <span class="keyword">is</span> <span class="number">0.0000000008333307</span></span><br><span class="line">wall clock time = <span class="number">0.000119</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来通过文件制定环境中节点和进程信息<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">zjshao@</span>master examples]$ cat &gt; hosts &lt;&lt;!</span><br><span class="line">&gt; node01:<span class="number">2</span></span><br><span class="line">&gt; node02:<span class="number">4</span></span><br><span class="line">&gt; node03:<span class="number">6</span></span><br><span class="line">&gt; !</span><br><span class="line">[<span class="symbol">zjshao@</span>master examples]$ mpiexec -machinefile hosts -n <span class="number">8</span> cpi</span><br><span class="line">Process <span class="number">1</span> of <span class="number">8</span> <span class="keyword">is</span> on node01</span><br><span class="line">Process <span class="number">6</span> of <span class="number">8</span> <span class="keyword">is</span> on node03</span><br><span class="line">Process <span class="number">0</span> of <span class="number">8</span> <span class="keyword">is</span> on node01</span><br><span class="line">Process <span class="number">7</span> of <span class="number">8</span> <span class="keyword">is</span> on node03</span><br><span class="line">Process <span class="number">5</span> of <span class="number">8</span> <span class="keyword">is</span> on node02</span><br><span class="line">Process <span class="number">2</span> of <span class="number">8</span> <span class="keyword">is</span> on node02</span><br><span class="line">Process <span class="number">4</span> of <span class="number">8</span> <span class="keyword">is</span> on node02</span><br><span class="line">Process <span class="number">3</span> of <span class="number">8</span> <span class="keyword">is</span> on node02</span><br><span class="line">pi <span class="keyword">is</span> approximately <span class="number">3.1415926544231247</span>, Error <span class="keyword">is</span> <span class="number">0.0000000008333316</span></span><br><span class="line">wall clock time = <span class="number">0.003747</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="查看mpi编译器信息"><a href="#查看mpi编译器信息" class="headerlink" title="查看mpi编译器信息"></a>查看mpi编译器信息</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[zjshao<span class="meta">@master</span> examples]$ mpichversion </span><br><span class="line">MPICH <span class="attr">Version:</span>        <span class="number">3.2</span></span><br><span class="line">MPICH Release <span class="attr">date:</span>    Wed Nov <span class="number">11</span> <span class="number">22</span>:<span class="number">06</span>:<span class="number">48</span> CST <span class="number">2015</span></span><br><span class="line">MPICH <span class="attr">Device:</span>        <span class="attr">ch3:</span>nemesis</span><br><span class="line">MPICH <span class="attr">configure:</span>     CC=gcc CXX=g++ --prefix=<span class="regexp">/data/</span>home<span class="regexp">/zjshao/</span>hpc/mpich-install --enable-debuginfo --enable-fast=all</span><br><span class="line">MPICH <span class="attr">CC:</span>     gcc    -DNDEBUG -DNVALGRIND -O2</span><br><span class="line">MPICH <span class="attr">CXX:</span>     g++   -DNDEBUG -DNVALGRIND -O2</span><br><span class="line">MPICH <span class="attr">F77:</span>     ifort   -O2</span><br><span class="line">MPICH <span class="attr">FC:</span>     ifort   -O2</span><br></pre></td></tr></table></figure>
+<p>其实看一下所谓的<code>mpicc</code>和<code>mpicxx</code>等，其实是一个shell的脚本，他会根据在编译前配置时候的信息自动生成，包括编译器，编译参数，头文件地址和库文件路径等。<br>例如mpicxx中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment"># Directory locations: Fixed for any MPI implementation</span></span><br><span class="line">prefix=/data/home/zjshao/hpc/mpich-install</span><br><span class="line">exec_prefix=/data/home/zjshao/hpc/mpich-install</span><br><span class="line">sysconfdir=/data/home/zjshao/hpc/mpich-install/etc</span><br><span class="line">includedir=/data/home/zjshao/hpc/mpich-install/include</span><br><span class="line">libdir=/data/home/zjshao/hpc/mpich-install/lib</span><br><span class="line"></span><br><span class="line"><span class="comment"># Default settings for compiler, flags, and libraries</span></span><br><span class="line">CXX=<span class="string">&quot;g++&quot;</span></span><br><span class="line">MPICH_VERSION=<span class="string">&quot;3.2&quot;</span></span><br><span class="line"></span><br><span class="line">enable_wrapper_rpath=<span class="string">&quot;yes&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># How to pass a linker flag through the compiler.</span></span><br><span class="line">wl=<span class="string">&quot;-Wl,&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Static library suffix (normally &quot;a&quot;).</span></span><br><span class="line">libext=<span class="string">&quot;a&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Shared library suffix (normally &quot;so&quot;).</span></span><br><span class="line">shlibext=<span class="string">&quot;so&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Format of library name prefix.</span></span><br><span class="line">libname_spec=<span class="string">&quot;lib\$name&quot;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure><br>同理mpif90, mpicc都是。</p>
+<hr>
+<p>好了，目前MPI的环境基本上已经可以正确的运行啦。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/07/06/MPI学习-并行系统和并行模式/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/07/05/发现KMCLib中一个隐藏bug/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-07-05 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MPI/">MPI<span class="badge">16</span></a></li> <li><a href="/tags/Parallel-Computing/">Parallel Computing<span class="badge">18</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E4%B8%8B%E8%BD%BDMPICH"><span class="toc-article-text">下载MPICH</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="toc-article-text">编译和安装</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E8%A7%A3%E5%8E%8B"><span class="toc-article-text">解压</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-article-text">编译</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E9%85%8D%E7%BD%AE%E5%92%8C%E9%AA%8C%E8%AF%81"><span class="toc-article-text">配置和验证</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%9F%A5%E7%9C%8Bmpi%E7%BC%96%E8%AF%91%E5%99%A8%E4%BF%A1%E6%81%AF"><span class="toc-article-text">查看mpi编译器信息</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

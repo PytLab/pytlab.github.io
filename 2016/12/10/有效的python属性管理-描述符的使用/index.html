@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>有效的python属性管理: 描述符的使用 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="有效的python属性管理: 描述符的使用"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 有效的python属性管理: 描述符的使用</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近使用描述符对自己的催化动力学模拟程序进行了改进，在Python描述符的帮助下实现了更加灵活而且强大有效的属性管理，使得程序各个组件的数据封装更加完善管理也更加有条理。</p>
+<p>本文就以自己程序中运用描述符来进行有效的python属性管理为例子，介绍python中描述符的概念以及如何更好的使用描述符这个强有力的工具帮助我们有效管理python程序中的数据访问控制。</p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>在其他语言中我们经常会在类中实现<code>getter</code>和<code>setter</code>等工具方法，这样有助于定义类的接口，也使得开发者能够方便的封装功能，例如验证用法或者进行取值范围的检测。但是在Python中我们一般都是直接从<code>public</code>属性写起，但是当我们对属性有特殊需求，例如进行类型验证(Python是动态类型)，数值范围检测，返回深复制(而不是引用）的时候，我们一般会考虑使用:</p>
+<ol>
+<li>内建的<code>@property</code>装饰器</li>
+<li>使用描述符</li>
+</ol>
+<p><code>@property</code>装饰器使用起来方便快捷，例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KineticModel</span>(<span class="params">obejct</span>):</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kB</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.__kB</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kB</span>(<span class="params">self, kB</span>):</span></span><br><span class="line">        <span class="comment">#...</span></span><br></pre></td></tr></table></figure></p>
+<p>但是<code>@property</code>的缺点就在于他无法被复用，同一套逻辑不能在不同的属性之间重复使用，这样除了对波尔兹曼常数进行处理外如果还有普朗克常数需要做同样的处理，难道要重复写一次<code>setter</code>和<code>getter</code>函数？这显然已经”Repeat yourself”了。</p>
+<p>这时候就要召唤Python的描述符机制了，他的存在是python开发者能够复用与属性相关的逻辑。</p>
+<h3 id="描述符协议"><a href="#描述符协议" class="headerlink" title="描述符协议"></a>描述符协议</h3><p>Python描述符协议是一种再模型中引用属性时将要发生事件的方法。Python会对属性的访问操作进行一定的转译，这种转译的方式就是由描述符协议确定的。借助Python提供给我们的描述符协议，我们就可以用来以Python的方式实现与私有变量类似的功能。</p>
+<p>描述符协议包括几个方法：</p>
+<ul>
+<li><code>descr.__get__(self, obj, type=None)</code> –&gt; value, 用于访问属性</li>
+<li><code>descr.__set__(self, obj, value)</code> –&gt; None, 用于设置属性的值</li>
+<li><code>descr.__delete__(self, obj)</code> –&gt; None, 控制属性的删除操作</li>
+</ul>
+<p>任何对象如果定义了上面的任何一个方法便实现了描述符协议，也就变成了一个描述符了。我们通过将之前的<code>getter</code>和<code>setter</code>方法中的逻辑重写到<code>__get__</code>和<code>__set__</code>方法中，便可以把同一套逻辑运用在不同类中不同的属性上面了。</p>
+<h3 id="创建描述符"><a href="#创建描述符" class="headerlink" title="创建描述符"></a>创建描述符</h3><p>这里只介绍使用类方法创建描述符。</p>
+<p>我的动力学模型中的KineticModel需要很多类属性，例如基本的基元反应式<code>rxn_expression</code>（这里我用了一个包含string的list来表示）、模型反应发生的温度<code>temperature</code>（用一个float类型表示）。</p>
+<p>为了能够在对属性进行赋值的时候进行相应的类型检测，我就定义了几个基本类型的描述符，提供了检测数据类型的相应逻辑，下面是个简单的整型描述符（当然这不是最后的使用的版本）:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Float</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span>(<span class="params">self</span>):</span></span><br><span class="line">        private_name = <span class="string">&quot;_&#123;&#125;__&#123;&#125;&quot;</span>.format(instance.__class__.__name__, self.name)</span><br><span class="line">        <span class="keyword">if</span> private_name <span class="keyword">not</span> <span class="keyword">in</span> instance.__dict__:</span><br><span class="line">            instance.__dict__[private_name] = self.default</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__set__</span>(<span class="params">self, instance, value</span>):</span></span><br><span class="line">        <span class="comment"># 检测类型</span></span><br><span class="line">        <span class="keyword">if</span> type(value) <span class="keyword">is</span> <span class="keyword">not</span> float:</span><br><span class="line">            msg = <span class="string">&quot;&#123;&#125; (&#123;&#125;) is not a float number&quot;</span>.format(self.name, value)</span><br><span class="line">            <span class="keyword">raise</span> ValueError(msg)</span><br><span class="line">        <span class="comment"># 将对象的相应属性进行赋值，注意这里我使用了`mangled name`用来进行私有化处理</span></span><br><span class="line">        private_name = <span class="string">&quot;_&#123;&#125;__&#123;&#125;&quot;</span>.format(instance.__class__.__name__, self.name)</span><br><span class="line">        instance.__dict__[private_name] = value</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以在我们类中相应的类属性定义成相应的描述符对象，后面我们就可以像使用正常属性一样使用他，但是他却拥有了类型检测功能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KineticModel</span>(<span class="params">obejct</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置temperature为类属性</span></span><br><span class="line">    temperature = Float(<span class="string">&quot;temperature&quot;</span>)</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>当我试图向其赋值一个字符串时,便会抛出异常：<br><img src="/assets/images/blog_img/2016-12-10-有效的python属性管理-描述符的使用/Float_descriptor.png" alt=""></p>
+<h3 id="描述符的原理"><a href="#描述符的原理" class="headerlink" title="描述符的原理"></a>描述符的原理</h3><p>上面进行了基本的描述符创建和使用效果，那么描述符是如何工作的才能让我们以这种方式操作属性呢？</p>
+<p>一句话总结就是通过将属性访问进行了<strong>转译</strong>。</p>
+<h4 id="描述符触发"><a href="#描述符触发" class="headerlink" title="描述符触发"></a>描述符触发</h4><p>当我们进行属性访问时便会触发描述符（如果这个属性具有描述符定义的时候），当我们对对象<code>obj</code>的属性<code>d</code>进行访问时候，<code>obj.d</code>，描述符的触发过程大致：先在对象obj的字典中寻找d,如果<code>d</code>是个含有<code>__get__()</code>的对象，则直接调用<code>d.__get__(obj)</code>.</p>
+<p>官方文档中对具体的触发细节进行了更详细的描述，具体的触发又分为我们访问的是类属性还是实例属性：</p>
+<ol>
+<li><p>如果是对实例属性进行访问，则属性访问转译的关键就在于基类<code>object</code>的<code>__getattribute__</code>方法，我们知道这个内置方法是在进行属性访问的时候无条件调用的，因此这个方法中将<code>obj.d</code>转译成了<code>type(obj).__dict__[&#39;d&#39;].__get__(obj, type(obj))</code><br> 其实现的C代码参见:<a target="_blank" rel="noopener" href="https://docs.python.org/3/c-api/object.html#c.PyObject_GenericGetAttr">https://docs.python.org/3/c-api/object.html#c.PyObject_GenericGetAttr</a></p>
+</li>
+<li><p>如果是对类对象的属性进行访问，则属性的访问转译关键在于元类<code>type</code>的<code>__getattribute__</code>方法，它将<code>cls.d</code>转译成<code>cls.__dict__[&#39;d&#39;].__get__(None, cls)</code>，这里<code>__get__()</code>的<code>instance</code>没有也就是相应的<code>None</code>了。<br> 其实现的C代码参见:<a target="_blank" rel="noopener" href="https://hg.python.org/cpython/file/3.5/Objects/typeobject.c#l2936">https://hg.python.org/cpython/file/3.5/Objects/typeobject.c#l2936</a></p>
+</li>
+</ol>
+<h4 id="描述符优先级"><a href="#描述符优先级" class="headerlink" title="描述符优先级"></a>描述符优先级</h4><p>首先，<strong>描述符和描述符之间也是有区别的</strong>:</p>
+<ol>
+<li>如果一个对象同时定义了<code>__get__()</code>和<code>__set__()</code>方法，则这个描述符被称为<strong>data descriptor</strong></li>
+<li>如果一个对象只定义了<code>__get__()</code>方法，则这个描述符被称为<strong>non-data descriptor</strong></li>
+</ol>
+<p>我们对属性进行访问的时候需要几行打交道的基本上包含这几个对象：</p>
+<ol>
+<li>data descriptor</li>
+<li>non-data descriptor</li>
+<li>实例的字典</li>
+<li>内置的<code>__getattr__()</code>函数</li>
+</ol>
+<p>他们几个的优先级顺序是：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data descriptor  &gt;&gt;  instance&#x27;s dict  &gt;&gt;  non-data descriptor  &gt;&gt;   __getattr__()</span><br></pre></td></tr></table></figure><br>也就是说如果实例<code>obj</code>重现了同名的data descriptor <code>d</code> 和 实例属性<code>d</code>, 当我们访问<code>d</code>的时候，由于data descriptor具有更高的优先级，python便会调用<code>type(obj).__dict__[&#39;d&#39;].__get__(obj, type(obj))</code>而不是返回<code>obj.__dict__[&#39;d&#39;]</code></p>
+<p>但是如果描述符是个non-data descriptor，则正好相反，python会返回<code>obj.__dict__[&#39;d&#39;]</code></p>
+<h3 id="描述符实现惰性访问（按需访问）"><a href="#描述符实现惰性访问（按需访问）" class="headerlink" title="描述符实现惰性访问（按需访问）"></a>描述符实现惰性访问（按需访问）</h3><p>很多时候一个类的属性，我们并不需要在这个类初始化的时候就进行初始化，我们可以在第一次使用这个属性的时候<strong>顺便</strong>将这个属性初始化，这样在后面重复使用这个属性的时候便直接返回结果就可以了，这样既可以减少计算的次数，也在一定程度上减少了内存的需求。</p>
+<p>因此我在定义自己的描述符<code>__get__()</code>的时候进行了判断是否该相应的实例属性已经初始化，若未初始化则进行初始化，若已初始化直接返回，达到了惰性访问的目的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__get__</span>(<span class="params">self, instance, owner</span>):</span></span><br><span class="line">    private_name = <span class="string">&quot;_&#123;&#125;__&#123;&#125;&quot;</span>.format(instance.__class__.__name__, self.name)</span><br><span class="line">    <span class="comment"># 是否实例属性已存在</span></span><br><span class="line">    <span class="keyword">if</span> private_name <span class="keyword">not</span> <span class="keyword">in</span> instance.__dict__:</span><br><span class="line">        instance.__dict__[private_name] = self.default</span><br><span class="line">    <span class="keyword">return</span> instance.__dict__[private_name]</span><br></pre></td></tr></table></figure>
+<h3 id="创建只读描述符"><a href="#创建只读描述符" class="headerlink" title="创建只读描述符"></a>创建只读描述符</h3><p>当我们想让一个属性（描述符）禁止调用者进行修改的时候，可以通过在<code>__set__()</code>方法中抛出<code>AttributeError</code>异常来实现，例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__set__</span>(<span class="params">self, instance, value</span>):</span></span><br><span class="line">    private_name = <span class="string">&quot;_&#123;&#125;__&#123;&#125;&quot;</span>.format(instance.__class__.__name__, self.name)</span><br><span class="line">    <span class="comment"># 在第一次赋值后便无法修改属性的值</span></span><br><span class="line">    <span class="keyword">if</span> private_name <span class="keyword">not</span> <span class="keyword">in</span> instance.__dict__:</span><br><span class="line">        instance.__dict__[private_name] = value</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        msg =<span class="string">&quot;Changing value of &#123;&#125;.&#123;&#125; is not allowed&quot;</span>.format(instance.__class__.__name__,</span><br><span class="line">                                                             self.name)</span><br><span class="line">        <span class="keyword">raise</span> AttributeError(msg)</span><br></pre></td></tr></table></figure><br>这样便实现了私有变量的效果，可以将数据更安全的进行封装，防止在外部调用的时候意外修改了对象的数据造成不想要的结果。</p>
+<h3 id="对于mutable的变量可以使用深复制"><a href="#对于mutable的变量可以使用深复制" class="headerlink" title="对于mutable的变量可以使用深复制"></a>对于mutable的变量可以使用深复制</h3><p>如果实例属性是字典或者列表这类的变量，python都会返回对象的引用，因此在获取其值以后也是有可能修改其内部数据的，因此如果真的想要是这个属性不被做任何的修改，可以使用<code>deepcopy</code>直接返回对象的深复制，这样在外部无论怎么蹂躏这个对象，都跟返回他的对象本身没有关系了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__get__</span>(<span class="params">self, instance, owner</span>):</span></span><br><span class="line">    private_name = <span class="string">&quot;_&#123;&#125;__&#123;&#125;&quot;</span>.format(instance.__class__.__name__, self.name)</span><br><span class="line">    <span class="keyword">if</span> private_name <span class="keyword">not</span> <span class="keyword">in</span> instance.__dict__:</span><br><span class="line">        instance.__dict__[private_name] = self.default</span><br><span class="line">    <span class="keyword">if</span> self.deepcopy:</span><br><span class="line">        <span class="keyword">return</span> copy.deepcopy(instance.__dict__[private_name])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> instance.__dict__[private_name]</span><br></pre></td></tr></table></figure></p>
+<h3 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h3><p>描述符都是针对类属性，因此如果把数据存放在描述符对象中的时候，会出现意想不到的结果。<br>例如我想针对每个学生类创建对应的身高描述符，而且把身高数据放在描述符中，我可以这样定义描述符：<br><img src="/assets/images/blog_img/2016-12-10-有效的python属性管理-描述符的使用/note.png" alt=""><br>我们创建了两个学生实例，但是身高属性却是同一个对象，这是因为描述符是类属性，因此每个实例中进行访问的时候都是访问的类属性的<strong>引用</strong>。</p>
+<p>这个时候我们可以不把数据放在描述符中，而是在相应的实例对象中创建私有变量，这样不同的对象的私有变量是不同的变量，便不会出想上图的问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Height</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name</span>):</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span>(<span class="params">self, instance, cls</span>):</span></span><br><span class="line">        <span class="keyword">return</span> getattr(instance, self.name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__set__</span>(<span class="params">self, instance, value</span>):</span></span><br><span class="line">        setattr(instance, self.name, value)</span><br></pre></td></tr></table></figure>
+<p>同时也可以将相应的对象和值以字典的键值对存到描述符的字典中，但是这样会造成引用计数无法为0导致无法进行垃圾回收从而导致内存泄漏的风险，因此这个方法就不详细描述了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文总结了Python中的描述符相关的概念和使用，描述符可以帮助我们实现强大而灵活的属性管理，通过结合使用描述符可以实现优雅的编程，但是同时也应该保持谨慎的态度，避免由于覆盖普通对象行为而产生不必要的代码复杂性。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/3/howto/descriptor.html">https://docs.python.org/3/howto/descriptor.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/opensource/os-pythondescriptors/">https://www.ibm.com/developerworks/cn/opensource/os-pythondescriptors/</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26312313/">Effective Python</a></li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/12/20/Python优化第一步-性能分析实践/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/11/29/std-vector-bool-中的‘坑’/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-12-10 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/descriptor/">descriptor<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-article-text">正文</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%8D%8F%E8%AE%AE"><span class="toc-article-text">描述符协议</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%88%9B%E5%BB%BA%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-article-text">创建描述符</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-article-text">描述符的原理</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6%E8%A7%A6%E5%8F%91"><span class="toc-article-text">描述符触发</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-article-text">描述符优先级</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%AE%9E%E7%8E%B0%E6%83%B0%E6%80%A7%E8%AE%BF%E9%97%AE%EF%BC%88%E6%8C%89%E9%9C%80%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="toc-article-text">描述符实现惰性访问（按需访问）</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%88%9B%E5%BB%BA%E5%8F%AA%E8%AF%BB%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-article-text">创建只读描述符</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%AF%B9%E4%BA%8Emutable%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%A4%8D%E5%88%B6"><span class="toc-article-text">对于mutable的变量可以使用深复制</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9"><span class="toc-article-text">需要注意的点</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%8F%82%E8%80%83"><span class="toc-article-text">参考</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

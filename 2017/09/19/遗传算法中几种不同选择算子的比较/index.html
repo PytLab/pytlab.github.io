@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>遗传算法中几种不同选择算子 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="遗传算法中几种不同选择算子"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 遗传算法中几种不同选择算子</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文对遗传算法中的几种选择策略进行了总结, 其中包括:</p>
+<ol>
+<li>Proportionate Roulette Wheel Selection</li>
+<li>Linear Ranking Selection</li>
+<li>Exponential Ranking Selection</li>
+<li>Tournament Selection</li>
+</ol>
+<p>对于每种选择策略我都使用Python进行了相应的实现并以内置插件的形式整合进了本人所写的遗传算法框架GAFT中。对需要使用遗传算法优化问题以及学习遗传算法的童鞋可以作为参考.</p>
+<p>项目链接:</p>
+<ul>
+<li>GitHub: <a target="_blank" rel="noopener" href="https://github.com/PytLab/gaft">https://github.com/PytLab/gaft</a></li>
+<li>PyPI: <a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/gaft">https://pypi.python.org/pypi/gaft</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="遗传算法中的选择算子"><a href="#遗传算法中的选择算子" class="headerlink" title="遗传算法中的选择算子"></a>遗传算法中的选择算子</h2><p>遗传算法(genetic algorithms, GAs)是一种自适应的启发式搜索算法, 它模仿达尔文进化论中的“适者生存”的原则, 最终获取优化目标的最优解。下图描述了一个简单的遗传算法流程:</p>
+<p><img src="/assets/images/blog_img/2017-09-19-遗传算法中几种不同选择算子的比较/flowchart.png" alt=""></p>
+<p>对于种群中需要进行杂交的物种选择方法有很多，而且选择一种合适的选择策略对于遗传算法整体性能的影响将是很大的。如果一个选择算法选择多样性降低，便会导致种群过早的收敛到局部最优点而不是我们想要的全局最优点，也就是所谓的”早熟”。而选择策略过于发散则会导致算法难以收敛到最优点。因此在这两点中我们需要进行平衡才能使遗传算法以一种高效的方式收敛到全局最优点。</p>
+<h2 id="GAFT框架中的算子插件"><a href="#GAFT框架中的算子插件" class="headerlink" title="GAFT框架中的算子插件"></a>GAFT框架中的算子插件</h2><p>GAFT是我根据自己需求开发的一个遗传算法框架，相关介绍的博客可以参见《<a target="_blank" rel="noopener" href="http://pytlab.org/2017/07/23/gaft-%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/">GAFT-一个使用Python实现的遗传算法框架</a>》,《<a target="_blank" rel="noopener" href="http://pytlab.org/2017/08/02/%E4%BD%BF%E7%94%A8MPI%E5%B9%B6%E8%A1%8C%E5%8C%96%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">使用MPI并行化遗传算法框架GAFT</a>》。该框架提供了插件接口，用户可以通过自定义算子以及on-the-fly分析插件来放到gaft框架中运行遗传算法流程对目标问题进行优化。</p>
+<p>本部分我稍微介绍下gaft关于遗传算子相关接口规范，以及编写能用于gaft的算子的编写方法。</p>
+<p>在gaft中遗传算子的编写都是需要继承框架内置的基类，然后根据基类提供的接口，实现自己的算子。其中基类的定义都在<a target="_blank" rel="noopener" href="https://github.com/PytLab/gaft/tree/master/gaft/plugin_interfaces/operators"><code>/gaft/plugin_interfaces/operators/</code></a>目录下，下面我以选择算子为例，介绍下接口。</p>
+<p>gaft中选择算子的基类为<code>GASelection</code>，其中在遗传算法流程中会调用该类实例的<code>select</code>方法，进而根据算子中的相关选择策略完成从种群中选取一对物种作为父亲和母亲产生子代。基类的定义为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GASelection</span>(<span class="params">metaclass=SelectionMeta</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Class for providing an interface to easily extend the behavior of selection</span></span><br><span class="line"><span class="string">    operation.</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self, population, fitness</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Called when we need to select parents from a population to later breeding.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param population: The current population.</span></span><br><span class="line"><span class="string">        :type population: GAPopulation</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return parents: Two selected individuals for crossover.</span></span><br><span class="line"><span class="string">        :type parents: Tuple of tow GAIndividual objects.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError</span><br></pre></td></tr></table></figure></p>
+<p><code>select</code>的方法的参数为当前种群<code>population</code>以及相应的适应度函数<code>fitness</code>，其中<code>population</code>需要是<code>GAPopulation</code>对象，<code>fitness</code>也必须是callable的对象。</p>
+<p>当然，这些在Python这种动态类型语言中貌似看起来有些鸡肋，但是为了能够更加规范使用者，我<strong>利用Python的元类在实例化类对象的时候对接口的实现以及接口的参数类型加以限制</strong>。具体的实现都在<a target="_blank" rel="noopener" href="https://github.com/PytLab/gaft/blob/master/gaft/plugin_interfaces/metaclasses.py"><code>/gaft/plugin_interfaces/metaclasses.py</code></a>中，有兴趣的童鞋可以看看实现方法。</p>
+<p>具体自定义算子的编写方法我将在下一部分同选择策略一起贴出来。</p>
+<h2 id="不同的选择策略"><a href="#不同的选择策略" class="headerlink" title="不同的选择策略"></a>不同的选择策略</h2><p>本部分我主要对四种不同的选择策略进行总结并加以gaft插件形式的Python实现。</p>
+<p>选择算子决定了哪些个体将会从种群中被选择出来用于繁衍下一代种群中的新个体。其主要的原则就是:</p>
+<blockquote>
+<p>the better is an individual; the higher is its chance of being a parent</p>
+</blockquote>
+<p>选择算子在遗传算法迭代中将适应度函数引入进来，因为适应度函数式标定一个个体是否足够“好”的重要标准。但是选择过程又不能仅仅完全依赖于适应度函数，因为一个种群中的最优物种并不一定是在全局最优点附近。因此我们也应该给相对来说并那么“好”的个体一点机会让他们繁衍后代, 避免“早熟”。</p>
+<h3 id="Proportionate-Roulette-Wheel-Selection"><a href="#Proportionate-Roulette-Wheel-Selection" class="headerlink" title="Proportionate Roulette Wheel Selection"></a>Proportionate Roulette Wheel Selection</h3><p>此轮盘赌选择策略，是最基本的选择策略之一，种群中的个体被选中的概率与个体相应的适应度函数的值成正比。我们需要将种群中所有个体的适应度值进行累加然后归一化，最终通过随机数对随机数落在的区域对应的个体进行选取，类似赌场里面的旋转的轮盘。</p>
+<p><img src="/assets/images/blog_img/2017-09-19-遗传算法中几种不同选择算子的比较/roulette_wheel_selection.png" alt=""></p>
+<p>每个个体$a_{i}$被选中的概率为:<br>$$<br>P_{select}(a_i) = \frac{f(a_i)}{\sum_{i=1}^{n}f(a_i)}<br>$$</p>
+<p>好了，下面可以将此算法写成一个可以gaft中执行的算子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect_right</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> accumulate</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ...plugin_interfaces.operators.selection <span class="keyword">import</span> GASelection</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RouletteWheelSelection</span>(<span class="params">GASelection</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Selection operator with fitness proportionate selection(FPS) or</span></span><br><span class="line"><span class="string">        so-called roulette-wheel selection implementation.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self, population, fitness</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Select a pair of parent using FPS algorithm.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># Normalize fitness values for all individuals.</span></span><br><span class="line">        fit = [fitness(indv) <span class="keyword">for</span> indv <span class="keyword">in</span> population.individuals]</span><br><span class="line">        min_fit = min(fit)</span><br><span class="line">        fit = [(i - min_fit) <span class="keyword">for</span> i <span class="keyword">in</span> fit]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Create roulette wheel.</span></span><br><span class="line">        sum_fit = sum(fit)</span><br><span class="line">        wheel = list(accumulate([i/sum_fit <span class="keyword">for</span> i <span class="keyword">in</span> fit]))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Select a father and a mother.</span></span><br><span class="line">        father_idx = bisect_right(wheel, random())</span><br><span class="line">        father = population[father_idx]</span><br><span class="line">        mother_idx = (father_idx + <span class="number">1</span>) % len(wheel)</span><br><span class="line">        mother = population[mother_idx]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> father, mother</span><br></pre></td></tr></table></figure>
+<p>过程主要分为下面几个:</p>
+<ol>
+<li>继承<code>GASelection</code>类</li>
+<li>实现<code>select</code>方法</li>
+<li><code>select</code>的参数为<code>GAPopulation</code>实例和适应度函数</li>
+<li>根据算法选择出两个需要繁衍的物种并返回即可</li>
+</ol>
+<h3 id="Tournament-Selection"><a href="#Tournament-Selection" class="headerlink" title="Tournament Selection"></a>Tournament Selection</h3><p>由于算法执行的效率以及易实现的的特点，锦标赛选择算法是遗传算法中最流行的选择策略。在本人的实际应用中的确此策略比基本的轮盘赌效果要好些。他的策略也很直观，就是我们再整个种群中抽取$n$个个体，让他们进行竞争(锦标赛)，抽取其中的最优的个体。参加锦标赛的个体个数成为tournament size。通常当$n = 2$便是最常使用的大小，也称作Binary Tournament Selection.</p>
+<p>Tournament Selection的优势:</p>
+<ol>
+<li>更小的复杂度$O(n)$</li>
+<li>易并行化处理</li>
+<li>不易陷入局部最优点</li>
+<li>不需要对所有的适应度值进行排序处理</li>
+</ol>
+<p>下图显示了$n = 3$的Tournament Selection的过程:</p>
+<p><img src="/assets/images/blog_img/2017-09-19-遗传算法中几种不同选择算子的比较/tournament_selection.png" alt=""></p>
+<p>可以开始写成自定义算子在gaft运行了:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> sample</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ...plugin_interfaces.operators.selection <span class="keyword">import</span> GASelection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TournamentSelection</span>(<span class="params">GASelection</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, tournament_size=<span class="number">2</span></span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Selection operator using Tournament Strategy with tournament size equals</span></span><br><span class="line"><span class="string">        to two by default.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        self.tournament_size = tournament_size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self, population, fitness</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Select a pair of parent using Tournament strategy.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># Competition function.</span></span><br><span class="line">        complete = <span class="keyword">lambda</span> competitors: max(competitors, key=fitness)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Check validity of tournament size.</span></span><br><span class="line">        <span class="keyword">if</span> self.tournament_size &gt;= len(population):</span><br><span class="line">            msg = <span class="string">&#x27;Tournament size(&#123;&#125;) is larger than population size(&#123;&#125;)&#x27;</span></span><br><span class="line">            <span class="keyword">raise</span> ValueError(msg.format(self.tournament_size, len(population)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Pick winners of two groups as parent.</span></span><br><span class="line">        competitors_1 = sample(population.individuals, self.tournament_size)</span><br><span class="line">        competitors_2 = sample(population.individuals, self.tournament_size)</span><br><span class="line">        father, mother = complete(competitors_1), complete(competitors_2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> father, mother</span><br></pre></td></tr></table></figure></p>
+<h3 id="Linear-Ranking-Selection"><a href="#Linear-Ranking-Selection" class="headerlink" title="Linear Ranking Selection"></a>Linear Ranking Selection</h3><p>下面两个介绍的选择策略都是基于排序的选择策略，上面提到的第一种基本轮盘赌选择算法，有一个缺点，就是如果一个个体的适应度值为0的话，则被选中的概率将会是0, 这个个体将不能产生后代。于是我们需要一种基于排序的算法，来给每个个体安排相应的选中概率。</p>
+<p>在Linear Ranking Selection中，种群中的个体首先根据适应度的值进行排序，然后给所有个体赋予一个序号，最好的个体为$N$, 被选中的概率为$P_{max}$, 最差的个体序号为$1$, 被选中的概率为$P_{min}$，于是其他的在他们中间的个体的概率便可以根据如下公式得到:<br>$$<br>P_i = P_{min} + (P_{max} - P_{min})\frac{i - 1}{N - 1}<br>$$</p>
+<p>实现代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> accumulate</span><br><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect_right</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ...plugin_interfaces.operators.selection <span class="keyword">import</span> GASelection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearRankingSelection</span>(<span class="params">GASelection</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, pmin=<span class="number">0.1</span>, pmax=<span class="number">0.9</span></span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Selection operator using Linear Ranking selection method.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Reference: Baker J E. Adaptive selection methods for genetic</span></span><br><span class="line"><span class="string">        algorithms[C]//Proceedings of an International Conference on Genetic</span></span><br><span class="line"><span class="string">        Algorithms and their applications. 1985: 101-111.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># Selection probabilities for the worst and best individuals.</span></span><br><span class="line">        self.pmin, self.pmax = pmin, pmax</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self, population, fitness</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Select a pair of parent individuals using linear ranking method.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># Individual number.</span></span><br><span class="line">        NP = len(population)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Add rank to all individuals in population.</span></span><br><span class="line">        sorted_indvs = sorted(population.individuals, key=fitness, reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Assign selection probabilities linearly.</span></span><br><span class="line">        <span class="comment"># <span class="doctag">NOTE:</span> Here the rank i belongs to &#123;1, ..., N&#125;</span></span><br><span class="line">        p = <span class="keyword">lambda</span> i: (self.pmin + (self.pmax - self.pmin)*(i<span class="number">-1</span>)/(NP<span class="number">-1</span>))</span><br><span class="line">        probabilities = [self.pmin] + [p(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, NP)] + [self.pmax]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Normalize probabilities.</span></span><br><span class="line">        psum = sum(probabilities)</span><br><span class="line">        wheel = list(accumulate([p/psum <span class="keyword">for</span> p <span class="keyword">in</span> probabilities]))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Select parents.</span></span><br><span class="line">        father_idx = bisect_right(wheel, random())</span><br><span class="line">        father = population[father_idx]</span><br><span class="line">        mother_idx = (father_idx + <span class="number">1</span>) % len(wheel)</span><br><span class="line">        mother = population[mother_idx]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> father, mother</span><br></pre></td></tr></table></figure></p>
+<h3 id="Exponential-Ranking-Selection"><a href="#Exponential-Ranking-Selection" class="headerlink" title="Exponential Ranking Selection"></a>Exponential Ranking Selection</h3><p>类似上面的Linear Ranking选择策略，这种指数排序便是在确定每个个体的选择概率的时候使用了指数形式的表达式, 其中$c$为底数，满足$0 &lt; c &lt; 1$:<br>$$<br>P_i = \frac{c^{N - i}}{\sum_{j=1}^{N} c^{N-j}}<br>$$</p>
+<p>实现代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> accumulate</span><br><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect_right</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ...plugin_interfaces.operators.selection <span class="keyword">import</span> GASelection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExponentialRankingSelection</span>(<span class="params">GASelection</span>):</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, base=<span class="number">0.5</span></span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Selection operator using Exponential Ranking selection method.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param base: The base of exponent</span></span><br><span class="line"><span class="string">        :type base: float in range (0.0, 1.0)</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0.0</span> &lt; base &lt; <span class="number">1.0</span>):</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;The base of exponent c must in range (0.0, 1.0)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        self.base = base</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self, population, fitness</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Select a pair of parent individuals using exponential ranking method.</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># Individual number.</span></span><br><span class="line">        NP = len(population)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># <span class="doctag">NOTE:</span> Here the rank i belongs to &#123;1, ..., N&#125;</span></span><br><span class="line">        p = <span class="keyword">lambda</span> i: self.base**(NP - i)</span><br><span class="line">        probabilities = [p(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, NP + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Normalize probabilities.</span></span><br><span class="line">        psum = sum(probabilities)</span><br><span class="line">        wheel = list(accumulate([p/psum <span class="keyword">for</span> p <span class="keyword">in</span> probabilities]))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Select parents.</span></span><br><span class="line">        father_idx = bisect_right(wheel, random())</span><br><span class="line">        father = population[father_idx]</span><br><span class="line">        mother_idx = (father_idx + <span class="number">1</span>) % len(wheel)</span><br><span class="line">        mother = population[mother_idx]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> father, mother</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文对于遗传算法中四种不同的选择策略进行了介绍和总结，同时对于本文所写的遗传算法框架的自定义算子接口进行了简要的介绍，针对本文中的选择策略分别根据接口的要求实现了相应的算子，这些算子也作为GAFT框架的内置算子放入到GAFT中，对于使用GAFT的童鞋可以直接拿来使用。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>Shukla, Anupriya, Hari Mohan Pandey, and Deepti Mehrotra. “Comparative review of selection techniques in genetic algorithm.” Futuristic Trends on Computational Analysis and Knowledge Management (ABLAZE), 2015 International Conference on. IEEE, 2015.</li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/09/23/遗传算法中适值函数的标定与大变异算法/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/09/10/递归式求解-主方法/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-09-19 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/代码作品/">代码作品<span class="badge">19</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/gaft/">gaft<span class="badge">6</span></a></li> <li><a href="/tags/GeneticAlgorithm/">GeneticAlgorithm<span class="badge">7</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E9%80%89%E6%8B%A9%E7%AE%97%E5%AD%90"><span class="toc-article-text">遗传算法中的选择算子</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#GAFT%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E7%AE%97%E5%AD%90%E6%8F%92%E4%BB%B6"><span class="toc-article-text">GAFT框架中的算子插件</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5"><span class="toc-article-text">不同的选择策略</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Proportionate-Roulette-Wheel-Selection"><span class="toc-article-text">Proportionate Roulette Wheel Selection</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Tournament-Selection"><span class="toc-article-text">Tournament Selection</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Linear-Ranking-Selection"><span class="toc-article-text">Linear Ranking Selection</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Exponential-Ranking-Selection"><span class="toc-article-text">Exponential Ranking Selection</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%8F%82%E8%80%83"><span class="toc-article-text">参考</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>初识代码封装工具SWIG | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="在这里简单介绍下关于swig的使用方法，和大致工作方式。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="初识代码封装工具SWIG"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 初识代码封装工具SWIG</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>在这里简单介绍下关于swig的使用方法，和大致工作方式。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>这不是我最早使用swig了，之前在写Kynetix的时候就使用了swig为python封装了C语言写的扩展模块。但是当时我对C++还不是很了解，对其中的一些概念也只是拿来直接用，没有理解到底是什么，为什么会有这种功能。所以昨天我又拿出了《python科学计算》这本书来温习了一下swig那一部分，果然对swig又有了新的认识。</p>
+<p>对swig真正全的使用都在swig的文档中有详细的介绍，而且由于swig支持很多种语言，例如java、python、Tcl等，因此这份文档内容相当的丰富。由于现在还没有很好的中文资源，所以现在只能默默的看英文文档了。</p>
+<a id="more"></a>
+<h3 id="SWIG用来做什么？"><a href="#SWIG用来做什么？" class="headerlink" title="SWIG用来做什么？"></a>SWIG用来做什么？</h3><p>swig是个封装器，它读取C/C++的函数或者类声明，并将这些函数或者类进行封装，生成一个封装代码，其中包含一个目标语言的文件供目标文件调用，还包含一个C/C++的封装文件以<code>&lt;source&gt;_wrap.c</code>或者<code>&lt;source&gt;_wrap.cxx</code>命名。这个生成的<code>_wrap.cxx</code>文件就是个封装文件，然后我们将这个封装文件同我们自己的C/C++代码或者是已经编译好的目标文件（<code>*.o</code>或者<code>*.obj</code>文件）或者库文件（<code>*.lib/*.a</code>文件）一起编译并连接，就会生成一个我们目标语言能够认识并且调用的模块。</p>
+<p>其中的swig生成的封装代码的作用就是能够使得python与C/C++之间能够无阻碍的沟通，也就是</p>
+<ul>
+<li>将封装函数接收到的Python对象转换成C/C++能够处理的数据</li>
+<li>有了数据以后便执行C/C++的函数</li>
+<li>执行C/C++函数将返回值在转换成python对象返回给python代码去处理</li>
+</ul>
+<p><img src="/assets/images/blog_img/2016-04-02-在CMake中使用SWIG构建封装模块/swig.png" alt=""></p>
+<h3 id="简单的操作"><a href="#简单的操作" class="headerlink" title="简单的操作"></a>简单的操作</h3><p>swig需要一个<code>*.i</code>文件，也就是swig接口文件(interface)告诉swig需要如何处理C/C++的数据、函数和类。</p>
+<ol>
+<li><p>先生成封装代码</p>
+ <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">swig</span> <span class="literal">-</span><span class="comment">c</span>++ <span class="literal">-</span><span class="comment">python</span> <span class="comment">demo</span><span class="string">.</span><span class="comment">i</span></span><br></pre></td></tr></table></figure>
+<p> 这个命令就会生成python的封装代码，当前路径下会出现<code>demo.py</code>和<code>demo_wrap.cxx</code>文件。其中<code>demo.py</code>文件中是python代码，也就是一个壳子，他能够让python程序调用这个模块中的函数，但是函数的实体并不在里面，因为函数的实体是C/C++编译后的动态库文件。</p>
+</li>
+<li><p>编译封装代码<br> 这一步只说明生成的C/C++的封装代码是可以单独编译的，这就将封装同C/C++库分割开，我按照我的方式写C/C++代码不用管封装的事情，最后只要把wrap的目标文件链接起来就好了。</p>
+ <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">$</span> <span class="comment">g</span>++ <span class="literal">-</span><span class="comment">fPIC</span> <span class="literal">-</span><span class="comment">c</span> <span class="comment">demo_wrap</span><span class="string">.</span><span class="comment">cxx</span></span><br></pre></td></tr></table></figure>
+<p> 需要注意的是<code>-fPIC</code>这个参数是一定要加的，不然就无法生成动态链接库。具体这个参数是做什么的，顾名思义就是生成一个位置独立的代码段，这样无论函数在哪都能够动态的调用这个动态库了，详见：<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/5311515/gcc-fpic-option">http://stackoverflow.com/questions/5311515/gcc-fpic-option</a></p>
+</li>
+<li><p>链接成扩展模块<br> 将封装文件与库文件链接成为python能够调用的动态库，这一步就好像是使用wrap这个文件给C/C++库文件进行化妆，化成python认识的那种样子。当然swig也可以根据使用者的需求把C/C++的库化妆成其他语言认识的样子如java、ruby等。<br> 这样就会生成一个<code>_demo.so</code>或者<code>_demo.pyd</code>的库文件，python可以通过之前的<code>demo.py</code>或者直接<code>_demo.pyd</code>来用自己的方式调用C/C++的函数和类来为自己服务。</p>
+ <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ g++ -shared demo_wrap.o demo.c -o <span class="module-access"><span class="module"><span class="identifier">_demo</span>.</span></span>so</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="关于类型映射"><a href="#关于类型映射" class="headerlink" title="关于类型映射"></a>关于类型映射</h3><p><code>.i</code>文件描述了如何创建封装文件，具体的语法我不在这里总结了可以直接去看文档。其中比较重要的部分就是如何让python和C/C++进行交流，比如如何处理python没有指针操作与C/C++传入指针的矛盾，如何处理python返回多个值与C/C++只能返回一个值的矛盾等。</p>
+<p>类型映射就是一套规则，告诉swig如何将这些矛盾化解，并定义名称参数，将名称参数写道接口文件的类和函数声明中，让swig处理。<br>SWIG已经有了默认的一些类型映射，例如<code>* OUTPUT</code>, <code>* INPUT</code>, <code>* INOUT</code>等来告诉swig这些参数处理成python接口时候怎么处理。<br>例如如果我在接口文件中声明了一个C函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_multi</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, <span class="keyword">double</span> * OUTPUT, <span class="keyword">double</span> * OUTPUT)</span></span>;</span><br></pre></td></tr></table></figure><br>这时候swig就认出了OUTPUT是一种类型映射定义的名称参数，C语言修改这两个指针指向的值要处理成python调用这个函数返回这两个指针指向的值的list。</p>
+<p>除了使用已定义的类型映射，swig还支持自定义的类型映射，这里我也不多讲了，以后如果在写类型映射的时候我会更新。</p>
+<h3 id="回调Python函数"><a href="#回调Python函数" class="headerlink" title="回调Python函数"></a>回调Python函数</h3><p>这里主要是能够让C/C++代码调用python的函数。现在必须要理解这一点，因为KMCLib中就用到了这个，使得能够让用户使用python自定义RateCalculator然后重新定义C++的虚函数，是C++程序能够调用python类的方法。<br>我在这里举一个例子，就是在python中能够继承C++中定义的类，并且在python中重新定义C++类的虚函数。</p>
+<ol>
+<li><p>开启此功能，在接口文件中的模块名称定义中要加入<code>director</code>参数</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%<span class="keyword">module</span>(director=<span class="string">&quot;1&quot;</span>) demo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在希望能够调用python函数的C++类中，通过<code>%feature</code>指令开启director功能：</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%feature(<span class="string">&quot;director&quot;</span>) Sum;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>我下面把别人的例子贴上来，方便以后自己回忆：</p>
+<p>定义一个求和类：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Sum() &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    ~Sum() &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">Cal</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>;             <span class="comment">// 从start开始到end结束，将Func作用于中间的整数然后球和。</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Func</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; <span class="keyword">return</span> x &#125;; <span class="comment">// python 中的Sum类的子类可以重写这个虚函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在接口文件中我们放入此类的声明的时候开启”director”功能：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">%feature(<span class="string">&quot;director&quot;</span>) Sum</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Sum() &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    ~Sum() &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">Cal</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Func</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; <span class="keyword">return</span> x &#125;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样在python中我们就可以这么用了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> demo</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SumReciprocal</span>(<span class="params">demo.Sum</span>):</span>  <span class="comment"># Sum类的派生类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Func</span>(<span class="params">self, x</span>):</span>          <span class="comment"># 重写Sum的Func虚方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>/x</span><br></pre></td></tr></table></figure></p>
+<p>然后我们就可以直接在python中使用这个重写过Sum类方法的子类了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>swig很强大，能够熟练使用，是快速而且方便独立的构建python语言以及其他动态语言的扩展模块，真是感觉我站在了巨人的肩膀上了。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/04/02/在CMake中使用SWIG构建封装模块/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/03/31/KMCLib中的Matcher/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-04-02 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/swig/">swig<span class="badge">7</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#SWIG%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-article-text">SWIG用来做什么？</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-article-text">简单的操作</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%85%B3%E4%BA%8E%E7%B1%BB%E5%9E%8B%E6%98%A0%E5%B0%84"><span class="toc-article-text">关于类型映射</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%9B%9E%E8%B0%83Python%E5%87%BD%E6%95%B0"><span class="toc-article-text">回调Python函数</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

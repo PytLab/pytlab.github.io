@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>KMCLib中的LatticeMap | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="KMCLib中的LatticeMap类&lt;br&gt;主要用于描述整个3维网格，其中包括网格格点的各种操作，如移动，寻找NN等等">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="KMCLib中的LatticeMap"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> KMCLib中的LatticeMap</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>KMCLib中的LatticeMap类<br>主要用于描述整个3维网格，其中包括网格格点的各种操作，如移动，寻找NN等等</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>这里的成员数据全部<code>protected</code></p>
+<h3 id="成员数据"><a href="#成员数据" class="headerlink" title="成员数据"></a>成员数据</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n_basis_;                   <span class="comment">// 基点个数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; repetitions_;  <span class="comment">// site各个方向上重复次数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; periodic_;    <span class="comment">// 周期性边界条件</span></span><br></pre></td></tr></table></figure>
+<p>这个类的成员数据相对比较少，就三个，就可以描述整个三维网格的所有性质了。<br>其中后两个好理解，但是第一个我看了许久代码都不知道是个啥东西，还好曹老师给的指点，终于弄明白了所谓基点数目和基点到底是什么东西。<br><a id="more"></a></p>
+<h4 id="关于basis-points和n-basis"><a href="#关于basis-points和n-basis" class="headerlink" title="关于basis_points和n_basis"></a>关于<code>basis_points</code>和<code>n_basis</code></h4><p>其实也没啥好说的，本身没有什么难理解的，只要知道是怎么操作的了就一切都好说了。先上图吧：<br><img src="/assets/images/blog_img/2016-03-21-KMCLib中的LatticeMap/lattice_indices.png" alt=""><br>上图描述了KMCLib中三维网格模型的基本信息（忽略我拙劣的画风 -_-！），其中包括：</p>
+<ul>
+<li>三个基向量的方向和顺序</li>
+<li>每个位点的索引号和顺序</li>
+<li>基点的信息</li>
+</ul>
+<p>从上图中可以看出，所谓基点数目就是小括号中的数目，虽然目前还没看到这样做的作用是什么，不过好像的确是能够通过这种方式模拟多位点如hollow、top、bridge这种，现在概念都明了了，代码看起来速度可以飞起了，嗖嗖嗖～～===3333</p>
+<h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><p>这里也只是罗列几个比较重要的方法<br>类方法实现代码中有一个static变量，用于存储含有不同n_basis的index<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Temporary storage for the indices form cell.</span></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp_cell_indices__;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><code>indicesFromCell()</code> 和 <code>indexToCell()</code></p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; <span class="title">LatticeMap::indicesFromCell</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> i,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                     <span class="keyword">const</span> <span class="keyword">int</span> j,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                     <span class="keyword">const</span> <span class="keyword">int</span> k)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    ... </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LatticeMap::indexToCell</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> index,</span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">int</span> &amp; cell_i,</span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">int</span> &amp; cell_j,</span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">int</span> &amp; cell_k)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    ... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  这两个函数是可逆的，第一个是提供位点在x、y、z三个方向上分别的序号，返回全局索引序号；第二个则是相反的操作，提供全局索引，返回相对应的在三个方向上的分量索引值。具体数据可以去看KMCLib的unittest代码 <a target="_blank" rel="noopener" href="https://github.com/PytLab/KMCLib/blob/master-pytlab/c%2B%2B/unittest/test_latticemap.cpp"><span class="fa fa-github"></span> KMCLib/test_latticemap.cpp at master-pytlab · PytLab/KMCLib</a></p>
+</li>
+<li><p><code>indexFromMoveInfo()</code></p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LatticeMap::indexFromMoveInfo</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> index,</span></span></span><br><span class="line"><span class="function"><span class="params">                                  <span class="keyword">const</span> <span class="keyword">int</span> i,</span></span></span><br><span class="line"><span class="function"><span class="params">                                  <span class="keyword">const</span> <span class="keyword">int</span> j,</span></span></span><br><span class="line"><span class="function"><span class="params">                                  <span class="keyword">const</span> <span class="keyword">int</span> k,</span></span></span><br><span class="line"><span class="function"><span class="params">                                  <span class="keyword">const</span> <span class="keyword">int</span> basis)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    ... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  此函数是用于返回某个位点加上某个向量以后新位点的索引，虽然还没看到此函数用在什么地方，不出意外是用于元素在网格中移动的时候用的。<br>  具体的操作：<br>  例如最开始一个site的索引值为16，这个网格的基点数目是3，也就是说每个点上的索引都是一个三维向量例如<code>(15, 16, 17)</code>，则参数中index就为<code>16</code>;<br>  接下来的三个参数代表位移向量在三个方向上的分量<code>(i, j, k)</code>;<br>  最后是<code>basis</code>这个参数有点不好理解，它指的是在basis_point内的相对于初始位置的偏移量，例如最开始是<code>(15, 16, 17)</code>中的<code>16</code>，经过向量的位移之后，到达全局索引<code>(18, 19, 20)</code>但是还是指向的中间的19，因此若需要一个相对的偏移量指向第一个的话，则就需要<code>basis</code>这个值了，他的值应该为-1。</p>
+</li>
+<li><p><code>neighbourIndices()</code>和<code>supersetNeighbourIndices()</code></p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">LatticeMap::neighbourIndices</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> index,</span></span></span><br><span class="line"><span class="function"><span class="params">                                              <span class="keyword">const</span> <span class="keyword">int</span> shells)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    ... </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">LatticeMap::supersetNeighbourIndices</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; indices,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                      <span class="keyword">const</span> <span class="keyword">int</span> shells)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    ... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  这两个函数相似，后者就是循环调用前者然后去重的产物。至于所谓的neighbor，还是先上图吧：<br>  <img src="/assets/images/blog_img/2016-03-21-KMCLib中的LatticeMap/neighbors.png" alt=""><br>  所谓找neighbor就是将shell包含的内部全部site的索引数按顺序返回出来。如果有周期性边界条件的限制，例如a和b轴都没有周期性边界条件，寻找0位置的neighbor，则按照图上的顺序返回neighbor的全局索引。</p>
+</li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/03/24/KMCLib中的match-list/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/03/21/KMCLib中的CustomRateProcess/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-03-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li> <li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li> <li><a href="/tags/Cpp/">Cpp<span class="badge">54</span></a></li> <li><a href="/tags/学术/">学术<span class="badge">16</span></a></li> <li><a href="/tags/KMCLib/">KMCLib<span class="badge">12</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%88%90%E5%91%98%E6%95%B0%E6%8D%AE"><span class="toc-article-text">成员数据</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%85%B3%E4%BA%8Ebasis-points%E5%92%8Cn-basis"><span class="toc-article-text">关于basis_points和n_basis</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-article-text">成员函数</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

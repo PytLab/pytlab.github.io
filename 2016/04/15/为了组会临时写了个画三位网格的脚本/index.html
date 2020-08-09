@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>为了组会临时写了个画三维网格的脚本 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="这周的组会打算汇报下KMCLib的思想，但是直接这么讲担心下面的同学和老师听不懂就特地写了个脚本画出三位网格图，以方便解释lattice模型。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="为了组会临时写了个画三维网格的脚本"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 为了组会临时写了个画三维网格的脚本</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>这周的组会打算汇报下KMCLib的思想，但是直接这么讲担心下面的同学和老师听不懂就特地写了个脚本画出三位网格图，以方便解释lattice模型。</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>这次组会之所以汇报KMCLib的原理，其中一个重要的原因是我想趁这个机会把看得东西进行总结，以免以后忘记了能够拿回来PPT快速回忆起来重要的东西。所以为了能够让下面的人听懂我在讲什么特地用python写了个绘制三维网格图的脚本，帮我节省了不少时间。不多扯了，进入主题吧。</p>
+<p>三维网格主要是用来描述三维晶格的，因为KMCLib是一个可以模拟一维到三维的KMC模拟库，因此想要绘制三维图还是要结束matplotlib库的plot3d。同时还要配合着python的<code>itertools</code>提供的<code>product</code>和<code>combinations</code>函数，方便坐标的操作。<br>先倒入要用的库，然后创建figure对象和axes对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> proj3d</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product, combinations, permutations</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = fig.gca(projection=<span class="string">&#x27;3d&#x27;</span>)</span><br><span class="line">ax.set_aspect(<span class="string">&quot;equal&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>首先是三维网格的框架，先上一个效果图吧：<br><a id="more"></a><br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/lines.png" alt=""></p>
+<h3 id="三维网格格点与线"><a href="#三维网格格点与线" class="headerlink" title="三维网格格点与线"></a>三维网格格点与线</h3><p>网格主要是要画线，就是直接画三维直线即可(一下均用4x4x4的网格举例)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">r = range(<span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># line width</span></span><br><span class="line">lw = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># line color</span></span><br><span class="line">lc = <span class="string">&#x27;#919191&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get all position in a 2d plane</span></span><br><span class="line">coordinates = product(r, repeat=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># draw line parallel to x axis</span></span><br><span class="line">x = (r[<span class="number">0</span>], r[<span class="number">-1</span>])</span><br><span class="line"><span class="keyword">for</span> y, z <span class="keyword">in</span> coordinates:</span><br><span class="line">    ax.plot3D(x, [y, y], [z, z], color=lc, lw=lw)</span><br><span class="line">    ax.plot3D([y, y], x, [z, z], color=lc, lw=lw)</span><br><span class="line">    ax.plot3D([y, y], [z, z], x, color=lc, lw=lw)</span><br></pre></td></tr></table></figure></p>
+<p>接下来就是要往网格个点上进行填充，这要先获取每个网格的每个坐标值，这时候就用到了itertools提供的接口了, 同时为了后面方便我把所有的坐标tuple保存了下来：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get all points coordinates</span></span><br><span class="line">coord_it = product(r, repeat=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># collect all points</span></span><br><span class="line">coords = []</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> coord_it:</span><br><span class="line">    coords.append(c)</span><br></pre></td></tr></table></figure></p>
+<h3 id="三维散点进行填充"><a href="#三维散点进行填充" class="headerlink" title="三维散点进行填充"></a>三维散点进行填充</h3><p>接下来要是使用三维散点往晶格上撒点，有了坐标了，这种撒点就很容易操作了，上效果图：<br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/sites_points.png" alt=""></p>
+<h3 id="给晶格添加坐标"><a href="#给晶格添加坐标" class="headerlink" title="给晶格添加坐标"></a>给晶格添加坐标</h3><p>一开始我想用annotate来实现不过好像不用，<code>ax.text()</code>就很好，方便快捷：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add text</span></span><br><span class="line"><span class="keyword">for</span> i, (x, y, z) <span class="keyword">in</span> enumerate(coords):</span><br><span class="line">    ax.text(z, y, x, <span class="string">&#x27;%s&#x27;</span> % (str(i)), size=<span class="number">13</span></span><br><span class="line"> add coordinates</span><br><span class="line"><span class="keyword">for</span> z, y, x <span class="keyword">in</span> coords:</span><br><span class="line">    ax.text(x, y, z,</span><br><span class="line">            <span class="string">&quot;(%s, %s, %s)&quot;</span> % (float(z), float</span><br><span class="line">            size=<span class="number">13</span>, zorder=<span class="number">2</span>, color=<span class="string">&#x27;k&#x27;</span>)</span><br></pre></td></tr></table></figure><br>效果图：<br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/coordinates.png" alt=""></p>
+<h3 id="添加含有basis-site的全局索引值"><a href="#添加含有basis-site的全局索引值" class="headerlink" title="添加含有basis site的全局索引值"></a>添加含有basis site的全局索引值</h3><p>由于KMCLib中一个很重要的概念就是basis_site因为他的存在，是的kmclib足够强大能够模拟任何晶格的kMC过程，所以要实现能够画出这种效果的程序也很简单，把所有的点全部标号，只不过标号的时候要进行分组，这里就要用的数组的变形的，即<code>numpy.array</code>的<code>reshape</code>成员函数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add basis sites</span></span><br><span class="line">nbasis = <span class="number">3</span></span><br><span class="line">site_indices = np.array(range(len(coords)*nbasis)).reshape(<span class="number">-1</span>, nbasis)</span><br><span class="line">site_indices = site_indices.tolist()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> basis_sites, position <span class="keyword">in</span> zip(site_indices, coords):</span><br><span class="line">    x, y, z = position</span><br><span class="line">    bsite_str = (<span class="string">&quot;(&quot;</span> + <span class="string">&quot;%s, &quot;</span>*(nbasis<span class="number">-1</span>) + <span class="string">&quot;%s)&quot;</span>) % tuple(map(str, ba</span><br><span class="line">    ax.text(z, y, x, bsite_str, size=<span class="number">10</span>, zorder=<span class="number">2</span>, color=<span class="string">&#x27;k&#x27;</span>)</span><br></pre></td></tr></table></figure><br>效果图：<br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/basis_sites.png" alt=""></p>
+<p>关于注释部分我是在stackoverflow上看到有人这么写我也就搬过来了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add annotate</span></span><br><span class="line">x2, y2, _ = proj3d.proj_transform(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, ax.get_proj())</span><br><span class="line">label = ax.annotate(</span><br><span class="line">    <span class="string">&quot;Center site&quot;</span>,</span><br><span class="line">    xy = (x2, y2), xytext = (<span class="number">-20</span>, <span class="number">20</span>),</span><br><span class="line">    textcoords = <span class="string">&#x27;offset points&#x27;</span>, ha = <span class="string">&#x27;right&#x27;</span>, va = <span class="string">&#x27;bottom&#x27;</span>,</span><br><span class="line">    bbox = dict(boxstyle = <span class="string">&#x27;round,pad=0.5&#x27;</span>, fc = <span class="string">&#x27;yellow&#x27;</span>, alpha = <span class="number">1.0</span>),</span><br><span class="line">    arrowprops = dict(arrowstyle = <span class="string">&#x27;-&gt;&#x27;</span>, connectionstyle = <span class="string">&#x27;arc3,rad=0&#x27;</span>))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_position</span>(<span class="params">e</span>):</span></span><br><span class="line">    x2, y2, _ = proj3d.proj_transform(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, ax.get_proj())</span><br><span class="line">    label.xy = x2,y2</span><br><span class="line">    label.update_positions(fig.canvas.renderer)</span><br><span class="line">    fig.canvas.draw()</span><br></pre></td></tr></table></figure></p>
+<h3 id="向还有多个basis-site的网格填充散点"><a href="#向还有多个basis-site的网格填充散点" class="headerlink" title="向还有多个basis site的网格填充散点"></a>向还有多个basis site的网格填充散点</h3><p>这里就要获取每个basis site的绝对坐标，获取方法就是在每个网格点上进行偏移处理，然后撒点。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cadd additional points</span></span><br><span class="line">offset_1 = (<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.1</span>)</span><br><span class="line">offset_2 = (<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y, z <span class="keyword">in</span> coords:</span><br><span class="line"><span class="comment">#    if 3 in (x, y, z):</span></span><br><span class="line"><span class="comment">#        continue</span></span><br><span class="line">    new_x = x + offset_1[<span class="number">0</span>]</span><br><span class="line">    new_y = y + offset_1[<span class="number">1</span>]</span><br><span class="line">    new_z = z + offset_1[<span class="number">2</span>]</span><br><span class="line">    color = colors[int(random.random()*<span class="number">3</span>)]</span><br><span class="line">    ax.scatter(new_x, new_y, new_z, color=color, s=<span class="number">80</span>, marker=<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">    <span class="comment"># plot linking line</span></span><br><span class="line">    ax.plot3D((x, new_x), (y, new_y), (z, new_z), color=lc, lw=lw)</span><br><span class="line"></span><br><span class="line">    new_x = x + offset_2[<span class="number">0</span>]</span><br><span class="line">    new_y = y + offset_2[<span class="number">1</span>]</span><br><span class="line">    new_z = z + offset_2[<span class="number">2</span>]</span><br><span class="line">    color = colors[int(random.random()*<span class="number">3</span>)]</span><br><span class="line">    ax.scatter(new_x, new_y, new_z, color=color, s=<span class="number">80</span>, marker=<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">    <span class="comment"># plot linking line</span></span><br><span class="line">    ax.plot3D((x, new_x), (y, new_y), (z, new_z), color=lc, lw=lw)</span><br></pre></td></tr></table></figure><br>效果图：<br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/basis_sites_points.png" alt=""></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>由于还有要画一些封闭的面，这里就是直接使用<code>plot_surface</code>来画的，不多讲了，直接上图吧：<br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/surface1.png" alt=""><br><img src="/assets/images/blog_img/2016-04-15-为了组会临时写了个画三位网格的脚本/surface2.png" alt=""></p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/04/21/C-部分终于写差不多了，转移至python部分/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/04/06/初探SWIG对函数的封装/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-04-15 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/我的日常/">我的日常<span class="badge">7</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li> <li><a href="/tags/matplotlib/">matplotlib<span class="badge">3</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

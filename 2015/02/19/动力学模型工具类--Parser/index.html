@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>动力学模型工具类--Parser | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="动力学模型工具类--Parser"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 动力学模型工具类--Parser</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>这部分其实在放假前就开始写了，后面在写的过程中又添加了前面的table_maker和后面的parser的一些修修补补。在这里整体介绍下这个类的一些特性和简要实现过程。<br>这个类最初的目的还是很简单，就是解析setup file 和 input file把所有的信息全部解析到模型对象中，其中包括模型所必需的一些属性，例如吸附物，过渡态，气体，表面等信息，能量数据，形成能数据等。。。整个类的大概属性和操作在<a target="_blank" rel="noopener" href="http://ipytlab.com/%e5%8a%a8%e5%8a%9b%e5%ad%a6%e6%a8%a1%e5%9e%8b%e4%bb%a3%e7%a0%81%e7%9a%84%e6%95%b4%e4%bd%93%e7%bb%84%e7%bb%87%e6%a1%86%e6%9e%b6/" title="动力学模型代码的整体组织框架">UML图</a>中可以看到，其中包含一个基类<code>ParserBase</code>类，以及子类CsvParser类，在这里我只写了<code>CsvParser</code>，可以再扩展写用于其它表格的Parser，例如利用xlrd模块直接操作excel。</p>
+<p><strong>解析基元反应方程式:</strong><br>在KineticModel中已经通过load()方法中遍历执行setup file后的局部变量的方式将setup file加载到了model中成为model对象的属性。在setup file中定义了一个<code>species_definitions</code>的字典类型变量，用来存储model中所有物种和位点的信息，例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;O_s&#x27;</span>: &#123;<span class="string">&#x27;elements&#x27;</span>: &#123;<span class="string">&#x27;O&#x27;</span>: <span class="number">1</span>&#125;,</span><br><span class="line">        <span class="string">&#x27;formation_energy&#x27;</span>: <span class="number">0.597</span>,</span><br><span class="line">        <span class="string">&#x27;frequencies&#x27;</span>: [<span class="number">359.5</span>, <span class="number">393.3</span>, <span class="number">507.0</span>],</span><br><span class="line">        <span class="string">&#x27;information&#x27;</span>: <span class="string">&#x27;None&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;O&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;site&#x27;</span>: <span class="string">&#x27;s&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;adsorbate&#x27;</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>在前面table_maker中就是利用的这个变量的遍历生成的表格。<code>species_definitions</code>的生成我主要用了dict类型数据，分别写了几个方法来避免3重以上的循环，不然3重以上循环的代码给别人看估计要被抽了。。。<br>大致思路还是分治啦，大概介绍下分开的这几个方法的作用：</p>
+<ul>
+<li><code>parse_site_expression()</code>和<code>parse_species_expression()</code><br>这两个方法类似，都是解析单个物种，例如<code>&#39;2CH3_s&#39;</code>，生成关于这个物种的<code>dict</code>，例如<code>&#123;&#39;CH3_s&#39;: &#123;&#39;number&#39;: 2, &#39;site&#39;: &#39;s&#39;, &#39;elements&#39;: &#123;&#39;C&#39;: 1, &#39;H&#39;:3&#125;&#125;&#125;</code>, 其中化学式的匹配是通过正则表达式的方法，在model模型中分别用compile()将三个常用的正则表达式编译，并设为model对象的属性。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#set elementary parse regex(compiled)</span></span><br><span class="line">self.regex_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line">states_regex = re.compile(<span class="string">r&#x27;([^\&lt;\&gt;]*)(?:\&lt;?\-\&gt;)&#x27;</span>+</span><br><span class="line">                      <span class="string">r&#x27;(?:([^\&lt;\&gt;]*)(?:\&lt;?\-\&gt;))?([^\&lt;\&gt;]*)&#x27;</span>)</span><br><span class="line">self.regex_dict[<span class="string">&#x27;IS_TS_FS&#x27;</span>] = [states_regex, [<span class="string">&#x27;IS&#x27;</span>,<span class="string">&#x27;TS&#x27;</span>,<span class="string">&#x27;FS&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">species_regex = re.compile(<span class="string">r&#x27;(\d*)([^\_\+\*\&lt;\&gt;]+)_(\w+)&#x27;</span>)</span><br><span class="line">self.regex_dict[<span class="string">&#x27;species&#x27;</span>] = \</span><br><span class="line">            [species_regex, [<span class="string">&#x27;stoichiometry&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;site&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">site_regex = re.compile(<span class="string">r&#x27;(\d*)(?:\*\_)(\w+)&#x27;</span>)</span><br><span class="line">self.regex_dict[<span class="string">&#x27;empty_site&#x27;</span>] = \</span><br><span class="line">            [site_regex, [<span class="string">&#x27;stoichiometry&#x27;</span>, <span class="string">&#x27;site&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><p><em>   <code>parse_state_expression()</code><br>这个就感觉像剥洋葱啦，就是分析包含多个物种的一个状态，例如反应中的一个过渡态`’CH2-H_s + </em>_s’<code>,生成相应的字典和物种列表，也就是个</code>tuple`，例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;sp_dict&#x27;</span>: &#123;<span class="string">&#x27;CH-H_s&#x27;</span>: &#123;<span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>, </span><br><span class="line">                        <span class="string">&#x27;site&#x27;</span>: <span class="string">&#x27;s&#x27;</span>, </span><br><span class="line">                        <span class="string">&#x27;elements&#x27;</span>: &#123;<span class="string">&#x27;C&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;H&#x27;</span>: <span class="number">2</span>&#125;&#125;&#125;&#125;,</span><br><span class="line">             &#123;&#125;,</span><br><span class="line">             [<span class="string">&#x27;CH2-H_s&#x27;</span>, <span class="string">&#x27;*_s&#x27;</span>]</span><br></pre></td></tr></table></figure></p>
+<p><p><em>   parse_single_elementary_rxn()<br>继续剥洋葱，这次是解析整个基元反应方程式，将一个基元反应<br>‘C_s + H_s &lt;-&gt; H-C_s + </em>_s -&gt; CH_s + <em>_s’<br>解析成<code>state_dict</code> 和 <code>rxn equation list的tuple</code>:<br>&lt;!–hexoPostRenderEscape:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(&#123;<span class="string">&#x27;FS&#x27;</span>: &#123;<span class="string">&#x27;empty_sites_dict&#x27;</span>: &#123;<span class="string">&#x27;s&#x27;</span>: &#123;<span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;s&#x27;</span>&#125;&#125;,</span><br><span class="line">   <span class="string">&#x27;species_dict&#x27;</span>: &#123;<span class="string">&#x27;CH_s&#x27;</span>: &#123;<span class="string">&#x27;elements&#x27;</span>: &#123;<span class="string">&#x27;C&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;H&#x27;</span>: <span class="number">1</span>&#125;,</span><br><span class="line">     <span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">     <span class="string">&#x27;site&#x27;</span>: <span class="string">&#x27;s&#x27;</span>&#125;&#125;,</span><br><span class="line">   <span class="string">&#x27;state_expression&#x27;</span>: <span class="string">&#x27;CH_s + </em>_s&#x27;</span>&#125;,</span><br><span class="line">  <span class="string">&#x27;IS&#x27;</span>: &#123;<span class="string">&#x27;empty_sites_dict&#x27;</span>: &#123;&#125;,</span><br><span class="line">   <span class="string">&#x27;species_dict&#x27;</span>: &#123;<span class="string">&#x27;C_s&#x27;</span>: &#123;<span class="string">&#x27;elements&#x27;</span>: &#123;<span class="string">&#x27;C&#x27;</span>: <span class="number">1</span>&#125;, <span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;site&#x27;</span>: <span class="string">&#x27;s&#x27;</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;H_s&#x27;</span>: &#123;<span class="string">&#x27;elements&#x27;</span>: &#123;<span class="string">&#x27;H&#x27;</span>: <span class="number">1</span>&#125;, <span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;site&#x27;</span>: <span class="string">&#x27;s&#x27;</span>&#125;&#125;,</span><br><span class="line">   <span class="string">&#x27;state_expression&#x27;</span>: <span class="string">&#x27;C_s + H_s&#x27;</span>&#125;,</span><br><span class="line">  <span class="string">&#x27;TS&#x27;</span>: &#123;<span class="string">&#x27;empty_sites_dict&#x27;</span>: &#123;<span class="string">&#x27;s&#x27;</span>: &#123;<span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;s&#x27;</span>&#125;&#125;,</span><br><span class="line">   <span class="string">&#x27;species_dict&#x27;</span>: &#123;<span class="string">&#x27;H-C_s&#x27;</span>: &#123;<span class="string">&#x27;elements&#x27;</span>: &#123;<span class="string">&#x27;C&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;H&#x27;</span>: <span class="number">1</span>&#125;,</span><br><span class="line">     <span class="string">&#x27;number&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">     <span class="string">&#x27;site&#x27;</span>: <span class="string">&#x27;s&#x27;</span>&#125;&#125;,</span><br><span class="line">   <span class="string">&#x27;state_expression&#x27;</span>: <span class="string">&#x27;H-C_s + <em>_s&#x27;</span>&#125;&#125;,</span><br><span class="line"> [[<span class="string">&#x27;C_s&#x27;</span>, <span class="string">&#x27;H_s&#x27;</span>], [<span class="string">&#x27;H-C_s&#x27;</span>, <span class="string">&#x27;</em>_s&#x27;</span>], [<span class="string">&#x27;CH_s&#x27;</span>, <span class="string">&#x27;*_s&#x27;</span>]])</span><br></pre></td></tr></table></figure>:hexoPostRenderEscape–&gt;</p>
+<p><p>*   <code>parse_elementary_rxns()</code><br>最后循环分析所有的基元反应，并将<code>gas_names, adsorbate_names, transition_state_names, elementary_rxns_list</code>赋值到model的属性中。</p>
+<p><p></p>
+<p><p><br><strong><font size="4">检验基元反应方程守恒:</font></strong><br>这里主要是针对每一个基元反应进行质量守恒和位点守恒进行检测。主要用的了两个方法，一个是获取反应的元素个数的dict，一个是获取位点数的dict：</p>
+<p><li>对于分析元素质量守恒</li></p>
+<p><p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_elements_num_dict</span>(<span class="params">self, species_dict</span>):</span></span><br><span class="line">    sum_element_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> sp <span class="keyword">in</span> species_dict:</span><br><span class="line">        sp_num = species_dict[sp][<span class="string">&#x27;number&#x27;</span>]</span><br><span class="line">        group = &#123;&#125;</span><br><span class="line">        <span class="comment">#generate a dict e.g. group = &#123;&#x27;C&#x27;: 2, &#x27;O&#x27;: 2&#125;</span></span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> species_dict[sp][<span class="string">&#x27;elements&#x27;</span>]:</span><br><span class="line">            group.setdefault(element, </span><br><span class="line">                species_dict[sp][<span class="string">&#x27;elements&#x27;</span>][element]*sp_num)</span><br><span class="line">        sum_element_dict = \</span><br><span class="line">                self.merge_elements_dict(sum_element_dict, group)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum_element_dict</span><br></pre></td></tr></table></figure><br>这个是分析通过解析以后的得到的state_dict来获取元素数量的dict<br>例如获取<br><code>&#123;&#39;C_s&#39;: &#123;&#39;elements&#39;: &#123;&#39;C&#39;: 1&#125;, &#39;number&#39;: 1, &#39;site&#39;: &#39;s&#39;&#125;,
+ &#39;CO_s&#39;: &#123;&#39;elements&#39;: &#123;&#39;C&#39;: 1, &#39;O&#39;: 1&#125;, &#39;number&#39;: 2, &#39;site&#39;: &#39;s&#39;&#125;&#125;</code><br>得到<br><code>&#123;&#39;C&#39;: 2, &#39;O&#39;: 1&#125;</code></p>
+<p><li>对于分析位点守恒</li></p>
+<p><p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_total_site_dict</span>(<span class="params">self, state_dict</span>):</span></span><br><span class="line">    total_site_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> state_dict[<span class="string">&#x27;empty_sites_dict&#x27;</span>]:</span><br><span class="line">        <span class="keyword">for</span> empty_site <span class="keyword">in</span> state_dict[<span class="string">&#x27;empty_sites_dict&#x27;</span>]:</span><br><span class="line">            total_site_dict.setdefault(empty_site, </span><br><span class="line">                state_dict[<span class="string">&#x27;empty_sites_dict&#x27;</span>][empty_site][<span class="string">&#x27;number&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#get site number from species dict</span></span><br><span class="line">    <span class="keyword">for</span> species <span class="keyword">in</span> state_dict[<span class="string">&#x27;species_dict&#x27;</span>]:</span><br><span class="line">        site = state_dict[<span class="string">&#x27;species_dict&#x27;</span>][species][<span class="string">&#x27;site&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> site == <span class="string">&#x27;g&#x27;</span>: <span class="comment">#neglect gas site when check conservation</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        number = state_dict[<span class="string">&#x27;species_dict&#x27;</span>][species][<span class="string">&#x27;number&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> site <span class="keyword">in</span> total_site_dict:</span><br><span class="line">            total_site_dict[site] += number</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            total_site_dict.setdefault(site, number)</span><br><span class="line">    <span class="keyword">return</span> total_site_dict</span><br></pre></td></tr></table></figure><br>这个是同时分析空位和吸附物中来获取总的吸附位点的数量。</p>
+<p><p></p>
+<p><p><br><strong><font size="4">获取总的反应方程式并检查是否守恒:</font></strong><br>这一部分一开始在写parser的时候没想写，昨天在奶奶家把parser的获取数据并计算形成能的部分写完以后闲着没事就写了，写完了才发现，这个是非常重要的还！主要是通过<code>get_total_rxn_equation()</code>方法，获取总的反应方程式的方法是利用字典和集合数据类型，通过正则表达式获取初态和终态的所有物种和相应总数的字典，然后遍历所有的基元反应获取两边的字典(包含所有物种的类型和数目)，然后将这两个字典转化成集合，进行相互两次差集的运算获取总反应的两边的物种以及每个物种的数目，最终整合成字符串以化学方程式的形式返回。如果最终的总反应方程不守恒的话则需要用户检查基元反应计量数是否正确。<br>这部分代码贴上来有点占篇幅，有兴趣的可以下载源码。</p>
+<p><p></p>
+<p><p><br><strong><font size="4">计算 generalized formation energy 等数据:</font></strong><br>这一部分是写在CsvParser的类方法，主要工作是分析由table_maker生成的表格中的DFT_energy这一列数据，然后生成相应的generalized formation energy.最后把formation energy，frequencies， information的数据添加到species_definitions相应的key中。以便后面计算的时候获取能量数据。<br>generalized formation energy要相对于共同的参考能量:</p>
+<p>[latex]E<em>{i} =U</em>{i}-\sum<em>{j}^{}{n</em>{j}R_{j}} [/latex]</p>
+<p>其中[latex]E<em>{i} [/latex]是物种i的 generalized formation energy， [latex]U</em>{i}[/latex]是物种i的初始DFT能量，[latex]n<em>{j}[/latex]为是原子j在物种i中的数目，[latex]R</em>{j}[/latex]<br>为原子j的参考能量。<br>实现代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_data</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Parse input file, add data e.g. formation energy, </span></span><br><span class="line"><span class="string">    frequencies, information, to _owner.species_definition </span></span><br><span class="line"><span class="string">    and set corresponding dict as model&#x27;s attrs.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    file_obj = open(<span class="string">&#x27;./energy.csv&#x27;</span>, <span class="string">&#x27;rU&#x27;</span>)</span><br><span class="line">    file_obj.readline()</span><br><span class="line">    <span class="comment">#formation_energy_dict, frequencies_dict = &#123;&#125;, &#123;&#125;</span></span><br><span class="line">    <span class="keyword">for</span> line_str <span class="keyword">in</span> file_obj:</span><br><span class="line">        line_list = line_str.strip(<span class="string">&#x27;\n&#x27;</span>).split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        site_name, species_name, formation_energy,\</span><br><span class="line">                   frequencies, information =\</span><br><span class="line">        line_list[<span class="number">1</span>], line_list[<span class="number">2</span>], float(line_list[<span class="number">4</span>]),\</span><br><span class="line">                eval(line_list[<span class="number">5</span>].replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;,&#x27;</span>)), line_list[<span class="number">6</span>]</span><br><span class="line">        <span class="comment">#get full name</span></span><br><span class="line">        <span class="comment">#for gas</span></span><br><span class="line">        <span class="keyword">if</span> site_name == <span class="string">&#x27;gas&#x27;</span>:</span><br><span class="line">            full_name = species_name + <span class="string">&#x27;_g&#x27;</span></span><br><span class="line">        <span class="comment">#for any species on site</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment">#get site symbol</span></span><br><span class="line">            <span class="keyword">for</span> site_symbol <span class="keyword">in</span> self._owner.site_names:</span><br><span class="line">                <span class="keyword">if</span> self._owner.species_definitions[site_symbol]\</span><br><span class="line">                    [<span class="string">&#x27;site_name&#x27;</span>] == site_name:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> species_name == <span class="string">&#x27;slab&#x27;</span>:</span><br><span class="line">                full_name = site_symbol</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                full_name = species_name + <span class="string">&#x27;_&#x27;</span> + site_symbol</span><br><span class="line">        <span class="comment">#update _owner.species_definition</span></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> [<span class="string">&#x27;formation_energy&#x27;</span>, <span class="string">&#x27;frequencies&#x27;</span>, <span class="string">&#x27;information&#x27;</span>]:</span><br><span class="line">            <span class="comment">#print eval(key)</span></span><br><span class="line">            self._owner.species_definitions[full_name].\</span><br><span class="line">                            setdefault(key, eval(key))</span><br><span class="line">    file_obj.close()</span><br></pre></td></tr></table></figure><br><strong>解析以后的甲酸裂解的总反应方程式：</strong><br><img src="2015/02/19/动力学模型工具类--Parser/total_rxn_equation.gif" alt="甲酸裂解总反应"></p>
+<p><strong>计算formation energy之前的 table:</strong><br><img src="2015/02/19/动力学模型工具类--Parser/table_before_parse.gif" alt=""></p>
+<p><strong>计算formation energy之后的 table:</strong><br><img src="2015/02/19/动力学模型工具类--Parser/table_after_parse.gif" alt=""></p>
+<p><strong>parse data之后的 species_definitions:</strong><br><img src="2015/02/19/动力学模型工具类--Parser/species_definition.gif" alt=""></p>
+<p>———————————————————————-我是分割线——————————————————————–<br>今天是大年初一，祝所有人身体健康，工作顺利。今天红包抢的很开心，嘿嘿～</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/03/08/PARSER中的反应方程式配平/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/17/动力学模型工具类--TableMaker/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-02-19 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li> <li><a href="/tags/kinetics/">kinetics<span class="badge">9</span></a></li> <li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li> <li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li> <li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

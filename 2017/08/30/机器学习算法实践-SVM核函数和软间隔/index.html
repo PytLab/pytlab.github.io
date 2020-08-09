@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>机器学习算法实践-SVM核函数和软间隔 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="机器学习算法实践-SVM核函数和软间隔"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 机器学习算法实践-SVM核函数和软间隔</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上文中简单总结了对于线性可分数据的SVM的算法原理，本文对于非线性可分以及有噪声存在的时候我们需要对基本SVM算法的改进进行下总结其中包括:</p>
+<ol>
+<li>核函数在SVM算法中的使用</li>
+<li>引入松弛变量和惩罚函数的软间隔分类器</li>
+</ol>
+<h2 id="SVM对偶问题"><a href="#SVM对偶问题" class="headerlink" title="SVM对偶问题"></a>SVM对偶问题</h2><p>这里稍微回顾下SVM最终的对偶优化问题，因为后面的改进都是在对偶问题的形式上衍生的。</p>
+<a id="more"></a>
+<h3 id="标准形式"><a href="#标准形式" class="headerlink" title="标准形式"></a>标准形式</h3><p>$$\min \frac{1}{2} \lVert w \rVert ^{2}$$</p>
+<p>subject to $y_{i}(w^{T}x_{i} + b) \ge 1$</p>
+<h3 id="对偶形式"><a href="#对偶形式" class="headerlink" title="对偶形式"></a>对偶形式</h3><p>$$arg \max \limits_{\alpha} \sum_{i=1}^{N} \alpha_{i} - \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}y_{i}y_{j}\alpha_{i}\alpha_{j}\langle x_{i}, x_{j} \rangle$$</p>
+<p>subject to $\alpha_{i} \ge 0$ ; $\sum_{i=1}^{N}\alpha_{i}y_{i}=0$</p>
+<p>其中$w$和$\alpha$的关系:<br>$$w = \sum_{i=1}^{N}\alpha_{i}y_{i}x_{i}$$</p>
+<h3 id="SVM预测"><a href="#SVM预测" class="headerlink" title="SVM预测"></a>SVM预测</h3><p>SVM通过分割超平面$w^{T}x + b$来获取未知数据的类型，将上述$w$用$\alpha$替换得到</p>
+<p>$$<br>h_{w, b}(x) = g(w^{T}x + b) = g(\sum_{i=1}^{N}\alpha_{i}y_{i} \langle x_{i}, x \rangle + b)<br>$$</p>
+<p>通过$g(x)$输出+1或者-1来获取未知数据的类型预测.</p>
+<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>对于分线性可分的数据我们通常需要将数据映射到高维空间中使得原本在低维空间线性不可分的数据在高维空间中线性可分。例如从一维映射到4维:<br>$$<br>x \xrightarrow{\phi(x)} \left[\begin{matrix}<br>x \\<br>x^{2} \\<br>x^{3} \\<br>x^{4} \\<br>\end{matrix} \right]<br>$$</p>
+<p>然后对偶形式中也有数据向量的乘积，于是便可以进行替换:<br>$$<br>\langle x_{i}, x_{j} \rangle \rightarrow \langle \phi(x_{i}), \phi(x_{j}) \rangle<br>$$</p>
+<p>但是呢，有时候$\phi(x)$会使得$x$维度太高，这样计算内积的复杂度很高，计算起来就会很困难，这个时候我们便需要核函数来拯救我们的计算复杂度。</p>
+<p>我们需要使用一个函数来代替向量内积,但是这个核函数是可以表示成向量内积的形式的，只不过在计算结果的时候我们直接求函数值就好了，不需要做内积运算。这样复杂度会降低:<br>$$<br>K(x, z) = \langle \phi(x), \phi(z) \rangle<br>$$</p>
+<h3 id="核函数例子"><a href="#核函数例子" class="headerlink" title="核函数例子"></a>核函数例子</h3><p>这里总结下几个例子来对核函数的作用加深下理解.</p>
+<p>对于$x, z \in \mathbb{R}^{n}$, 我们令核函数为:<br>$$K(x, z) = (x^{T}z)^{2} = (\sum_{i=1}^{N}x_{i}z_{i})^{2} = \sum_{i=1}^{N}\sum_{j=1}^{N} (x_{i}x_{j})(z_{i}z_{j}) = \langle \phi(x), \phi(z) \rangle$$</p>
+<p>对于$x \in \mathbb{R}^{2}$, 这个时候$\phi(x)$的作用就相当于:<br>$$<br>\phi(x) = \left[ \begin{matrix}<br>x_{1}x_{1} \\<br>x_{1}x_{2} \\<br>x_{2}x_{1} \\<br>x_{2}x_{2} \\<br>\end{matrix} \right]<br>$$</p>
+<p>那么我们可以分析下，如果没有引入核函数，我们需要计算维数为$n^{2}$的向量的内积，其运算时间复杂度为$O(n^{2})$。d但是通过核函数的引入我们不需要显式的计算向量内积了，而是直接计算核函数$(x^{T}z)^2$的值，计算核函数的值我们只需要计算一次维数为$n$的向量内积和一次平方运算，时间复杂度为$O(n)$。</p>
+<p>可见，我们通过计算核函数，隐式的处理了一个维数很高的向量空间，降低了计算复杂度($O(n^{2} \rightarrow O(n)$)。</p>
+<p>对于上面的核函数进行推广，我们可以有核函数:</p>
+<p>$$<br>K(x, z) = (x^{T}z + C)^{2} = (x^{T}z)^{2} + 2C(x^{T}z) + c^{2}<br>$$</p>
+<p>对于$x \in \mathbb{R}^{2}$, 这时$\phi(x)$相当于:<br>$$<br>\phi(x) = \left[ \begin{matrix}<br>x_{1}x_{1} \\<br>x_{1}x_{2} \\<br>x_{2}x_{1} \\<br>x_{2}x_{2} \\<br>\sqrt{2C}x_{1} \\<br>\sqrt{2C}x_{2} \\<br>C \\<br>\end{matrix} \right]<br>$$</p>
+<p>这样我们将原本需要计算长度为$n^{2} + n + 1$的向量内积改成了直接计算两个长度为$n$的向量内积以及一个求和一次乘积运算。复杂度从$O(n^{2})$降到了$O(n)$</p>
+<p>更通用的形式可以写成:</p>
+<p>$$<br>K(x, z) = (x^{T}z + C)^{d}<br>$$</p>
+<p>可见，在我们原始的SVM推导中，直接使用原始向量的内积便是这种形式的一种特殊形式，即$C = 0, d = 1$</p>
+<p>另外，可以直观的看到，如果$\phi(x)$与$\phi(z)$的夹角比较小，则计算出来的$K(x, z)$就会比较大，相反如果$\phi(x)$与$\phi(z)$的夹角比较大，则核函数$K(x, z)$会比较小。所以核函数一定程度上是$\phi(x)$与$\phi(z)$相似度的度量。</p>
+<h3 id="高斯核函数-Gaussian-kernel"><a href="#高斯核函数-Gaussian-kernel" class="headerlink" title="高斯核函数(Gaussian kernel)"></a>高斯核函数(Gaussian kernel)</h3><p>$$<br>K(x, z) = exp(-\frac{\lVert x - z \rVert^{2}}{2\sigma^{2}})<br>$$</p>
+<p>通过高斯核函数的公式可以看出，如果$x$和$z$相差很小，则$K(x, z)$趋近于1, 相反如果相差很大则$K(x, z)$趋近于0。高斯核函数能够将数据映射到无限维空间，在无限维空间中，数据都是线性可分的。</p>
+<h3 id="核函数的合法性"><a href="#核函数的合法性" class="headerlink" title="核函数的合法性"></a>核函数的合法性</h3><p>判定核函数的合法性需要构造一个矩阵，即核函数矩阵$K$。</p>
+<p>对于一个核函数$K(x, z)$以及$m$个训练数据$\left\{ x_{1}, x_{2}, …, x_{m} \right\}$, 核函数矩阵中的元素$K_{i,j}$定义如下:</p>
+<p>$$K_{i, j} = K(x_{i}, x_{j})$$</p>
+<p>现在在这里简单推导下核函数有效的必要条件:</p>
+<p>若$K(x, z)$有效，则矩阵元素可写成(矩阵为对称矩阵)<br>$$<br>K_{i, j} = \phi(x_{i})^{T}\phi(x_{j}) = \phi(x_{j})^{T}\phi(x_{i}) = K_{i, j}<br>$$</p>
+<p>对于向量$z$, 我们有:<br>$$<br>z^{T}Kz = \sum_{i} \sum_{j} z_{i}K_{i, j}z_{j} = \sum_{i} \sum_{j}z_{i}\phi(x_{i})^{T}\phi(x_{j})z_{j} = \sum_{i} \sum_{j} z_{i} (\sum_{k}\phi(x_{i})_{k} \phi(x_{j})_{k}) z_{j}<br>$$<br>$$<br>= \sum_{k} \sum_{i} \sum_{j} z_{i} \phi(x_{i})_{k} \phi(x_{j})_{k} z_{j} = \sum_{k}(\sum_{i} z_{i}\phi(x_{i})_{k})^{2} \ge 0<br>$$</p>
+<p>此为矩阵$K$为半正定矩阵的必要条件。这就证明了，矩阵$K \ge 0$是对应核函数$K$有效的必要条件。当然他也是充分条件(参考<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mercer&#39;s_theorem">Mercer’s theorem</a>)</p>
+<p>因此通过mercer定理我们可以不需要显式的去寻找核函数对应的$\phi(x)$而是构造核函数矩阵$K$，进而判断$K$是否半正定来判断核函数的有效性。</p>
+<h2 id="L1软间隔SVM-L1-soft-margin-SVM"><a href="#L1软间隔SVM-L1-soft-margin-SVM" class="headerlink" title="L1软间隔SVM(L1 soft margin SVM)"></a>L1软间隔SVM(L1 soft margin SVM)</h2><p>通过核函数将数据映射到高维空间能够增加数据线性可分的可能性，但是对于含有噪声的数据，优化出来的SVM可能不是我们最想要的，我们并不希望SVM会被噪声影响，因此我们可以通过引入松弛变量来使我们优化SVM时忽略掉噪声的影响，仅仅考虑那些真正有效的数据。</p>
+<p>对于原始SVM标砖形式的约束条件:<br>$$<br>y_{i}(w^{T}x_{i} + b) \ge 1<br>$$<br>意味着所有数据点距离分割平面的距离都大于1.</p>
+<p>但有的时候具有噪声，完全按照原始的约束条件，可能会是SVM发生较大的误差，如下图:</p>
+<p><img src="/assets/images/blog_img/2017-08-30-机器学习算法实践-SVM核函数和软间隔/soft_margin.png" alt=""></p>
+<p>为了能让SVM忽略某些噪声，我们可以引入一个松弛变量$\xi_{i} \ge 0$来允许错误的分类发生，也就是允许有间隔小于1的数据点出现, 即:</p>
+<p>$$<br>y_{i}(w^{T}x_{i} + b) \ge 1 - \xi_{i}<br>$$</p>
+<p>但是只松弛约束条件可不行，我们同样要限制这种松弛，这时候我们需要在目标函数上加一个惩罚函数。<br>原始的目标函数为:<br>$$<br>arg \min \limits_{w, b} \frac{1}{2} \lVert w \rVert^{2}<br>$$</p>
+<p>加入惩罚后:<br>$$<br>arg \min \limits_{w, b, \xi} \frac{1}{2} \lVert w \rVert^{2} + C\sum_{i=1}^{N}\xi_{i}<br>$$<br>其中$C$为惩罚因子来衡量惩罚的程度, C越大表明离群点越不被希望出现。</p>
+<p>于是加上惩罚函数的SVM优化问题就变为:<br>$$<br>arg \min \limits_{w, b, \xi} \frac{1}{2} \lVert w \rVert^{2} + C\sum_{i=1}^{N}\xi_{i}<br>$$<br>subject to $y_{i}(w^{T} + b) \ge 1 - \xi_{i}$, $\xi_{i} \ge 0, i = 1, …, N$</p>
+<p>然后我们求此问题的对偶问题，方法与原始SVM推导方法相同，使用拉格朗日乘子法，然后获取$w$的表达式，回代最后获得对偶形式:<br>$$<br>arg \max \limits_{\alpha} [\sum_{i=1}^{N}{\alpha_{i}} - \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}y_{i}y_{j}\alpha_{i}\alpha_{j}\langle x_{i}, x_{j} \rangle]<br>$$</p>
+<p>subject to $0 \le \alpha_{i} \le C$, $\sum_{i=1}^{m}\alpha_{i}y_{i} = 0$</p>
+<p>可见，软间隔SVM的目标函数形式同硬间隔的形式相同，唯一不同的就在于$\alpha_{i}$的范围。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文对SVM中的核函数以及软间隔的原理进行了总结，对于非线性可分以及含有噪声的数据我们可以通过以上两种方法获得合适的分类器。后面将对目标函数的优化方法进行总结。</p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/09/01/机器学习算法实践-SVM中的SMO算法/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-08-30 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">16</span></a></li> <li><a href="/tags/SVM/">SVM<span class="badge">4</span></a></li> <li><a href="/tags/KernelFunction/">KernelFunction<span class="badge">1</span></a></li> <li><a href="/tags/SoftMargin/">SoftMargin<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#SVM%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="toc-article-text">SVM对偶问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F"><span class="toc-article-text">标准形式</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%AF%B9%E5%81%B6%E5%BD%A2%E5%BC%8F"><span class="toc-article-text">对偶形式</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#SVM%E9%A2%84%E6%B5%8B"><span class="toc-article-text">SVM预测</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="toc-article-text">核函数</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0%E4%BE%8B%E5%AD%90"><span class="toc-article-text">核函数例子</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E9%AB%98%E6%96%AF%E6%A0%B8%E5%87%BD%E6%95%B0-Gaussian-kernel"><span class="toc-article-text">高斯核函数(Gaussian kernel)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7"><span class="toc-article-text">核函数的合法性</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#L1%E8%BD%AF%E9%97%B4%E9%9A%94SVM-L1-soft-margin-SVM"><span class="toc-article-text">L1软间隔SVM(L1 soft margin SVM)</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

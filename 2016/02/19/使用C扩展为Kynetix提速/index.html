@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>使用C语言编写extension为Kynetix大幅提速 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="使用C语言和swig为Kynetix统计部分代码写了C扩展，提升计算效率&lt;strong&gt;20多&lt;/strong&gt;倍！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用C语言编写extension为Kynetix大幅提速"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 使用C语言编写extension为Kynetix大幅提速</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>使用C语言和swig为Kynetix统计部分代码写了C扩展，提升计算效率<strong>20多</strong>倍！</p>
+			
+		 </div> <!-- alert -->
+	  		
+
+	  <p>之前Kynetix代码几乎全部是使用Python写的，使用了KMCLib(Python + C++)之后，在进行主体KMC循环的时候效率得到了明显的提升，但是在刚刚完成on-the-fly分析部分代码以后开始跑程序，明显感觉程序异常的慢，因为kmc写到现在真心感受到kMC程序真心是个compute intense的活，其中没有用到矩阵运算，没有用到什么传统的优化算法，<br><div class="alert alert-danger"><i class="fa fa-bug"></i>  所以尝试只用一种解释性语言如matlab和python去完成整个kMC程序的最终肯定会使程序慢得一塌糊涂！跑蒙特卡洛程序慢成狗，那这程序也几乎没啥用了感觉。</div><br>于是我也想学习KMCLib那样使用静态语言为我的python程序编写扩展模块，虽然我也知道针对Fortran有<a target="_blank" rel="noopener" href="https://sysbio.ioc.ee/projects/f2py2e/"><strong>f2py</strong></a>这种工具存在，但是由于我个人的喜好，不是历史原因必须使用fortran的话，我还是选择C或者C++。<br>至于python的C扩展，我选择使用<a target="_blank" rel="noopener" href="http://www.swig.org/"><strong>SWIG</strong></a>。<br><a id="more"></a></p>
+<h3 id="需要使用C重写的几个核心统计函数"><a href="#需要使用C重写的几个核心统计函数" class="headerlink" title="需要使用C重写的几个核心统计函数"></a>需要使用C重写的几个核心统计函数</h3><p>在<code>kmc_functions.py</code>中有三个函数用于在KMC主循环运行当中对表面的configuration进行on-the-fly统计:</p>
+<ul>
+<li><code>collect_coverge()</code>, 扫描整个网格，统计每个可能的中间物种的覆盖度。</li>
+<li><code>match_elements()</code>, 扫描整个网格，针对某一特定的局部configuration进行匹配并统计，其目的就是为了统计在当前网格中有多少局部的构型能够发生某一特定的反应。</li>
+<li><code>match_elements_list()</code>, 针对一系列的局部构型列表，循环调用<code>match_elements()</code>，统计能够匹配列表中所有构型的总数。</li>
+</ul>
+<p>这里由于针对NxN的网格，匹配单独一个local configuration的复杂度在$\mathcal{O}(N^{2})$， 匹配一列表的复杂度同扫面一次网格遍历所有构型的复杂度是相同的, 都是$\mathcal{O}(MN^{2})$</p>
+<h3 id="编写C扩展"><a href="#编写C扩展" class="headerlink" title="编写C扩展"></a>编写C扩展</h3><p>单纯使用C语言写功能相同的函数还是比较简单的，最麻烦的是将其封装成python的接口，并实现C语言的数据类型同python内置的数据类型以及numpy的数组等数据类型之间进行转换，使得C语言编写的函数能够让python调用（下一部分进行简单介绍）。<br>C扩展的源代码在<code>pynetics/extension/src/kmc_function.c</code>中，我针对<code>kmc_functions.py</code>中的函数编写了相应的C语言版本，参数类型有所区别，主要是针对矩阵和C数组形状的参数传递，此问题在编写swig接口文件中进行了统一解决。<br>代码就不贴上来了，有兴趣的可以直接到项目的GitHub主页去看，传送 $\rightarrow$ <a target="_blank" rel="noopener" href="https://github.com/PytLab/Kynetix/blob/master/extensions/src/kmc_functions.c">kmc_functions.c</a></p>
+<h3 id="SWIG接口文件"><a href="#SWIG接口文件" class="headerlink" title="SWIG接口文件"></a>SWIG接口文件</h3><p>这一部分是写C扩展让我最费劲的地方，因为涉及到数据类型的转换(自定义的类型映射customized typemap)，例如python的<code>string</code> <code>list</code>和C语言的<code>char *</code> 数组(或者<code>char **</code>)的转换等。为了这个看了不少stackoverflow和SWIG的文档，最后还是在官方文档里面找到了解决办法。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* tell SWIG to treat char ** as a list of strings */</span></span><br><span class="line">%typemap(in) <span class="keyword">char</span> ** &#123;</span><br><span class="line">    <span class="comment">// check if is a list</span></span><br><span class="line">    <span class="keyword">if</span>(PyList_Check($input))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> size = PyList_Size($input);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        $<span class="number">1</span> = (<span class="keyword">char</span> **)<span class="built_in">malloc</span>((size + <span class="number">1</span>)*<span class="keyword">sizeof</span>(<span class="keyword">char</span> *));</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            PyObject * o = PyList_GetItem($input, i);</span><br><span class="line">            <span class="keyword">if</span>(PyString_Check(o))</span><br><span class="line">                $<span class="number">1</span>[i] = PyString_AsString(o);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                PyErr_SetString(PyExc_TypeError, <span class="string">&quot;list must contain strings&quot;</span>);</span><br><span class="line">                <span class="built_in">free</span>($<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        PyErr_SetString(PyExc_TypeError, <span class="string">&quot;not a list&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>大致原理就是根据输入的类型判断是否是python的<code>list</code>类型，并动态分配内存，生成相应的<code>char **</code>数组，这样完成了<code>list</code> -&gt; <code>char **</code>的映射。</p>
+<p>我在<code>pynetics/extensions/wrap/</code>中包含了<code>numpy.i</code>，此文件是numpy的swig接口文件，主要是利用里面关于numpy array的类型映射，来映射numpy的N维数组到C语言的N维数组：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">match_elements</span><span class="params">(<span class="keyword">char</span> ** types, <span class="keyword">char</span> ** elements,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">int</span> DIM1, <span class="keyword">int</span> DIM2, <span class="keyword">double</span> * IN_ARRAY2,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">const</span> <span class="keyword">int</span> grid_shape[<span class="number">2</span>])</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>另外关于python中的<code>string</code>二维<code>list</code>，至今我是没找到如何映射到C语言相应的数组，囧（如果看到这篇博文的大神知道映射方法，请务必告诉我，小的感激不尽。<br>于是我想到了另外一种方法：<br>就是在python代码中将二维<code>string</code>数组转换成相应的一维数组将其降维，类似numpy中的<code>reshape</code>函数的功能，然后再用上文得到的<code>string</code>一维数组的方法将其映射。</p>
+<p>另外我还编写了一份Makefile来编译并使用SWIG封装扩展，内容如下：<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">CC = gcc</span><br><span class="line">SWIG = swig</span><br><span class="line">SWIGFLAGS = -python </span><br><span class="line">CCFLAGS = -O3 -fPIC -c </span><br><span class="line">OMPFLAG = <span class="comment"># -fopenmp</span></span><br><span class="line">INC = <span class="comment"># -I /usr/local/lib/python2.7/site-packages/numpy/core/include </span></span><br><span class="line">LDFLAGS = -shared</span><br><span class="line">EXTNAME = kmc_functions</span><br><span class="line">EXTDIR = ../pynetics/solvers/plugin_backends</span><br><span class="line"></span><br><span class="line"><span class="section">_kmc_functions.so: build/kmc_functions.o build/kmc_functions_wrap.o</span></span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$(OMPFLAG)</span> <span class="variable">$(LDFLAGS)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="section">build/kmc_functions.o: src/kmc_functions.c</span></span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$(OMPFLAG)</span> <span class="variable">$(CCFLAGS)</span> <span class="variable">$(INC)</span> -I <span class="keyword">include</span> <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="section">build/kmc_functions_wrap.o: wrap/kmc_functions_wrap.c</span></span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$(OMPFLAG)</span> <span class="variable">$(CCFLAGS)</span> <span class="variable">$(INC)</span> -I <span class="keyword">include</span> <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="section">wrap/kmc_functions_wrap.c: wrap/kmc_functions.i</span></span><br><span class="line">    <span class="variable">$(SWIG)</span> <span class="variable">$(SWIGFLAGS)</span> <span class="variable">$^</span></span><br><span class="line">    mv wrap/*py ./</span><br><span class="line"></span><br><span class="line"><span class="section">install:</span></span><br><span class="line">    cp _<span class="variable">$(EXTNAME)</span>.so <span class="variable">$(EXTNAME)</span>.py <span class="variable">$(EXTDIR)</span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm -rf build/* wrap/<span class="variable">$(EXTNAME)</span>_wrap.c <span class="variable">$(EXTNAME)</span>.py *.so</span><br><span class="line"></span><br><span class="line"><span class="section">uninstall:</span></span><br><span class="line">    rm -f <span class="variable">$(EXTDIR)</span>/<span class="variable">$(EXTNAME)</span>.py <span class="variable">$(EXTDIR)</span>/_<span class="variable">$(EXTNAME)</span>.so</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>通过调用封装好的C扩展模块进行相同的计算，我在我的CentOS虚拟机中相同的环境下跑相同的输入参数，比纯python快了<strong>20倍！</strong></p>
+<p>如果算上使用KMCLib的C++提速，保守估计，比纯解释性语言写的KMC程序要快<strong>50~60倍！</strong></p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/02/21/解决hexo中tag和category中文章由于分页显示不全的方法/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/02/18/Kynetix的kMC-plotter/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-02-19 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li> <li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li> <li><a href="/tags/C/">C<span class="badge">26</span></a></li> <li><a href="/tags/学术/">学术<span class="badge">16</span></a></li> <li><a href="/tags/swig/">swig<span class="badge">7</span></a></li> <li><a href="/tags/calalysis/">calalysis<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8C%E9%87%8D%E5%86%99%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A0%B8%E5%BF%83%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0"><span class="toc-article-text">需要使用C重写的几个核心统计函数</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%BC%96%E5%86%99C%E6%89%A9%E5%B1%95"><span class="toc-article-text">编写C扩展</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#SWIG%E6%8E%A5%E5%8F%A3%E6%96%87%E4%BB%B6"><span class="toc-article-text">SWIG接口文件</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

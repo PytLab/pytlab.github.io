@@ -1,0 +1,426 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>PARSER中的反应方程式配平 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PARSER中的反应方程式配平"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> PARSER中的反应方程式配平</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>之所以把反应方程式配平拿出来写是因为之前在这段时间写完solver的过程中发现自己还是对动力学的质量作用定理理解的不够深刻，在之前的setup file中的反应方程式我默认的是以已经配平好的基元反应作为输入的，例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rxn_expressions = [</span><br><span class="line"></span><br><span class="line">                <span class="string">&#x27;CO_g + *_s -&gt; CO_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;3H2_g + 6*_s -&gt; 6H_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CO_s + *_s &lt;-&gt; C-O_s + *_s -&gt; C_s + O_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;O_s + H_s -&gt; HO_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;HO_s + H_s &lt;-&gt; H-OH_s + *_s -&gt; H2O_g + 2*_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;C_s + H_s &lt;-&gt; H-C_s + *_s -&gt; CH_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CH_s + H_s -&gt; CH2_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CH2_s + H_s -&gt; CH3_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CH3_s + H_s -&gt; CH4_g + 2*_s&#x27;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>然后通过正则表达式解析反应方程式后通过集合做差集运算获得总的反应方程式。具体方法在之前的<a target="_blank" rel="noopener" href="http://ipytlab.com/%e5%8a%a8%e5%8a%9b%e5%ad%a6%e6%a8%a1%e5%9e%8b%e5%b7%a5%e5%85%b7%e7%b1%bb-parser/" title="动力学模型工具类–Parser"><ins datetime="2015-03-08T12:02:07+00:00">博客</ins></a>中有写：</p>
+<blockquote>
+<p><strong>获取总的反应方程式并检查是否守恒:</strong></p>
+<p>主要是通过<code>get_total_rxn_equation()</code>方法，获取总的反应方程式的方法是利用字典和集合数据类型，通过正则表达式获取初态和终态的所有物种和相应总数的字典，然后遍历所有的基元反应获取两边的字典(包含所有物种的类型和数目)，然后将这两个字典转化成集合，进行相互两次差集的运算获取总反应的两边的物种以及每个物种的数目，最终整合成字符串以化学方程式的形式返回。如果最终的总反应方程不守恒的话则需要用户检查基元反应计量数是否正确。</p>
+</blockquote>
+<p>但后来通过牛顿法解稳态的时候发现解出来的覆盖度解有问题，然后一点点向回退，检查Jacobian Matrix，在检查覆盖度变化率动力学方程组，然后检查到反应速率表达式的时候发现和我手推的时候不一样！这才意识到化学计量数被我之前一直忽略了，这里我曾经有想过化学计量数和质量作用定律的关系，看来要使用质量作用定律还是要按照基元反应来写，因为我在后面计算反应所率的时候会按照前面的化学计量数来统一吸附物的覆盖率变化的。反而在最开始写基元反应表达式的时候引入化学计量数会使后面的反应速率表达式错误。所以输入文件中的基元反应表达式必须写成如下这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rxn_expressions = [</span><br><span class="line"></span><br><span class="line">                <span class="string">&#x27;CO_g + *_s -&gt; CO_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;H2_g + 2*_s -&gt; 2H_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CO_s + *_s &lt;-&gt; C-O_s + *_s -&gt; C_s + O_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;O_s + H_s -&gt; HO_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;HO_s + H_s &lt;-&gt; H-OH_s + *_s -&gt; H2O_g + 2*_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;C_s + H_s &lt;-&gt; H-C_s + *_s -&gt; CH_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CH_s + H_s -&gt; CH2_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CH2_s + H_s -&gt; CH3_s + *_s&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;CH3_s + H_s -&gt; CH4_g + 2*_s&#x27;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>好，那么问题来了。怎么配平？？这里我搁置了两天，一直在想该怎么写能让程序自动把这些基元反应配平，然后求出总的反应表达式，自己也尝试了很多方法，我尝试修改之前的通过集合运算的方法还是解决不了。正在想放弃这一功能的时候，和师兄交流，师兄是用matlab写代码的，由于矩阵是matlab的基本数据类型，必然很多时候会用矩阵的思想，他说貌似可以用类似矩阵消元的方式来配平。忽然就感觉这个问题有戏，就在纸上随便画了两个矩阵，看了看，我去，可以通过求解系数矩阵的零空间的基的方式把配平系数求出来，系数出来了，配平什么的就是自然而然的了。然后就着手把这个问题写完了，实现的方法(以CO氧化的反应为例)：</p>
+<p>基元反应方程式：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rxn_expressions = [</span><br><span class="line"></span><br><span class="line">               <span class="string">&#x27;*_s + CO_g -&gt; CO*&#x27;</span>, </span><br><span class="line">               <span class="string">&#x27;2*_s + O2_g &lt;-&gt; O-O* + *_s -&gt; 2O*&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;CO* +  O* &lt;-&gt; O-CO* + * -&gt; CO2_g + 2*&#x27;</span>,</span><br><span class="line"></span><br><span class="line">                   ]</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>获取此反应的系数矩阵，在这里要把吸附物和气体分子分开，因为最后是要把吸附物的系数全部变为0的。<br>吸附物顺序：$(*,CO^{*}, O^{*}), 气体顺序：( CO, O_{2}, CO_{2})</p>
+<p>设$A$为吸附物系数矩阵，$B$为气体系数矩阵，</p>
+<p>吸附物系数矩阵<br>$$<br>A = \left[\begin{matrix}<br>     1 &amp; -1 &amp; 0 \\<br>     2 &amp; 0 &amp; -2 \\<br>    -2 &amp; 1 &amp; 1<br>    \end{matrix} \right]<br>$$<br>气体分子系数矩阵<br>$$<br>B = \left[\begin{matrix}<br>     1 &amp; -1 &amp; 0 \\<br>     2 &amp; 0 &amp; -2 \\<br>    -2 &amp; 1 &amp; 1<br>    \end{matrix} \right]<br>$$</p>
+<p>求矩阵$A$的转置的零空间的基，即$A^{T}\bullet x = 0$<br>将获取的零空间的基转化成整数形式后再左乘矩阵$B$，也就是( $x\bullet B$ )变得到了配平系数向量了.<br>由于python没有像matlab那样的直接有null函数求零空间的基的函数，利用numpy的函数有写了个：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">null</span>(<span class="params">A, eps=<span class="number">1e-10</span></span>):</span></span><br><span class="line">    <span class="string">&quot;get null space of transposition of site_matrix&quot;</span></span><br><span class="line">    u,s,vh = np.linalg.svd(A,full_matrices=<span class="number">1</span>,compute_uv=<span class="number">1</span>)</span><br><span class="line">    null_space = np.compress(s &lt;= eps, vh, axis=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> null_space.T</span><br></pre></td></tr></table></figure><br>代买实现分别是写了两个方法先获取矩阵，然后在进行矩阵运算，在最后也进行了守恒的检测，贴上来：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_stoichiometry_matrices</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Go through elementary_rxns_list,</span></span><br><span class="line"><span class="string">    return sites stoichiometry matrix and gas stoichiometry matrix.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    sites_names = [<span class="string">&#x27;*_&#x27;</span>+site_name </span><br><span class="line">                   <span class="keyword">for</span> site_name <span class="keyword">in</span> self._owner.site_names] + \</span><br><span class="line">                   list(self._owner.adsorbate_names)</span><br><span class="line">    gas_names = list(self._owner.gas_names)</span><br><span class="line">    <span class="comment">#initialize matrices</span></span><br><span class="line">    m = len(self._owner.elementary_rxns_list)</span><br><span class="line">    n_s, n_g = len(sites_names), len(gas_names)</span><br><span class="line">    site_matrix, gas_matrix = np.matrix(np.zeros((m, n_s))),\</span><br><span class="line">                              np.matrix(np.zeros((m, n_g)))</span><br><span class="line">    <span class="comment">#go through all elementary equations</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(m):</span><br><span class="line">        states_list = self._owner.elementary_rxns_list[i]</span><br><span class="line">        <span class="keyword">for</span> sp <span class="keyword">in</span> states_list[<span class="number">0</span>]:  <span class="comment">#for initial state</span></span><br><span class="line">            stoichiometry, sp_name = self.split_species(sp)</span><br><span class="line">            <span class="keyword">if</span> sp_name <span class="keyword">in</span> sites_names:</span><br><span class="line">                j = sites_names.index(sp_name)</span><br><span class="line">                site_matrix[i, j] += stoichiometry</span><br><span class="line">            <span class="keyword">if</span> sp_name <span class="keyword">in</span> gas_names:</span><br><span class="line">                j = gas_names.index(sp_name)</span><br><span class="line">                gas_matrix[i, j] += stoichiometry</span><br><span class="line">        <span class="keyword">for</span> sp <span class="keyword">in</span> states_list[<span class="number">-1</span>]:  <span class="comment">#for final state</span></span><br><span class="line">            stoichiometry, sp_name = self.split_species(sp)</span><br><span class="line">            <span class="keyword">if</span> sp_name <span class="keyword">in</span> sites_names:</span><br><span class="line">                j = sites_names.index(sp_name)</span><br><span class="line">                site_matrix[i, j] -= stoichiometry</span><br><span class="line">            <span class="keyword">if</span> sp_name <span class="keyword">in</span> gas_names:</span><br><span class="line">                j = gas_names.index(sp_name)</span><br><span class="line">                gas_matrix[i, j] -= stoichiometry</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> site_matrix, gas_matrix</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_total_rxn_equation</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&quot;Get total reaction expression of the kinetic model.&quot;</span></span><br><span class="line">    site_matrix, gas_matrix = self.get_stoichiometry_matrices()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">null</span>(<span class="params">A, eps=<span class="number">1e-10</span></span>):</span></span><br><span class="line">        <span class="string">&quot;get null space of transposition of site_matrix&quot;</span></span><br><span class="line">        u,s,vh = np.linalg.svd(A,full_matrices=<span class="number">1</span>,compute_uv=<span class="number">1</span>)</span><br><span class="line">        null_space = np.compress(s &lt;= eps, vh, axis=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> null_space.T</span><br><span class="line">    x = null(site_matrix.T)  <span class="comment">#basis of null space</span></span><br><span class="line">    x = map(abs, x.T.tolist()[<span class="number">0</span>])</span><br><span class="line">    <span class="comment">#convert entries of x to integer</span></span><br><span class="line">    min_x = min(x)</span><br><span class="line">    x = [round(i/min_x, <span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">    setattr(self._owner, <span class="string">&#x27;trim_coeffients&#x27;</span>, x)</span><br><span class="line">    x = np.matrix(x)</span><br><span class="line">    total_coefficients = (x*gas_matrix).tolist()[<span class="number">0</span>]</span><br><span class="line">    <span class="comment">#create total rxn expression</span></span><br><span class="line">    reactants_list, products_list = [], []</span><br><span class="line">    <span class="keyword">for</span> sp_name <span class="keyword">in</span> self._owner.gas_names:</span><br><span class="line">        idx = self._owner.gas_names.index(sp_name)</span><br><span class="line">        coefficient = total_coefficients[idx]</span><br><span class="line">        <span class="keyword">if</span> coefficient &lt; <span class="number">0</span>: <span class="comment">#for products</span></span><br><span class="line">            coefficient = abs(int(coefficient))</span><br><span class="line">            <span class="keyword">if</span> coefficient == <span class="number">1</span>:</span><br><span class="line">                coefficient = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                coefficient = str(coefficient)</span><br><span class="line">            products_list.append(coefficient + sp_name)</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment">#for reactants</span></span><br><span class="line">            coefficient = int(coefficient)</span><br><span class="line">            <span class="keyword">if</span> coefficient == <span class="number">1</span>:</span><br><span class="line">                coefficient = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                coefficient = str(coefficient)</span><br><span class="line">            reactants_list.append(coefficient + sp_name)</span><br><span class="line">    reactants_expr = <span class="string">&#x27; + &#x27;</span>.join(reactants_list)</span><br><span class="line">    products_expr = <span class="string">&#x27; + &#x27;</span>.join(products_list)</span><br><span class="line">    total_rxn_equation = reactants_expr + <span class="string">&#x27; -&gt; &#x27;</span> + products_expr</span><br><span class="line"></span><br><span class="line">    <span class="comment">#check conservation</span></span><br><span class="line">    states_dict = self.parse_single_elementary_rxn(total_rxn_equation)[<span class="number">0</span>]</span><br><span class="line">    check_result = self.check_conservation(states_dict)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> check_result:</span><br><span class="line">        setattr(self._owner, <span class="string">&#x27;total_rxn_equation&#x27;</span>, total_rxn_equation)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> check_result == <span class="string">&#x27;mass_nonconservative&#x27;</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Mass of total equation \&#x27;&#x27;</span>+</span><br><span class="line">                        total_rxn_equation+<span class="string">&#x27;\&#x27; is not conservative!&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> check_result == <span class="string">&#x27;site_nonconservative&#x27;</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Site of total equation \&#x27;&#x27;</span>+</span><br><span class="line">                        total_rxn_equation+<span class="string">&#x27;\&#x27; is not conservative!&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> total_rxn_equation</span><br></pre></td></tr></table></figure><br>效果图：<br><img src="2015/03/08/PARSER中的反应方程式配平/QQ截图20150308205550.gif" alt=""><br>→_→欲拯救世界必先学线性代数</p>
+<p>顺便把之前那个化学式配平的代码也贴上来吧，虽然以后再也用不到了，留个纪念也不错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_total_rxn_equation_orig</span>(<span class="params">self, elementary_rxns_list</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Analyse elementary_rxns_list, get total_rxn_equation and </span></span><br><span class="line"><span class="string">    check the conservation of it, set total_rxn_equation as attr of model.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    reactants_dict = &#123;&#125;</span><br><span class="line">    products_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> equation_list <span class="keyword">in</span> elementary_rxns_list:</span><br><span class="line">        <span class="comment">#for reactants</span></span><br><span class="line">        <span class="keyword">for</span> reactant <span class="keyword">in</span> equation_list[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="string">&#x27;*&#x27;</span> <span class="keyword">in</span> reactant:</span><br><span class="line">                m = self._owner.regex_dict[<span class="string">&#x27;species&#x27;</span>][<span class="number">0</span>].search(reactant)</span><br><span class="line">                <span class="keyword">if</span> m.group(<span class="number">1</span>):</span><br><span class="line">                    stoichiometry = float(m.group(<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stoichiometry = <span class="number">1.0</span></span><br><span class="line">                species_name = m.group(<span class="number">2</span>)</span><br><span class="line">                site = m.group(<span class="number">3</span>)</span><br><span class="line">                total_name = species_name + <span class="string">&#x27;_&#x27;</span> + site</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment">#for free site</span></span><br><span class="line">                m = self._owner.regex_dict[<span class="string">&#x27;empty_site&#x27;</span>][<span class="number">0</span>].search(reactant)</span><br><span class="line">                <span class="keyword">if</span> m.group(<span class="number">1</span>):</span><br><span class="line">                    stoichiometry = float(m.group(<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stoichiometry = <span class="number">1.0</span></span><br><span class="line">                site_name = m.group(<span class="number">2</span>)</span><br><span class="line">                total_name = <span class="string">&#x27;*_&#x27;</span> + site_name</span><br><span class="line">            <span class="keyword">if</span> reactants_dict.has_key(total_name):</span><br><span class="line">                reactants_dict[total_name] += stoichiometry</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                reactants_dict.setdefault(total_name, stoichiometry)</span><br><span class="line">        <span class="comment">#for products</span></span><br><span class="line">        <span class="keyword">for</span> product <span class="keyword">in</span> equation_list[<span class="number">-1</span>]:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="string">&#x27;*&#x27;</span> <span class="keyword">in</span> product:</span><br><span class="line">                m = self._owner.regex_dict[<span class="string">&#x27;species&#x27;</span>][<span class="number">0</span>].search(product)</span><br><span class="line">                <span class="keyword">if</span> m.group(<span class="number">1</span>):</span><br><span class="line">                    stoichiometry = float(m.group(<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stoichiometry = <span class="number">1.0</span></span><br><span class="line">                species_name = m.group(<span class="number">2</span>)</span><br><span class="line">                site = m.group(<span class="number">3</span>)</span><br><span class="line">                total_name = species_name + <span class="string">&#x27;_&#x27;</span> + site</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment">#for free site</span></span><br><span class="line">                m = self._owner.regex_dict[<span class="string">&#x27;empty_site&#x27;</span>][<span class="number">0</span>].search(product)</span><br><span class="line">                <span class="keyword">if</span> m.group(<span class="number">1</span>):</span><br><span class="line">                    stoichiometry = float(m.group(<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stoichiometry = <span class="number">1.0</span></span><br><span class="line">                site_name = m.group(<span class="number">2</span>)</span><br><span class="line">                total_name = <span class="string">&#x27;*_&#x27;</span> + site_name</span><br><span class="line">            <span class="keyword">if</span> products_dict.has_key(total_name):</span><br><span class="line">                products_dict[total_name] += stoichiometry</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                products_dict.setdefault(total_name, stoichiometry)</span><br><span class="line">    <span class="comment">#return sorted(reactants_dict.items()), sorted(products_dict.items())</span></span><br><span class="line"></span><br><span class="line">    reactants_set, products_set = set(reactants_dict.items()), \</span><br><span class="line">                                  set(products_dict.items())</span><br><span class="line">    <span class="comment">#return reactants_set, products_set</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set2str</span>(<span class="params">rxn_set</span>):</span></span><br><span class="line">        rxn_list = []</span><br><span class="line">        <span class="keyword">for</span> sp_tuple <span class="keyword">in</span> rxn_set:</span><br><span class="line">            species_name, number = sp_tuple[<span class="number">0</span>], str(sp_tuple[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">if</span> number == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                number = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            sp_str = number + species_name</span><br><span class="line">            rxn_list.append(sp_str)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; + &#x27;</span>.join(rxn_list)</span><br><span class="line">    total_reactants_str = set2str(reactants_set - products_set)</span><br><span class="line">    total_products_str = set2str(products_set - reactants_set)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#return total_reactants_str + &#x27; -&gt; &#x27; + total_products_str</span></span><br><span class="line">    total_rxn_equation = total_reactants_str + <span class="string">&#x27; -&gt; &#x27;</span> + total_products_str</span><br><span class="line"></span><br><span class="line">    <span class="comment">#check conservation</span></span><br><span class="line">    states_dict = self.parse_single_elementary_rxn(total_rxn_equation)[<span class="number">0</span>]</span><br><span class="line">    check_result = self.check_conservation(states_dict)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> check_result:</span><br><span class="line">        setattr(self._owner, <span class="string">&#x27;total_rxn_equation&#x27;</span>, total_rxn_equation)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> check_result == <span class="string">&#x27;mass_nonconservative&#x27;</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Mass of total equation \&#x27;&#x27;</span>+</span><br><span class="line">                        total_rxn_equation+<span class="string">&#x27;\&#x27; is not conservative!&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> check_result == <span class="string">&#x27;site_nonconservative&#x27;</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Site of total equation \&#x27;&#x27;</span>+</span><br><span class="line">                        total_rxn_equation+<span class="string">&#x27;\&#x27; is not conservative!&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/04/05/动力学模型工具类–Plotter/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/19/动力学模型工具类--Parser/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-03-08 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学术/">学术<span class="badge">26</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/kinetic-model/">kinetic model<span class="badge">10</span></a></li> <li><a href="/tags/Kynetix/">Kynetix<span class="badge">15</span></a></li> <li><a href="/tags/catalysis/">catalysis<span class="badge">28</span></a></li> <li><a href="/tags/chemistry/">chemistry<span class="badge">25</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

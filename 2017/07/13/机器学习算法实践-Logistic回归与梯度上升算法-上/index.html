@@ -1,0 +1,469 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>机器学习算法实践-Logistic回归与梯度上升算法(上) | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="机器学习算法实践-Logistic回归与梯度上升算法(上)"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 机器学习算法实践-Logistic回归与梯度上升算法(上)</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于Logistic回归分类器我打算用两部分总结，第一部分主要介绍Logistic回归的理论相关的部分，因为这里涉及到通过似然函数建立Logistic回归模型以及使用梯度上升算法优化参数两个主要的内容, 感觉可能比较多, 不过对于学习过最优化方法, 概率论以及线性代数的基础内容童鞋来说，这部分也是很快就掌握得啦。第二部分主要总结Logistic回归模型的代码实现和模型训练以及测试等。</p>
+<h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><p>Logistic回归为概率型非线性回归模型, 是研究二值型输出分类的一种多变量分析方法。通过logistic回归我们可以将二分类的观察结果$y$与一些影响因素$[x_{1}, x_{2}, x_{3}, …]$ 建立起关系从而对某些因素条件下某个结果发生的概率进行估计并分类。</p>
+<a id="more"></a>
+<h2 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h2><p>对于二分类问题，我们想要一个函数能够接受所有输入然后预测出两种类别，可以通过输出0或者1。这个函数就是sigmoid函数，它是一种阶跃函数具体的计算公式如下:<br>$$<br>\sigma(z) = \frac{1}{1 + e^{-z}}<br>$$<br>Sigmoid函数的性质: 当$x$为0时，Sigmoid函数值为0.5，随着$x$的增大对应的Sigmoid值将逼近于1; 而随着$x$的减小, Sigmoid函数会趋近于0。</p>
+<h2 id="Logistic回归分类器-Logistic-Regression-Classifier"><a href="#Logistic回归分类器-Logistic-Regression-Classifier" class="headerlink" title="Logistic回归分类器(Logistic Regression Classifier)"></a>Logistic回归分类器(Logistic Regression Classifier)</h2><p>Logistic回归分类器是这样一种分类器:</p>
+<p>在分类情形下，经过学习后的LR分类器是一组权值<br>$$<br>\overline{\omega} = [\omega_{0}, \omega_{1}, \omega_{2}, … , \omega_{n}]^{T}<br>$$<br>，样本也可以用一组向量 $\overline{x}$ 表示:<br>$$<br>\overline{x} = [x_{0}, x_{1}, x_{2}, x_{3}, … , x_{n}]^{T}<br>$$<br>其中$x_{0} = 1$</p>
+<p>将 $\overline{x}$ 根据 $\overline{w}$ 线性叠加带入到Sigmoid函数中便可以得到范围在 $(0, 1)$, 之间的数值，大于$0.5$被分入1类，小于$0.5$的被归入0类:</p>
+<p>$$<br>z = \overline{x}^{T}\centerdot\overline{\omega}<br>$$</p>
+<p>$$<br>p(y=1 | \overline{x}) = \frac{1}{1 + e^{-z}}<br>$$</p>
+<p>其中$p(y=1 | \overline{x})$就是指在特征为$\overline{x}$属于类1的条件概率, 当然也可以容易得到属于类0的概率为:</p>
+<p>$$<br>p(y=0 | \overline{x}) = 1 - p(y=1 | \overline{x}) = \frac{1}{1 + e^{z}}<br>$$</p>
+<p>所以Logistic回归最关键的问题就是研究如何求得 $\overline{\omega}$ 。这个问题就需要用<strong>似然函数</strong>进行<strong>极大似然</strong>估计来处理了。</p>
+<h2 id="似然函数-Likelihood-function"><a href="#似然函数-Likelihood-function" class="headerlink" title="似然函数(Likelihood function)"></a>似然函数(Likelihood function)</h2><blockquote>
+<p>In statistics, a likelihood function (often simply the likelihood) is a function of the parameters of a statistical model given data. </p>
+</blockquote>
+<p>从似然函数的英文定义中可以看到，似然函数是与<strong>统计模型中的参数</strong>的函数。虽然似然性和概率的意思差不多，但是在统计学中却有着明确的区分:</p>
+<ol>
+<li>概率(Probability)使我们平时用的最多的，用于在一直某些参数的值的情况下预测某个事件被观测到的可能性。</li>
+<li>似然性(Likelihood)则是在一直观测到的结果时，对有关参数进行估计。</li>
+</ol>
+<p>可见这两个是个概念是个可逆的过程，即似然函数是条件概率的逆反.</p>
+<p>对于某个已发生的事件 $x$, 某个参数或者某个参数向量 $\theta$ 的似然函数的值与已知参数 $\theta$ 前提下相同事件 $x$ 放生的条件概率(概率密度)的值相等, 即:</p>
+<p>$$<br>\mathcal{L}(\theta | x) = P(x | \theta)<br>$$</p>
+<p>似然函数对于离散和连续随机分布的表示形式是不同的:</p>
+<h3 id="离散型"><a href="#离散型" class="headerlink" title="离散型"></a>离散型</h3><p>对于具有与参数 $\theta$ 相关离散概率分布 $p$ 的变量 $X$, 对于某个变量 $X = x$ $\theta$ 的似然函数表示成:<br>$$<br>\mathcal{L}(\theta | x) = p_{\theta}(x) = P_{\theta}(X=x)<br>$$</p>
+<h3 id="连续型"><a href="#连续型" class="headerlink" title="连续型"></a>连续型</h3><p>连续性的分布我们则用概率密度 $f$ 来表示:<br>$$<br>\mathcal{L}(\theta | x) = f_{\theta}(x)<br>$$<br>注意似然函数并不是一个条件概率，虽然表达式与条件概率的形式相同。因为 $\theta$ 并不是一个随机变量而是一个参数。</p>
+<div class="alert alert-info"><i class="fa fa-info"></i>  关于对似然性的理解，个人认为，似然性并不是一个概率，而是表示在一些列事件发生时，关于事件相关的参数的<b>可能性信息</b>，一个参数就对应一个似然函数的值，当参数发生变化的时候，似然函数也会随之变化，<b>似然函数的重要性并不在于他的具体值是多少，而在于他随参数变化的变化趋势</b>，是变大还是变小。当我们在取得某个参数的时候，似然函数的值到达了极大值，则说明这个参数具有**最合理性**。</div>
+<h3 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h3><p>极大似然估计是似然函数最初也是最然的应用，我们优化Logistic模型就行极大似然估计的过程(求似然函数的极大值)，通过极大似然估计，我们可以得到最合理的参数。</p>
+<h2 id="Logistic回归中的极大似然估计"><a href="#Logistic回归中的极大似然估计" class="headerlink" title="Logistic回归中的极大似然估计"></a>Logistic回归中的极大似然估计</h2><p>上一部分总结了什么似然函数和极大似然估计，这里就总结下Logistic模型的极大似然估计。</p>
+<p>在LR分类器部分我们推导了Sigmoid函数计算两类问题的概率表达式，由于是二分类，分类结果是0和1，我们可以将两种类别的概率用一个式子表达, 对于一个样本 $\overline{x_{i}}$ 得到一个观测值为 $y_{i}$ 的概率为:<br>$$<br>P(y = y_{i} | \overline{x_{i}}) = p(y = 1 | \overline{x_{i}})^{y_{i}}(1 - p(y = 0 | \overline{x_{i}})^{1 - y_{i}} = (\frac{1}{1 + e^{-\overline{x_{i}}\centerdot\overline{\omega}^{T}}})^{y_{i}}(\frac{1}{1 + e^{\overline{x_{i}}\centerdot\overline{\omega}^{T}}})^{1 - y_{i}}<br>$$</p>
+<p>若各个样本之间是相互独立的，则联合概率为各个样本概率的乘积。于是根据这系列的样本，我们就能得到关于参数向量 $\overline{\omega}$ 的似然函数 $\mathcal{L}(\overline{\omega})$ :</p>
+<p>$$<br>\mathcal{L}(\overline{\omega}) = \prod_{i=1}^{n}(\frac{1}{1 + e^{-\overline{x_{i}}\centerdot\overline{\omega}^{T}}})^{y_{i}}(\frac{1}{1 + e^{\overline{x_{i}}\centerdot\overline{\omega}^{T}}})^{1 - y_{i}}<br>$$</p>
+<p>我们的目的就是要对这个似然函数的极大值进行参数估计，这便是我们训练Logistic回归模型的过程。通过极大似然估计我们便可以通过所有样本得到满足训练数据集的最合理的参数 $\overline{\omega}$</p>
+<h2 id="通过梯度上升算法进行极大似然估计"><a href="#通过梯度上升算法进行极大似然估计" class="headerlink" title="通过梯度上升算法进行极大似然估计"></a>通过梯度上升算法进行极大似然估计</h2><p>有了似然函数，我们便可以通过优化算法来进行优化了。使用梯度上升需要计算目标函数的梯度，下面我简单对梯度的计算进行一下推导:</p>
+<p>为了方便，我们将似然函数取自然对数先,</p>
+<p>$$<br>ln\mathcal{L}(\overline{\omega}) = \sum_{i=1}^{n}[y_{i}\centerdot ln\frac{exp(x_{i})}{exp(x_{i} + 1)} + (1 - y_{i}\centerdot ln\frac{1}{exp(x_{i} + 1)})]<br>$$<br>$$<br>ln\mathcal{L}(\overline{\omega}) = \sum_{i=1}^{m}[y_{i} \centerdot ln(exp(x_{i})) - y_{i} \centerdot ln(1 + exp(x_{i})) - (1 - y_{i})ln(1 + exp(x_{i}))]<br>$$<br>$$<br>ln\mathcal{L}(\overline{\omega}) = \sum_{i=1}^{n}(x_{i}y_{i} - ln(1 + exp(x_{i})))<br>$$</p>
+<p>然后我们对去过对数的函数的梯度进行计算:</p>
+<p>$$<br>\frac{\partial ln \mathcal{L}(\overline{\omega})}{\partial \omega_{k}} = \sum_{i=1}^{m}x_{ik}(y_{i} - \frac{1}{1 + exp(\overline{\omega} \centerdot \overline{x_{i}})})<br>$$</p>
+<p>通过矩阵乘法直接表示成梯度:</p>
+<p>$$<br>\nabla ln\mathcal{L}(\overline{\omega}) = \overline{x} \centerdot (\overline{y} - \overline{\pi(\overline{x})}) = \overline{x} \centerdot \overline{error}<br>$$</p>
+<p>设步长为 \alpha, 则迭代得到的新的权重参数为:</p>
+<p>$$<br>\overline{w} := \overline{w} + \alpha \nabla ln\mathcal{L}(\overline{\omega})<br>$$</p>
+<p>这样我们通过梯度上升法做极大似然估计来做Logistic回归的过程就很清楚了，剩下的我们就需要通过代码来实现Logistic回归吧.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要总结了Logistic回归相关的原理以及使用梯度上升法做回归优化的过程推导，为我们自己实现Logistic回归分类器做好了充足的准备。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Likelihood_function">https://en.wikipedia.org/wiki/Likelihood_function</a></li>
+<li>《Machine Learning in Action》</li>
+</ul>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://pytlab.org/2017/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E5%86%B3%E7%AD%96%E6%A0%91/">机器学习算法实践-决策树(Decision Tree)</a></li>
+<li><a target="_blank" rel="noopener" href="http://pytlab.org/2017/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%B7%B5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF-Naive-Bayes/">机器学习算法实践-朴素贝叶斯(Naive Bayes)</a></li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/07/15/机器学习算法实践-Logistic回归与梯度上升算法-下/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/07/11/机器学习实践-朴素贝叶斯-Naive-Bayes/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-07-13 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/学习小结/">学习小结<span class="badge">93</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">16</span></a></li> <li><a href="/tags/LogisticRegression/">LogisticRegression<span class="badge">2</span></a></li> <li><a href="/tags/Optimization/">Optimization<span class="badge">2</span></a></li> <li><a href="/tags/GradientAscent/">GradientAscent<span class="badge">2</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-article-text">前言</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Logistic%E5%9B%9E%E5%BD%92"><span class="toc-article-text">Logistic回归</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Sigmoid%E5%87%BD%E6%95%B0"><span class="toc-article-text">Sigmoid函数</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Logistic%E5%9B%9E%E5%BD%92%E5%88%86%E7%B1%BB%E5%99%A8-Logistic-Regression-Classifier"><span class="toc-article-text">Logistic回归分类器(Logistic Regression Classifier)</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0-Likelihood-function"><span class="toc-article-text">似然函数(Likelihood function)</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B"><span class="toc-article-text">离散型</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B"><span class="toc-article-text">连续型</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="toc-article-text">极大似然估计</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Logistic%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="toc-article-text">Logistic回归中的极大似然估计</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E9%80%9A%E8%BF%87%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95%E8%BF%9B%E8%A1%8C%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="toc-article-text">通过梯度上升算法进行极大似然估计</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%8F%82%E8%80%83"><span class="toc-article-text">参考</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB"><span class="toc-article-text">相关阅读</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>

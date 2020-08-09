@@ -1,0 +1,629 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>150多个最好的与机器学习,自然语言处理和Python相关的教程 | PytLab</title>
+  <meta name="author" content="PytLab">
+  
+  <meta name="description" content="Personal Blog of ShaoZhengjiang">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="150多个最好的与机器学习,自然语言处理和Python相关的教程"/>
+  <meta property="og:site_name" content="PytLab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/true" title="PytLab" type="application/atom+xml">
+  
+  
+    <link href="/assets/images/favicon/icon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73223373-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+ <body>  
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/"></a>
+      <div class="collapse navbar-collapse nav-menu">
+		    <ul class="nav navbar-nav">
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/" title="PytLab's Home" style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Archives -->
+          <li class="dropdown">
+            <a href="/archives" class="dropdown-toggle" data-toggle="dropdown" title="All the articles." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-archive"></i>Archives
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/archives" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Archives</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/2020/08/09/Life-of-a-thread/" style="font-size: 15px; font-family: 微软雅黑">Life of a thread<span></span></a></li>
+              
+              <li><a href="/2020/03/08/A-new-start/" style="font-size: 15px; font-family: 微软雅黑">I&#39;m back<span></span></a></li>
+              
+              <li><a href="/2018/03/07/遗传算法框架GAFT支持自定义个体编码方式/" style="font-size: 15px; font-family: 微软雅黑">遗传算法框架GAFT已支持自定义编码方式<span></span></a></li>
+              
+              <li><a href="/2018/01/27/实现属于自己的TensorFlow-三-反向传播与梯度下降算法实现/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(三) - 反向传播...<span></span></a></li>
+              
+              <li><a href="/2018/01/25/实现属于自己的TensorFlow-二-梯度计算与反向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(二) - 梯度计算...<span></span></a></li>
+              
+              <li><a href="/2018/01/24/实现属于自己的TensorFlow-一-计算图与前向传播/" style="font-size: 15px; font-family: 微软雅黑">实现属于自己的TensorFlow(一) - 计算图与...<span></span></a></li>
+              
+              <li><a href="/2017/11/03/机器学习算法实践-树回归/" style="font-size: 15px; font-family: 微软雅黑">机器学习算法实践-树回归<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+		      <li class="dropdown">
+            <a href="/categories" class="dropdown-toggle" data-toggle="dropdown" title="All the categories." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+		    	  <i class="fa fa-folder"></i>Categories
+            <b class="caret"></b>   
+		    	  </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/categories" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Categories</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/categories/学习小结/" style="font-size: 15px; font-family: 微软雅黑">学习小结<span></span></a></li>
+              
+              <li><a href="/categories/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li><a href="/categories/代码作品/" style="font-size: 15px; font-family: 微软雅黑">代码作品<span></span></a></li>
+              
+              <li><a href="/categories/我的日常/" style="font-size: 15px; font-family: 微软雅黑">我的日常<span></span></a></li>
+              
+              <li><a href="/categories/教程/" style="font-size: 15px; font-family: 微软雅黑">教程<span></span></a></li>
+              
+              <li><a href="/categories/译文/" style="font-size: 15px; font-family: 微软雅黑">译文<span></span></a></li>
+              
+              <li><a href="/categories/随笔/" style="font-size: 15px; font-family: 微软雅黑">随笔<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+		      </li>
+
+          
+		      
+
+          <!-- Categories -->
+          
+          <!-- Tags -->
+          <li class="dropdown">
+            <a href="/tags" class="dropdown-toggle" data-toggle="dropdown" title="All the tags." style="font-weight: normal; font-family: Calibri,Arial; font-size:     18px">
+            <i class="fa fa-tags"></i>Tags
+            <b class="caret"></b>   
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="/tags" style="font-size: 20px; font-family: 'Calibri Light',Arial">All Tags</a><span></span></li>
+              <li class="divider"></li>
+              
+              <li><a href="/tags/python/" style="font-size: 15px; font-family: 微软雅黑">python<span></span></a></li>
+              
+              <li><a href="/tags/Cpp/" style="font-size: 15px; font-family: 微软雅黑">Cpp<span></span></a></li>
+              
+              <li><a href="/tags/catalysis/" style="font-size: 15px; font-family: 微软雅黑">catalysis<span></span></a></li>
+              
+              <li><a href="/tags/C/" style="font-size: 15px; font-family: 微软雅黑">C<span></span></a></li>
+              
+              <li><a href="/tags/chemistry/" style="font-size: 15px; font-family: 微软雅黑">chemistry<span></span></a></li>
+              
+              <li><a href="/tags/Parallel-Computing/" style="font-size: 15px; font-family: 微软雅黑">Parallel Computing<span></span></a></li>
+              
+              <li><a href="/tags/学术/" style="font-size: 15px; font-family: 微软雅黑">学术<span></span></a></li>
+              
+              <li class="divider"></li>
+            </ul>
+          </li>
+          
+          
+		      
+
+          <!-- Categories -->
+          
+          <li>
+            <a href="/about" title="About me." style="font-weight: normal; font-family: Calibri,Arial; font-size: 18px">
+              <i class="fa fa-user"></i>About
+            </a>
+          </li>
+          
+		      
+		    </ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> 150多个最好的与机器学习,自然语言处理和Python相关的教程</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <blockquote>
+<p>本文翻译自<a target="_blank" rel="noopener" href="https://unsupervisedmethods.com/over-150-of-the-best-machine-learning-nlp-and-python-tutorials-ive-found-ffce2939bd78">Over 150 of the Best Machine Learning, NLP, and Python Tutorials I’ve Found</a>, 首发于<a target="_blank" rel="noopener" href="http://blog.jobbole.com/112185/">伯乐在线</a>，未经许可禁止转载。</p>
+</blockquote>
+<p>机器学习已经发展了很久, 它的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Machine_learning#History_and_relationships_to_other_fields">历史</a>可以追溯到1959年，但是如今此领域的发展速度可以说是空前的。在最近的<a target="_blank" rel="noopener" href="https://unsupervisedmethods.com/why-artificial-intelligence-is-different-from-previous-technology-waves-764d7710df8b">几篇文章</a>中, 我讨论了人工智能领域为何会在现在以及不久的将来持续蓬勃发展。如今很多对机器学习感兴趣的同学都普遍表示入门很难。</p>
+<a id="more"></a>
+<p>在准备博士课题的期间，我尝试在网络上搜索与机器学习和自然语言处理相关的优秀资源。当我找了一个有趣的教程或者视频，从这个教程或者视频出发我又可以找到三四个更多的教程或视频，最终就会出现的画面就是我还没有开始认真研究第一个找到的教程，浏览器已经打开了20个标签等待我去浏览了。(注: <a target="_blank" rel="noopener" href="https://www.tabbundler.com/">Tab Bundler</a> 可以帮助让我们的标签更有条理).</p>
+<p>在找到了超过25个与机器学习相关的速查表后，我写了篇<a target="_blank" rel="noopener" href="http://blog.jobbole.com/112009/">文章</a>, 在里面整理了所有优秀的速查表.</p>
+<p>为了给后面学习的童鞋铺路，我将我找到的最好的一些教程内容整理成了一份列表。这份列表并没有包含所有网上能找到的与机器学习相关的教程，否则这份列表将会过于臃肿。我的目标就是将我在机器学习和自然语言处理领域各个方面找到的我认为最好的教程整理出来。</p>
+<p>在教程中，为了能够更好的让读者理解其中的概念，我将避免罗列书中每章的详细内容，而是总结一些概念性的介绍内容。为什么不直接去买本书？当你想要对某些特定的主题或者不同方面进行了初步了解时，我相信这些教程对你可能帮助更大。</p>
+<p>本文中我将分四个主题进行整理: 机器学习，自然语言处理，Python和数学。在每个主题中我将包含一个例子和多个资源。当然我不可能完全覆盖所有的主题啦。</p>
+<p>在将来，我也将会整理一系列类似的资源列表，包括书籍，视频和代码项目等。因为我目前也的确正在编译这些资源。</p>
+<p>如果你发现我在这里遗漏了好的教程资源，请联系告诉我。为了避免资源重复罗列，我在每个主题下只列出了5、6个教程。下面的每个链接都应该链接了和其他链接不同的资源，也会通过不同的方式（例如幻灯片代码段)或者不同的角度呈现出这些内容。</p>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471">Machine Learning is Fun!</a> (medium.com/@ageitgey)</li>
+<li>Machine Learning Crash Course: <a target="_blank" rel="noopener" href="https://ml.berkeley.edu/blog/2016/11/06/tutorial-1/">Part I</a>, <a target="_blank" rel="noopener" href="https://ml.berkeley.edu/blog/2016/12/24/tutorial-2/">Part II</a>, <a target="_blank" rel="noopener" href="https://ml.berkeley.edu/blog/2017/02/04/tutorial-3/">Part III</a> (Machine Learning at Berkeley)</li>
+<li><a target="_blank" rel="noopener" href="https://www.toptal.com/machine-learning/machine-learning-theory-an-introductory-primer">An Introduction to Machine Learning Theory and Its Applications: A Visual Tutorial with Examples</a> (toptal.com)</li>
+<li><a target="_blank" rel="noopener" href="https://monkeylearn.com/blog/a-gentle-guide-to-machine-learning/">A Gentle Guide to Machine Learning</a> (monkeylearn.com)</li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/">Which machine learning algorithm should I use?</a> (sas.com)</li>
+</ul>
+<h4 id="激活函数和损失函数"><a href="#激活函数和损失函数" class="headerlink" title="激活函数和损失函数"></a>激活函数和损失函数</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/chap1.html#sigmoid_neurons">Sigmoid neurons</a> (neuralnetworksanddeeplearning.com)</li>
+<li><a target="_blank" rel="noopener" href="https://www.quora.com/What-is-the-role-of-the-activation-function-in-a-neural-network">What is the role of the activation function in a neural network?</a> (quora.com)</li>
+<li><a target="_blank" rel="noopener" href="https://stats.stackexchange.com/questions/115258/comprehensive-list-of-activation-functions-in-neural-networks-with-pros-cons">Comprehensive list of activation functions in neural networks with pros/cons</a> (stats.stackexchange.com)</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/towards-data-science/activation-functions-and-its-types-which-is-better-a9a5310cc8f">Activation functions and it’s types-Which is better?</a> (medium.com)</li>
+<li><a target="_blank" rel="noopener" href="http://www.exegetic.biz/blog/2015/12/making-sense-logarithmic-loss/">Making Sense of Logarithmic Loss</a> (exegetic.biz)</li>
+<li><a target="_blank" rel="noopener" href="http://cs231n.github.io/neural-networks-2/#losses">Loss Functions</a> (Stanford CS231n)</li>
+<li><a target="_blank" rel="noopener" href="http://rishy.github.io/ml/2015/07/28/l1-vs-l2-loss/">L1 vs. L2 Loss function</a> (rishy.github.io)</li>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/chap3.html#the_cross-entropy_cost_function">The cross-entropy cost function</a> (neuralnetworksanddeeplearning.com)</li>
+</ul>
+<h4 id="偏差"><a href="#偏差" class="headerlink" title="偏差"></a>偏差</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks/2499936#2499936">Role of Bias in Neural Networks</a> (stackoverflow.com)</li>
+<li><a target="_blank" rel="noopener" href="http://makeyourownneuralnetwork.blogspot.com/2016/06/bias-nodes-in-neural-networks.html">Bias Nodes in Neural Networks</a> (makeyourownneuralnetwork.blogspot.com)</li>
+<li><a target="_blank" rel="noopener" href="https://www.quora.com/What-is-bias-in-artificial-neural-network">What is bias in artificial neural network?</a> (quora.com)</li>
+</ul>
+<h4 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons">Perceptrons</a> (neuralnetworksanddeeplearning.com)</li>
+<li><a target="_blank" rel="noopener" href="http://natureofcode.com/book/chapter-10-neural-networks/#chapter10_figure3">The Perception</a> (natureofcode.com)</li>
+<li><a target="_blank" rel="noopener" href="http://computing.dcu.ie/~humphrys/Notes/Neural/single.neural.html">Single-layer Neural Networks (Perceptrons)</a> (dcu.ie)</li>
+<li><a target="_blank" rel="noopener" href="https://www.toptal.com/machine-learning/an-introduction-to-deep-learning-from-perceptrons-to-deep-networks">From Perceptrons to Deep Networks</a> (toptal.com)</li>
+</ul>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://people.duke.edu/~rnau/regintro.htm">Introduction to linear regression analysis</a> (duke.edu)</li>
+<li><a target="_blank" rel="noopener" href="http://ufldl.stanford.edu/tutorial/supervised/LinearRegression/">Linear Regression</a> (ufldl.stanford.edu)</li>
+<li><a target="_blank" rel="noopener" href="http://ml-cheatsheet.readthedocs.io/en/latest/linear_regression.html">Linear Regression</a> (readthedocs.io)</li>
+<li><a target="_blank" rel="noopener" href="http://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html">Logistic Regression</a> (readthedocs.io)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/simple-linear-regression-tutorial-for-machine-learning/">Simple Linear Regression Tutorial for Machine Learning</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/logistic-regression-tutorial-for-machine-learning/">Logistic Regression Tutorial for Machine Learning</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="http://ufldl.stanford.edu/tutorial/supervised/SoftmaxRegression/">Softmax Regression</a> (ufldl.stanford.edu)</li>
+</ul>
+<h4 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/chap1.html#learning_with_gradient_descent">Learning with gradient descent</a> (neuralnetworksanddeeplearning.com)</li>
+<li><a target="_blank" rel="noopener" href="http://iamtrask.github.io/2015/07/27/python-network-part2/">Gradient Descent</a> (iamtrask.github.io)</li>
+<li><a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2017/04/simple-understand-gradient-descent-algorithm.html">How to understand Gradient Descent algorithm</a> (kdnuggets.com)</li>
+<li><a target="_blank" rel="noopener" href="http://sebastianruder.com/optimizing-gradient-descent/">An overview of gradient descent optimization algorithms</a> (sebastianruder.com)</li>
+<li><a target="_blank" rel="noopener" href="http://cs231n.github.io/optimization-1/">Optimization: Stochastic Gradient Descent</a> (Stanford CS231n)</li>
+</ul>
+<h4 id="生成学习"><a href="#生成学习" class="headerlink" title="生成学习"></a>生成学习</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://cs229.stanford.edu/notes/cs229-notes2.pdf">Generative Learning Algorithms</a> (Stanford CS229)</li>
+<li><a target="_blank" rel="noopener" href="https://monkeylearn.com/blog/practical-explanation-naive-bayes-classifier/">A practical explanation of a Naive Bayes classifier</a> (monkeylearn.com)</li>
+</ul>
+<h4 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://monkeylearn.com/blog/introduction-to-support-vector-machines-svm/">An introduction to Support Vector Machines (SVM)</a> (monkeylearn.com)</li>
+<li><a target="_blank" rel="noopener" href="http://cs229.stanford.edu/notes/cs229-notes3.pdf">Support Vector Machines</a> (Stanford CS229)</li>
+<li><a target="_blank" rel="noopener" href="http://cs231n.github.io/linear-classify/">Linear classification: Support Vector Machine, Softmax</a> (Stanford 231n)</li>
+</ul>
+<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b">Yes you should understand backprop</a> (medium.com/@karpathy)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rasbt/python-machine-learning-book/blob/master/faq/visual-backpropagation.md">Can you give a visual explanation for the back propagation algorithm for neural networks?</a> (github.com/rasbt)</li>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/chap2.html">How the backpropagation algorithm works</a> (neuralnetworksanddeeplearning.com)</li>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/">Backpropagation Through Time and Vanishing Gradients</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/gentle-introduction-backpropagation-time/">A Gentle Introduction to Backpropagation Through Time</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="http://cs231n.github.io/optimization-2/">Backpropagation, Intuitions</a> (Stanford CS231n)</li>
+</ul>
+<h4 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://nikhilbuduma.com/2014/12/29/deep-learning-in-a-nutshell/">Deep Learning in a Nutshell</a> (nikhilbuduma.com)</li>
+<li><a target="_blank" rel="noopener" href="http://ai.stanford.edu/~quocle/tutorial1.pdf">A Tutorial on Deep Learning</a> (Quoc V. Le)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/what-is-deep-learning/">What is Deep Learning?</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="https://blogs.nvidia.com/blog/2016/07/29/whats-difference-artificial-intelligence-machine-learning-deep-learning-ai/">What’s the Difference Between Artificial Intelligence, Machine Learning, and Deep Learning?</a> (nvidia.com)</li>
+</ul>
+<h4 id="优化和降维"><a href="#优化和降维" class="headerlink" title="优化和降维"></a>优化和降维</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.knime.org/blog/seven-techniques-for-data-dimensionality-reduction">Seven Techniques for Data Dimensionality Reduction</a> (knime.org)</li>
+<li><a target="_blank" rel="noopener" href="http://cs229.stanford.edu/notes/cs229-notes10.pdf">Principal components analysis</a> (Stanford CS229)</li>
+<li><a target="_blank" rel="noopener" href="http://videolectures.net/site/normal_dl/tag=741100/nips2012_hinton_networks_01.pdf">Dropout: A simple way to improve neural networks</a> (Hinton @ NIPS 2012)</li>
+<li><a target="_blank" rel="noopener" href="http://rishy.github.io/ml/2017/01/05/how-to-train-your-dnn/">How to train your Deep Neural Network</a> (rishy.github.io)</li>
+</ul>
+<h4 id="长短期记忆-LSTM"><a href="#长短期记忆-LSTM" class="headerlink" title="长短期记忆(LSTM)"></a>长短期记忆(LSTM)</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/gentle-introduction-long-short-term-memory-networks-experts/">A Gentle Introduction to Long Short-Term Memory Networks by the Experts</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a> (colah.github.io)</li>
+<li><a target="_blank" rel="noopener" href="http://blog.echen.me/2017/05/30/exploring-lstms/">Exploring LSTMs</a> (echen.me)</li>
+<li><a target="_blank" rel="noopener" href="http://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/">Anyone Can Learn To Code an LSTM-RNN in Python</a> (iamtrask.github.io)</li>
+</ul>
+<h4 id="卷积神经网络-CNNs"><a href="#卷积神经网络-CNNs" class="headerlink" title="卷积神经网络(CNNs)"></a>卷积神经网络(CNNs)</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/chap6.html#introducing_convolutional_networks">Introducing convolutional networks</a> (neuralnetworksanddeeplearning.com)</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721">Deep Learning and Convolutional Neural Networks</a> (medium.com/@ageitgey)</li>
+<li><a target="_blank" rel="noopener" href="http://colah.github.io/posts/2014-07-Conv-Nets-Modular/">Conv Nets: A Modular Perspective</a> (colah.github.io)</li>
+<li><a target="_blank" rel="noopener" href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/">Understanding Convolutions</a> (colah.github.io)</li>
+</ul>
+<h4 id="循环神经网络-RNNs"><a href="#循环神经网络-RNNs" class="headerlink" title="循环神经网络(RNNs)"></a>循环神经网络(RNNs)</h4><p><a target="_blank" rel="noopener" href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/">Recurrent Neural Networks Tutorial</a> (wildml.com)<br><a target="_blank" rel="noopener" href="http://distill.pub/2016/augmented-rnns/">Attention and Augmented Recurrent Neural Networks</a> (distill.pub)<br><a target="_blank" rel="noopener" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">The Unreasonable Effectiveness of Recurrent Neural Networks</a> (karpathy.github.io)<br><a target="_blank" rel="noopener" href="http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/">A Deep Dive into Recurrent Neural Nets</a> (nikhilbuduma.com)</p>
+<h4 id="增强学习"><a href="#增强学习" class="headerlink" title="增强学习"></a>增强学习</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.analyticsvidhya.com/blog/2017/01/introduction-to-reinforcement-learning-implementation/">Simple Beginner’s guide to Reinforcement Learning &amp; its implementation</a> (analyticsvidhya.com)</li>
+<li><a target="_blank" rel="noopener" href="https://web.mst.edu/~gosavia/tutorial.pdf">A Tutorial for Reinforcement Learning</a> (mst.edu)</li>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2016/10/learning-reinforcement-learning/">Learning Reinforcement Learning</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="http://karpathy.github.io/2016/05/31/rl/">Deep Reinforcement Learning: Pong from Pixels</a> (karpathy.github.io)</li>
+</ul>
+<h4 id="生成对抗网络-GANs"><a href="#生成对抗网络-GANs" class="headerlink" title="生成对抗网络(GANs)"></a>生成对抗网络(GANs)</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://blogs.nvidia.com/blog/2017/05/17/generative-adversarial-network/">What’s a Generative Adversarial Network?</a> (nvidia.com)</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@ageitgey/abusing-generative-adversarial-networks-to-make-8-bit-pixel-art-e45d9b96cee7">Abusing Generative Adversarial Networks to Make 8-bit Pixel Art</a> (medium.com/@ageitgey)</li>
+<li><a target="_blank" rel="noopener" href="http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/">An introduction to Generative Adversarial Networks (with code in TensorFlow)</a> (aylien.com)</li>
+<li><a target="_blank" rel="noopener" href="https://www.oreilly.com/learning/generative-adversarial-networks-for-beginners">Generative Adversarial Networks for Beginners</a> (oreilly.com)</li>
+</ul>
+<h4 id="多任务学习"><a href="#多任务学习" class="headerlink" title="多任务学习"></a>多任务学习</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://sebastianruder.com/multi-task/index.html">An Overview of Multi-Task Learning in Deep Neural Networks</a> (sebastianruder.com)</li>
+</ul>
+<h3 id="自然语言处理-NLP"><a href="#自然语言处理-NLP" class="headerlink" title="自然语言处理(NLP)"></a>自然语言处理(NLP)</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://u.cs.biu.ac.il/~yogo/nnlp.pdf">A Primer on Neural Network Models for Natural Language Processing</a> (Yoav Goldberg)</li>
+<li><a target="_blank" rel="noopener" href="https://monkeylearn.com/blog/the-definitive-guide-to-natural-language-processing/">The Definitive Guide to Natural Language Processing</a> (monkeylearn.com)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.algorithmia.com/introduction-natural-language-processing-nlp/">Introduction to Natural Language Processing</a> (algorithmia.com)</li>
+<li><a target="_blank" rel="noopener" href="http://www.vikparuchuri.com/blog/natural-language-processing-tutorial/">Natural Language Processing Tutorial</a> (vikparuchuri.com)</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1103.0398.pdf">Natural Language Processing (almost) from Scratch</a> (arxiv.org)</li>
+</ul>
+<h4 id="深度学习与NLP"><a href="#深度学习与NLP" class="headerlink" title="深度学习与NLP"></a>深度学习与NLP</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1703.03091.pdf">Deep Learning applied to NLP</a> (arxiv.org)</li>
+<li><a target="_blank" rel="noopener" href="https://nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf">Deep Learning for NLP (without Magic)</a> (Richard Socher)</li>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/">Understanding Convolutional Neural Networks for NLP</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/">Deep Learning, NLP, and Representations</a> (colah.github.io)</li>
+<li><a target="_blank" rel="noopener" href="https://explosion.ai/blog/deep-learning-formula-nlp">Embed, encode, attend, predict: The new deep learning formula for state-of-the-art NLP models</a> (explosion.ai)</li>
+<li><a target="_blank" rel="noopener" href="https://devblogs.nvidia.com/parallelforall/understanding-natural-language-deep-neural-networks-using-torch/">Understanding Natural Language with Deep Neural Networks Using Torch</a> (nvidia.com)</li>
+<li><a target="_blank" rel="noopener" href="http://pytorch.org/tutorials/beginner/deep_learning_nlp_tutorial.html">Deep Learning for NLP with Pytorch</a> (pytorich.org)</li>
+</ul>
+<h4 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kaggle.com/c/word2vec-nlp-tutorial">Bag of Words Meets Bags of Popcorn</a> (kaggle.com)</li>
+<li>On word embeddings <a target="_blank" rel="noopener" href="http://sebastianruder.com/word-embeddings-1/index.html">Part I</a>, <a target="_blank" rel="noopener" href="http://sebastianruder.com/word-embeddings-softmax/index.html">Part II</a>, <a target="_blank" rel="noopener" href="http://sebastianruder.com/secret-word2vec/index.html">Part III</a> (sebastianruder.com)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/">The amazing power of word vectors</a> (acolyer.org)</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1411.2738.pdf">word2vec Parameter Learning Explained</a> (arxiv.org)</li>
+<li>Word2Vec Tutorial — <a target="_blank" rel="noopener" href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">The Skip-Gram Model</a>, <a target="_blank" rel="noopener" href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">Negative Sampling</a> (mccormickml.com)</li>
+</ul>
+<h4 id="编码器-解码器"><a href="#编码器-解码器" class="headerlink" title="编码器-解码器"></a>编码器-解码器</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Attention and Memory in Deep Learning and NLP</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="https://www.tensorflow.org/tutorials/seq2seq">Sequence to Sequence Models</a> (tensorflow.org)</li>
+<li><a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf">Sequence to Sequence Learning with Neural Networks</a> (NIPS 2014)</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@ageitgey/machine-learning-is-fun-part-5-language-translation-with-deep-learning-and-the-magic-of-sequences-2ace0acca0aa">Machine Learning is Fun Part 5: Language Translation with Deep Learning and the Magic of Sequences</a> (medium.com/@ageitgey)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/how-to-use-an-encoder-decoder-lstm-to-echo-sequences-of-random-integers/">How to use an Encoder-Decoder LSTM to Echo Sequences of Random Integers</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="https://google.github.io/seq2seq/">tf-seq2seq</a> (google.github.io)</li>
+</ul>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2015/11/seven-steps-machine-learning-python.html">7 Steps to Mastering Machine Learning With Python</a> (kdnuggets.com)</li>
+<li><a target="_blank" rel="noopener" href="http://nbviewer.jupyter.org/github/rhiever/Data-Analysis-and-Machine-Learning-Projects/blob/master/example-data-science-notebook/Example%20Machine%20Learning%20Notebook.ipynb">An example machine learning notebook</a> (nbviewer.jupyter.org)</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/implement-perceptron-algorithm-scratch-python/">How To Implement The Perceptron Algorithm From Scratch In Python</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/">Implementing a Neural Network from Scratch in Python</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="http://iamtrask.github.io/2015/07/12/basic-python-network/">A Neural Network in 11 lines of Python</a> (iamtrask.github.io)</li>
+<li><a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2016/01/implementing-your-own-knn-using-python.html">Implementing Your Own k-Nearest Neighbour Algorithm Using Python</a> (kdnuggets.com)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/memory-in-a-long-short-term-memory-network/">Demonstration of Memory with a Long Short-Term Memory Network in Python</a> (machinelearningmastery.com)</li>
+<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/learn-echo-random-integers-long-short-term-memory-recurrent-neural-networks/">How to Learn to Echo Random Integers with Long Short-Term Memory Recurrent Neural Networks</a> (machinelearningmastery.com)</li>
+<li><a href="How to Learn to Add Numbers with seq2seq Recurrent Neural Networks">How to Learn to Add Numbers with seq2seq Recurrent Neural Networks</a> (machinelearningmastery.com)</li>
+</ul>
+<h4 id="Numpy和Scipy"><a href="#Numpy和Scipy" class="headerlink" title="Numpy和Scipy"></a>Numpy和Scipy</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://www.scipy-lectures.org/">Scipy Lecture Notes</a> (scipy-lectures.org)</li>
+<li><a target="_blank" rel="noopener" href="http://cs231n.github.io/python-numpy-tutorial/">Python Numpy Tutorial</a> (Stanford CS231n)</li>
+<li><a target="_blank" rel="noopener" href="https://engineering.ucsb.edu/~shell/che210d/numpy.pdf">An introduction to Numpy and Scipy</a> (UCSB CHE210D)</li>
+<li><a target="_blank" rel="noopener" href="http://nbviewer.jupyter.org/gist/rpmuller/5920182#ii.-numpy-and-scipy">A Crash Course in Python for Scientists</a> (nbviewer.jupyter.org)</li>
+</ul>
+<h4 id="scikit-learn"><a href="#scikit-learn" class="headerlink" title="scikit-learn"></a>scikit-learn</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://nbviewer.jupyter.org/github/jakevdp/sklearn_pycon2015/blob/master/notebooks/Index.ipynb">PyCon scikit-learn Tutorial Index</a> (nbviewer.jupyter.org)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mmmayo13/scikit-learn-classifiers/blob/master/sklearn-classifiers-tutorial.ipynb">scikit-learn Classification Algorithms</a> (github.com/mmmayo13)</li>
+<li><a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/tutorial/index.html">scikit-learn Tutorials</a> (scikit-learn.org)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mmmayo13/scikit-learn-beginners-tutorials">Abridged scikit-learn Tutorials</a> (github.com/mmmayo13)</li>
+</ul>
+<h4 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tensorflow.org/tutorials/">Tensorflow Tutorials</a> (tensorflow.org)</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@erikhallstrm/hello-world-tensorflow-649b15aed18c">Introduction to TensorFlow — CPU vs GPU</a> (medium.com/@erikhallstrm)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.metaflow.fr/tensorflow-a-primer-4b3fa0978be3">TensorFlow: A primer</a> (metaflow.fr)</li>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/">RNNs in Tensorflow</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/">Implementing a CNN for Text Classification in TensorFlow</a> (wildml.com)</li>
+<li><a target="_blank" rel="noopener" href="http://pavel.surmenok.com/2016/10/15/how-to-run-text-summarization-with-tensorflow/">How to Run Text Summarization with TensorFlow</a> (surmenok.com)</li>
+</ul>
+<h4 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h4><ul>
+<li><a target="_blank" rel="noopener" href="http://pytorch.org/tutorials/">PyTorch Tutorials</a> (pytorch.org)</li>
+<li><a target="_blank" rel="noopener" href="http://blog.gaurav.im/2017/04/24/a-gentle-intro-to-pytorch/">A Gentle Intro to PyTorch</a> (gaurav.im)</li>
+<li><a target="_blank" rel="noopener" href="https://iamtrask.github.io/2017/01/15/pytorch-tutorial/">Tutorial: Deep Learning in PyTorch</a> (iamtrask.github.io)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jcjohnson/pytorch-examples">PyTorch Examples</a> (github.com/jcjohnson)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MorvanZhou/PyTorch-Tutorial">PyTorch Tutorial</a> (github.com/MorvanZhou)</li>
+<li><a href="PyTorch Tutorial for Deep Learning Researchers">PyTorch Tutorial for Deep Learning Researchers</a> (github.com/yunjey)</li>
+</ul>
+<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://people.ucsc.edu/~praman1/static/pub/math-for-ml.pdf">Math for Machine Learning</a> (ucsc.edu)</li>
+<li><a target="_blank" rel="noopener" href="http://www.umiacs.umd.edu/~hal/courses/2013S_ML/math4ml.pdf">Math for Machine Learning</a> (UMIACS CMSC422)</li>
+</ul>
+<h4 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/linear-algebra-guide/">An Intuitive Guide to Linear Algebra</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/matrix-multiplication/">A Programmer’s Intuition for Matrix Multiplication</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/cross-product/">Understanding the Cross Product</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/vector-calculus-understanding-the-dot-product/">Understanding the Dot Product</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="http://www.cedar.buffalo.edu/~srihari/CSE574/Chap1/LinearAlgebra.pdf">Linear Algebra for Machine Learning</a> (U. of Buffalo CSE574)</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/towards-data-science/linear-algebra-cheat-sheet-for-deep-learning-cd67aba4526c">Linear algebra cheat sheet for deep learning</a> (medium.com)</li>
+<li><a target="_blank" rel="noopener" href="http://cs229.stanford.edu/section/cs229-linalg.pdf">Linear Algebra Review and Reference</a> (Stanford CS229)</li>
+</ul>
+<h4 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/understanding-bayes-theorem-with-ratios/">Understanding Bayes Theorem With Ratios</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="http://cs229.stanford.edu/section/cs229-prob.pdf">Review of Probability Theory</a> (Stanford CS229)</li>
+<li><a target="_blank" rel="noopener" href="https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf">Probability Theory Review for Machine Learning</a> (Stanford CS229)</li>
+<li><a target="_blank" rel="noopener" href="http://www.cedar.buffalo.edu/~srihari/CSE574/Chap1/Probability-Theory.pdf">Probability Theory</a> (U. of Buffalo CSE574)</li>
+<li><a target="_blank" rel="noopener" href="http://www.cs.toronto.edu/~urtasun/courses/CSC411_Fall16/tutorial1.pdf">Probability Theory for Machine Learning</a> (U. of Toronto CSC411)</li>
+</ul>
+<h4 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/how-to-understand-derivatives-the-quotient-rule-exponents-and-logarithms/">How To Understand Derivatives: The Quotient Rule, Exponents, and Logarithms</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/derivatives-product-power-chain/">How To Understand Derivatives: The Product, Power &amp; Chain Rules</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/">Vector Calculus: Understanding the Gradient</a> (betterexplained.com)</li>
+<li><a target="_blank" rel="noopener" href="http://web.stanford.edu/class/cs224n/lecture_notes/cs224n-2017-review-differential-calculus.pdf">Differential Calculus</a> (Stanford CS224n)</li>
+<li><a target="_blank" rel="noopener" href="http://ml-cheatsheet.readthedocs.io/en/latest/calculus.html">Calculus Overview</a> (readthedocs.io)</li>
+</ul>
+	  
+	</div>
+
+    
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/08/15/机器学习算法实践-支持向量机-SVM-算法原理/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/08/11/递归式求解-代入法/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+    
+	
+    <!-- bdshare -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+
+	<!-- comment -->
+    
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-08-12 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/译文/">译文<span class="badge">2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/python/">python<span class="badge">57</span></a></li> <li><a href="/tags/MachineLearning/">MachineLearning<span class="badge">16</span></a></li> <li><a href="/tags/NLP/">NLP<span class="badge">1</span></a></li>
+
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-article-text">机器学习</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-article-text">激活函数和损失函数</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%81%8F%E5%B7%AE"><span class="toc-article-text">偏差</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%84%9F%E7%9F%A5%E5%99%A8"><span class="toc-article-text">感知器</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%9B%9E%E5%BD%92"><span class="toc-article-text">回归</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-article-text">梯度下降</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E7%94%9F%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="toc-article-text">生成学习</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-article-text">支持向量机</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-article-text">反向传播</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-article-text">深度学习</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E4%BC%98%E5%8C%96%E5%92%8C%E9%99%8D%E7%BB%B4"><span class="toc-article-text">优化和降维</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86-LSTM"><span class="toc-article-text">长短期记忆(LSTM)</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNNs"><span class="toc-article-text">卷积神经网络(CNNs)</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNNs"><span class="toc-article-text">循环神经网络(RNNs)</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%A2%9E%E5%BC%BA%E5%AD%A6%E4%B9%A0"><span class="toc-article-text">增强学习</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C-GANs"><span class="toc-article-text">生成对抗网络(GANs)</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0"><span class="toc-article-text">多任务学习</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-NLP"><span class="toc-article-text">自然语言处理(NLP)</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8ENLP"><span class="toc-article-text">深度学习与NLP</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F"><span class="toc-article-text">词向量</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8-%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-article-text">编码器-解码器</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Python"><span class="toc-article-text">Python</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-article-text">例子</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Numpy%E5%92%8CScipy"><span class="toc-article-text">Numpy和Scipy</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#scikit-learn"><span class="toc-article-text">scikit-learn</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#Tensorflow"><span class="toc-article-text">Tensorflow</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#PyTorch"><span class="toc-article-text">PyTorch</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Math"><span class="toc-article-text">Math</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0"><span class="toc-article-text">线性代数</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA"><span class="toc-article-text">概率论</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="toc-article-text">微积分</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'pytlab';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; copyright 2020 by <a href="http://pytlab.github.io"> PytLab </a>
+  
+      &nbsp; <a target="_blank" rel="noopener" href="http://github.com/PytLab/hexo-theme-freemind/">Theme</a> by <a href="http://pytlab.github.io/">PytLab</a> based on <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({{ JSON.stringify(config) }});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="{{ src }}">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+   </html>
