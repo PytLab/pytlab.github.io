@@ -7,7 +7,7 @@ tags:
  - C++
  - HPC
 feature: /assets/images/features/hpc.jpg
-toc: true
+toc: false
 ---
 ## 新坑
 
